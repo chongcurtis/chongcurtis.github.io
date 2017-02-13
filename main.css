@@ -1,0 +1,350 @@
+*{
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+a {
+  color: #ff7f00;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+a:hover {
+  text-decoration: none !important;
+  color: #00bbff !important;
+}
+.fadeIn {
+  opacity: 0.01;
+}
+body{
+  margin: 0px;
+}
+.tword{
+  opacity: 0.01;
+  font-size: 50px;
+  position: relative;
+  cursor: default;
+  font-weight: 300;
+}
+.aPhoto{
+  width:100%;
+}
+.splitHr{
+  border: 0;
+  height: 1px;
+  width: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.75), #FFFFFF, rgba(0, 0, 0, 0.75));
+  position: relative;
+  margin: 0 auto;
+  top: 60px;
+}
+#bannerPhoto{
+  height: 600px;
+  top: 0px;
+  position: relative;
+  width: 100%;
+  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) );
+}
+#issueInfo{
+  height: 400px;
+  background-color: #2C3E50;
+}
+#title{
+  position: absolute;
+  left: 150px;
+  font-size: 27px;
+}
+#subHeaders{
+  position: absolute;
+  left: 153px;
+  font-size: 23px;
+  opacity: 0.01;
+  cursor: default;
+  font-weight: 300;
+}
+#graph{
+  background-color: black;
+  width: 100%;
+  position: relative;
+  top: -10px;
+}
+#intro{
+  background-color: #070502;
+  min-height: 340px;
+  position: relative;
+}
+#introTitle{
+  font-size: 22px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  top: 140px;
+}
+#introduction{
+  position: relative;
+  text-align: center;
+  left: 10%;
+  width: 80%;
+  font-size: 18px;
+  top: 150px;
+}
+#projects{
+  position: relative;
+  top: -10px;
+  background-color: #070502;
+  min-height: 1000px;
+}
+/*.projectHeader{
+  position: absolute;
+  cursor: pointer;
+  text-align: center;
+}
+.projectTitle{
+  position: absolute;
+  cursor: pointer;
+  padding-bottom: 1px;
+  transition: all 0.8s ease-in-out;
+  text-align: center;
+}
+.projectTitle:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 0;
+  transition: width 0s ease, background .5s ease;
+}
+.projectTitle:after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  width: 0;
+  background: white;
+  transition: width .5s ease;
+}
+.projectTitle:hover:before {
+  width: 100%;
+  background: white;
+  transition: width .5s ease;
+}
+.projectTitle:hover:after {
+  width: 100%;
+  background: transparent;
+  transition: all 0s ease;
+}*/
+
+.prjimg{
+    cursor: pointer;
+    /*display: inline;
+    height: 50px;
+    z-index: 5;*/
+    top: 50%;
+  transform: translateY(-50%);
+    border-radius: 10px;
+}
+#myProjects{
+  height: 1400px;
+  background-color: #070502;
+}
+#viewProject{
+  font-size: 20px;
+  cursor: pointer;
+  width: 30%;
+}
+#backToEvent{
+  display: none;
+  font-size: 20px;
+  cursor: pointer;
+  width: 30%;
+}
+#network{
+  position: absolute;
+  z-index: 2;
+  opacity: 0.01;
+}
+#experienceIntro{
+  background-color: #070502;
+  position: relative;
+  top: -10px;
+  height: 500px;
+}
+#experience{
+  background-color: #070502;
+  position: relative;
+  top: -10px;
+  height: 1750px;
+}
+#workExperience{
+  text-align: center;
+  width: 100%;
+  font-size: 20px;
+  position: relative;
+  top: 300px;
+  z-index: 3;
+}
+#hackathons{
+  background-color: #070502;
+  position: relative;
+  top: -10px;
+  height: 450px;
+}
+#hackathonNum{
+  top: 120px;
+  font-size: 50px;
+  position: absolute;
+  left: 20px;
+  text-align: center;
+  width:5%;
+  left: 40%;
+  margin-right: 0px;
+  z-index: 2;
+}
+#hackathonsWord{
+  top: 120px;
+  font-size: 50px;
+  position: relative;
+  left: 115px;
+  text-align: center;
+  width:90%;
+  z-index: 2;
+  margin-right: 20px;
+}
+#winNum{
+  top: 270px;
+  font-size: 37px;
+  position: absolute;
+  left: 60px;
+  text-align: center;
+  width:5%;
+  left: 40%;
+  margin-right: 0px;
+  z-index: 2;
+}
+#hackathonWins{
+  font-size: 37px;
+  position: relative;
+  margin-top: 150px;
+  text-align: center;
+  width: 90%;
+  left: 90px;
+  z-index: 2;
+  margin-right: 20px;
+}
+#binarySnowflakeCanvas{
+  position: absolute;
+  z-index: 1;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  left: 0px;
+  background-color: #070502;
+}
+#htn{
+  height: 500px;
+  position: relative;
+  top: -30px;
+}
+#htn2016Img{
+  height: 530px;
+  position: relative;
+  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) );
+}
+#htnLogo{
+  position: absolute;
+  z-index: 3;
+  width: 150px;
+  height: 150px;
+}
+#htnWords{
+  position: absolute;
+  font-size: 32px;
+  opacity: 0.01;
+}
+#htnDesc{
+  background-color: #070502;
+  position: relative;
+  z-index: 5;
+  height: 500px;
+}
+.hackathonHighlightsImg{
+  border-radius: 10px;
+  height: 150px;
+  cursor: pointer;
+  margin-top: 150px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#minotour{
+  position: relative;
+}
+#contactIntro{
+  text-align: center;
+  position: relative;
+}
+#contactEmail{
+  cursor: pointer;
+}
+#contactEmail:hover{
+  color:orangered;
+}
+#contactLinkedin{
+  cursor: pointer;
+}
+#contactLinkedin:hover{
+  color:royalblue;
+}
+#contactGithub{
+  cursor: pointer;
+}
+#contactGithub:hover{
+  color:darkorchid;
+}
+#contactSt{
+  cursor: pointer;
+}
+#contactSt:hover{
+  color:red;
+  }.modal-content{
+    background-color: #2c3e50;
+    }#footer{
+      background-color: #070502;
+    }
+    #typingCon{
+      height: 110px;
+      width: 100%;
+      padding-top: 15px;
+      background-color: #0c1110;
+      border: 1px solid white;
+      top: 30px;
+    }
+    .typed-cursor{
+      color: #00FF00;
+    }
+
+    .typed-cursor{
+      opacity: 1;
+      -webkit-animation: blink 0.7s infinite;
+      -moz-animation: blink 0.7s infinite;
+      animation: blink 0.7s infinite;
+    }
+    @keyframes blink{
+      0% { opacity:1; }
+      50% { opacity:0; }
+      100% { opacity:1; }
+    }
+    @-webkit-keyframes blink{
+      0% { opacity:1; }
+      50% { opacity:0; }
+      100% { opacity:1; }
+    }
+    @-moz-keyframes blink{
+      0% { opacity:1; }
+      50% { opacity:0; }
+      100% { opacity:1; }
+    }
