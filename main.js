@@ -100,7 +100,7 @@ $(document).ready(function(){
     });
   });
 
-  $("#binarySnowflakeCanvas").width(vW-15);
+  $("#binarySnowflakeCanvas").width(vW);
   $("#hackathonNum").css("left",vW/2 - 175);
   $("#winNum").css("left", vW/2 - 80);
   $("#htnLogo").css("top",$("#htn").height()/2 - 75);
@@ -143,10 +143,10 @@ $(document).ready(function(){
       $("#subHeaders").fadeTo(800, 1);
     },300);
   }
-  //$("#network").css("left", vW/2-$("#network").width()/2);
+  $("#network").css("left", vW/2-$("#network").width()/2);
   $("#bannerPhoto").css("height",vH);
   $("#network").css("width",vW-20);
-  $("#network").css("left",0);
+  //$("#network").css("left",0);
   $("#binarySnowflakeCanvas").css("top",5);
   $("#tohcDesc").css("height",$("#tohcImg").height());
 
