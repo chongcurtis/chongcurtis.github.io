@@ -101,7 +101,7 @@ $(document).ready(function(){
   });
 
   $("#binarySnowflakeCanvas").width(vW);
-    if(vW > 1400){
+    if(vW > 1300){
         $("#hackathonNum").css("left",vW/2 - 200);
   $("#winNum").css("left", vW/2 - 110);
     }else{
@@ -113,7 +113,7 @@ $(document).ready(function(){
   $("#htnWords").css("top",$("#htn").height()/2-35);
   $("#htnWords").css("left",vW/2);
 
-  if($("#experience").offset().top + $("#experience").height() < $("#hackathons").offset().top()){
+  if($("#experience").offset().top + $("#experience").height() > $("#hackathons").offset().top{
       $("#experience").css("height",$("#experience").height()+300);
   }
     
