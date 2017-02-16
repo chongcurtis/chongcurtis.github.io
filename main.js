@@ -206,7 +206,7 @@ $(document).ready(function(){
     $("#prjP").html($("#prjTitle").attr("eventDesc"));
   });
 
-  $(".hackathonHighlightsImg").on("click",function(){
+  $(".  hackathonHighlightsImg").on("click",function(){
     $("#viewProject").show();
     $("#backToEvent").hide();
     $("#myModal").modal("show");
