@@ -152,10 +152,12 @@ $(document).ready(function(){
       $("#subHeaders").fadeTo(800, 1);
     },300);
   }
-  $("#network").css("left", vW/2-$("#network").width()/2);
-  $("#bannerPhoto").css("height",vH);
+  $("#bannerPhoto").css("height",vH*0.9);
   $("#network").css("width",vW-20);
-  //$("#network").css("left",0);
+  $("#network").css("left",vW*0.075);
+    console.log(vW);
+    //console.log($("#network").offset().left);
+    console.log(($("#network").width()/2));
   $("#binarySnowflakeCanvas").css("top",5);
   $("#tohcDesc").css("height",$("#tohcImg").height());
 
