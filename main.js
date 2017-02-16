@@ -99,8 +99,15 @@ $(document).ready(function(){
       }
     });
   });
-
+$("#network").css("width",vW*0.9);
   $("#binarySnowflakeCanvas").width(vW);
+    if(vW > 1400){
+        $("#network").css("left",vW*0.12);
+    }else if(vW > 1300){
+    $("#network").css("left",vW*0.07);
+    }else{
+        $("#network").css("left",10);
+    }
     if(vW > 1300){
         $("#hackathonNum").css("left",vW/2 - 200);
         $("#winNum").css("left", vW/2 - 110);
@@ -152,12 +159,7 @@ $(document).ready(function(){
       $("#subHeaders").fadeTo(800, 1);
     },300);
   }
-  $("#bannerPhoto").css("height",vH*0.9);
-  $("#network").css("width",vW-20);
-  $("#network").css("left",vW*0.075);
-    console.log(vW);
-    //console.log($("#network").offset().left);
-    console.log(($("#network").width()/2));
+  $("#bannerPhoto").css("height",vH);
   $("#binarySnowflakeCanvas").css("top",5);
   $("#tohcDesc").css("height",$("#tohcImg").height());
 
