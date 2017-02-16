@@ -102,7 +102,7 @@ $(document).ready(function(){
 $("#network").css("width",vW*0.9);
   $("#binarySnowflakeCanvas").width(vW);
     if(vW > 1400){
-        $("#network").css("width",vW*0.75);
+        $("#network").css("width",vW*0.65);
         $("#network").css("left",vW*0.12);
     }else if(vW > 1300){
     $("#network").css("left",vW*0.07);
