@@ -103,7 +103,10 @@ $(document).ready(function(){
   $("#binarySnowflakeCanvas").width(vW);
     if(vW > 1300){
         $("#hackathonNum").css("left",vW/2 - 200);
-  $("#winNum").css("left", vW/2 - 110);
+        $("#winNum").css("left", vW/2 - 110);
+        $("#myProjects").css("height",1500);
+        $("#resumeBlock").css("height",350);
+        $("#experience").css("height",$("#experience").height()+200);
     }else{
         $("#hackathonNum").css("left",vW/2 - 175);
   $("#winNum").css("left", vW/2 - 80);
@@ -113,9 +116,6 @@ $(document).ready(function(){
   $("#htnWords").css("top",$("#htn").height()/2-35);
   $("#htnWords").css("left",vW/2);
 
-  if($("#experience").offset().top + $("#experience").height() > $("#hackathons").offset().top)     {
-      $("#experience").css("height",$("#experience").height()+300);
-  }
     
   if(vW < 530){
     $("#fllTitle").css("margin-top","100px");
@@ -206,7 +206,7 @@ $(document).ready(function(){
     $("#prjP").html($("#prjTitle").attr("eventDesc"));
   });
 
-  $(".  hackathonHighlightsImg").on("click",function(){
+  $(".hackathonHighlightsImg").on("click",function(){
     $("#viewProject").show();
     $("#backToEvent").hide();
     $("#myModal").modal("show");
