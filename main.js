@@ -108,6 +108,10 @@ $(document).ready(function(){
   $("#htnWords").css("top",$("#htn").height()/2-35);
   $("#htnWords").css("left",vW/2);
 
+  if($("#experience").offset().top + $("#experience").height() < $("#hackathons").offset().top()){
+      $("#experience").css("height",$("#experience").height()+300);
+  }
+    
   if(vW < 530){
     $("#fllTitle").css("margin-top","100px");
     $("#network").css("top", $("#experienceIntro").offset().top-705);
