@@ -113,7 +113,7 @@ $(document).ready(function(){
   $("#htnWords").css("top",$("#htn").height()/2-35);
   $("#htnWords").css("left",vW/2);
 
-  if($("#experience").offset().top + $("#experience").height() > $("#hackathons").offset().top){
+  if($("#experience").offset().top + $("#experience").height() > $("#hackathons").offset().top)     {
       $("#experience").css("height",$("#experience").height()+300);
   }
     
@@ -206,7 +206,7 @@ $(document).ready(function(){
     $("#prjP").html($("#prjTitle").attr("eventDesc"));
   });
 
-  $(".  hackathonHighlightsImg").on("click",function(){
+  $(".hackathonHighlightsImg").on("click",function(){
     $("#viewProject").show();
     $("#backToEvent").hide();
     $("#myModal").modal("show");
