@@ -101,8 +101,13 @@ $(document).ready(function(){
   });
 
   $("#binarySnowflakeCanvas").width(vW);
-  $("#hackathonNum").css("left",vW/2 - 175);
+    if(vW > 1400){
+        $("#hackathonNum").css("left",vW/2 - 200);
+  $("#winNum").css("left", vW/2 - 110);
+    }else{
+        $("#hackathonNum").css("left",vW/2 - 175);
   $("#winNum").css("left", vW/2 - 80);
+    }
   $("#htnLogo").css("top",$("#htn").height()/2 - 75);
   $("#htnLogo").css("left",vW/2- 75);
   $("#htnWords").css("top",$("#htn").height()/2-35);
