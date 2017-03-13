@@ -99,15 +99,15 @@ $(document).ready(function(){
       }
     });
   });
-$("#network").css("width",vW*0.9);
+//$("#network").css("width",vW*0.9);
   $("#binarySnowflakeCanvas").width(vW);
     if(vW > 1400){
-        $("#network").css("width",vW*0.73);
-        $("#network").css("left",vW*0.12);
+        //$("#network").css("width",vW*0.73);
+        //$("#network").css("left",vW*0.12);
     }else if(vW > 1300){
-    $("#network").css("left",vW*0.07);
+    //$("#network").css("left",vW*0.07);
     }else{
-        $("#network").css("left",10);
+        //$("#network").css("left",10);
     }
     if(vW > 1300){
         $("#hackathonNum").css("left",vW/2 - 200);
@@ -124,7 +124,7 @@ $("#network").css("width",vW*0.9);
   $("#htnWords").css("top",$("#htn").height()/2-35);
   $("#htnWords").css("left",vW/2);
 
-    
+
   if(vW < 530){
     $("#fllTitle").css("margin-top","100px");
     $("#network").css("top", $("#experienceIntro").offset().top-705);
