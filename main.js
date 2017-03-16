@@ -112,14 +112,16 @@ $(document).ready(function(){
         //$("#network").css("left",10);
     }
     if(vW > 1300){
-        $("#hackathonNum").css("left",vW/2 - 200);
-        $("#winNum").css("left", vW/2 - 110);
+        $("#hackathonNum").css("left",vW/2 - 170);
+        $("#winNum").css("left", vW/2 - 80);
         $("#myProjects").css("height",1500);
         $("#resumeBlock").css("height",350);
         $("#experience").css("height",$("#experience").height()+200);
     }else{
         $("#hackathonNum").css("left",vW/2 - 175);
-  $("#winNum").css("left", vW/2 - 80);
+        $("#winNum").css("left", vW/2 - 70);
+        $("#hackathonWins").css("left",40);
+        $("#hackathonsWord").css("left",90);
     }
   $("#htnLogo").css("top",$("#htn").height()/2 - 75);
   $("#htnLogo").css("left",vW/2- 75);

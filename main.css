@@ -191,7 +191,7 @@ body{
   width: 100%;
   font-size: 30px;
   position: relative;
-  top: 300px;
+  top: 350px;
   z-index: 3;
 }
 #hackathons{
@@ -202,7 +202,7 @@ body{
 }
 #hackathonNum{
   top: 120px;
-  font-size: 50px;
+  font-size: 3.5em;
   position: absolute;
   left: 20px;
   text-align: center;
@@ -214,7 +214,7 @@ body{
 }
 #hackathonsWord{
   top: 120px;
-  font-size: 50px;
+  font-size: 3.5em;
   position: relative;
   left: 115px;
   text-align: center;
@@ -225,7 +225,7 @@ body{
 }
 #winNum{
   top: 270px;
-  font-size: 38px;
+  font-size: 2.5em;
   position: absolute;
   left: 60px;
   text-align: center;
@@ -236,7 +236,7 @@ body{
   font-weight: 100;
 }
 #hackathonWins{
-  font-size: 38px;
+  font-size: 2.5em;
   position: relative;
   margin-top: 150px;
   text-align: center;
