@@ -169,12 +169,16 @@ body{
   position: relative;
   z-index: 2;
   opacity: 0.01;
+  margin: auto;
+  display: block;
+  width: 1500px;
 }
 #experienceIntro{
   background-color: #070502;
   position: relative;
   top: -10px;
   height: 500px;
+  width: 100%;
 }
 #experience{
   background-color: #070502;

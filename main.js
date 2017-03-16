@@ -99,14 +99,16 @@ $(document).ready(function(){
       }
     });
   });
-//$("#network").css("width",vW*0.9);
   $("#binarySnowflakeCanvas").width(vW);
-    if(vW > 1400){
+    if(vW < 1500){
+      $("#network").css("width",vW*0.9);
         //$("#network").css("width",vW*0.73);
         //$("#network").css("left",vW*0.12);
     }else if(vW > 1300){
     //$("#network").css("left",vW*0.07);
-    }else{
+  }else if(vW < 500){
+    $("#network").remove();
+  }else{
         //$("#network").css("left",10);
     }
     if(vW > 1300){
