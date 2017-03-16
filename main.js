@@ -100,7 +100,7 @@ $(document).ready(function(){
     });
   });
   $("#binarySnowflakeCanvas").width(vW);
-    if(vW < 1500){
+    if(vW < 1300){
       $("#network").css("width",vW*0.9);
         //$("#network").css("width",vW*0.73);
         //$("#network").css("left",vW*0.12);
