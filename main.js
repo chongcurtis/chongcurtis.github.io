@@ -99,30 +99,25 @@ $(document).ready(function(){
       }
     });
   });
+
   $("#binarySnowflakeCanvas").width(vW);
-    if(vW < 1300){
-      $("#network").css("width",vW*0.9);
-        //$("#network").css("width",vW*0.73);
-        //$("#network").css("left",vW*0.12);
-    }else if(vW > 1300){
-    //$("#network").css("left",vW*0.07);
-  }else if(vW < 500){
+  if(vW < 500){
     $("#network").remove();
+  }else if(vW < 1300){
+    $("#network").css("width",vW*0.9);
+  }
+  if(vW > 1300){
+    $("#hackathonNum").css("left",vW/2 - 170);
+    $("#winNum").css("left", vW/2 - 80);
+    $("#myProjects").css("height",1500);
+    $("#resumeBlock").css("height",350);
+    $("#experience").css("height",$("#experience").height()+200);
   }else{
-        //$("#network").css("left",10);
-    }
-    if(vW > 1300){
-        $("#hackathonNum").css("left",vW/2 - 170);
-        $("#winNum").css("left", vW/2 - 80);
-        $("#myProjects").css("height",1500);
-        $("#resumeBlock").css("height",350);
-        $("#experience").css("height",$("#experience").height()+200);
-    }else{
-        $("#hackathonNum").css("left",vW/2 - 175);
-        $("#winNum").css("left", vW/2 - 70);
-        $("#hackathonWins").css("left",40);
-        $("#hackathonsWord").css("left",90);
-    }
+    $("#hackathonNum").css("left",vW/2 - 175);
+    $("#winNum").css("left", vW/2 - 70);
+    $("#hackathonWins").css("left",40);
+    $("#hackathonsWord").css("left",90);
+  }
   $("#htnLogo").css("top",$("#htn").height()/2 - 75);
   $("#htnLogo").css("left",vW/2- 75);
   $("#htnWords").css("top",$("#htn").height()/2-35);
@@ -165,8 +160,8 @@ $(document).ready(function(){
     },300);
   }
   $("#bannerPhoto").css("height",vH);
-  $("#binarySnowflakeCanvas").css("top",5);
-  $("#tohcDesc").css("height",$("#tohcImg").height());
+  //$("#binarySnowflakeCanvas").css("top",5);
+  //$("#tohcDesc").css("height",$("#tohcImg").height());
 
   $("#t1").fadeTo(200, 1);
   setTimeout(function () {

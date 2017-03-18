@@ -38,7 +38,8 @@ body{
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.75), #FFFFFF, rgba(0, 0, 0, 0.75));
   position: relative;
   margin: 0 auto;
-  top: 60px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 #bannerPhoto{
   height: 600px;
@@ -184,7 +185,7 @@ body{
   background-color: #070502;
   position: relative;
   top: -10px;
-  height: 1750px;
+  height: 1550px;
 }
 #workExperience{
   text-align: center;
@@ -253,6 +254,7 @@ body{
   border-bottom: 1px solid white;
   right: 0px;
   background-color: #070502;
+  top: 0px;
 }
 #htn{
   height: 500px;
