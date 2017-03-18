@@ -206,6 +206,7 @@ $(document).ready(function(){
     $("#prjTitle").attr("popupImg",$("#prjImg").attr("src"));
     $("#prjImg").attr("src",$("#prjTitle").attr("thePrjImg"));
     $("#prjP").html($("#prjTitle").attr("desc"));
+    $("#prjRepo").show();
   });
 
   $("#backToEvent").on("click",function(){
@@ -213,6 +214,7 @@ $(document).ready(function(){
     $("#backToEvent").hide();
     $("#prjImg").attr("src",$("#prjTitle").attr("popupImg"));
     $("#prjP").html($("#prjTitle").attr("eventDesc"));
+    $("#prjRepo").hide();
   });
 
   $(".hackathonHighlightsImg").on("click",function(){
@@ -229,9 +231,11 @@ $(document).ready(function(){
     $("#prjTitle").attr("thePrjImg",thePrjImg);
     $("#prjTitle").attr("eventDesc",$(this).attr("eventDesc"));
     $("#prjTitle").attr("desc",$(this).attr("desc"));
+    $("#prjRepo").attr("href",$(this).attr("repoLink"));
     $("#prjTitleEvent").html(hackathon);
     $("#prjTitlePlace").html(place);
     $("#prjImg").attr("src",image);
+    $("#prjRepo").hide();
     //$(".modal-content").css("background-image","url(http://res.cloudinary.com/dj2eq8czc/image/upload/v1486482255/flybits_pukqgx.jpg)")
   });
 
@@ -244,6 +248,8 @@ $(document).ready(function(){
     $("#prjTitle").html($(this).attr("hackName"));
     $("#prjTitleEvent").html($(this).attr("hackathon"));
     $("#prjTitlePlace").html("");
+    $("#prjRepo").show();
+    $("#prjRepo").attr("href",$(this).attr("repoLink"));
   });
 
   var word;
