@@ -2,7 +2,7 @@
 var drawingCanvas = document.getElementById("network"),
 ctx,
 viewHeight = 500,
-viewWidth = window.innerWidth;
+viewWidth = 1280;
 timeStep = (1/60),
 time = 0;
 
