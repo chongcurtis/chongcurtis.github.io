@@ -201,7 +201,8 @@ body{
   top: -10px;
   height: 450px;
 }
-#hackathonNum{
+/*#
+{
   top: 120px;
   font-size: 3.5em;
   position: absolute;
@@ -212,19 +213,22 @@ body{
   margin-right: 0px;
   z-index: 2;
   font-weight: 100;
+}*/
+#hackathonNum{
+  font-weight: 100;
+  margin-right: 15px;
 }
 #hackathonsWord{
   top: 120px;
   font-size: 3.5em;
   position: relative;
-  left: 115px;
   text-align: center;
-  width:90%;
+  width:100%;
   z-index: 2;
-  margin-right: 20px;
+  text-align: center;
   font-weight: 100;
 }
-#winNum{
+/*#winNum{
   top: 270px;
   font-size: 2.5em;
   position: absolute;
@@ -235,16 +239,18 @@ body{
   margin-right: 0px;
   z-index: 2;
   font-weight: 100;
+}*/
+#winNum{
+  font-weight: 100;
+  margin-right: 15px;
 }
 #hackathonWins{
   font-size: 2.5em;
   position: relative;
   margin-top: 150px;
   text-align: center;
-  width: 90%;
-  left: 90px;
+  width: 100%;
   z-index: 2;
-  margin-right: 20px;
   font-weight: 100;
 }
 #binarySnowflakeCanvas{

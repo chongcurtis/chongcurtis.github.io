@@ -40,25 +40,25 @@ $(document).ready(function(){
               if(i < 10){
                 setTimeout(function () {
                   i++;
-                  $("#hackathonNum").html(i);
+                  $("#hackathonNum").html(i + "  ");
                   if(i < 15) myLoop(i);
                 }, 100)
               }else if(i <13){
                 setTimeout(function () {
                   i++;
-                  $("#hackathonNum").html(i);
+                  $("#hackathonNum").html(i + "  ");
                   if(i < 15) myLoop(i);
                 }, 200)
               }else if(i == 13){
                 setTimeout(function () {
                   i++;
-                  $("#hackathonNum").html(i);
+                  $("#hackathonNum").html(i + "  ");
                   if(i < 15) myLoop(i);
                 }, 600)
               }else{
                 setTimeout(function () {
                   i++;
-                  $("#hackathonNum").html(i);
+                  $("#hackathonNum").html(i + "  ");
                   if(i < 15) myLoop(i);
                 }, 1000)
               }
@@ -107,16 +107,16 @@ $(document).ready(function(){
     $("#network").css("width",vW*0.9);
   }
   if(vW > 1300){
-    $("#hackathonNum").css("left",vW/2 - 170);
-    $("#winNum").css("left", vW/2 - 80);
+    //$("#hackathonNum").css("left",vW/2 - 170);
+    //$("#winNum").css("left", vW/2 - 80);
     $("#myProjects").css("height",1500);
     $("#resumeBlock").css("height",350);
     $("#experience").css("height",$("#experience").height()+200);
   }else{
-    $("#hackathonNum").css("left",vW/2 - 175);
-    $("#winNum").css("left", vW/2 - 70);
-    $("#hackathonWins").css("left",40);
-    $("#hackathonsWord").css("left",90);
+    //$("#hackathonNum").css("left",vW/2 - 175);
+    //$("#winNum").css("left", vW/2 - 70);
+    //$("#hackathonWins").css("left",40);
+    //$("#hackathonsWord").css("left",90);
   }
   $("#htnLogo").css("top",$("#htn").height()/2 - 75);
   $("#htnLogo").css("left",vW/2- 75);
@@ -143,7 +143,7 @@ $(document).ready(function(){
     $("#introTitle").css("top",50);
     $("#introduction").css("top",70);
     $("#intro").css("height",450);
-    $("#hackathonsWord").css("width",10);
+    //$("#hackathonsWord").css("width",10);
     $("#splitHr1").css("top",500);
 
   }else{
