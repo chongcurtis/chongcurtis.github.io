@@ -103,6 +103,8 @@ $(document).ready(function(){
   $("#binarySnowflakeCanvas").width(vW);
   if(vW < 500){
     $("#network").remove();
+    $("#experienceIntro").css("height",300);
+    $("#workExperience").css("top",180);
   }else if(vW < 1280){
     $("#network").css("width",vW*0.9);
   }
@@ -144,7 +146,7 @@ $(document).ready(function(){
     $("#introduction").css("top",70);
     $("#intro").css("height",450);
     //$("#hackathonsWord").css("width",10);
-    $("#splitHr1").css("top",500);
+    //$("#splitHr1").css("top",500);
 
   }else{
     $("#network").css("top", $("#experienceIntro").offset().top-855);

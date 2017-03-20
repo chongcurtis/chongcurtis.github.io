@@ -125,8 +125,14 @@ function connectNodes() {
 }
 
 function transmit() {
-  signals.push(new Signal(getRandom(nodes)));
-  signalCount++;
+  var vH = window.innerHeight;
+  var winTop = $(window).scrollTop();
+  if(document.getElementById('network') && winTop > document.getElementById('network').offsetTop + 500 && winTop < document.getElementById('network').offsetTop - vH){
+
+  }else{
+    signals.push(new Signal(getRandom(nodes)));
+    signalCount++;
+  }
 }
 
 function update() {
