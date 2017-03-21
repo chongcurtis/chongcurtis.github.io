@@ -3,7 +3,6 @@ $(document).ready(function(){
   var vW = window.innerWidth;
   $(window).scroll(function () {
     $(".fadeIn").each(function () {
-
       var pos = $(this).offset().top,
       winTop = $(window).scrollTop();
       if (pos +200< winTop + vH) {
@@ -103,28 +102,15 @@ $(document).ready(function(){
   $("#binarySnowflakeCanvas").width(vW);
   if(vW < 500){
     $("#network").remove();
-    $("#experienceIntro").css("height",300);
-    $("#workExperience").css("top",180);
+    //$("#experienceIntro").css("height",300);
+    $("#workExperience").css("top",80);
   }else if(vW < 1280){
     $("#network").css("width",vW*0.9);
-  }
-  if(vW > 1300){
-    //$("#hackathonNum").css("left",vW/2 - 170);
-    //$("#winNum").css("left", vW/2 - 80);
-    $("#myProjects").css("height",1500);
-    $("#resumeBlock").css("height",350);
-    $("#experience").css("height",$("#experience").height()+200);
-  }else{
-    //$("#hackathonNum").css("left",vW/2 - 175);
-    //$("#winNum").css("left", vW/2 - 70);
-    //$("#hackathonWins").css("left",40);
-    //$("#hackathonsWord").css("left",90);
   }
   $("#htnLogo").css("top",$("#htn").height()/2 - 75);
   $("#htnLogo").css("left",vW/2- 75);
   $("#htnWords").css("top",$("#htn").height()/2-35);
   $("#htnWords").css("left",vW/2);
-
 
   if(vW < 530){
     $("#fllTitle").css("margin-top","100px");
@@ -141,13 +127,6 @@ $(document).ready(function(){
       });
       $("#subHeaders").fadeTo(800, 1);
     },300);
-
-    $("#introTitle").css("top",50);
-    $("#introduction").css("top",70);
-    $("#intro").css("height",450);
-    //$("#hackathonsWord").css("width",10);
-    //$("#splitHr1").css("top",500);
-
   }else{
     $("#network").css("top", $("#experienceIntro").offset().top-855);
     $("#title").css("top",vH - 260);
@@ -162,9 +141,7 @@ $(document).ready(function(){
     },300);
   }
   $("#bannerPhoto").css("height",vH);
-  //$("#binarySnowflakeCanvas").css("top",5);
-  //$("#tohcDesc").css("height",$("#tohcImg").height());
-
+  
   $("#t1").fadeTo(200, 1);
   setTimeout(function () {
     $("#t2").fadeTo(200, 1);

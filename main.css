@@ -73,7 +73,6 @@ body{
 }
 #intro{
   background-color: #070502;
-  min-height: 340px;
   position: relative;
 }
 #introTitle{
@@ -81,7 +80,7 @@ body{
   width: 100%;
   text-align: center;
   position: relative;
-  top: 140px;
+  margin-top: 140px;
   font-weight: 100;
 }
 #introduction{
@@ -90,13 +89,12 @@ body{
   left: 10%;
   width: 80%;
   font-size: 1.2em;
-  top: 150px;
+  margin-top: 10px;
 }
 #projects{
   position: relative;
   top: -10px;
   background-color: #070502;
-  min-height: 1000px;
 }
 /*.projectHeader{
 position: absolute;
@@ -152,7 +150,6 @@ transition: all 0s ease;
   border-radius: 10px;
 }
 #myProjects{
-  height: 1400px;
   background-color: #070502;
 }
 #viewProject{
@@ -177,15 +174,12 @@ transition: all 0s ease;
 #experienceIntro{
   background-color: #070502;
   position: relative;
-  top: -10px;
-  height: 500px;
   width: 100%;
 }
 #experience{
   background-color: #070502;
   position: relative;
-  top: -10px;
-  height: 1550px;
+  padding-bottom: 50px;
 }
 #workExperience{
   text-align: center;
@@ -198,7 +192,8 @@ transition: all 0s ease;
 #hackathons{
   background-color: #070502;
   position: relative;
-  top: -10px;
+  padding-right: 0px;
+  padding-left: 0px;
   height: 450px;
 }
 /*#
@@ -263,9 +258,9 @@ font-weight: 100;
   top: 0px;
 }
 #htn{
-  height: 500px;
   position: relative;
-  top: -30px;
+  padding-right: 0px;
+  padding-left: 0px;
 }
 #htn2016Img{
   height: 530px;
@@ -287,12 +282,10 @@ font-weight: 100;
   background-color: #070502;
   position: relative;
   z-index: 5;
-  height: 530px;
 }
 .hackathonHighlightsImg{
   border-radius: 10px;
   cursor: pointer;
-  margin-top: 150px;
   top: 50%;
   transform: translateY(-50%);
 }

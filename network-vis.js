@@ -104,18 +104,12 @@ function connectNodes() {
   nodes[12].connections.push(nodes[8]);
   nodes[13].connections.push(nodes[11]);
 
-  var connection,
-  j,
-  connectCount;
-
+  var connection, j, connectCount;
   for (var i = 0; i < nodes.length; i++) {
     j = 0;
-
     connectCount = Math.floor(randomRange(1, 4));
-
     while (j < connectCount) {
       connection = getRandom(nodes);
-
       if (nodes[i] !== connection) {
         nodes[i].connections.push(connection);
         j++;

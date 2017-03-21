@@ -52,7 +52,7 @@
   <div class="parallax-window" id="bannerPhoto" data-parallax="scroll" data-image-src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1468221352/20160522_065735_1_bogy8s.jpg"></div>
   <div id="title"><span style="display: inline;" id="t1" class="tword"><p style="display: inline;">C</p></span><span style="display: inline;" id="t2" class="tword"><p style="display: inline;">u</p></span><span style="display: inline;" id="t3" class="tword"><p style="display: inline;">r</p></span><span style="display: inline;" id="t4" class="tword"><p style="display: inline;">t</p></span><span style="display: inline;" id="t5" class="tword"><p style="display: inline;">i</p></span><span style="display: inline;" id="t6" class="tword"><p style="display: inline;">s</p></span> <span style="display: inline;" id="t7" class="tword"><p style="display: inline;">C</p></span><span style="display: inline;" id="t8" class="tword"><p style="display: inline;">h</p></span><span style="display: inline;" id="t9" class="tword"><p style="display: inline;">o</p></span><span style="display: inline;" id="t10" class="tword"><p style="display: inline;">n</p></span><span style="display: inline;" id="t11" class="tword"><p style="display: inline;">g</p></span></div>
   <p id="subHeaders">Hacker - Data Scientist - Activist</p>
-  <section id="intro">
+  <div class="container-fluid" id="intro">
     <div class="row-fluid">
       <div class="col-md-12">
         <p id="introTitle" class="fadeIn">Hello!</p>
@@ -63,12 +63,12 @@
         <p id="introduction" class="fadeIn">Welcome to my corner of the internet. I'm a programmer with the ambition of becoming the next CEO, pioneering another digital revolution. As a high school student, I try to squeeze enough time for hackathons, hiking trips, and the occasional ML Book Club. I also love working with data and am passionate about its use in social reform. So without further adieu, here lies an archive of my past projects, work experiences, and achievements. Mind if you scroll down?</p>
       </div>
     </div>
-  </section>
-  <section id="experienceIntro">
+  </div>
+  <div class="container-fluid" style="padding: 0px;" id="experienceIntro">
     <p id="workExperience" class="fadeIn">Work Experience</p>
     <canvas id="network" class="fadeIn"></canvas>
-  </section>
-  <section id="experience">
+  </div>
+  <div class="container-fluid" id="experience">
     <div class="row-fluid">
       <div class="col-md-8 col-md-offset-2">
         <img class="aPhoto image-responsive fadeIn" style="position: relative;filter:brightness(90%); margin-top: 150px;" src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1473913752/IMG_1253_ak8b0w.jpg"/>
@@ -108,8 +108,8 @@
         <img class="aPhoto image-responsive fadeIn" style="position: relative;filter:brightness(90%);" src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1468451731/20160624_235107_ewekfu.jpg"/>
       </div>
     </div>
-  </section>
-  <section id="hackathons">
+  </div>
+  <div class="container-fluid" id="hackathons">
     <div class="row-fluid">
       <div class="col-md-12">
         <p class="fadeIn" id="hackathonsWord"><span id="hackathonNum" class="fadeIn">0</span>Hackathons</p><br><br>
@@ -117,13 +117,13 @@
         <canvas id="binarySnowflakeCanvas" class="fadeIn"></canvas>
       </div>
     </div>
-  </section>
-  <section id="htn">
+  </div>
+  <div class="container-fluid" id="htn">
     <div class="parallax-window" data-parallax="scroll" id="htn2016Img" data-image-src="http://res.cloudinary.com/dfcfsw4mv/image/upload/v1475350647/htn_dzhvhv.jpg"></div>
     <img id="htnLogo" class="fadeIn" src="http://res.cloudinary.com/dfcfsw4mv/image/upload/v1475351540/logo_dx7ei5.png">
     <h1 id="htnWords">2016 Winner</h1>
-  </section>
-  <section id="htnDesc">
+  </div>
+  <div class="container-fluid" id="htnDesc">
     <div class="row-fluid" style="background-color: #070502">
       <div class="col-md-8 col-md-offset-2">
         <p style="position: relative; top: 30px; font-size: 16px;" class="fadeIn">On the stage of Canada's largest hackathon, our team proposed Agrigate, a solution to better Ontario's agricultural security. Using a combination of geographic data from Nasa and Ontario's land surveys, our webapp could deliver current climate statistics as well as project crop prices until the year 2020.</p>
@@ -136,7 +136,7 @@
     </div>
     <div class="row-fluid" style="background-color: #070502">
       <div class="col-md-12 fadeIn">
-        <p style="width: 100%; text-align: center; font-size: 28px; position: relative; top: 110px;margin-bottom: 80px;margin-top:50px; font-weight: 100;">Winning Hacks</p>
+        <p style="width: 100%; text-align: center; font-size: 28px; position: relative;margin-bottom: 120px;margin-top:30px; font-weight: 100;">Winning Hacks</p>
       </div>
     </div>
     <div class="row-fluid">
@@ -149,15 +149,15 @@
       <div class="col-md-2 col-xs-6">
         <img id="agrigate" hackName="Agrigate" class="aPhoto center-block fadeIn hackathonHighlightsImg" repoLink="https://github.com/curtischong/agrigate-master" hackathon="Hack the North" place="Top 12 Winner" thePrjImg="http://res.cloudinary.com/dj2eq8czc/image/upload/v1475448957/agrigate_izu0cv.jpg" popupImg="http://res.cloudinary.com/dj2eq8czc/image/upload/v1486511861/htnWin_l6b1fm.jpg" eventDesc="Prided as Canada's largest hackathon, Hack the North brought together 1000 of North America's brightest developers and and inventors. Despite the competition, my team and I won and placed in the top 12 by making a tool to guide the daily decisions of farmers." desc="Even in Canada, there is a huge inefficiency in the production of food. This problem is worsening along with the exponential growth of the human population, and very little seems to be being done about it. As a team, we were inspired to improve how farmers collect insights on the current state of their farm so we used Nasa's L4 satellite data and Ontario's land surveys to deliver a free and easy-to-use open-source tool. This web app can project crop prices until the year 2020 and can also deliver heat and moisture data in any region of the world. With the data gathered, farmers can predict when it is best to aggregate, harvest, and plant crops." src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1486505531/agrigate1_oh9umc.png">
       </div>
-      <div class="col-md-2 col-xs-12">
+      <div class="col-md-2 col-xs-6">
         <img id="ttez" hackName="TTEZ" class="aPhoto center-block fadeIn hackathonHighlightsImg" repoLink="https://github.com/curtischong/TTEZ" hackathon="Climation Toronto" place="People's Choice" thePrjImg="http://res.cloudinary.com/dj2eq8czc/image/upload/v1486622103/climathonData_nk8qg9.png" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486505956/torontoClimation_ul7dlm.jpg" eventDesc="In 2015, the Paris Climate Accord brought together nations from all around the globe to resolve a long neglected issue. Today, the international Climathon extends the reach of climate action to thousands of individuals in 59 cities. At every local hackathon, participants will have 24 hours to resolve a problem set by their local organizers. Much like other cities MaxQ, the organizers of the Toronto cohort set a local goal to reduce the TTC's carbon emissions by 5%. Operating a cost neutral budget, my team and I tackled this challenge by calculating the least efficient buses/co2 emitted to identify the least performing routes." desc="At the climathon, our team wanted to describe the city's GTFS dataset and identify poor performing routes to recommend route changes. We began by calculating how much co2 one would emmit on an average bus ride. After we mined the numbers, we placed this information on an ios app so riders can identify which routes are the most polluting. Although the city switches to smaller buses during slow hours, we discovered that many buses still travel with less than 10% capacity at most times. Overall, our analysis won the team people's choice awards and identified areas for improvement in regards to carbon emmisions on the TTC." src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1486968200/climathon-rounded2_kytgmo.png">
       </div>
-      <div class="col-md-2 col-xs-6">
+      <div class="col-md-2 col-xs-12">
         <img id="catchit" hackName="CatchIt!"class="aPhoto center-block fadeIn hackathonHighlightsImg" repoLink="https://github.com/curtischong/curtischong.github.io" hackathon="YRDSB - Hack to Action" place="First Place" thePrjImg="http://res.cloudinary.com/dj2eq8czc/image/upload/v1486621792/PitchDeck_TeamCatchIt_GroupD_kuzllk.png" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486505837/hack2action_cypxyz.jpg" eventDesc="In November, 33 schools from YRDSB sent several representatives to Hack2Action, a board-wide hackathon dedicated to the identification of greeenhouse gas inefficiencies. After passing the preliminary round, our team moved on to pitch to a panel of judges at Quest, an international conference which harbored 1000+ members of the education community. All in all, our team placed first at the conference and devised an incentive for the use of public transit." desc="Building on top of the work of TTEZ, CatchIt aims to calculate the amount of co2 emissions one will save if they took a bus rather than their car at home. Using the google directions API, our app aims to replace google maps so the experience users undergo will seem natural. To calculate carbon emissions, the app reads against TTEZ's emission database for every route and then calculates the amount of co2 per section of the ride." src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1486971351/catchit_uymzdc.png">
       </div>
     </div>
-  </section>
-  <section id="myProjects">
+  </div>
+  <div class="container-fluid" id="myProjects">
     <!--<div class="row-fluid" style="background-color: #070502">
     <div class="col-md-12 fadeIn">
     <p style="width: 100%; text-align: center; font-size: 28px; position: relative;">Analysis</p>
@@ -176,7 +176,7 @@
 </div>-->
 <div class="row-fluid" style="background-color: #070502">
   <div class="col-md-12 fadeIn">
-    <p style="width: 100%; text-align: center; font-size: 28px; position: relative;margin-top: 120px;margin-bottom: 140px;font-weight: 100;">Visualizations</p>
+    <p style="width: 100%; text-align: center; font-size: 28px; position: relative;margin-top: 20px;margin-bottom: 140px;font-weight: 100;">Visualizations</p>
   </div>
 </div>
 <div class="row-fluid">
@@ -226,8 +226,8 @@
     <img hackName="GeoConnect" repoLink="https://github.com/curtischong/GeoConnect---Web" hackathon="Hack the North 2015" src="http://res.cloudinary.com/dj2eq8czc/image/upload/c_scale,h_217/v1468229761/geoConnectPhoto1_ktthy8.png" class="fadeIn prjimg img-responsive center-block" thePrjImg="http://res.cloudinary.com/dj2eq8czc/image/upload/v1468229748/geoConnectApp_wbbvno.jpg" desc="It's Thursday night and Friday is just around the corner. You have no plans and wouldn't mind fitting in a last-minute party. To help you find and locate these events, my team and I created Geoconnect. On our web app, event hosts can register and place their event as a beacon on the Geoconnect map. Once you are within a close proximity of an event, you'll receive a push notification on your phone. To facilitate the event uploading process, managers can import facebook events into our MySQL database. Moreover, users can access Uber directly within the app and view all events at once while traveling.">
   </div>
 </div>
-</section>
-<section id="resumeBlock" style="position: relative; top: -20px;height: 300px; background-color: #070502">
+</div>
+<div class="container-fluid" id="resumeBlock" style="position: relative; top: 0px;height: 300px; background-color: #070502">
   <div class="row-fluid">
     <div class="col-md-12">
       <p class="fadeIn" style="width: 100%; text-align: center; font-size: 38px;position: relative; margin-top: 50px;font-weight: 100;">Before We Part</p>
@@ -238,11 +238,11 @@
       <p class="fadeIn" style="width: 100%; text-align: center; font-size: 24px;position: relative; margin-top: 30px;font-weight: 100;">Download my resume <a href="Curtis_Chong_Resume_March_2017.pdf" download>here</a></p>
     </div>
   </div>
-</section>
-<section style="position: relative; top: -20px;height: 300px">
+</div>
+<div class="container-fluid" style="position: relative; top: 0px;height: 300px; padding-right: 0px; padding-left: 0px;">
   <script src="https://use.fontawesome.com/20016a11b5.js"></script>
   <div id="footer" style="min-height: 350px;">
-    <div class="container text-center">
+    <div class="container-fluid text-center">
       <div class="row-fluid" style="margin-top: 50px;">
         <div class="col-xs-3">
           <span class="fa fa-3x fa-envelope fadeIn" id="contactEmail"></span>
@@ -267,7 +267,7 @@
       </div>
     </div>
   </div>
-</section>
+</div>
 <script src="plugin/parallax.js-1.4.2/parallax.js"></script>
 <script src="typed.js-master/js/typed.js"></script>
 <script type="text/javascript" src="main.js"></script>
