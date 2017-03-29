@@ -292,6 +292,10 @@ font-weight: 100;
 #minotour{
   position: relative;
 }
+
+
+
+
 #contactIntro{
   text-align: center;
   position: relative;
@@ -325,6 +329,7 @@ font-weight: 100;
 }
 #footer{
   background-color: #070502;
+  min-height: 450px;
 }
 #typingCon{
   height: 110px;

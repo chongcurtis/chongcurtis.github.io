@@ -121,9 +121,22 @@ function connectNodes() {
 function transmit() {
   var vH = window.innerHeight;
   var winTop = $(window).scrollTop();
-  if(document.getElementById('network') && winTop > document.getElementById('network').offsetTop + 500 && winTop < document.getElementById('network').offsetTop - vH){
+  //if(document.getElementById('network') && winTop > document.getElementById('network').offsetTop + 500 && winTop < document.getElementById('network').offsetTop - vH){
 
-  }else{
+  //}else{
+  signals.forEach(function(n){
+    var canDelete = true;
+    n.parts.forEach(function(b){
+      if(b.complete == false){
+        canDelete = false;
+      }
+    });
+    if(canDelete){
+      var theIndex = signals.indexOf(n);
+      signals.splice(theIndex, 1);
+    }
+  });
+  if(signals.length < 5){
     signals.push(new Signal(getRandom(nodes)));
     signalCount++;
   }
