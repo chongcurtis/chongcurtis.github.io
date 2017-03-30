@@ -285,9 +285,19 @@ font-weight: 100;
 }
 .hackathonHighlightsImg{
   border-radius: 10px;
-  cursor: pointer;
   top: 50%;
   transform: translateY(-50%);
+}
+.competitionWin{
+  cursor: pointer;
+  color: #ff7f00;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+.competitionWin:hover {
+  text-decoration: none !important;
+  color: #00bbff !important;
 }
 #minotour{
   position: relative;

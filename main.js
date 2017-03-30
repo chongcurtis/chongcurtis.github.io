@@ -199,7 +199,7 @@ $(document).ready(function(){
     $("#prjRepo").hide();
   });
 
-  $(".hackathonHighlightsImg").on("click",function(){
+  $(".competitionWin").on("click",function(){
     $("#viewProject").show();
     $("#backToEvent").hide();
     $("#myModal").modal("show");
