@@ -15,6 +15,9 @@ a:hover {
   text-decoration: none !important;
   color: #00bbff !important;
 }
+a:visited {
+    color: #0093c9;
+}
 .fadeIn {
   opacity: 0.01;
 }
