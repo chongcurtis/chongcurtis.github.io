@@ -102,7 +102,7 @@ $(document).ready(function(){
             },1500);
           }
         }
-        $(this).fadeTo(1500, 1);
+        $(this).fadeTo(1000, 1);
         $(this).removeClass("fadeIn");
       }
     });
