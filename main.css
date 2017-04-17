@@ -1,5 +1,5 @@
 *{
-  color: white;
+  color: #cecece;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
 }
@@ -30,6 +30,7 @@ body{
   position: relative;
   cursor: default;
   font-weight: 300;
+  color: white;
 }
 .aPhoto{
   width:100%;
@@ -59,6 +60,7 @@ body{
   position: absolute;
   left: 150px;
   font-size: 27px;
+  color: white;
 }
 #subHeaders{
   position: absolute;
@@ -67,6 +69,7 @@ body{
   opacity: 0.01;
   cursor: default;
   font-weight: 300;
+  color: white;
 }
 #graph{
   background-color: black;
@@ -159,12 +162,14 @@ transition: all 0s ease;
   font-size: 20px;
   cursor: pointer;
   width: 30%;
+  color: white;
 }
 #backToEvent{
   display: none;
   font-size: 20px;
   cursor: pointer;
   width: 30%;
+  color: white;
 }
 #network{
   position: relative;
@@ -280,6 +285,7 @@ font-weight: 100;
   position: absolute;
   font-size: 32px;
   opacity: 0.01;
+  color: white;
 }
 #htnDesc{
   background-color: #070502;
@@ -315,24 +321,28 @@ font-weight: 100;
 }
 #contactEmail{
   cursor: pointer;
+  color: white;
 }
 #contactEmail:hover{
   color:orangered;
 }
 #contactLinkedin{
   cursor: pointer;
+  color: white;
 }
 #contactLinkedin:hover{
   color:royalblue;
 }
 #contactGithub{
   cursor: pointer;
+  color: white;
 }
 #contactGithub:hover{
   color:darkorchid;
 }
 #contactSt{
   cursor: pointer;
+  color: white;
 }
 #contactSt:hover{
   color:red;
