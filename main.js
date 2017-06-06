@@ -101,6 +101,35 @@ $(document).ready(function(){
               $("#htnWords").fadeTo(1000,1);
             },1500);
           }
+        }else if($(this).is($("#typingCon"))){
+          $("#mailElement").typed({
+            strings: ["<a href='mailto:curtischong5@gmail.com' style='color: #00FF00;' target='_blank'>curtischong5@gmail.com</a>"],
+            typeSpeed: 6
+          });
+          setTimeout(function () {
+            $(".typed-cursor").remove();
+          }, 6000);
+          $("#linkedinElement").typed({
+            strings: ["<a href='https://www.linkedin.com/in/chongcurtis'  style='color: #00FF00;' target='_blank'>linkedin.com/in/chongcurtis</a>"],
+            typeSpeed: 6
+          });
+          setTimeout(function () {
+            $(".typed-cursor").remove();
+          }, 6000);
+          $("#githubElement").typed({
+            strings: ["<a href='https://github.com/curtischong'  style='color: #00FF00;' target='_blank'>github.com/curtischong</a>"],
+            typeSpeed: 6
+          });
+          setTimeout(function () {
+            $(".typed-cursor").remove();
+          }, 6000);
+          $("#stElement").typed({
+            strings: ["<a href='http://stackoverflow.com/users/4647924/curtis-chong'  style='color: #00FF00;' target='_blank'>stackoverflow.com/users/4647924/curtis-chong</a>"],
+            typeSpeed: 6
+          });
+          setTimeout(function () {
+            $(".typed-cursor").remove();
+          }, 6000);
         }
         $(this).fadeTo(1000, 1);
         $(this).removeClass("fadeIn");
@@ -234,7 +263,7 @@ $(document).ready(function(){
     $("#prjRepo").attr("href",$(this).attr("repoLink"));
   });
 
-  var word;
+  /*var word;
   $("#contactEmail").on("click", function () {
     word = "<a href='mailto:curtischong5@gmail.com' style='color: #00FF00;' target='_blank'>curtischong5@gmail.com</a>";
     $("#mailElement").typed({
@@ -274,5 +303,5 @@ $(document).ready(function(){
     setTimeout(function () {
       $(".typed-cursor").remove();
     }, 6000);
-  });
+  });*/
 });
