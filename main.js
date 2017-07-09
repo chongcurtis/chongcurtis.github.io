@@ -123,6 +123,13 @@ $(document).ready(function(){
           setTimeout(function () {
             $(".typed-cursor").remove();
           }, 6000);
+          $("#devpostElement").typed({
+            strings: ["<a href='https://devpost.com/curtischong'  style='color: #00FF00;' target='_blank'>devpost.com/curtischong</a>"],
+            typeSpeed: 6
+          });
+          setTimeout(function () {
+            $(".typed-cursor").remove();
+          }, 6000);
           $("#stElement").typed({
             strings: ["<a href='http://stackoverflow.com/users/4647924/curtis-chong'  style='color: #00FF00;' target='_blank'>stackoverflow.com/users/4647924/curtis-chong</a>"],
             typeSpeed: 6

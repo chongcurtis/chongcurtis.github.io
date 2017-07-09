@@ -308,6 +308,10 @@ font-weight: 100;
   text-decoration: none !important;
   color: #00bbff !important;
 }
+.HackathonName{
+  position: relative;
+  text-align: center;
+}
 #minotour{
   position: relative;
 }
@@ -355,7 +359,7 @@ font-weight: 100;
   min-height: 450px;
 }
 #typingCon{
-  height: 110px;
+  height: 130px;
   width: 100%;
   padding-top: 15px;
   background-color: #0c1110;
