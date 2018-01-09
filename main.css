@@ -97,6 +97,23 @@ body{
   font-size: 1.2em;
   margin-top: 10px;
 }
+#flipp{
+  position: relative;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+#flippImg{
+  height: 530px;
+  position: relative;
+  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) );
+}
+#flippLogo{
+  position: absolute;
+  z-index: 3;
+  width: 250px;
+  top: 200px;
+  filter: brightness(95%);
+}
 #projects{
   position: relative;
   top: -10px;
@@ -183,6 +200,7 @@ transition: all 0s ease;
   background-color: #070502;
   position: relative;
   width: 100%;
+  height: 750px;
 }
 #experience{
   background-color: #070502;
@@ -311,6 +329,7 @@ font-weight: 100;
 .HackathonName{
   position: relative;
   text-align: center;
+  top: -20px;
 }
 #minotour{
   position: relative;

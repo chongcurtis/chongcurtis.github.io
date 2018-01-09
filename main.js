@@ -42,32 +42,41 @@ $(document).ready(function(){
               window.clearTimeout(hrwidthtimer);
             }
           },16);
+        }else if($(this).is($("#splitHr5"))){
+          var hrwidthtimer = window.setInterval(function () {
+            var hrwidth = $("#splitHr5").width();
+            if (hrwidth < vW - vH/4) {
+              $('#splitHr5').css("width", hrwidth + 5);
+            }else{
+              window.clearTimeout(hrwidthtimer);
+            }
+          },16);
         }else if($(this).is($("#hackathonNum"))){
           if($(this).html() == 0){
             (function myLoop (i) {
-              if(i < 11){
+              if(i < 14){
                 setTimeout(function () {
                   i++;
                   $("#hackathonNum").html(i + "  ");
-                  if(i < 17) myLoop(i);
+                  if(i < 20) myLoop(i);
                 }, 100)
-              }else if(i <15){
+              }else if(i <18){
                 setTimeout(function () {
                   i++;
                   $("#hackathonNum").html(i + "  ");
-                  if(i < 17) myLoop(i);
+                  if(i < 20) myLoop(i);
                 }, 200)
-              }else if(i == 15){
+              }else if(i == 18){
                 setTimeout(function () {
                   i++;
                   $("#hackathonNum").html(i + "  ");
-                  if(i < 17) myLoop(i);
+                  if(i < 20) myLoop(i);
                 }, 600)
               }else{
                 setTimeout(function () {
                   i++;
                   $("#hackathonNum").html(i + "  ");
-                  if(i < 17) myLoop(i);
+                  if(i < 20) myLoop(i);
                 }, 1000)
               }
             })(0);
@@ -147,8 +156,10 @@ $(document).ready(function(){
   $("#binarySnowflakeCanvas").width(vW);
   if(vW < 500){
     $("#network").remove();
-    //$("#experienceIntro").css("height",300);
+    $("#experienceIntro").css("height",260);
     $("#workExperience").css("top",80);
+    // remove the names for the events
+    $(".HackathonName").remove();
   }else if(vW < 1280){
     $("#network").css("width",vW*0.9);
   }
@@ -156,6 +167,7 @@ $(document).ready(function(){
   $("#htnLogo").css("left",vW/2- 75);
   $("#htnWords").css("top",$("#htn").height()/2-35);
   $("#htnWords").css("left",vW/2);
+  $("#flippLogo").css("left",vW/2- 125);
 
   if(vW < 530){
     $("#network").css("top", $("#experienceIntro").offset().top-705);
