@@ -375,7 +375,8 @@ font-weight: 100;
 }
 #footer{
   background-color: #070502;
-  min-height: 450px;
+  min-height: 300px;
+  width:100%;
 }
 #typingCon{
   height: 130px;
