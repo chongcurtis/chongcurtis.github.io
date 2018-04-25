@@ -51,6 +51,15 @@ $(document).ready(function(){
               window.clearTimeout(hrwidthtimer);
             }
           },16);
+        }else if($(this).is($("#splitHr6"))){
+          var hrwidthtimer = window.setInterval(function () {
+            var hrwidth = $("#splitHr6").width();
+            if (hrwidth < vW - vH/4) {
+              $('#splitHr6').css("width", hrwidth + 5);
+            }else{
+              window.clearTimeout(hrwidthtimer);
+            }
+          },16);
         }else if($(this).is($("#hackathonNum"))){
           if($(this).html() == 0){
             (function myLoop (i) {
@@ -159,8 +168,12 @@ $(document).ready(function(){
     $("#experienceIntro").css("height",260);
     $("#workExperience").css("top",80);
     $("#winningHacksPadding").css("padding-top",60);
+    $("#visualizationsPadding").css("padding-top",30);
     $("#visualizationsPadding").css("padding-bottom",60);
+    $("#archivesPadding").css("padding-top",30);
     $("#archivesPadding").css("padding-bottom",60);
+    $("#personalFavouritesPadding").css("padding-top",30);
+    $("#personalFavouritesPadding").css("padding-bottom",60);
   }else if(vW < 1280){
     $("#network").css("width",vW*0.9);
   }
