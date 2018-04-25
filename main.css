@@ -124,7 +124,13 @@ body{
   border-radius: 10px;
   z-index: 1;
 }
-#myProjects{
+#visualizations{
+  background-color: #070502;
+}
+#personalFavourites{
+  background-color: #070502;
+}
+#archives{
   background-color: #070502;
 }
 #viewProject{
