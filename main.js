@@ -170,11 +170,17 @@ $(document).ready(function(){
   $("#flippLogo").css("left",vW/2- 125);
 
   if(vW < 530){
+    $("#bannerPhoto").css("left",-400);
+    $("#bannerPhoto").css("width",vW + 400);
     $("#network").css("top", $("#experienceIntro").offset().top-705);
     $("#title").css("top",60);
-    $("#title").css("left",15);
+    $("#title").css("left",0);
+    $("#title").css("width",vW);
+    $("#title").css("text-align","center");
     $("#subHeaders").css("top",130);
-    $("#subHeaders").css("left",20);
+    $("#subHeaders").css("left",0);
+    $("#subHeaders").css("width",vW);
+    $("#subHeaders").css("text-align","center");
     $("#title").animate({top: 80}, 1000);
     setTimeout(function () {
       $("#subHeaders").animate({top: 150},{
