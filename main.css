@@ -310,6 +310,10 @@ font-weight: 100;
   position: relative;
   z-index: 5;
 }
+#winningHacks{
+  background-color: #070502;
+  position: relative;
+}
 .hackathonHighlightsImg{
   border-radius: 10px;
   top: 50%;
