@@ -158,8 +158,9 @@ $(document).ready(function(){
     $("#network").remove();
     $("#experienceIntro").css("height",260);
     $("#workExperience").css("top",80);
-    // remove the names for the events
-    $(".HackathonName").remove();
+    $("#winningHacksPadding").css("padding-top",60);
+    $("#visualizationsPadding").css("padding-bottom",60);
+    $("#archivesPadding").css("padding-bottom",60);
   }else if(vW < 1280){
     $("#network").css("width",vW*0.9);
   }

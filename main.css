@@ -119,57 +119,8 @@ body{
   top: -10px;
   background-color: #070502;
 }
-/*.projectHeader{
-position: absolute;
-cursor: pointer;
-text-align: center;
-}
-.projectTitle{
-position: absolute;
-cursor: pointer;
-padding-bottom: 1px;
-transition: all 0.8s ease-in-out;
-text-align: center;
-}
-.projectTitle:before {
-content: '';
-display: block;
-position: absolute;
-left: 0;
-bottom: 0;
-height: 1px;
-width: 0;
-transition: width 0s ease, background .5s ease;
-}
-.projectTitle:after {
-content: '';
-display: block;
-position: absolute;
-right: 0;
-bottom: 0;
-height: 1px;
-width: 0;
-background: white;
-transition: width .5s ease;
-}
-.projectTitle:hover:before {
-width: 100%;
-background: white;
-transition: width .5s ease;
-}
-.projectTitle:hover:after {
-width: 100%;
-background: transparent;
-transition: all 0s ease;
-}*/
-
 .prjimg{
   cursor: pointer;
-  /*display: inline;
-  height: 50px;
-  z-index: 5;*/
-  top: 50%;
-  transform: translateY(-50%);
   border-radius: 10px;
 }
 #myProjects{
@@ -222,19 +173,6 @@ transition: all 0s ease;
   padding-left: 0px;
   height: 450px;
 }
-/*#
-{
-top: 120px;
-font-size: 3.5em;
-position: absolute;
-left: 20px;
-text-align: center;
-width:5%;
-left: 40%;
-margin-right: 0px;
-z-index: 2;
-font-weight: 100;
-}*/
 #hackathonNum{
   font-weight: 100;
   margin-right: 15px;
@@ -249,18 +187,6 @@ font-weight: 100;
   text-align: center;
   font-weight: 100;
 }
-/*#winNum{
-top: 270px;
-font-size: 2.5em;
-position: absolute;
-left: 60px;
-text-align: center;
-width:5%;
-left: 40%;
-margin-right: 0px;
-z-index: 2;
-font-weight: 100;
-}*/
 #winNum{
   font-weight: 100;
   margin-right: 15px;
@@ -313,11 +239,10 @@ font-weight: 100;
 #winningHacks{
   background-color: #070502;
   position: relative;
+  padding-bottom: 30px;
 }
 .hackathonHighlightsImg{
   border-radius: 10px;
-  top: 50%;
-  transform: translateY(-50%);
 }
 .competitionWin{
   cursor: pointer;
@@ -333,7 +258,8 @@ font-weight: 100;
 .HackathonName{
   position: relative;
   text-align: center;
-  top: -20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 #minotour{
   position: relative;
