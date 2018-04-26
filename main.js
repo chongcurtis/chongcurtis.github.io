@@ -284,6 +284,14 @@ var showEvent = function(ctx){
     showProject();
   });
   $("#viewFire").on("click",function(){
+    $(this).attr("repoLink",$("#SFfirstLink").attr("repoLink"));
+    $(this).attr("hackName",$("#SFfirstLink").attr("hackName"));
+    $(this).attr("hackathon", $("#SFfirstLink").attr("hackathon"));
+    $(this).attr("place", $("#SFfirstLink").attr("place"));
+    $(this).attr("thePrjImg", $("#SFfirstLink").attr("thePrjImg"));
+    $(this).attr("popupImg", $("#SFfirstLink").attr("popupImg"));
+    $(this).attr("eventDesc", $("#SFfirstLink").attr("eventDesc"));
+    $(this).attr("desc", $("#SFfirstLink").attr("desc"));
     showEvent(this);
     showProject();
   });
