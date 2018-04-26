@@ -250,13 +250,42 @@ $(document).ready(function(){
     }, 30);
   }, 30);
 
+var showProject = function(){
+  $("#viewProject").hide();
+  $("#backToEvent").show();
+  $("#prjTitle").attr("popupImg",$("#prjImg").attr("src"));
+  $("#prjImg").attr("src",$("#prjTitle").attr("thePrjImg"));
+  $("#prjP").html($("#prjTitle").attr("desc"));
+  $("#prjRepo").show();
+};
+var showEvent = function(ctx){
+  $("#viewProject").show();
+  $("#backToEvent").hide();
+  $("#myModal").modal("show");
+  $("#prjP").html($(ctx).attr("eventDesc"));
+  var hackathon = $(ctx).attr("hackathon");
+  var place = $(ctx).attr("place");
+  var title = $(ctx).attr("hackname");
+  var image = $(ctx).attr("popupImg");
+  var thePrjImg = $(ctx).attr("thePrjImg");
+  $("#prjTitle").html(title);
+  $("#prjTitle").attr("thePrjImg",thePrjImg);
+  $("#prjTitle").attr("eventDesc",$(ctx).attr("eventDesc"));
+  $("#prjTitle").attr("desc",$(ctx).attr("desc"));
+  $("#prjRepo").attr("href",$(ctx).attr("repoLink"));
+  $("#prjTitleEvent").html(hackathon);
+  $("#prjTitlePlace").html(place);
+  $("#prjImg").attr("src",image);
+  $("#prjRepo").hide();
+};
+
+
   $("#viewProject").on("click",function(){
-    $("#viewProject").hide();
-    $("#backToEvent").show();
-    $("#prjTitle").attr("popupImg",$("#prjImg").attr("src"));
-    $("#prjImg").attr("src",$("#prjTitle").attr("thePrjImg"));
-    $("#prjP").html($("#prjTitle").attr("desc"));
-    $("#prjRepo").show();
+    showProject();
+  });
+  $("#viewFire").on("click",function(){
+    showEvent(this);
+    showProject();
   });
 
   $("#backToEvent").on("click",function(){
@@ -268,24 +297,7 @@ $(document).ready(function(){
   });
 
   $(".competitionWin").on("click",function(){
-    $("#viewProject").show();
-    $("#backToEvent").hide();
-    $("#myModal").modal("show");
-    $("#prjP").html($(this).attr("eventDesc"));
-    var hackathon = $(this).attr("hackathon");
-    var place = $(this).attr("place");
-    var title = $(this).attr("hackname");
-    var image = $(this).attr("popupImg");
-    var thePrjImg = $(this).attr("thePrjImg");
-    $("#prjTitle").html(title);
-    $("#prjTitle").attr("thePrjImg",thePrjImg);
-    $("#prjTitle").attr("eventDesc",$(this).attr("eventDesc"));
-    $("#prjTitle").attr("desc",$(this).attr("desc"));
-    $("#prjRepo").attr("href",$(this).attr("repoLink"));
-    $("#prjTitleEvent").html(hackathon);
-    $("#prjTitlePlace").html(place);
-    $("#prjImg").attr("src",image);
-    $("#prjRepo").hide();
+    showEvent(this);
     //$(".modal-content").css("background-image","url(http://res.cloudinary.com/dj2eq8czc/image/upload/v1486482255/flybits_pukqgx.jpg)")
   });
 
