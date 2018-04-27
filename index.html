@@ -27,9 +27,8 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="main.css">
   <script>
-  var host = "chongcurtis.github.io";
-  if ((window.location.protocol != "https:"))
-  window.location.protocol = "https";
+  if (location.protocol != 'https:')
+ location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
   </script>
 </head>
 
