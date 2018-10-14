@@ -1,421 +1,390 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
 
 <head>
-  <title>Curtis Chong</title>
-  <meta charset="utf-8" />
-  <meta name="description" content="Hacker. Data Scientist. Activist">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Curtis Chong | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="My Site!" />
+    <meta name="keywords" content="Curtis Chong, Software, Programming, Plugin" />
+    <meta name="author" content="Curtis Chong" />
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
 
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
 
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,900' rel='stylesheet' type='text/css'>
 
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="css/icomoon.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- Superfish -->
+    <link rel="stylesheet" href="css/superfish.css">
 
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
 
-  <!-- Custom Font -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300" rel="stylesheet">
-  <script src="https://use.fontawesome.com/20016a11b5.js"></script>
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="main.css">
-  <script>
-  if (location.protocol != 'https:')
- location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
-  </script>
+
+    <!-- Modernizr JS -->
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
 </head>
 
 <body>
-  <!-- Modal -->
-  <div id="myModal" style="display: none;" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content" style="background-color: #09090a;background-repeat: no-repeat;">
-        <div class="modal-header" style="border: none;">
-          <p class="modal-title" style="font-size: 40px; color: white;" id="prjTitle" thePrjImg="" popupImg="" eventDesc="" desc=""></p>
-          <p style="font-size: 26px; display: inline; position: relative; color: white;" id="prjTitleEvent"></p>
-          <p style="font-size: 20px; display: inline; position: relative; color: white; left: 20px;" id="prjTitlePlace"></p>
-          <div data-dismiss="modal" style="background-color: transparent;color: white; cursor: pointer; position: absolute; top: 20px; right: 20px;">Close</div>
-        </div>
-        <div class="modal-body" id="prjBody">
-          <img id="prjImg" class="aPhoto image-responsive" style="position: relative; margin-bottom: 40px; margin-top: -20px;"/>
-          <p id="prjP"></p>
-          <p style="color: white;"><a id="prjRepo" target='_blank'>Link to Repo</a></p>
-          <p id="viewProject">View the Project <i class="fa fa-angle-right" aria-hidden="true" style="margin-left: 10px;"></i></p>
-          <p id="backToEvent"><i class="fa fa-angle-left" aria-hidden="true" style="margin-left: 10px;"></i> To Event</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="parallax-window" id="bannerPhoto" data-parallax="scroll" data-image-src="photos/curtis-chong-homepage-background.jpg"></div>
-  <div id="title"><span style="display: inline; color: white;" id="t1" class="tword"><p style="display: inline;color: white;">C</p></span><span style="display: inline;color: white;" id="t2" class="tword"><p style="display: inline;color: white;">u</p></span><span style="display: inline;color: white;" id="t3" class="tword"><p style="display: inline;color: white;">r</p></span><span style="display: inline;color: white;" id="t4" class="tword"><p style="display: inline;color: white;">t</p></span><span style="display: inline;color: white;" id="t5" class="tword"><p style="display: inline;color: white;">i</p></span><span style="display: inline;color: white;" id="t6" class="tword"><p style="display: inline;color: white;">s</p></span> <span style="display: inline;color: white;" id="t7" class="tword"><p style="display: inline;color: white;">C</p></span><span style="display: inline;color: white;" id="t8" class="tword"><p style="display: inline;color: white;">h</p></span><span style="display: inline;color: white;" id="t9" class="tword"><p style="display: inline;color: white;">o</p></span><span style="display: inline;color: white;" id="t10" class="tword"><p style="display: inline;color: white;">n</p></span><span style="display: inline;color: white;" id="t11" class="tword"><p style="display: inline;color: white;">g</p></span></div>
-  <p id="subHeaders">Data Scientist - Hacker - Competitive Programmer</p>
-  <div class="container-fluid" id="intro">
-    <div class="row-fluid">
-      <div class="col-md-12">
-        <p id="introTitle" class="fadeIn" style="color: white;">Hello!</p>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="col-md-12">
-        <p id="introduction" class="fadeIn">I'm a programmer that adores GitHub as much as AWS' Spot Instances. As a high school student, I try to squeeze enough time for hackathons, hiking trips, and the occasional ML Book Club. I also programming competitively and aspire to use data to influence policy in the city I love. So without further adieu, here lies an archive of my past projects, work experiences, and achievements. Mind if you scroll down?</p>
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid" style="padding: 0px;" id="experienceIntro">
-    <p id="workExperience" class="fadeIn" style="color: white;">Work Experience</p>
-    <canvas id="network" class="fadeIn"></canvas>
-  </div>
-  <div class="container-fluid" style="padding: 0px;" id="flipp">
-    <div class="row-fluid">
-      <div class="parallax-window" data-parallax="scroll" id="flippImg" data-image-src="https://res.cloudinary.com/dj2eq8czc/image/upload/v1515316184/IMG_20170901_175557_01_tjiiqz.jpg"></div>
-      <img id="flippLogo" class="fadeIn" src="https://res.cloudinary.com/dj2eq8czc/image/upload/v1515316334/flipp_zmjzoj.png">
-    </div>
-  </div>
-  <div class="container-fluid" id="experience">
-    <div class="row-fluid" style="background-color: #070502">
-      <div class="col-md-8 col-md-offset-2">
-        <p style="position: relative; padding-top: 30px; font-size: 16px;" class="fadeIn">Flipp was a dream come true for me and I couldn't have asked for a better way to spend 2 months of my eleventh-grade summer. At Flipp, I worked as a data scientist where I normalized and engineered features out of 50,000 resumes. Using these features (over 30 independent ones), and multiple bags of words, I fed my data into machine learning algorithms to predict how well candidates will fare during the hiring process.<br><br> I remember constantly asking our Talent Team over specific details in every resume to acquire a deeper understanding of the hiring process of every role at Flipp. Turns out, hockey players could become our next Operations Coordinator! I also developed an extremely accurate resume parser in response to imprecise open-source and industry parsers.<br><br>If you're interested in learning more about my time at Flipp, take a look at my end-of-term report <a href="https://chongcurtis.com/flipp_term_review.pdf" target="_blank">here</a></p>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="col-md-12">
-        <hr class="splitHr fadeIn" id="splitHr5">
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="col-md-8 col-md-offset-2">
-        <img class="aPhoto image-responsive fadeIn" style="position: relative;filter:brightness(90%); margin-top: 100px;" src="https://res.cloudinary.com/dj2eq8czc/image/upload/v1473913752/curtis-chong-at-maxq.jpg"/>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="col-md-8 col-md-offset-2">
-        <p class="fadeIn" style="margin-top: 20px;">As Canada's first space accelerator, <a href="http://www.maxq.ca/" target="_blank">MaxQ</a> aims to lead space startups to success by providing mentorship and capital. During my tenth grade summer, I interned at one of their startups <a href="https://www.skywatch.co/" target="_blank">Skywatch</a> and created an API that parsed HDF files (from NASA's satellites) into JSON. This data is then inserted into a Postgres database where third parties can query the API by geological region and time.</p>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="col-md-12">
-        <hr class="splitHr fadeIn" id="splitHr1">
-      </div>
-    </div>
-    <br>
-    <div class="row-fluid" style="position: relative;">
-      <div class="col-md-4 col-md-offset-2">
-        <img id="tohcImg" class="aPhoto image-responsive fadeIn" style="position: relative;filter:brightness(100%);" src="https://res.cloudinary.com/dfcfsw4mv/image/upload/v1492233134/curtis-chong-toronto-hacker-club.jpg"/>
-      </div>
-      <div class="col-md-4">
-        <p class="fadeIn" style="text-align: center; font-size: 30px; margin-top: 50px;font-weight: 100;color: white;">Toronto Hacker Club</p><br>
-        <p class="fadeIn" id="tohcDesc"><a href="http://torontohacker.club/" target='_blank'>Toronto Hacker club</a> is an organization that strives towards promoting Computer Science education towards students. The club has hosted four hackathons to date and have been humbled to work alongside the likes of Google, Mozilla, and RBC to deliver education workshops for the high school tech scene. Before I left the club to focus on school, I managed partnerships and lead the search for the club's funding as the director of Corporate Relations.</p>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="col-md-12">
-        <hr class="splitHr fadeIn" style="position: relative;" id="splitHr2">
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="col-md-4 col-md-offset-2">
-        <p class="fadeIn" style="text-align: center; font-size: 30px; margin-top: 50px; font-weight: 100;color: white;">STEM Fellowship</p><br>
-        <p class="fadeIn" style="">After placing <span id="SFfirstLink" class="competitionWin" repoLink="https://github.com/curtischong/Canadian_Forest_Fires" hackName="Canadian Forest Fires" hackathon="Big Data Challenge 2017" place="First Place" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1490895242/curtis-chong-optimum-wind-farm-placement-northern-alberta.png" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1490895115/curtis-chong-team-photo-stem-fellowship-big-data-challenge.jpg" eventDesc="The STEM Fellowship's Big Data Challenge is an annual competition that spurs youth to use data science and provide insights on issues. This year, the fellowship challenged 21 teams to use <a href='https://www.altmetric.com/' target='_blank'>Altmetric data</a> and identify opportunities for scientific research. Following their discoveries, contestants compiled an abstract that described their findings in detail. Impressed by our results, our team was invited to big data day and pitched our verdicts towards a panel of judges. After a tortuous journey, our team became a finalist, placed first, and published our abstract to the STEM Fellowship Journal." desc="Inspired by the tragedy at Fort McMurray, my team wanted to discover ways to reduce the frequency and size of forest fires; we began by looking at the National Fire Database. This database describes all Canadian forest fires since the 1930s and underscores features such as size, location, and other government responses. To describe the fires in more detail, we attributed each fire to the nearest weather station to determine weather conditions at the time of the fire, namely precipitation, pressure, wind speed, and temperature. After a couple of covariance graphs and casual observations, we discovered that low humidity was a large contributing factor and that 40% of the naturally occurring fires were sparked by a lightning strike.<br><br>Soon it was evident that we needed to build structures to decrease the speed of winds and the number of lightning strikes. After a couple of days to mull the problem in our heads, only one proposal seemed plausible, the green light of wind farms in fire-prone regions. Using the geographic data of previous fires, we ran a k-means algorithm to group forest fires into 200 regions, all in northern Alberta, where most fires are crowned. We then proposed to place wind farms at the centroids of the regions to create a protective area against forest fires. All in all, our proposal won first place and landed me a spot on the STEM Fellowship's Data Science Team. For a detailed look at our procedure, download our report <a href='affects_of_climate_change_on_forest_fires.pdf' download>here</a>!">first</span> at the STEM Fellowship's <a href="http://stemfellowship.org/big-data-challenge/" target="_blank">Big Data Challenge</a>, I jumped down a rabbit hole and joined the Fellowship's Data Science Team to train future analysts. The nonprofit is run by Canadian students who hope to equip fellow colleagues with skills in data science and scholarly writing. At the organization, I pass my days by preparing datasets for our Kaggle-like competitions and organize academic reporting challenges.</p>
-        <p class="fadeIn" style="font-size: 20px;cursor: pointer;width: 60%;color: white;margin-bottom: 40px;" class="competitionWin" id="viewFire">View the project  <i class="fa fa-angle-right" aria-hidden="true" style="margin-left: 10px;"></i></p>
-      </div>
-      <div class="col-md-4">
-        <img class="aPhoto image-responsive fadeIn" style="position: relative;filter:brightness(90%);" src="https://res.cloudinary.com/dj2eq8czc/image/upload/v1490162876/curtis-chong-stem-data-challenge.jpg"/>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="col-md-12">
-        <hr class="splitHr fadeIn" id="splitHr3">
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="col-md-8 col-md-offset-2">
-        <p class="fadeIn" style="text-align: center; font-size: 30px; margin-top: 50px; font-weight: 100;color: white;margin-bottom: 0px; height: 20px;">Competitive Programming</p><br>
-        <img class="aPhoto image-responsive fadeIn" style="position: relative;filter:brightness(90%); margin-top: 70px;margin-bottom: 20px;" src="photos/graph_theory.jpeg"/>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="col-md-8 col-md-offset-2">
-        <p class="fadeIn" style="padding-bottom: 80px;">The one thing that separates a computer science student from a competitive programmer is an obsession with Good Will Hunting. No matter how many Segment trees, Dijkstras, or BITs you make, school will never teach you how to cleverly implement the algorithms we take for granted. I specialize in writing C++ structs to help my BIT offline query at O(nlogn) complexity. Running Square Root Decomp to find the LCA is also fun. Come check out my solutions to over <a href="https://github.com/curtischong/contest" target="_blank ">500 problems.</a></p>
-      </div>
-    </div>
-    <!--<div class="row-fluid">
-    <div class="col-md-12">
-    <hr class="splitHr fadeIn" id="splitHr4">
-    I want to put kaggle here someday
-  </div>
-</div>-->
-</div>
-<div class="container-fluid" id="hackathons">
-  <div class="row-fluid">
-    <div class="col-md-12">
-      <p class="fadeIn" id="hackathonsWord" style="color: white;"><span id="hackathonNum" class="fadeIn" style="color: white;">0</span>Hackathons</p><br><br>
-      <p class="fadeIn" id="hackathonWins" style="color: white;"><span id="winNum" class="fadeIn" style="color: white;">0</span>Wins</p>
-      <canvas id="binarySnowflakeCanvas" class="fadeIn"></canvas>
-    </div>
-  </div>
-</div>
-<div class="container-fluid" id="htn">
-  <div class="parallax-window" data-parallax="scroll" id="htn2016Img" data-image-src="https://res.cloudinary.com/dfcfsw4mv/image/upload/v1475350647/curtis-chong-hack-the-north.jpg"></div>
-  <img id="htnLogo" class="fadeIn" src="https://res.cloudinary.com/dfcfsw4mv/image/upload/v1475351540/logo_dx7ei5.png">
-  <h1 id="htnWords">2016 Winner</h1>
-</div>
-<div class="container-fluid" id="htnDesc">
-  <div class="row-fluid" style="background-color: #070502">
-    <div class="col-md-8 col-md-offset-2">
-      <p style="position: relative; top: 30px; font-size: 16px;" class="fadeIn">On the stage of Canada's largest hackathon, our team proposed Agrigate, a solution to better Ontario's agricultural security. Using a combination of geographic data from Nasa and Ontario's land surveys, our webapp could deliver current climate statistics as well as project crop prices until the year 2020.</p>
-    </div>
-  </div>
-  <div class="row-fluid">
-    <div class="col-md-12">
-      <hr class="splitHr fadeIn" id="splitHr6">
-    </div>
-  </div>
-</div>
-<div class="container-fluid" id="winningHacks">
-  <div class="row-fluid" style="background-color: #070502">
-    <div class="col-md-12 fadeIn">
-      <p style="width: 100%; text-align: center; font-size: 28px; position: relative;font-weight: 100;color: white;">Winning Hacks</p>
-    </div>
-  </div>
-  <div class="row-fluid" id="winningHacksPadding" style="position: relative; padding-top: 120px;">
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img id="recap" hackName="Recap" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin" repoLink="https://github.com/kpsuperplane/mhacks9" hackathon="Mhacks 9" place="Second Place" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1490769301/curtis-chong-recap-editor_dfv1ku.png" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1490716933/Curtis-Chong-Mhacks9.jpg" eventDesc='At Mhacks 2017, our team took to the mic with Recap, a web app designed to supplement the note taking process. By embracing the mindset of "Empathy-Driven Design" our team brought home 2nd place MLH medals.' desc="No matter how swift our needle-like fingers are, none of us can incept the perfect study note. Too often we scramble to keep track of what was said and tend to forget the meaning behind the words we wrote. Recap envisions an editor that serves as a second pair of ears - quite literally. Whether you're in a conference or at a student lecture, our web app will record the speaker and pair up the recording with the words you type. Once you stop typing, we'll stop recording. This mechanism is synced directly with Firebase and delivers an autosave feature similar to one found in Google Docs. We also implemented the Wolfram Alpha API so you can search up concepts you don't understand right in the editor. Happy note taking!" src="photos/header_recap.jpg">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">MHacks 9</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img id="fintech" hackName="FinTech" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin" repoLink="https://github.com/kshen3778/fintech" hackathon="Fishackathon Toronto" place="First Place" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1468226326/fintechLargest_ycddax.jpg" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486497000/curtis-chong-fishackathon-winner.jpg" eventDesc="In recent decades, threats such as overfishing, habitat destruction, and pollution have placed global fish populations in peril. To involve public opinion, US Department of State organized fishackathon, a three-day hackathon that challenges the public to tackle industry issues. Alongside 43 other cities, Toronto hosted the event and invited the president of Coke and the Water Brothers to inspire the 20 teams that attended. With an assortment of challenges ranging from fish identification to the retrieval of diving equptment, our team chose to create an algorithm to locate the source of Asian Carp breeding areas." desc="Fintech is a mobile app centered around the ease of access for exterminators and environmentalist to track the spawning of the Asian Carp. In the 1970s, the predatorial Asian Carp found its way into the great lakes, and today they pose a threat to more than a hundred aquatic species that inhabit the waters. Fintech proposes a preventative solution by providing researchers and exterminators geological and environmental data of possible Asian Carp spawning locations. Through the use of water flow and temperature data, Fintech is able to predict where the Asian carp may spawn and delivers that data in a quick and elegant solution." src="photos/header_fintech.jpg">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">Fishackathon 2016</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img id="minotour" hackName="MinoTour" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin" repoLink="https://github.com/marceloneil/MinoTour" hackathon="Flybits Hackathon" place="People's Choice" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486622900/minotour_xkn86o.png" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486482255/curtis-chong-flybits-context-camp-hackathon-win.jpg" eventDesc="My team <a href='https://www.linkedin.com/in/marceloneil/' target='_blank'>Marcel O’Neil</a>, <a href='https://www.linkedin.com/in/kevinkwshen/' target='_blank'>Kevin Shen</a>, and <a href='https://www.linkedin.com/in/danielktwu/' target='_blank'>Daniel Wu</a> met for the first time at the “Flybits Context Camp”, a three-day hackathon at Lighthouse Labs. Flybits is a service that collects environmental data from a user’s phone to provide developers with contextual information. The company then proccesses this data to deliver information ranging from the number of steps taken to the gender of a user. Using their api, our team created MinoTour, a tourism app that recommends nearby tourist attractions based on user context. At the end, my team headed home with the People’s Choice awards and the promise of more memories." desc="Have you ever been on vacation? Wondering around in your dream city, visiting the Eiffel Tower, or the Louvre? Many of us would surely remember the emotions attributed to those historic sites. Although our vacations are centered around attractions, they are really about creating memories that last. So that is why we built MinoTour, an app that uses your contextual information to recommend the best tourist attractions. It uses your current contextual information through the Flybits API to tailor the best attractions that would impact you the most. For example, if you're in China and you've walked 5km, then you may feel fatigued. As a result, our algorithms would conclude that you are tired and will start suggesting nearby attractions to shorten travel distance. It will also promote indoor attractions to stray you away from unpleasant clouds. These variables are just some of many that MinoTour uses to help provide users memories that will last a lifetime." src="photos/header_minotour.jpg">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">Flybits 2016</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img id="agrigate" hackName="Agrigate" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin" repoLink="https://github.com/curtischong/Agrigate" hackathon="Hack the North" place="Top 12 Winner" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1475448957/agrigate_izu0cv.jpg" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486511861/curtis-chong-hack-the-north-win.jpg" eventDesc="Prided as Canada's largest hackathon, Hack the North brought together 1000 of North America's brightest developers and inventors. Despite the competition, my team and I won and placed in the top 12 by making a tool to guide the daily decisions of farmers." desc="Even in Canada, there is a huge inefficiency in the production of food. This problem is worsening along with the exponential growth of the human population, and very little seems to be being done about it. As a team, we were inspired to improve how farmers collect insights on the current state of their farm so we used Nasa's L4 satellite data and Ontario's land surveys to deliver a free and easy-to-use open-source tool. This web app can project crop prices until the year 2020 and can also deliver heat and moisture data in any region of the world. With the data gathered, farmers can predict when it is best to aggregate, harvest, and plant crops." src="photos/header_agrigate.jpg">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">Hack the North 2016</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img id="ttez" hackName="TTEZ" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin" repoLink="https://github.com/curtischong/TTEZ" hackathon="Climation Toronto" place="People's Choice" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486622103/climathonData_nk8qg9.png" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486505956/curtis-chong-toronto-climathon-win.jpg" eventDesc="In 2015, the Paris Climate Accord brought together nations from all around the globe to resolve a long neglected issue. Today, the international Climathon extends the reach of climate action to thousands of individuals in 59 cities. At every local hackathon, participants will have 24 hours to resolve a problem set by their local organizers. Much like other cities, the Toronto cohort (organized my MaxQ) set a local goal to reduce the TTC's carbon emissions by 5%. Operating a cost neutral budget, my team and I tackled this challenge by determining the most polluting bus routes." desc="At the climathon, our team wanted to describe the city's GTFS dataset and identify poor performing routes to recommend route changes. We began by calculating how much co2 one would emmit on an average bus ride. After we mined the numbers, we placed this information on an ios app so riders can identify which routes are the most polluting. Although the city switches to smaller buses during slow hours, we discovered that many buses still travel with less than 10% capacity at most times. Overall, our analysis won the team people's choice awards and identified areas for improvement in regards to carbon emmisions on the TTC." src="photos/header_ttez.jpg">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">Climathon 2016</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img id="catchit" hackName="CatchIt!" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin" repoLink="https://github.com/visualizing-wattpads-userbase/visualizing-wattpads-userbase.github.io" hackathon="YRDSB - Hack to Action" place="First Place" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486621792/PitchDeck_TeamCatchIt_GroupD_kuzllk.png" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486505837/curtis-chong-hack-to-action-win.jpg" eventDesc="In November, 33 schools from YRDSB sent several representatives to Hack2Action, a board-wide hackathon dedicated to the identification of greeenhouse gas inefficiencies. After passing the preliminary round, our team moved on to pitch to a panel of judges at Quest, an international conference which harbored 1000+ members of the education community. All in all, our team placed first at the conference and devised an incentive for the use of public transit." desc="Building on top of the work of TTEZ, CatchIt aims to calculate the amount of co2 emissions one will save if they took a bus rather than their car at home. Using the google directions API, our app aims to replace google maps so the experience users undergo will seem natural. To calculate carbon emissions, the app reads against TTEZ's emission database for every route and then calculates the amount of co2 per section of the ride." src="photos/header_catchit.jpg">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">Hack2Action 2016</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container-fluid" id="visualizations">
-  <div class="row-fluid" style="background-color: #070502">
-    <div class="col-md-12 fadeIn">
-      <p id="visualizationsPadding" style="width: 100%; text-align: center; font-size: 28px; position: relative;padding-top: 30px;padding-bottom: 120px;font-weight: 100;color: white; height: 100px;">Visualizations</p>
-    </div>
-  </div>
-  <div class="row-fluid">
-    <div class="col-md-2 col-md-offset-2 col-xs-6">
-      <div class="row-fluid">
-        <img hackName="Wattpad Statistics" repoLink="https://github.com/curtischong/Wattpad-Statistics" hackathon="HackOn(data)" src="photos/header_wattpad_statistics.jpg" class="aPhoto fadeIn prjimg img-responsive center-block" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1473918557/wattpadMap_aqhjfh.png" desc="Every month, 40 million users sign into Wattpad to fall in love with their literary heroes. Although the readers come for the stories, it is Wattpad's metrics that bounds their return. In Toronto alone, a GB of user data is archived by the company, all describing a reader's journey through the app. With all this data, my team and I decided to create a story recommendation system based on similar characteristics between authors and their readers. Using Apache Spark, we ran a k-means algorithm against each user's age, language, and gender to uncover similar features. In addition, we created a map visual that describes an author's and user's location on a world map. That way, we can inspect these correlations in a visual manner to deduce the reason for why an author has the following it has.">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">Wattpad Statistics</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img hackName="SentiMint" repoLink="https://github.com/curtischong/sentimint" hackathon="Hack the 6ix 2016 Summer" src="photos/header_sentimint.jpg" class="aPhoto fadeIn prjimg img-responsive center-block" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1473814778/sentimint_1_sogk9l.jpg" desc="In many offices, managers do not understand their employee's health and wellbeing. In most cases, workers could be healthier and become more productive if they were placed in a separate team within the organization. To combat this issue, my team and I built SentiMint to help managers position employees in their areas of strength. The app uses a Slack bot to analyze group sentiment and displays their results it onto a web UI. Using the Indico API, the app also retrieves the Myers-Briggs personality types for every individual. With this information, along with live data collected from their interview and cover letter, the app makes a conclusive executive judgment that assigns the user to an appropriate slack channel that suits their personality.">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">SentiMint</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img hackName="Protecting NA Bees" repoLink="https://github.com/curtischong/Protecting-North-American-Bees" hackathon="" src="photos/header_bees.jpg" class="aPhoto fadeIn prjimg img-responsive center-block" thePrjImg="photos/inner_bees.jpg" desc="Colony Collapse Disorder isn't anything new. What is new are the dozens of organizations spread across Canada working together to fight alongside the bees. Bumble Bee Watch is one of these organizations that are dedicated to tallying bee sightings. Locals can upload images of bees and professionals can classify which bees they are. When I stumbled along the site I pulled down all the sightings and ran a KMeans algorithm to determine the centroids of bee populations. My idea here was to suggest municipalities to grow flowers at these centroids so the surrounding colonies would have a better chance of survival. Unfortunately, there simply wasn't enough data to plot an accurate enough map of these centroids so I swiftly abandoned the project. But hey, everyone loves cool graphs so here is the result of my KMeans algorithm!">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">Protecting North American Bees</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img hackName="TTC Headway Data" repoLink="https://github.com/curtischong/TTC_Headway_Archive_Dec11-Dec18" hackathon="" src="photos/header_ttc_headway.jpg" class="aPhoto fadeIn prjimg img-responsive center-block" thePrjImg="photos/inner_ttc_headway.png" desc="As a resident of the faraway lands of Markham, I take line 1 far too often. Like many others, my curiosity (and frustration) led me to download the city's open-sourced dataset to try to learn why buses are 15 minutes off schedule. To my surprise, there wasn't a database that describes the locations of the TTC buses, thus I took this opportunity to write my first archiver! I pulled a week of headway data and after a bit of cleaning visualized all 188 routes. Due to hardware limitations (and school), I had trouble making progress on the dataset. Still, this was my first attempt at archiving data and I'm pretty proud of the lengths my simple JS script made on Digital Ocean.">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">TTC Headway Data</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container-fluid" id="personalFavourites">
-  <div class="row-fluid" style="background-color: #070502">
-    <div class="col-md-12 fadeIn">
-      <p id="personalFavouritesPadding" style="width: 100%; text-align: center; font-size: 28px; position: relative;padding-top: 80px;padding-bottom: 120px;font-weight: 100;color: white;z-index: 0;height: 100px;">Personal Favourites</p>
-    </div>
-  </div>
-  <div class="row-fluid">
-    <div class="col-md-2 col-md-offset-4 col-xs-6">
-      <div class="row-fluid">
-        <img hackName="Musr" repoLink="https://github.com/curtischong/hackthe6ix17" hackathon="Hack the 6ix 2017" src="photos/header_musr.jpg" class="aPhoto fadeIn prjimg img-responsive center-block" thePrjImg="photos/inner_musr.gif" desc="Is Carpal Tunnel cramping your hands after a hard day's work? Do you still hope to swipe on dates without frustrating your fingers? Well, have no fear because my team and I used brainwave data from a Muse headband to auto-swipe for you on Tinder.<br><br>This hack works by reading the brain's EEG data via four nodes located near the left ear, left forehead, right forehead, and right ear. This data is fed through an FFT (Fast Fourier Transformation) to reduce its volatility data and to break it down into different wavelengths labelled Delta, Theta, Alpha, Beta, and Gamma. Near midnight, we consulted a neurotech engineer and determined that attraction at the most primitive level can be measured by extracting the Alpha value from the PSD (Power spectral density). <br><br>Next, we tested this theory on a subject (a friend) and received promising results.<br><br>One unforgettable moment was when we started to explore relationships between these brainwave values and the subject's preferences. Over the course of 90 seconds, we recorded the EEG data of samples that the subject deemed attractive. Then, the subject viewed samples that they deemed unattractive.<br><br>With the data we gathered from this experiment, we compared the ratios between the types of brainwaves for each node, the averages between nodes, and even the variances in our data. Later, we instantiated a calibration portion to determine a baseline to compare our brainwaves to. After some fiddling with the numbers, Alpha brainwaves that were below this calibration average are understood as the subject is attracted to a sample and Alpha brainwave readings above the average are understood as the subject does not deem the sample attractive.<br><br>Finally, we decided to disregard the readings for all brain waves except for Alpha waves because they seemed to be the most prominent indicator of attraction.<br><br>All in all, Musr was the inside joke my team and I wanted to make for over a year and finally putting fingers to a keyboard made the wait worthwhile.">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">Tinder with your brainwaves</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img hackName="CatCorp" repoLink="https://github.com/curtischong/Greenfoot_Physics_Engine" hackathon="" src="photos/header_catcorp.jpg" class="aPhoto fadeIn prjimg img-responsive center-block" thePrjImg="photos/inner_catcorp.gif" desc="I wrote this rigid box physics engine for my final project in gr 12 computer science. It comes packaged with support for kinematic motion, friction, elasticity, and even gravity! Inside the world editor, objects can be set to accelerate, have an initial velocity, and can be created at will.... say with a gun.<br><br>Well... if we're going to throw guns in there might as well make it a portal gun! Portals are teleporters that preserves an object's kinematic states to make the sandbox more frantic. I'm really proud of the overall solidity of the engine and if you have Greenfoot on your computer you can spin this up and play with fast-moving objects!">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">Physics Engine in Java</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container-fluid" id="archives">
-  <div class="row-fluid" style="background-color: #070502">
-    <div class="col-md-12 fadeIn">
-      <p id="archivesPadding" style="left: 0px;width: 100%; text-align: center; font-size: 28px; position: relative;padding-top: 80px;padding-bottom: 120px;font-weight: 100;color: white;height: 100px;">Archives</p>
-    </div>
-  </div>
-  <div class="row-fluid">
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img hackName="Ancient Finders" repoLink="" hackathon="" src="photos/header_ancient_finders.jpg" class="fadeIn prjimg aPhoto center-block" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1468228926/ancientFindersMap_wwrvea.png" desc="Ancient Finders is a Real Time Strategy game that I submitted for my ICS3U course. My goal for this project was to familiarize myself with Java and the Greenfoot JDE. The game features a map that houses two teams, the player, and the AI. The main objective of this game is to destroy the other team's base at the other end of the map. This is achieved through the completion of smaller, sub-goals, one of which is to gain control of the center where gold is contested. The AI is extremely efficient with its troop placement and extremely intelligent in terms of troop positioning. The controls and strategies are at the top of the MyWorld Class and I hope you enjoy the game!">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">Ancient Finders</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img hackName="Misconceptions" repoLink="https://github.com/curtischong/misconception" hackathon="" src="photos/header_misconceptions.jpg" class="fadeIn prjimg aPhoto center-block" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1468229137/misconceptionAddQuestionBody_gqml6w.png" desc="Misconception seems like a normal forum, but under the hood, you'll uncover a world of common misunderstandings. When people ask for assistance on this site, they must answer in the form of a misconception. The purpose of this format is to help people reduce misconceptions to perform better in academic environments.">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">Misconceptions</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img hackName="WordMix" repoLink="https://github.com/curtischong/WordMix" hackathon="UofT Hacks 2016" src="photos/header_wordmix.jpg" class="fadeIn prjimg aPhoto center-block" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1490888124/curtis-chong-wordmix.png" desc="Wordmix is a game centered around synonyms, antonyms, and humorous references that only a programmer would understand. Much like a crossword, the player must respond with a word that relates to the promt, all under the pressure of a timer and a limited amount of lives. Once the players go through all of the prompts, their score will be calculated based on their time and will be stored in a MySql database.">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">WordMix</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img hackName="CoWorm" repoLink="https://github.com/curtischong/coworm" hackathon="" src="photos/header_coworm.jpg" class="fadeIn prjimg aPhoto center-block" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1469999411/co-worm_kqhhwy.png" desc='Even with access to social media, engaging an audience from a stage is still an issue. Although the proficiency of the speaker is crucial to audience engagement, nothing compares to interactive experiences. With the same concept of "Twitch Plays Pokemon", Co Worm is a communal game that encourages crowds of people to achieve a single goal through collaboration. With some modification of the Html Joystick and Sinous, players could move a snake around on a screen by sending movement commands to a central Node server. The goal of the game is to survive as long as possible by avoiding meteors that fly across the screen. In addition, these scores are saved in a MongoDB database so different crowds can compete for the throne. All in all, Co Worm is a great way to bring the community closer together and I hope speakers abroad will find it useful when engaging their crowds!'>
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">CoWorm</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img hackName="ReHackilation" repoLink="https://github.com/curtischong/Rehackilation" hackathon="Wear Hacks Toronto 2016" src="photos/header_rehackilation.jpg" class="fadeIn prjimg aPhoto center-block" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1468229641/rehackilationSkyball_icgg08.png" desc="In this year alone, 70,000 Canadians will be immobilized on a hospital bed for more than a month. Individuals who are in a state of rest for such a long duration will soon face the danger of muscle attrition. To combat this problem, my team and I created ReHackilation to help patients exercise muscle groups in the arm while recovering. Through the use of tailor-made games and our in-house Javascript hand detection API, users can exercise different muscle groups. The code for this service is in the Github Repo and all that is required is a leap motion. We hope to help bring people to a healthier state of life with ReHackilation.">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">ReHackilation</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img hackName="GeoConnect" repoLink="https://github.com/curtischong/GeoConnect" hackathon="Hack the North 2015" src="photos/header_geoconnect.jpg" class="fadeIn prjimg aPhoto center-block" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1468229748/geoConnectApp_wbbvno.jpg" desc="It's Thursday night and Friday is just around the corner. You have no plans and wouldn't mind fitting in a last-minute party. To help you find and locate these events, my team and I created Geoconnect. On our web app, event hosts can register and place their event as a beacon on the Geoconnect map. Once you are within a close proximity of an event, you'll receive a push notification on your phone. To facilitate the event uploading process, managers can import facebook events into our MySQL database. Moreover, users can access Uber directly within the app and view all events at once while traveling.">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">GeoConnect</p>
-      </div>
-    </div>
-  </div>
-  <div class="row-fluid">
-    <div class="col-md-2 col-md-offset-4 col-xs-6">
-      <div class="row-fluid">
-        <img hackName="Alphabet Soup" repoLink="https://github.com/curtischong/pennapps2017w_Alphabet_Soup" hackathon="Pennapps 2017 Winter" src="photos/header_alphabet_soup.jpg" class="fadeIn prjimg img-responsive center-block" thePrjImg="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/461/625/datas/gallery.jpg" desc="Life’s emotional roller coaster will ride through its highest pleasures and its lowest tragedies. In those lowest times, we often want to experience a story we can relate to. Heartbroken by similar occasions, our team wanted to help those in pain by creating a custom story generator to help you recover from your current aches. Yes you could go to a random blog and slog through pounds of other people's problems, and maybe find a kindred soul in the rough. We've pulled the best stories from around the web, and use a Recurring Neural Net to custom tailor you the perfect story.">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">Alphabet Soup</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img hackName="FaceFind" repoLink="" hackathon="" src="photos/header_face_find.jpg" class="fadeIn prjimg img-responsive center-block" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1470007256/unnamed_1_basgob.webp" desc="
-        If you are like me, you’ll meet a person but cannot recollect their name moments after parting. That is why I voyaged to create FaceFind, an app that helps the forgetful remember names. Through the use of facial recognition, the user can register a person and tag a name with their face. If you forget one's name, just take another photo and the screen populates with matches. Alongside with Firebase and the Kairos API, user information is online so data can be accessed across different devices.">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">FaceFind</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container-fluid" id="resumeBlock" style="position: relative; top: 0px;height: 300px; background-color: #070502">
-  <div class="row-fluid">
-    <div class="col-md-12">
-      <p class="fadeIn" style="width: 100%; text-align: center; font-size: 38px;position: relative; margin-top: 50px;font-weight: 100;color: white;">Before we part</p>
-    </div>
-  </div>
-  <div class="row-fluid">
-    <div class="col-md-12">
-      <p class="fadeIn" style="width: 100%; text-align: center; font-size: 24px;position: relative; margin-top: 30px;font-weight: 100;color: white;">View my resume <a href="https://chongcurtis.com/Curtis_Chong.pdf" target="_blank">here</a></p>
-    </div>
-  </div>
-</div>
-<div class="container-fluid" style="position: relative; top: 0px;height: 400px; padding-right: 0px; padding-left: 0px; background-color: #070502">
-  <script src="https://use.fontawesome.com/20016a11b5.js"></script>
-  <div id="footer">
-    <div class="container-fluid text-center">
-      <div class="row-fluid">
-        <div class="col-xs-12 fadeIn" id="typingCon">
-          <span id="mailElement"></span><br>
-          <span id="linkedinElement"></span><br>
-          <span id="githubElement"></span><br>
-          <span id="devpostElement"></span><br>
-          <span id="stElement"></span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<script src="plugin/parallax.js-1.5.0/parallax.js"></script>
-<script src="typed.js-master/js/typed.js"></script>
-<script type="text/javascript" src="main.js"></script>
-<script src="network-vis.js"></script>
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <div id="fh5co-wrapper">
+        <div id="fh5co-page">
+            <div class="fh5co-hero coverPhoto">
+                <div class="fh5co-overlay coverPhoto"></div>
+                <div class="fh5co-cover coverPhoto" data-stellar-background-ratio="0.5" style="background-image: url(http://res.cloudinary.com/dj2eq8czc/image/upload/v1468221352/20160522_065735_1_bogy8s.jpg);">
+                    <div class="desc animate-box">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-7">
 
-ga('create', 'UA-92162139-1', 'auto');
-ga('send', 'pageview');
+                                    <!--<h2>Fitness &amp; Health <br>is a <b>Mentality</b></h2>
+								<p><span>Created with <i class="icon-heart3"></i> by the fine folks at <a href="http://freehtml5.co" class="fh5co-site-name">FreeHTML5.co</a></span></p>
+								<span style="display: inline;"><a class="btn btn-primary" href="#">Start Your Journey</a></span>-->
+                                    <h2>
+                                    <span style="display: inline;" id="t1" class="tword"><h2 style="display: inline;">C</h2></span><span style="display: inline;" id="t2" class="tword"><h2 style="display: inline;">u</h2></span><span style="display: inline;" id="t3" class="tword"><h2 style="display: inline;">r</h2></span><span style="display: inline;" id="t4" class="tword"><h2 style="display: inline;">t</h2></span><span style="display: inline;" id="t5" class="tword"><h2 style="display: inline;">i</h2></span><span style="display: inline;" id="t6" class="tword"><h2 style="display: inline;">s</h2></span> <span style="display: inline;" id="t7" class="tword"><h2 style="display: inline;">C</h2></span><span style="display: inline;" id="t8" class="tword"><h2 style="display: inline;">h</h2></span><span style="display: inline;" id="t9" class="tword"><h2 style="display: inline;">o</h2></span><span style="display: inline;" id="t10" class="tword"><h2 style="display: inline;">n</h2></span><span style="display: inline;" id="t11" class="tword"><h2 style="display: inline;">g</h2></span></h2>
+                                    <span style="display: inline;left: 5px; position: relative;"> Hacker - Data Scientist - Activist</span>
+                                </div>
+                                <!--<div clss="col-md-3">
+                                    <canvas id="network-vis"></canvas>
+                                    <script style="position: relative; margin-top: 0px; left: 300px;" src="js/network-vis.js"></script>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end:fh5co-hero -->
+            <div id="fh5co-schedule-section" class="fh5co-lightgray-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="heading-section text-center animate-box">
+                                <h2>Hello!</h2>
+                                <p>I'm not a veteran with introductions but I hope that I have captivated your attention. Hi I'm Curtis and welcome to my den, well my corner of the internet. I'm a programmer with the ambition of becoming the next ceo, pioneering another digital revolution. As a high school student, I've found myself traveling abroad to experience as many hackathons I can before my time has come (don't we all fear for the future?). Anyways, here are some of my projects, work experiences, and achievements. Mind if you scroll down?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container" style="width: 100%;">
+                <div class="row match-my-cols">
+                    <div class="col-md-12" style="background-image: url(http://res.cloudinary.com/dj2eq8czc/image/upload/v1468224349/tohc_ljdzxd.jpg);background-repeat:no-repeat;" data-stellar-background-ratio="0.5">
+                        <div class="overlay"></div>
+                    </div>
+                </div>
+                <div class="row match-my-cols">
+                    <div class="col-md-12 animate-box text-center" style="background-color:#34495e; float: right;">
+                        <h2 style="color: white; top: 50px; position: relative;">MaxQ</h2><br>
+                        <p style="color: white;">As Canada's first space accelerator, <a href="http://maxq.ca" target="_blank" style="color: orange;">MaxQ</a> aims to lead space startups to success by providing mentorship and capital to emerging start-ups. At my time as an intern at the accelerator, I assisted one of their companies <a href="http://skywatch.co" target="_blank" style="color: orange;">Skywatch</a> by creating an API that parses HDF files (from NASA's satellites) into JSON. This data is then inserted into a Postgres database where third parties can query the API by geological region and time at a future date.</p>
+                    </div>
+                </div>
+                <div class="row match-my-cols">
+                    <div class="col-md-12" style="padding: 0px;">
+                        <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1473913752/IMG_1253_ak8b0w.jpg" style="width: 100%; height: auto;" />
+                    </div>
+                </div>
+            </div>
+            <div class="container" style="width: 100%;">
+                <div class="row match-my-cols">
+                    <div class="col-md-7" style="padding: 0px;">
+                        <div id="tohcImg" class="parallax">
+                        </div>
+                    </div>
+                    <div class="col-md-5 animate-box text-center" id="twords">
+                        <h2 style="color: white; top: 50px; position: relative;"> Toronto Hacker Club</h2><br>
+                        <p style="color: white;"><a href="http://torontohacker.club" target="_blank" style="color: orange;">Toronto Hacker club</a> is an organization that strives towards promoting Computer Science education towards students. The club has hosted two hackathons to date, an introduction to web design workshop with Mozilla, and have been awarded the "Building Community through Sciences and Technology Award" by the Toronto Youth Cabinet. As the Director of External Affairs at Toronto Hacker Club, I find myself running across town and meeting professionals throughout the city. I also assist participants at our events with technical issues they may face.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row match-my-cols">
+                <div class="col-md-5 animate-box text-center" id="fwords">
+                    <h2 style="color: white; top: 50px; position: relative;"> The Fountain of Love and Life</h2><br>
+                    <p style="color: white;">During the summer of grade 9, I interned at <a href="http://fll.cc" target="_blank" style="color: orange;">The Fountain of Love and Life</a>, an organization that produces film and music for an audience of more than 1 million at the Ontario Fairchild television station. During my time with the organization, I designed and developed a PHP plugin to transform excel files into WordPress posts, which facilitated the company's ability to make announcements. I was also entrusted with the task of developing Edmond Lo's personal website, a company client.</p>
+                </div>
+                <div class="col-md-7" style="padding: 0px;">
+                    <div id="fllImg" class="parallax">
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center" style="background-color: black;">
+                <h1 class="text-center" style="color: white; top: 80px; font-size: 50px;position: relative; margin-top: 40px;">15 Hackathons</h1><br><br>
+                <p class="text-center" style="color: white; font-size: 37px;position: relative;margin-top: 100px;">5 Wins</p>
+                <canvas id="binarySnowflakeCanvas" style="position: relative; margin-top: -400px;">
+                </canvas>
+                <script src="binarySnowflakes.js"></script>
+            </div>
+            <div class="row text-center" style="background-color: black;">
+                <div id="htn2016Img" class="parallax"></div>
+                <div id="htnCon">
+                    <img id="htnLogo" src="http://res.cloudinary.com/dfcfsw4mv/image/upload/v1475351540/logo_dx7ei5.png">
+                    <h1 id="htn2016words"> 2016 Winner</h1>
+                </div>
+            </div>
+            <div class="row text-center" style="background-color: black;">
+                <div class="col-sm-12 text-center">
+                    <p id="htnDesc">The idea that brought us to the stage of Canada's largest hackathon was a solution to maximize crop yields in Ontario. Using geographic data from Nasa in conjunction with Ontario's land surveys, our hack AgriGate could project crop prices until the year 2020.</p>
+                </div>
+            </div>
+            <!-- end: fh5co-parallax -->
+            <div class="row is-table-row" style="background-color: #c0392b; text-center;">
+                <div class="col-md-3 animate-box">
+                    <p style="color: white; margin-top: 15px; padding: 15px;">
+                        Placed first at the Toronto Fishackathon hosted by the US Department of State. The intention behind the app was to help exterminators eliminate the spawning areas of the Asain Sea Carp, an invasive species that roam in the Great Lakes.</p>
+                </div>
+                <div class="col-md-3">
+                    <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1468226252/fishackathon1_dzi9nm.jpg" style="width: 100%;">
+                </div>
+                <div class="col-md-3">
+                    <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1468226254/flybits_ldwogq.png" style="width: 100%;max-height: 100%;">
+                </div>
+                <div class="col-md-3 animate-box">
+                    <p style="color: white; margin-top: 15px;padding: 15px;">Won people's Choice awards at Flybit's Hackathon. Our hack was Minotour, an app that strives towards helping tourist locate nearby attractions. We used the user's current contextual information (i.e. the number of steps taken, their location, the current weather) to provide people with nearby tourist attractions that best suited them.</p>
+                </div>
+            </div>
+            <div class="fh5co-parallax" style="background-image: url(http://res.cloudinary.com/dj2eq8czc/image/upload/v1468225380/signature_lhnhag.jpg);" data-stellar-background-ratio="0.5">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
+                            <div class="fh5co-intro fh5co-table-cell animate-box">
+                                <h1 class="text-center">Projects</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-</script>
+
+            <!-- end: fh5co-parallax -->
+            <div id="fh5co-programs-section" style="padding-bottom: 0px;">
+                <div class="container text-center" style="border: 1px solid black; border-top-left-radius: 30px; border-top-right-radius: 30px; margin-bottom: 30px;">
+                    <h2 class="animate-box" style="margin-top: 30px;">Highlights</h2>
+                    <div class="row">
+                        <span>
+                            <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1475443206/agrigateImg_tzpqcj.jpg" class="highlightImg prjimg animate-box">
+                            <p class="infoTitle" style="width: 0px; margin: 0px;">AgriGate</p>
+                            <p class="infoImage" style="width: 0px; margin: 0px;">http://res.cloudinary.com/dj2eq8czc/image/upload/v1475448957/agrigate_izu0cv.jpg</p>
+                            <p class="infoText" style="width: 0px; margin: 0px;">Even in Canada, there is a huge inefficiency in the production of food. This problem is worsening along with the exponential growth of the human population, and very little seems to be being done about it. We were inspired to improve how farmers collect insights on the current state of their farm so we used Nasa's L4 satellite data and Ontario's land surveys to deliver a free and easy-to-use open-source tool. This web app can project crop prices until the year 2020 and can also deliver heat and moisture data in any region of the world. With the data gathered, farmers can predict when it is best to aggregate, harvest, and plant crops.</p>
+                            <p class="infoTech" style="width: 0px; margin: 0px;">PythonHug H5py PyShape CockroachDB AngularJS NodeJs Html Css Javascript</p>
+                            <p class="infoRepo" style="width: 0px; margin: 0px;">https://github.com/curtischong/agrigate-master</p>
+                        </span>
+                        <span>
+                            <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1475446936/fintechlogo_a6j9ry.jpg" class="highlightImg prjimg animate-box">
+                            <p class="infoTitle" style="width: 0px; margin: 0px;">FinTech</p>
+                            <p class="infoImage" style="width: 0px; margin: 0px;">http://res.cloudinary.com/dj2eq8czc/image/upload/v1468226326/fintechLargest_ycddax.jpg</p>
+                            <p class="infoText" style="width: 0px; margin: 0px;">Fintech is a mobile app centered around the ease of access for exterminators and environmentalist to track the spawning of the Asian Carp. In the 1970s, the predatorial Asian Carp found its way into the great lakes, and today they pose a threat to more than a hundred aquatic species that inhabit the waters. Fintech proposes a preventative solution by providing researchers and exterminators geological and environmental data of possible Asian Carp spawning locations. Through the use of water flow and temperature data, Fintech is able to predict where the Asian carp may spawn and delivers that data in a quick and elegant solution.</p>
+                            <p class="infoTech" style="width: 0px; margin: 0px;">NodeJs IBMBlueMix ionic GoogleMapsApi AngularJS Html Css Javascript</p>
+                            <p class="infoRepo" style="width: 0px; margin: 0px;">https://github.com/kshen3778/fintech</p>
+                        </span>
+                        <span>
+                            <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1468228779/minotourPhoto1_jdbo3i.jpg" class="highlightImg prjimg animate-box">
+                            <p class="infoTitle" style="width: 0px; margin: 0px;">MinoTour</p>
+                            <p class="infoImage" style="width: 0px; margin: 0px;">http://res.cloudinary.com/dj2eq8czc/image/upload/v1468228792/minotourMain_elcpfq.jpg</p>
+                            <p class="infoText" style="width: 0px; margin: 0px;">Have you ever been on vacation? Wondering around in your dream city, visiting Eiffel Tower, or the Louvre? Many of us would surely remember the emotions attributed to those historic sites. Although our vacations are centered around attractions, they are really about creating memories that last. So that is why we built MinoTour, an app that uses your contextual information to recommend the best tourist attractions. It uses your current contextual information through the Flybits API to tailor the best attractions that would impact you the most. For example, if you're in China and you've walked 5km, then you may feel fatigued. As a result, our algorithms would conclude that you are tired and will start suggesting nearby attractions to shorten travel distance. It will also promote indoor attractions to stray you away from unpleasant clouds. These variables are just some of many that MinoTour uses to help provide users memories that will last a lifetime.</p>
+                            <p class="infoTech" style="width: 0px; margin: 0px;">Java Xml FlybitsApi GooglePlacesApi</p>
+                            <p class="infoRepo" style="width: 0px; margin: 0px;">https://github.com/marceloneil/MinoTour</p>
+                        </span>
+                        <span>
+                            <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1470007155/unnamed_in30if.webp" class="highlightImg prjimg animate-box">
+                            <p class="infoTitle">Face Find</p>
+                            <p class="infoImage" style="width: 0px; margin: 0px;">http://res.cloudinary.com/dj2eq8czc/image/upload/v1470007256/unnamed_1_basgob.webp</p>
+                            <p class="infoText" style="width: 0px; margin: 0px;">
+If you are like me, you’ll meet a person but cannot recollect their name moments after parting. That is why I voyaged to create FaceFind, an app that helps the forgetful remember names. Through the use of facial recognition, the user can register a person and tag a name with their face. If you forget one's name, just take another photo and the screen populates with matches. Alongside with Firebase and the Kairos API, user information is online so data can be accessed across different devices.</p>
+                            <p class="infoTech" style="width: 0px; margin: 0px;">Ionic Cordova Angular Firebase KairosApi Cloudinary</p>
+                            <p class="infoRepo" style="width: 0px; margin: 0px;">https://play.google.com/store/apps/details?id=com.ionicframework.headsearch469163&hl=en</p>
+                        </span>
+                    </div>
+                    <h2 class="animate-box" style="margin-top: 30px;">Archives</h2>
+                    <div class="row">
+                        <span>
+                            <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1468228915/ancientFindersTitle_pkpvej.png" class="archiveImg prjimg animate-box">
+                            <p class="infoTitle">Ancient Finders</p>
+                            <p class="infoImage" style="width: 0px; margin: 0px;">http://res.cloudinary.com/dj2eq8czc/image/upload/v1468228926/ancientFindersMap_wwrvea.png</p>
+                            <p class="infoText" style="width: 0px; margin: 0px;">Ancient Finders is a Real Time Strategy game that I submitted for my ICS3U course. My goal for this project was to familiarize myself with Java and the Greenfoot API. The game features a map that houses two teams, the player, and the AI. The main objective of this game is to destroy the other team's base at the other end of the map. This is achieved through the completion of smaller, sub-goals, one of which is to gain control of the center where gold is contested. The AI is extremely efficient with its troop placement and extremely intelligent in terms of troop positioning. The controls and strategies are at the top of the MyWorld Class and I hope you enjoy <a href="Chong_Curtis_Ancient_Finders.gfar" download>the game!</a></p>
+                            <p class="infoTech" style="width: 0px; margin: 0px;">Java Greenfoot API</p>
+                            <p class="infoRepo" style="width: 0px; margin: 0px;">http://www.greenfoot.org/scenarios/17199</p>
+                        </span>
+                        <span>
+                            <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1468229137/misconceptionAddQuestionBody_gqml6w.png" class="archiveImg prjimg animate-box">
+                            <p class="infoTitle">Misconceptions</p>
+                            <p class="infoImage" style="width: 0px; margin: 0px;">http://res.cloudinary.com/dj2eq8czc/image/upload/v1468229125/misconceptionAddedAnswer_zppyvn.png</p>
+                            <p class="infoText" style="width: 0px; margin: 0px;">Misconception seems like a normal forum, but under the hood, you'll uncover a world of common misunderstandings. When people ask for assistance on this site, they must answer in the form of a misconception. The purpose of this format is to help people reduce misconceptions to perform better in academic environments.</p>
+                            <p class="infoTech" style="width: 0px; margin: 0px;">AngularJS Html Css Javascript NodeJs IBMBlueMix ionic GoogleMapsApi</p>
+                            <p class="infoRepo" style="width: 0px; margin: 0px;">https://github.com/kshen3778/fintech</p>
+                        </span>
+                        <span>
+                            <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/c_scale,w_4096/v1468229398/wordmixPhoto_dyylwn.jpg" class="archiveImg prjimg animate-box">
+                            <p class="infoTitle">Word Mix</p>
+                            <p class="infoImage" style="width: 0px; margin: 0px;">http://res.cloudinary.com/dj2eq8czc/image/upload/v1468229385/wordMix_c9zm9k.png</p>
+                            <p class="infoText" style="width: 0px; margin: 0px;">Wordmix is a game centered around synonyms, antonyms, and humorous phrases that have arisen in society. The goal of the game is to try to find a word that is relevant to another word. The player is timed and has 5 lives to guess each word. The faster they complete each word, the higher their score. There is a leaderboard of the best scores stored in a mySQL database. Hope you guys enjoy this game!</p>
+                            <p class="infoTech" style="width: 0px; margin: 0px;">Php Html Css Javascript MySQL</p>
+                            <p class="infoRepo" style="width: 0px; margin: 0px;">https://github.com/curtischong/U-of-T-Hacks-2016</p>
+                        </span>
+                        <span>
+                            <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1468229247/calendarizeLeapYear_k115dy.png" class="archiveImg prjimg animate-box">
+                            <p class="infoTitle">Calendarize</p>
+                            <p class="infoImage" style="width: 0px; margin: 0px;">http://res.cloudinary.com/dj2eq8czc/image/upload/v1468229253/calendarizeEvent_euntbn.png</p>
+                            <p class="infoText" style="width: 0px; margin: 0px;">As my first Javascript project, I've built a functional calendar that includes leap year calculation, event creation, and event editing. It is a lightweight module that developers can use to help users keep track of their schedule. Although calendar states are not persistent through different sessions, it is possible to cache the array which holds all current events into a database. Hope you find it useful!</p>
+                            <p class="infoTech" style="width: 0px; margin: 0px;">Html Css Javascript</p>
+                            <p class="infoRepo" style="width: 0px; margin: 0px;">https://github.com/curtischong/calendarize</p>
+                        </span>
+                        <span>
+                            <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1468229487/lokeeLogo_ofcgnu.png" class="archiveImg prjimg animate-box">
+                            <p class="infoTitle">Lokee</p>
+                            <p class="infoImage" style="width: 0px; margin: 0px;">http://res.cloudinary.com/dj2eq8czc/image/upload/v1468229494/lokeeDashboard_u12aww.png</p>
+                            <p class="infoText" style="width: 0px; margin: 0px;">Problems in a community are inevitable. From garbage on the side of the road to bird poop on a sign, a the end of the day, the government is left to clean up the mess. What's worse is that citizens of Oakville are required to wait for government personnel to solve these problems. Our hack Lokee (Local Keeper) brings the power of change back towards the people by providing then an opportunity to respond to these issues on their phones. Through the web app, users can choose to resolve a problem backlogged by the municipal of Oakville. When completed, a government representative will make note of the service done and will reward individuals for their hard work.</p>
+                            <p class="infoTech" style="width: 0px; margin: 0px;">AngularJs Html Css Javascript</p>
+                            <p class="infoRepo" style="width: 0px; margin: 0px;">https://github.com/curtischong/lokee</p>
+                        </span>
+                        <span>
+                            <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1468229638/rehackilationPhoto_zuwzjs.png" class="archiveImg prjimg animate-box">
+                            <p class="infoTitle">ReHackilation</p>
+                            <p class="infoImage" style="width: 0px; margin: 0px;">http://res.cloudinary.com/dj2eq8czc/image/upload/v1468229641/rehackilationSkyball_icgg08.png</p>
+                            <p class="infoText" style="width: 0px; margin: 0px;">In this year alone, 70,000 Canadians will be immobilized on a hospital bed for more than a month. Individuals who are in a state of rest for such a long duration will soon face the danger of muscle attrition. To combat this problem, my team and I created ReHackilation to help patients exercise muscle groups in the arm while recovering. Through the use of tailor-made games and our in-house Javascript hand detection API, users can exercise different muscle groups. The code for this service is in the Github Repo and all that is required is a leap motion. We hope to help bring people to a healthier state of life with ReHackilation.</p>
+                            <p class="infoTech" style="width: 0px; margin: 0px;">Bootstrap Html Css Javascript LeapMotionApi</p>
+                            <p class="infoRepo" style="width: 0px; margin: 0px;">https://github.com/curtischong/rehackilation</p>
+                        </span>
+                        <span>
+                            <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1468229761/geoConnectPhoto1_ktthy8.png" class="archiveImg prjimg animate-box">
+                            <p class="infoTitle">GeoConnect</p>
+                            <p class="infoImage" style="width: 0px; margin: 0px;">http://res.cloudinary.com/dj2eq8czc/image/upload/v1468229748/geoConnectApp_wbbvno.jpg</p>
+                            <p class="infoText" style="width: 0px; margin: 0px;">
+It's Thursday night and Friday is just around the corner. You have no plans and wouldn't mind fitting in a last-minute party. To help you find and locate these events, my team and I created Geoconnect. On our web app, event hosts can register and place their event as a beacon on the Geoconnect map. Once you are within a close proximity of an event, you'll receive a push notification on your phone. To facilitate the event uploading process, managers can import facebook events into our MySQL database. Moreover, users can access Uber directly within the app and view all events at once while traveling.</p>
+                            <p class="infoTech" style="width: 0px; margin: 0px;">Php Bootstrap Html Css Javascript MySQL Java FacebookApi UberApi GoogleMapsApi</p>
+                            <p class="infoRepo" style="width: 0px; margin: 0px;">https://github.com/curtischong/geoconnect</p>
+                        </span>
+                        <span>
+                            <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1469999411/Screenshot_2016-07-31-17-00-29_rxkiwl.jpg" class="archiveImg prjimg animate-box">
+                            <p class="infoTitle">Co Worm</p>
+                            <p class="infoImage" style="width: 0px; margin: 0px;">http://res.cloudinary.com/dj2eq8czc/image/upload/v1469999411/co-worm_kqhhwy.png</p>
+                            <p class="infoText" style="width: 0px; margin: 0px;">Even with access to social media, engaging an audience from a stage is still an issue. Although the proficiency of the speaker is crucial to audience engagement, nothing compares to games carried out with the audience. With the same concept of "Twitch Plays Pokemon", Co Worm is a communal game that encourages crowds of people to achieve a single goal through collaboration. With some modification of the Html Joystick and Sinous, players could move a snake around on a screen by sending movement commands to a central Node server. The goal of the game is to survive as long as possible by avoiding meteors that fly across the screen. In addition, these scores are saved in a MongoDB database so different crowds can compete for the throne. All in all, Co Worm is a great way to bring the community closer together and I hope speakers abroad will find it useful when engaging their crowds!</p>
+                            <p class="infoTech" style="width: 0px; margin: 0px;">NodeJs Html Javascript Css</p>
+                            <p class="infoRepo" style="width: 0px; margin: 0px;">https://github.com/curtischong/coworm</p>
+                        </span>
+                        <span>
+                            <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1473814778/sentiment_2_qtweie.jpg" class="archiveImg prjimg animate-box">
+                            <p class="infoTitle">SentiMint</p>
+                            <p class="infoImage" style="width: 0px; margin: 0px;">http://res.cloudinary.com/dj2eq8czc/image/upload/v1473814778/sentimint_1_sogk9l.jpg</p>
+                            <p class="infoText" style="width: 0px; margin: 0px;">In many offices, managers do not understand their employee's health and wellbeing. In most cases, workers could be healthier and become more productive if they were placed in a separate team within the organization. To combat this issue, my team and I built SentiMint to help managers position employees in their areas of strength. The app uses a Slack bot to analyze group sentiment and displays their results it onto a web UI. Using the Indico API, the app also retrieves the Myers-Briggs personality types for every individual. With this information, along with live data collected from their interview and cover letter, the app makes a conclusive executive judgment that assigns the user to an appropriate slack channel that suits their personality.</p>
+                            <p class="infoTech" style="width: 0px; margin: 0px;">NodeJs MongoDB Mlab Indico Html Javascript Css</p>
+                            <p class="infoRepo" style="width: 0px; margin: 0px;">https://github.com/curtischong/sentimint</p>
+                        </span>
+                        <span>
+                            <img src="http://res.cloudinary.com/dj2eq8czc/image/upload/v1473918842/wattpadInfo_o5kdut.png" class="archiveImg prjimg animate-box">
+                            <p class="infoTitle">Wattpad Statistics</p>
+                            <p class="infoImage" style="width: 0px; margin: 0px;">http://res.cloudinary.com/dj2eq8czc/image/upload/v1473918557/wattpadMap_aqhjfh.png</p>
+                            <p class="infoText" style="width: 0px; margin: 0px;">Every month, 40 million users sign into Wattpad to engage with the princes and heroes within each other's lives. But what most can't comprehend, is the amount of user data Wattpad collects with every login. In Toronto alone, a GB of user data is archived by the company. With all this data, my team and I decided to create a story recommendation system based on similar characteristics between authors and their readers. Using Apache Spark, we ran a k-means algorithm against each user's age, language, and gender to uncover similar features. In addition, we created a map visual that describes an author's and user's location on a world map. That way, we can inspect these correlations in a visual manner to deduce the reason for why an author has the following it has.</p>
+                            <p class="infoTech" style="width: 0px; margin: 0px;">ApacheSpark Python Html Javascript Css</p>
+                            <p class="infoRepo" style="width: 0px; margin: 0px;">https://github.com/curtischong/Wattpad-Statistics</p>
+                        </span>
+                    </div>
+                    <h2 class="descCon" id="descTitle" style="margin-top: 30px;"></h2>
+                    <div class="row descCon">
+                        <div class="col-sm-6">
+                            <img id="descImage" style="width: 100%;">
+                        </div>
+                        <div class="col-sm-6">
+                            <p id="descText"></p>
+                        </div>
+                    </div>
+                    <div class="row descCon" style="background-color: black;margin-top: 30px;">
+                        <p id="descTech" style="color: white; display: inline; padding-left: 20px;"></p> &#8212;
+                        <a style="cursor: pointer; color: #f1c40f; display: inline; font-size: 20px; padding-right: 20px;" id="descRepo" target="_blank"></a>
+                    </div>
+                </div>
+                <!-- fh5co-blog-section -->
+                <div class="row" style="background-color: #2c3e50; height: 230px;">
+                    <div class="col-md-12 animate-box text-center">
+                        <h2 style="color: white; top: 50px; position: relative;"> Before we Part</h2><br>
+                        <p style="color: white;">Download my Resume <a href="Curtis_Chong_Resume_September_2016.pdf" download>Here</a></p>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <script src="https://use.fontawesome.com/20016a11b5.js"></script>
+
+                <div id="footer" style="min-height: 400px;">
+                    <div class="container text-center">
+                        <div class="row">
+                            <h1 id="contactTitle">Contact</h1>
+                        </div>
+                        <div class="row" id="findMeIcons">
+                            <div class="col-sm-3">
+                                <span class="fa fa-3x fa-envelope-square" id="contactEmail"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="fa fa-3x fa-linkedin-square" id="contactLinkedin"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="fa fa-3x fa-github-square" id="contactGithub"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <span class="fa fa-3x fa-stack-overflow" id="contactSt"></span>
+                            </div>
+                        </div>
+
+                        <div class="row-fluid">
+                            <div class="col-sm-12" id="typingCon">
+                                <span id="mailElement"></span><br>
+                                <span id="linkedinElement"></span><br>
+                                <span id="githubElement"></span><br>
+                                <span id="stElement"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <!-- END fh5co-page -->
+
+    </div>
+    <!-- END fh5co-wrapper -->
+
+    <!-- jQuery -->
+
+
+    <script src="js/jquery.min.js"></script>
+    <!-- jQuery Easing -->
+    <script src="js/jquery.easing.1.3.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Waypoints -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <!-- Stellar -->
+    <script src="js/jquery.stellar.min.js"></script>
+    <!-- Superfish -->
+    <script src="js/hoverIntent.js"></script>
+    <script src="js/superfish.js"></script>
+    <script src="typed.js-master/js/typed.js"></script>
+    <script src="js/main.js"></script>
+
 </body>
+
 </html>
