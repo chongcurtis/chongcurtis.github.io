@@ -348,3 +348,45 @@ body{
   50% { opacity:0; }
   100% { opacity:1; }
 }
+/*
+.projectTitle {
+  position: absolute;
+  cursor: pointer;
+  padding-bottom: 1px;
+  transition: all 0.8s ease-in-out;
+  text-align: center;
+}
+
+.projectTitle:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 0;
+  transition: width 0s ease, background .5s ease;
+}
+
+.projectTitle:after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  width: 0;
+  background: white;
+  transition: width .5s ease;
+}
+
+.projectTitle:hover:before {
+  width: 100%;
+  background: white;
+  transition: width .5s ease;
+}
+
+.projectTitle:hover:after {
+  width: 100%;
+  background: transparent;
+}*/
