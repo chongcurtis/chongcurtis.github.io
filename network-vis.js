@@ -1,13 +1,13 @@
 // canvas settings
 var drawingCanvas = document.getElementById("network"),
-ctx,
-viewHeight = 500,
-viewWidth = 1280;
+  ctx,
+  viewHeight = 500,
+  viewWidth = 1280;
 timeStep = (1/60),
-time = 0;
+  time = 0;
 
 var nodes = [],
-signals = [];
+  signals = [];
 
 var signalCount = 0;
 
@@ -32,46 +32,46 @@ y=x-50;
 }
 nodes[i] = new Node(x, y);
 }*/
-nodes[0] = new Node(50,120);
-nodes[1] = new Node(800,300);
-nodes[2] = new Node(980,350);
-nodes[3] = new Node(500,320);
-nodes[4] = new Node(600,270);
-nodes[5] = new Node(370,230);
-nodes[6] = new Node(350,320);
-nodes[7] = new Node(920,250);
-nodes[8] = new Node(270,15);
-nodes[9] = new Node(1300,200);
-nodes[10] = new Node(240,320);
-nodes[11] = new Node(1240,290);
-nodes[12] = new Node(770,370);
-nodes[13] = new Node(890,190);
-nodes[14] = new Node(810,140);
-nodes[15] = new Node(630,310);
-nodes[16] = new Node(250,150);
-nodes[17] = new Node(1070,50);
-nodes[18] = new Node(430,170);
-nodes[19] = new Node(560,220);
-nodes[20] = new Node(530,320);
-nodes[21] = new Node(490,390);
-nodes[22] = new Node(140,460);
-nodes[23] = new Node(680,140);
-nodes[24] = new Node(550,120);
-nodes[25] = new Node(480,330);
-nodes[26] = new Node(470,260);
-nodes[27] = new Node(670,180);
-nodes[28] = new Node(1070,430);
-nodes[29] = new Node(670,330);
-nodes[30] = new Node(650,290);
-nodes[31] = new Node(620,350);
-nodes[32] = new Node(600,190);
-nodes[33] = new Node(630,140);
-nodes[34] = new Node(620,250);
-nodes[35] = new Node(680,270);
-nodes[36] = new Node(790,290);
-nodes[37] = new Node(840,250);
-nodes[38] = new Node(760,250);
-nodes[39] = new Node(730,210);
+  nodes[0] = new Node(50,120);
+  nodes[1] = new Node(800,300);
+  nodes[2] = new Node(980,350);
+  nodes[3] = new Node(500,320);
+  nodes[4] = new Node(600,270);
+  nodes[5] = new Node(370,230);
+  nodes[6] = new Node(350,320);
+  nodes[7] = new Node(920,250);
+  nodes[8] = new Node(270,15);
+  nodes[9] = new Node(1300,200);
+  nodes[10] = new Node(240,320);
+  nodes[11] = new Node(1240,290);
+  nodes[12] = new Node(770,370);
+  nodes[13] = new Node(890,190);
+  nodes[14] = new Node(810,140);
+  nodes[15] = new Node(630,310);
+  nodes[16] = new Node(250,150);
+  nodes[17] = new Node(1070,50);
+  nodes[18] = new Node(430,170);
+  nodes[19] = new Node(560,220);
+  nodes[20] = new Node(530,320);
+  nodes[21] = new Node(490,390);
+  nodes[22] = new Node(140,460);
+  nodes[23] = new Node(680,140);
+  nodes[24] = new Node(550,120);
+  nodes[25] = new Node(480,330);
+  nodes[26] = new Node(470,260);
+  nodes[27] = new Node(670,180);
+  nodes[28] = new Node(1070,430);
+  nodes[29] = new Node(670,330);
+  nodes[30] = new Node(650,290);
+  nodes[31] = new Node(620,350);
+  nodes[32] = new Node(600,190);
+  nodes[33] = new Node(630,140);
+  nodes[34] = new Node(620,250);
+  nodes[35] = new Node(680,270);
+  nodes[36] = new Node(790,290);
+  nodes[37] = new Node(840,250);
+  nodes[38] = new Node(760,250);
+  nodes[39] = new Node(730,210);
 }
 
 function connectNodes() {
@@ -244,9 +244,9 @@ function Signal(start) {
 }*/
 
 
-for (var i = 0; i < start.connections.length - Math.floor(Math.random()*3) - 1; i++) {
-  this.parts.push(new SignalPart(this.start, this.start.connections[i], this.strength, this.style));
-}
+  for (var i = 0; i < start.connections.length - Math.floor(Math.random()*3) - 1; i++) {
+    this.parts.push(new SignalPart(this.start, this.start.connections[i], this.strength, this.style));
+  }
 }
 
 Signal.prototype = {
@@ -274,8 +274,8 @@ Signal.prototype = {
 
     if (complete === false) {
       var part,
-      end,
-      connection;
+        end,
+        connection;
 
       for (var j = 0; j < this.completeParts.length; j++) {
         part = this.completeParts[j];
@@ -356,12 +356,12 @@ function lerp(n1, n2, t, p) {
 }
 
 /**
-* easing equations from http://gizma.com/easing/
-* t = current time
-* b = start value
-* c = delta value
-* d = duration
-*/
+ * easing equations from http://gizma.com/easing/
+ * t = current time
+ * b = start value
+ * c = delta value
+ * d = duration
+ */
 var Ease = {
   inCubic:function (t, b, c, d) {
     t /= d;
@@ -444,22 +444,32 @@ var ctxone;
 var numbers = new Array();
 
 //runs once
+
+function fix_dpi(canvasId) {
+  let dpi = window.devicePixelRatio;
+    let style_height = +getComputedStyle(canvas).getPropertyValue("height").slice(0, -2);
+    let style_width = +getComputedStyle(canvas).getPropertyValue("width").slice(0, -2);
+    canvas.setAttribute('height', style_height * dpi);
+    canvas.setAttribute('width', style_width * dpi);
+}
+
 init();
 function init(){
   //finds the canvas in the html and saves its width and height in a variable
   canvas = document.getElementById("binarySnowflakeCanvas");
   canvas.width = window.innerWidth; //document.width is obsolete
-  canvas.height = 450; //document.height is obsolete
+  canvas.height = 450;
+  fix_dpi(canvas);
   canvasW = canvas.width;
   canvasH = canvas.height;
   //more init stuff
   ctxone= canvas.getContext("2d");
-  ctxone.font = "100 30px Arial";
+  ctxone.font = "100 4em Arial";
   //creates the first snowflake in the snowflake object (must  be done this way because the loop needs at least one "snowflake" to start)
   var firstObject = new Object();
   firstObject.x = 300;//give it a set y value
   firstObject.y = 300;//give it a set x value
-  firstObject.color = "rgba(225,225,225,";//here the snowflakte is set to the colour white
+  firstObject.color = "rgba(225,225,225,";//here the snowflake is set to the colour white
   firstObject.alpha = 1;
   firstObject.word = 1;
   numbers.push(firstObject);
@@ -473,46 +483,45 @@ function init(){
 //generates a random colour
 function getRandColor(){
   return "rgba("+ Math.floor((Math.random() * 256)+1)+","+ Math.floor((Math.random() * 256)+1)+","+ Math.floor((Math.random() * 256)+1)+",";//rgba(225,225,225,
-  }
-  //randomly makes the snowflake either a one or zero
-  function oneOrZero(){
-    return Math.floor(Math.random()*1.5);
-  }
-  function run(){
+}
+//randomly makes the snowflake either a one or zero
+function oneOrZero(){
+  return Math.floor(Math.random()*1.5);
+}
+function run(){
 
-    if(wait == 0){//see if it is time to spawn a new snowflake
-      var randx = Math.floor((Math.random() * canvasW) + 1);
-      //make random y
-      var randy = Math.floor((Math.random() * canvasH) + 1);
+  if(wait == 0){//see if it is time to spawn a new snowflake
+    var randx = Math.floor((Math.random() * canvasW) + 1);
+    //make random y
+    var randy = Math.floor((Math.random() * canvasH) + 1);
 
-      ctxone.fillStyle = getRandColor();
-      ctxone.fillText(oneOrZero(),randx,randy);
-      var newObject = new Object();
-      newObject.x = randx;
-      newObject.y = randy;
-      newObject.color = "rgba(255,255,255,"; //currently all snowflakes are set to be white but replace 'rgba(255,255,255,";' with "getRandColor();" to get random coloured snowflakes
-      newObject.alpha =1;//this sets the opacity of the snowflake to 1 (no transparency)
-      newObject.word = oneOrZero()//randomises the snowflake to be 1 or zero (calls function)
-      numbers.push(newObject);//this sends the created snowflake into the snowflake array so it can be rendered on screen
-      wait = waitAmount;//sets the wait variable back to the orginal amount
-    }else{
-      wait --;//decreases wait variable
-    }
-    //this renders the snowflakes on the canvas
-    ctxone.clearRect(0, 0, canvasW, canvasH);
-    drawNum();
+    ctxone.fillStyle = getRandColor();
+    ctxone.fillText(oneOrZero(),randx,randy);
+    var newObject = new Object();
+    newObject.x = randx;
+    newObject.y = randy;
+    newObject.color = "rgba(255,255,255,"; //currently all snowflakes are set to be white but replace 'rgba(255,255,255,";' with "getRandColor();" to get random coloured snowflakes
+    newObject.alpha =1;//this sets the opacity of the snowflake to 1 (no transparency)
+    newObject.word = oneOrZero()//randomises the snowflake to be 1 or zero (calls function)
+    numbers.push(newObject);//this sends the created snowflake into the snowflake array so it can be rendered on screen
+    wait = waitAmount;//sets the wait variable back to the orginal amount
+  }else{
+    wait --;//decreases wait variable
   }
-  //this reads the javascript array that contains all of the snowflakes and draws them onto the canvas (each snowflake has its own opacity, colour, x,y coords etc. and the draw command renders it)
-  var twow = canvas.width/2;
-  function drawNum(){
-    for(var i = 0; i < numbers.length; i++){
-      ctxone.font = "30px Arial";
-      ctxone.fillStyle = numbers[i].color+numbers[i].alpha+")";//draws opacity
-      numbers[i].alpha = numbers[i].alpha-fadeoutAmount;//reduces opacity (for fadeout affect)
-      ctxone.fillText(numbers[i].word,numbers[i].x,numbers[i].y);//makes it one or zero
-      numbers[i].y = numbers[i].y +3;
-      if(numbers[i].alpha < 0){//if the opacity of the snowflake is zero remove it from the array of snowflakes
-        numbers.splice(i, 1);
-      }
+  //this renders the snowflakes on the canvas
+  ctxone.clearRect(0, 0, canvasW, canvasH);
+  drawNum();
+}
+//this reads the javascript array that contains all of the snowflakes and draws them onto the canvas (each snowflake has its own opacity, colour, x,y coords etc. and the draw command renders it)
+var twow = canvas.width/2;
+function drawNum(){
+  for(var i = 0; i < numbers.length; i++){
+    ctxone.fillStyle = numbers[i].color+numbers[i].alpha+")";//draws opacity
+    numbers[i].alpha = numbers[i].alpha-fadeoutAmount;//reduces opacity (for fadeout affect)
+    ctxone.fillText(numbers[i].word,numbers[i].x,numbers[i].y);//makes it one or zero
+    numbers[i].y = numbers[i].y +3;
+    if(numbers[i].alpha < 0){//if the opacity of the snowflake is zero remove it from the array of snowflakes
+      numbers.splice(i, 1);
     }
   }
+}
