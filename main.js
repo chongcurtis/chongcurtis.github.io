@@ -1,125 +1,76 @@
-$(document).ready(function(){
+$(document).ready(function () {
   var vH = window.innerHeight;
   var vW = window.innerWidth;
   $(window).scroll(function () {
     $(".fadeIn").each(function () {
       var pos = $(this).offset().top,
-      winTop = $(window).scrollTop();
-      if (pos +200< winTop + vH) {
-        if($(this).is($("#splitHr1"))){
+        winTop = $(window).scrollTop();
+      if (pos + 200 < winTop + vH ) {
+        if ($(this).context.classList.contains("splitHr")){
+          let ctx = $(this);
           var hrwidthtimer = window.setInterval(function () {
-            var hrwidth = $("#splitHr1").width();
-            if (hrwidth < vW - vH/4) {
-              $('#splitHr1').css("width", hrwidth + 5);
-            }else{
+            var hrwidth = ctx.width();
+            if (hrwidth < vW - vH / 4) {
+              ctx.css("width", hrwidth + 5);
+            } else {
               window.clearTimeout(hrwidthtimer);
             }
-          },16);
-        }else if($(this).is($("#splitHr2"))){
-          var hrwidthtimer = window.setInterval(function () {
-            var hrwidth = $("#splitHr2").width();
-            if (hrwidth < vW - vH/4) {
-              $('#splitHr2').css("width", hrwidth + 5);
-            }else{
-              window.clearTimeout(hrwidthtimer);
-            }
-          },16);
-        }else if($(this).is($("#splitHr3"))){
-          var hrwidthtimer = window.setInterval(function () {
-            var hrwidth = $("#splitHr3").width();
-            if (hrwidth < vW - vH/4) {
-              $('#splitHr3').css("width", hrwidth + 5);
-            }else{
-              window.clearTimeout(hrwidthtimer);
-            }
-          },16);
-        }else if($(this).is($("#splitHr4"))){
-          var hrwidthtimer = window.setInterval(function () {
-            var hrwidth = $("#splitHr4").width();
-            if (hrwidth < vW - vH/4) {
-              $('#splitHr4').css("width", hrwidth + 5);
-            }else{
-              window.clearTimeout(hrwidthtimer);
-            }
-          },16);
-        }else if($(this).is($("#splitHr5"))){
-          var hrwidthtimer = window.setInterval(function () {
-            var hrwidth = $("#splitHr5").width();
-            if (hrwidth < vW - vH/4) {
-              $('#splitHr5').css("width", hrwidth + 5);
-            }else{
-              window.clearTimeout(hrwidthtimer);
-            }
-          },16);
-        }else if($(this).is($("#splitHr6"))){
-          var hrwidthtimer = window.setInterval(function () {
-            var hrwidth = $("#splitHr6").width();
-            if (hrwidth < vW - vH/4) {
-              $('#splitHr6').css("width", hrwidth + 5);
-            }else{
-              window.clearTimeout(hrwidthtimer);
-            }
-          },16);
-        }else if($(this).is($("#hackathonNum"))){
-          if($(this).html() == 0){
-            (function myLoop (i) {
-              if(i < 14){
-                setTimeout(function () {
-                  i++;
-                  $("#hackathonNum").html(i + "  ");
-                  if(i < 20) myLoop(i);
-                }, 100)
-              }else if(i <18){
-                setTimeout(function () {
-                  i++;
-                  $("#hackathonNum").html(i + "  ");
-                  if(i < 20) myLoop(i);
-                }, 200)
-              }else if(i == 18){
-                setTimeout(function () {
-                  i++;
-                  $("#hackathonNum").html(i + "  ");
-                  if(i < 20) myLoop(i);
-                }, 600)
-              }else{
-                setTimeout(function () {
-                  i++;
-                  $("#hackathonNum").html(i + "  ");
-                  if(i < 20) myLoop(i);
-                }, 1000)
-              }
+          }, 16);
+        } else if ($(this).is($("#hackathonNum"))) {
+          if ($(this).html() == 0) {
+            (function myLoop(cur_step){
+              let time_delay = 1 / cur_step;
+              setTimeout(function(){
+                $("#hackathonNum").html(cur_step + "  ");
+                if (cur_step < 24) {
+                  myLoop(cur_step+1);
+                }
+              },1000*time_delay);
             })(0);
           }
-        }else if($(this).is($("#winNum"))){
-          if($(this).html() == 0){
-            (function myLoop (i) {
-              if(i < 3){
+        } else if ($(this).is($("#winNum"))) {
+          // I can't get a good enough function for this :(
+          /*if ($(this).html() == 0) {
+            (function myLoop(cur_step){
+              let time_delay = 40*Math.sqrt(20*Math.pow(cur_step,3) + 1);
+              setTimeout(function(){
+                $("#winNum").html(cur_step + "  ");
+                if (cur_step < 6) {
+                  myLoop(cur_step+1);
+                }
+              }, time_delay);
+            })(0);
+          }*/
+
+          if ($(this).html() == 0) {
+            (function myLoop(i) {
+              if (i < 3) {
                 setTimeout(function () {
                   i++;
                   $("#winNum").html(i);
-                  if(i < 6) myLoop(i);
+                  if (i < 6) myLoop(i);
                 }, 300)
-              }else{
+              } else {
                 setTimeout(function () {
                   i++;
                   $("#winNum").html(i);
-                  if(i < 6) myLoop(i);
+                  if (i < 6) myLoop(i);
                 }, 700)
               }
             })(0);
           }
-        }else if($(this).is($("#htnLogo"))){
-          if($(this).css("left") == (vW/2- 75) + "px"){
+        } else if ($(this).is($("#htnLogo"))) {
+          if ($(this).css("left") == (vW / 2 - 75) + "px") {
             setTimeout(function () {
               $("#htnLogo").stop().animate({
-                left: vW/2- 170
+                left: vW / 2 - 170
               }, {
-                queue: false
-              });
-              $("#htnWords").fadeTo(1000,1);
-            },1500);
+                  queue: false
+                });
+              $("#htnWords").fadeTo(1000, 1);
+            }, 1500);
           }
-        }else if($(this).is($("#typingCon"))){
+        } else if ($(this).is($("#typingCon"))) {
           $("#mailElement").typed({
             strings: ["<a href='mailto:curtischong5@gmail.com' style='color: #00FF00;' target='_blank'>curtischong5@gmail.com</a>"],
             typeSpeed: 6
@@ -163,60 +114,60 @@ $(document).ready(function(){
   });
 
   $("#binarySnowflakeCanvas").width(vW);
-  if(vW < 500){
+  if (vW < 500) {
     $("#network").remove();
-    $("#experienceIntro").css("height",260);
-    $("#workExperience").css("top",80);
-    $("#winningHacksPadding").css("padding-top",60);
-    $("#visualizationsPadding").css("padding-top",30);
-    $("#visualizationsPadding").css("padding-bottom",60);
-    $("#archivesPadding").css("padding-top",30);
-    $("#archivesPadding").css("padding-bottom",60);
-    $("#personalFavouritesPadding").css("padding-top",30);
-    $("#personalFavouritesPadding").css("padding-bottom",60);
-  }else if(vW < 1280){
-    $("#network").css("width",vW*0.9);
+    $("#experienceIntro").css("height", 260);
+    $("#workExperience").css("top", 80);
+    $("#winningHacksPadding").css("padding-top", 60);
+    $("#visualizationsPadding").css("padding-top", 30);
+    $("#visualizationsPadding").css("padding-bottom", 60);
+    $("#archivesPadding").css("padding-top", 30);
+    $("#archivesPadding").css("padding-bottom", 60);
+    $("#personalFavouritesPadding").css("padding-top", 30);
+    $("#personalFavouritesPadding").css("padding-bottom", 60);
+  } else if (vW < 1280) {
+    $("#network").css("width", vW * 0.9);
   }
-  $("#htnLogo").css("top",$("#htn").height()/2 - 75);
-  $("#htnLogo").css("left",vW/2- 75);
-  $("#htnWords").css("top",$("#htn").height()/2-35);
-  $("#htnWords").css("left",vW/2);
-  $("#flippLogo").css("left",vW/2- 125);
+  $("#htnLogo").css("top", $("#htn").height() / 2 - 75);
+  $("#htnLogo").css("left", vW / 2 - 75);
+  $("#htnWords").css("top", $("#htn").height() / 2 - 35);
+  $("#htnWords").css("left", vW / 2);
+  $("#flippLogo").css("left", vW / 2 - 125);
 
-  if(vW < 530){
-    $("#bannerPhoto").css("left",-400);
-    $("#bannerPhoto").css("width",vW + 400);
-    $("#network").css("top", $("#experienceIntro").offset().top-705);
-    $("#title").css("top",60);
-    $("#title").css("left",0);
-    $("#title").css("width",vW);
-    $("#title").css("text-align","center");
-    $("#subHeaders").css("top",130);
-    $("#subHeaders").css("left",0);
-    $("#subHeaders").css("width",vW);
-    $("#subHeaders").css("text-align","center");
-    $("#title").animate({top: 80}, 1000);
+  if (vW < 530) {
+    $("#bannerPhoto").css("left", -400);
+    $("#bannerPhoto").css("width", vW + 400);
+    $("#network").css("top", $("#experienceIntro").offset().top - 705);
+    $("#title").css("top", 60);
+    $("#title").css("left", 0);
+    $("#title").css("width", vW);
+    $("#title").css("text-align", "center");
+    $("#subHeaders").css("top", 130);
+    $("#subHeaders").css("left", 0);
+    $("#subHeaders").css("width", vW);
+    $("#subHeaders").css("text-align", "center");
+    $("#title").animate({ top: 80 }, 1000);
     setTimeout(function () {
-      $("#subHeaders").animate({top: 150},{
+      $("#subHeaders").animate({ top: 150 }, {
         queue: false,
         duration: 1000
       });
       $("#subHeaders").fadeTo(800, 1);
-    },300);
-  }else{
-    $("#network").css("top", $("#experienceIntro").offset().top-855);
-    $("#title").css("top",vH - 260);
-    $("#subHeaders").css("top",vH - 190);
-    $("#title").animate({top: vH - 300}, 1000);
+    }, 300);
+  } else {
+    $("#network").css("top", $("#experienceIntro").offset().top - 855);
+    $("#title").css("top", vH - 260);
+    $("#subHeaders").css("top", vH - 190);
+    $("#title").animate({ top: vH - 300 }, 1000);
     setTimeout(function () {
-      $("#subHeaders").animate({top: vH - 230},{
+      $("#subHeaders").animate({ top: vH - 230 }, {
         queue: false,
         duration: 1000
       });
       $("#subHeaders").fadeTo(800, 1);
-    },300);
+    }, 300);
   }
-  $("#bannerPhoto").css("height",vH);
+  $("#bannerPhoto").css("height", vH);
 
   $("#t1").fadeTo(200, 1);
   setTimeout(function () {
@@ -250,42 +201,42 @@ $(document).ready(function(){
     }, 30);
   }, 30);
 
-var showProject = function(){
-  $("#viewProject").hide();
-  $("#backToEvent").show();
-  $("#prjTitle").attr("popupImg",$("#prjImg").attr("src"));
-  $("#prjImg").attr("src",$("#prjTitle").attr("thePrjImg"));
-  $("#prjP").html($("#prjTitle").attr("desc"));
-  $("#prjRepo").show();
-};
-var showEvent = function(ctx){
-  $("#viewProject").show();
-  $("#backToEvent").hide();
-  $("#myModal").modal("show");
-  $("#prjP").html($(ctx).attr("eventDesc"));
-  var hackathon = $(ctx).attr("hackathon");
-  var place = $(ctx).attr("place");
-  var title = $(ctx).attr("hackname");
-  var image = $(ctx).attr("popupImg");
-  var thePrjImg = $(ctx).attr("thePrjImg");
-  $("#prjTitle").html(title);
-  $("#prjTitle").attr("thePrjImg",thePrjImg);
-  $("#prjTitle").attr("eventDesc",$(ctx).attr("eventDesc"));
-  $("#prjTitle").attr("desc",$(ctx).attr("desc"));
-  $("#prjRepo").attr("href",$(ctx).attr("repoLink"));
-  $("#prjTitleEvent").html(hackathon);
-  $("#prjTitlePlace").html(place);
-  $("#prjImg").attr("src",image);
-  $("#prjRepo").hide();
-};
+  var showProject = function () {
+    $("#viewProject").hide();
+    $("#backToEvent").show();
+    $("#prjTitle").attr("popupImg", $("#prjImg").attr("src"));
+    $("#prjImg").attr("src", $("#prjTitle").attr("thePrjImg"));
+    $("#prjP").html($("#prjTitle").attr("desc"));
+    $("#prjRepo").show();
+  };
+  var showEvent = function (ctx) {
+    $("#viewProject").show();
+    $("#backToEvent").hide();
+    $("#myModal").modal("show");
+    $("#prjP").html($(ctx).attr("eventDesc"));
+    var hackathon = $(ctx).attr("hackathon");
+    var place = $(ctx).attr("place");
+    var title = $(ctx).attr("hackname");
+    var image = $(ctx).attr("popupImg");
+    var thePrjImg = $(ctx).attr("thePrjImg");
+    $("#prjTitle").html(title);
+    $("#prjTitle").attr("thePrjImg", thePrjImg);
+    $("#prjTitle").attr("eventDesc", $(ctx).attr("eventDesc"));
+    $("#prjTitle").attr("desc", $(ctx).attr("desc"));
+    $("#prjRepo").attr("href", $(ctx).attr("repoLink"));
+    $("#prjTitleEvent").html(hackathon);
+    $("#prjTitlePlace").html(place);
+    $("#prjImg").attr("src", image);
+    $("#prjRepo").hide();
+  };
 
 
-  $("#viewProject").on("click",function(){
+  $("#viewProject").on("click", function () {
     showProject();
   });
-  $("#viewFire").on("click",function(){
-    $(this).attr("repoLink",$("#SFfirstLink").attr("repoLink"));
-    $(this).attr("hackName",$("#SFfirstLink").attr("hackName"));
+  $("#viewFire").on("click", function () {
+    $(this).attr("repoLink", $("#SFfirstLink").attr("repoLink"));
+    $(this).attr("hackName", $("#SFfirstLink").attr("hackName"));
     $(this).attr("hackathon", $("#SFfirstLink").attr("hackathon"));
     $(this).attr("place", $("#SFfirstLink").attr("place"));
     $(this).attr("thePrjImg", $("#SFfirstLink").attr("thePrjImg"));
@@ -296,71 +247,29 @@ var showEvent = function(ctx){
     showProject();
   });
 
-  $("#backToEvent").on("click",function(){
+  $("#backToEvent").on("click", function () {
     $("#viewProject").show();
     $("#backToEvent").hide();
-    $("#prjImg").attr("src",$("#prjTitle").attr("popupImg"));
+    $("#prjImg").attr("src", $("#prjTitle").attr("popupImg"));
     $("#prjP").html($("#prjTitle").attr("eventDesc"));
     $("#prjRepo").hide();
   });
 
-  $(".competitionWin").on("click",function(){
+  $(".competitionWin").on("click", function () {
     showEvent(this);
     //$(".modal-content").css("background-image","url(http://res.cloudinary.com/dj2eq8czc/image/upload/v1486482255/flybits_pukqgx.jpg)")
   });
 
-  $(".prjimg").on("click",function(){
+  $(".prjimg").on("click", function () {
     $("#viewProject").hide();
     $("#backToEvent").hide();
     $("#myModal").modal("show");
     $("#prjP").html($(this).attr("desc"));
-    $("#prjImg").attr("src",$(this).attr("thePrjImg"));
+    $("#prjImg").attr("src", $(this).attr("thePrjImg"));
     $("#prjTitle").html($(this).attr("hackName"));
     $("#prjTitleEvent").html($(this).attr("hackathon"));
     $("#prjTitlePlace").html("");
     $("#prjRepo").show();
-    $("#prjRepo").attr("href",$(this).attr("repoLink"));
+    $("#prjRepo").attr("href", $(this).attr("repoLink"));
   });
-
-  /*var word;
-  $("#contactEmail").on("click", function () {
-    word = "<a href='mailto:curtischong5@gmail.com' style='color: #00FF00;' target='_blank'>curtischong5@gmail.com</a>";
-    $("#mailElement").typed({
-      strings: [word],
-      typeSpeed: 6
-    });
-    setTimeout(function () {
-      $(".typed-cursor").remove();
-    }, 6000);
-  });
-  $("#contactLinkedin").on("click", function () {
-    word = "<a href='https://www.linkedin.com/in/chongcurtis'  style='color: #00FF00;' target='_blank'>linkedin.com/in/chongcurtis</a>";
-    $("#linkedinElement").typed({
-      strings: [word],
-      typeSpeed: 6
-    });
-    setTimeout(function () {
-      $(".typed-cursor").remove();
-    }, 6000);
-  });
-  $("#contactGithub").on("click", function () {
-    word = "<a href='https://github.com/curtischong'  style='color: #00FF00;' target='_blank'>github.com/curtischong</a>";
-    $("#githubElement").typed({
-      strings: [word],
-      typeSpeed: 6
-    });
-    setTimeout(function () {
-      $(".typed-cursor").remove();
-    }, 6000);
-  });
-  $("#contactSt").on("click", function () {
-    word = "<a href='http://stackoverflow.com/users/4647924/curtis-chong'  style='color: #00FF00;' target='_blank'>stackoverflow.com/users/4647924/curtis-chong</a>";
-    $("#stElement").typed({
-      strings: [word],
-      typeSpeed: 6
-    });
-    setTimeout(function () {
-      $(".typed-cursor").remove();
-    }, 6000);
-  });*/
 });

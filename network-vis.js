@@ -223,27 +223,9 @@ function Signal(start) {
   this.completeParts = [];
   this.strength = 10.0;
   this.jumps = 0;
-  //create random number for the connections
-  function randomNums(){
-    return Math.floor(Math.random() * start.connections.length) + 1 ;
-  };
 
-  //start of color
-  //color depends on how long the signals have existed for
-  //var tint = (signalCount % 12) * 30;
   var tint = Math.floor(Math.random() * 360);
   this.style = 'hsl(' + tint + ',100%,50%)';
-  //end of color
-  /*
-  var smallNum = randomNums();
-  var bigNum = randomNums();
-
-  while(bigNum <= smallNum){
-  smallNum = randomNums();
-  bigNum = randomNums();
-}*/
-
-
   for (var i = 0; i < start.connections.length - Math.floor(Math.random()*3) - 1; i++) {
     this.parts.push(new SignalPart(this.start, this.start.connections[i], this.strength, this.style));
   }
@@ -258,7 +240,6 @@ Signal.prototype = {
 
     for (var i = this.parts.length - 1; i >= 0; i--) {
       this.parts[i].time += timeStep;
-
 
       if (this.parts[i].complete && this.parts.length < randomSendLength) {
         //push the node into the current array for which nodes to send a pulse to
@@ -288,7 +269,6 @@ Signal.prototype = {
         }
       }
     }
-
     return complete;
   },
   draw:function() {
@@ -480,10 +460,6 @@ function init(){
     setInterval( run , snowflakeSpeed );//this is the cycle
   }
 }
-//generates a random colour
-function getRandColor(){
-  return "rgba("+ Math.floor((Math.random() * 256)+1)+","+ Math.floor((Math.random() * 256)+1)+","+ Math.floor((Math.random() * 256)+1)+",";//rgba(225,225,225,
-}
 //randomly makes the snowflake either a one or zero
 function oneOrZero(){
   return Math.floor(Math.random()*1.5);
@@ -495,8 +471,6 @@ function run(){
     //make random y
     var randy = Math.floor((Math.random() * canvasH) + 1);
 
-    ctxone.fillStyle = getRandColor();
-    ctxone.fillText(oneOrZero(),randx,randy);
     var newObject = new Object();
     newObject.x = randx;
     newObject.y = randy;
