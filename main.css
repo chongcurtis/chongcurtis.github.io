@@ -27,8 +27,14 @@ a:visited {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-body{
+body,html{
   margin: 0px;
+  height: 100%;
+}
+.paraxify {
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
 }
 .tword{
   opacity: 0.01;
@@ -52,13 +58,17 @@ body{
   margin-bottom: 50px;
 }
 #bannerPhoto{
-  width: 100%;
   z-index: 0;
   filter: brightness(80%);
 }
 #bannerPhotoWrapper{
   background-color: grey;
+  height: 100%;
+  position: relative;
+  padding: 0px;
+  margin: 0px;
   z-index: 0;
+  background-image: url("photos/curtis-chong-homepage-background.jpg");
 }
 /*
 #bannerPhotoWrapper{
@@ -122,6 +132,8 @@ body{
   position: relative;
   height: 100%;
   height: 800px;
+  background-image: url("photos/me_at_flipp.jpg");
+  height: 200px;
 }
 #flippImg{
   position: relative;

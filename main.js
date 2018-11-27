@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
   var vH = window.innerHeight;
   var vW = window.innerWidth;
@@ -168,7 +169,7 @@ $(document).ready(function () {
       $("#subHeaders").fadeTo(800, 1);
     }, 300);
   }
-  $("#bannerPhotoWrapper").css("height", vH);
+  // $("#bannerPhotoWrapper").css("height", vH);
 
   $("#t1").fadeTo(200, 1);
   setTimeout(function () {
@@ -273,5 +274,8 @@ $(document).ready(function () {
     $("#prjRepo").show();
     $("#prjRepo").attr("href", $(this).attr("repoLink"));
   });
-
+let myParaxify = paraxify('.paraxify',{
+    speed: 1,
+    boost: 0
+  });
 });
