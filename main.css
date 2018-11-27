@@ -153,13 +153,12 @@ body{
   opacity: 0.01;
   margin: auto;
   display: block;
-  width: 1280px;
+  width: 100%;
+  height: 30%;
 }
 #experienceIntro{
   background-color: #070502;
-  position: relative;
   width: 100%;
-  height: 750px;
 }
 #experience{
   background-color: #070502;
@@ -170,8 +169,7 @@ body{
   text-align: center;
   width: 100%;
   font-size: 30px;
-  position: relative;
-  top: 350px;
+  position: absolute;
   z-index: 3;
 }
 #hackathons{

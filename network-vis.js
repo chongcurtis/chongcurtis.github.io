@@ -1,161 +1,54 @@
 // canvas settings
-var drawingCanvas = document.getElementById("network"),
-  ctx,
-  viewHeight = 500,
-  viewWidth = 1280;
-timeStep = (1/60),
-  time = 0;
-
-var nodes = [],
+let drawingCanvas = document.getElementById("network");
+let viewHeight = drawingCanvas.offsetHeight;
+let viewWidth = drawingCanvas.offsetWidth;
+let timeStep = (1 / 60);
+let time = 0;
+let nodes = [],
   signals = [];
+let signalCount = 0;
+let ctx;
 
-var signalCount = 0;
-
-function initDrawingCanvas() {
-  drawingCanvas.width = viewWidth;
-  drawingCanvas.height = viewHeight;
-  ctx = drawingCanvas.getContext('2d');
+let small_cluster_amt = -1;
+let big_cluster_amt = -1; 
+function setupCanvas(canvas) {
+  // Fixes the DPI of the canvas
+  var dpr = window.devicePixelRatio || 1;
+  var rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  var ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  return ctx;
 }
 
-function createNodes() {
-  /*var rad = viewWidth * 0.5 - 10;
-  for (var i = 0; i < 100; i++) {
-  var q = Math.random() * (Math.PI * 2);
-  var r = Math.sqrt(Math.random());
-  var x = (rad * r) * Math.cos(q) + viewWidth * 0.5;
-  var y = (rad * r) * Math.sin(q) + viewWidth * 0.5;
-  if(x > 200){
-  x=x-50;
-}
-if(y > 200){
-y=x-50;
-}
-nodes[i] = new Node(x, y);
-}*/
-  nodes[0] = new Node(50,120);
-  nodes[1] = new Node(800,300);
-  nodes[2] = new Node(980,350);
-  nodes[3] = new Node(500,320);
-  nodes[4] = new Node(600,270);
-  nodes[5] = new Node(370,230);
-  nodes[6] = new Node(350,320);
-  nodes[7] = new Node(920,250);
-  nodes[8] = new Node(270,15);
-  nodes[9] = new Node(1300,200);
-  nodes[10] = new Node(240,320);
-  nodes[11] = new Node(1240,290);
-  nodes[12] = new Node(770,370);
-  nodes[13] = new Node(890,190);
-  nodes[14] = new Node(810,140);
-  nodes[15] = new Node(630,310);
-  nodes[16] = new Node(250,150);
-  nodes[17] = new Node(1070,50);
-  nodes[18] = new Node(430,170);
-  nodes[19] = new Node(560,220);
-  nodes[20] = new Node(530,320);
-  nodes[21] = new Node(490,390);
-  nodes[22] = new Node(140,460);
-  nodes[23] = new Node(680,140);
-  nodes[24] = new Node(550,120);
-  nodes[25] = new Node(480,330);
-  nodes[26] = new Node(470,260);
-  nodes[27] = new Node(670,180);
-  nodes[28] = new Node(1070,430);
-  nodes[29] = new Node(670,330);
-  nodes[30] = new Node(650,290);
-  nodes[31] = new Node(620,350);
-  nodes[32] = new Node(600,190);
-  nodes[33] = new Node(630,140);
-  nodes[34] = new Node(620,250);
-  nodes[35] = new Node(680,270);
-  nodes[36] = new Node(790,290);
-  nodes[37] = new Node(840,250);
-  nodes[38] = new Node(760,250);
-  nodes[39] = new Node(730,210);
-}
-
-function connectNodes() {
-  nodes[0].connections.push(nodes[2]);
-  nodes[0].connections.push(nodes[1]);
-  nodes[1].connections.push(nodes[3]);
-  nodes[3].connections.push(nodes[1]);
-  nodes[4].connections.push(nodes[1]);
-  nodes[5].connections.push(nodes[6]);
-  nodes[6].connections.push(nodes[7]);
-  nodes[7].connections.push(nodes[4]);
-  nodes[8].connections.push(nodes[5]);
-  nodes[8].connections.push(nodes[1]);
-  nodes[8].connections.push(nodes[12]);
-  nodes[8].connections.push(nodes[15]);
-  nodes[9].connections.push(nodes[10]);
-  nodes[10].connections.push(nodes[9]);
-  nodes[11].connections.push(nodes[2]);
-  nodes[12].connections.push(nodes[16]);
-  nodes[13].connections.push(nodes[17]);
-  nodes[14].connections.push(nodes[14]);
-  nodes[15].connections.push(nodes[15]);
-  nodes[16].connections.push(nodes[4]);
-  nodes[17].connections.push(nodes[12]);
-  nodes[17].connections.push(nodes[12]);
-  nodes[18].connections.push(nodes[19]);
-  nodes[18].connections.push(nodes[13]);
-  nodes[19].connections.push(nodes[7]);
-  nodes[15].connections.push(nodes[8]);
-  nodes[12].connections.push(nodes[8]);
-  nodes[13].connections.push(nodes[11]);
-
-  var connection, j, connectCount;
-  for (var i = 0; i < nodes.length; i++) {
-    j = 0;
-    connectCount = Math.floor(randomRange(1, 4));
-    while (j < connectCount) {
-      connection = getRandom(nodes);
-      if (nodes[i] !== connection) {
-        nodes[i].connections.push(connection);
-        j++;
-      }
-    }
-  }
-}
 
 function transmit() {
-  var vH = window.innerHeight;
-  var winTop = $(window).scrollTop();
-  //if(document.getElementById('network') && winTop > document.getElementById('network').offsetTop + 500 && winTop < document.getElementById('network').offsetTop - vH){
-
-  //}else{
-  signals.forEach(function(n){
-    var canDelete = true;
-    n.parts.forEach(function(b){
-      if(b.complete == false){
+  let vH = window.innerHeight;
+  let winTop = $(window).scrollTop();
+  signals.forEach(function (n) {
+    let canDelete = true;
+    n.parts.forEach(function (b) {
+      if (b.complete == false) {
         canDelete = false;
       }
     });
-    if(canDelete){
-      var theIndex = signals.indexOf(n);
+    if (canDelete) {
+      let theIndex = signals.indexOf(n);
       signals.splice(theIndex, 1);
     }
   });
-  if(signals.length < 5){
+  if (signals.length < 5) {
     signals.push(new Signal(getRandom(nodes)));
     signalCount++;
   }
 }
 
 function update() {
-  nodes.forEach(function(n) {
+  nodes.forEach(function (n) {
     n.update();
   });
-
-  /*nodes[0].update();
-  nodes[3].update();
-  nodes[4].update();
-  nodes[9].update();
-  nodes[11].update();
-  nodes[21].update();
-  nodes[19].update();*/
-
-  signals.forEach(function(s) {
+  signals.forEach(function (s) {
     if (s.update() === true) {
       signals.splice(signals.indexOf(s), 1);
     }
@@ -165,16 +58,16 @@ function update() {
 function draw() {
   ctx.clearRect(0, 0, viewWidth, viewHeight);
 
-  nodes.forEach(function(n) {
+  nodes.forEach(function (n) {
     n.draw();
   });
 
-  signals.forEach(function(s) {
+  signals.forEach(function (s) {
     s.draw();
   });
 }
 
-var loop = function(){
+let loop = function () {
   update();
   draw();
   time += timeStep;
@@ -195,20 +88,20 @@ function Node(x, y) {
 Node.prototype = {
 
   //this code wiggles the nodes around
-  update:function() {
+  update: function () {
     this.x = this._x + Math.sin(time) * this.r;
     this.y = this._y + Math.cos(time) * this.r;
   },
 
   //determines the size and color of the connection lines
-  draw:function() {
+  draw: function () {
     ctx.strokeStyle = '#fff';
     ctx.fillStyle = '#fff';
     ctx.lineWidth = 0.1;
     //determines the size of the nodes
     ctx.fillRect(this.x, this.y, 1, 1);
 
-    for (var i = 0; i < this.connections.length; i++) {
+    for (let i = 0; i < this.connections.length; i++) {
       ctx.beginPath();
       ctx.moveTo(this.x, this.y);
       ctx.lineTo(this.connections[i].x, this.connections[i].y);
@@ -224,21 +117,21 @@ function Signal(start) {
   this.strength = 10.0;
   this.jumps = 0;
 
-  var tint = Math.floor(Math.random() * 360);
+  let tint = Math.floor(Math.random() * 360);
   this.style = 'hsl(' + tint + ',100%,50%)';
-  for (var i = 0; i < start.connections.length - Math.floor(Math.random()*3) - 1; i++) {
+  for (let i = 0; i < start.connections.length - Math.floor(Math.random() * 3) - 1; i++) {
     this.parts.push(new SignalPart(this.start, this.start.connections[i], this.strength, this.style));
   }
 }
 
 Signal.prototype = {
-  update:function() {
-    var complete = false;
+  update: function () {
+    let complete = false;
     this.completeParts.length = 0;
 
-    var randomSendLength = Math.floor(Math.random()*4);
+    let randomSendLength = Math.floor(Math.random() * 4);
 
-    for (var i = this.parts.length - 1; i >= 0; i--) {
+    for (let i = this.parts.length - 1; i >= 0; i--) {
       this.parts[i].time += timeStep;
 
       if (this.parts[i].complete && this.parts.length < randomSendLength) {
@@ -254,15 +147,15 @@ Signal.prototype = {
     }
 
     if (complete === false) {
-      var part,
+      let part,
         end,
         connection;
 
-      for (var j = 0; j < this.completeParts.length; j++) {
+      for (let j = 0; j < this.completeParts.length; j++) {
         part = this.completeParts[j];
         end = part.end;
 
-        for (var k = 0; k < end.connections.length; k++) {
+        for (let k = 0; k < end.connections.length; k++) {
           connection = end.connections[k];
 
           this.parts.push(new SignalPart(end, connection, this.strength, this.style));
@@ -271,8 +164,8 @@ Signal.prototype = {
     }
     return complete;
   },
-  draw:function() {
-    for (var i = 0; i < this.parts.length; i++) {
+  draw: function () {
+    for (let i = 0; i < this.parts.length; i++) {
       this.parts[i].draw();
     }
   }
@@ -288,8 +181,14 @@ function SignalPart(start, end, strength, style) {
   this.duration = 2;
   this.complete = false;
 
-  this.p0 = {x:0, y:0};
-  this.p1 = {x:0, y:0};
+  this.p0 = {
+    x: 0,
+    y: 0
+  };
+  this.p1 = {
+    x: 0,
+    y: 0
+  };
 }
 SignalPart.prototype = {
   set time(v) {
@@ -300,9 +199,9 @@ SignalPart.prototype = {
   get time() {
     return this._time;
   },
-  draw:function() {
-    var t0 = Ease.outCubic(this.prevTime, 0, 1, this.duration);
-    var t1 = Ease.outQuad(this.time, 0, 1, this.duration);
+  draw: function () {
+    let t0 = Ease.outCubic(this.prevTime, 0, 1, this.duration);
+    let t1 = Ease.outQuad(this.time, 0, 1, this.duration);
     lerp(this.start, this.end, t0, this.p0);
     lerp(this.start, this.end, t1, this.p1);
 
@@ -316,8 +215,6 @@ SignalPart.prototype = {
   }
 };
 
-
-
 function randomRange(min, max) {
   return min + Math.random() * (max - min);
 }
@@ -327,7 +224,10 @@ function getRandom(a) {
 }
 
 function lerp(n1, n2, t, p) {
-  p = p || {x:0, y:0};
+  p = p || {
+    x: 0,
+    y: 0
+  };
 
   p.x = n1.x + t * (n2.x - n1.x);
   p.y = n1.y + t * (n2.y - n1.y);
@@ -342,160 +242,80 @@ function lerp(n1, n2, t, p) {
  * c = delta value
  * d = duration
  */
-var Ease = {
-  inCubic:function (t, b, c, d) {
+let Ease = {
+  inCubic: function (t, b, c, d) {
     t /= d;
-    return c*t*t*t + b;
+    return c * t * t * t + b;
   },
-  outCubic:function(t, b, c, d) {
+  outCubic: function (t, b, c, d) {
     t /= d;
     t--;
-    return c*(t*t*t + 1) + b;
+    return c * (t * t * t + 1) + b;
   },
   inQuad: function (t, b, c, d) {
-    return c*(t/=d)*t + b;
+    return c * (t /= d) * t + b;
   },
   outQuad: function (t, b, c, d) {
-    return -c *(t/=d)*(t-2) + b;
+    return -c * (t /= d) * (t - 2) + b;
   },
-  inOutCubic:function(t, b, c, d) {
-    t /= d/2;
-    if (t < 1) return c/2*t*t*t + b;
+  inOutCubic: function (t, b, c, d) {
+    t /= d / 2;
+    if (t < 1) return c / 2 * t * t * t + b;
     t -= 2;
-    return c/2*(t*t*t + 2) + b;
+    return c / 2 * (t * t * t + 2) + b;
   }
 };
-initDrawingCanvas();
-if(viewWidth < 500){
-  nodes[0] = new Node(50,120);
-  nodes[1] = new Node(400,300);
-  nodes[2] = new Node(350,350);
-  nodes[3] = new Node(240,320);
-  nodes[4] = new Node(200,270);
-  nodes[5] = new Node(370,230);
-  nodes[6] = new Node(150,320);
-  nodes[7] = new Node(40,250);
-  nodes[8] = new Node(420,15);
-  nodes[9] = new Node(300,200);
-  nodes[10] = new Node(120,320);
-  nodes[11] = new Node(240,290);
-  nodes[12] = new Node(370,370);
 
-  nodes[0].connections.push(nodes[2]);
-  nodes[0].connections.push(nodes[1]);
-  nodes[1].connections.push(nodes[3]);
-  nodes[3].connections.push(nodes[1]);
-  nodes[4].connections.push(nodes[1]);
-  nodes[5].connections.push(nodes[6]);
-  nodes[6].connections.push(nodes[7]);
-  nodes[7].connections.push(nodes[4]);
-  nodes[8].connections.push(nodes[5]);
-  nodes[8].connections.push(nodes[1]);
-  nodes[8].connections.push(nodes[12]);
-  nodes[8].connections.push(nodes[8]);
-  nodes[9].connections.push(nodes[10]);
-  nodes[10].connections.push(nodes[9]);
-  nodes[11].connections.push(nodes[2]);
-  nodes[12].connections.push(nodes[11]);
-}else{
-  createNodes();
-  connectNodes();
-}
-transmit();
-setInterval(transmit, 1600);
-
-requestAnimationFrame(loop);
-
-
-
-
-
-
-var snowflakeSpeed = 30;//change this variable to control the intervals between snowflake cycles (60 = 60 milliseconds)
-//each cycle is the time you tell the code to wait before it execudes the code
-var fadeoutAmount = 0.015 // this means that it'll reduce its opacity by 5% each cycle (lower number means fade out slower)
-var waitAmount = 12;//this variable determines if the code should make a new snowflake this cyle (currently it'll make a new snowflake every 2 cycles which is ever 120 milliseconds becuase the snowflake speed is 60)
-
-var wait = waitAmount;
-var canvas;
-var canvasH;
-var canvasW;
-var ctxone;
-var numbers = new Array();
-
-//runs once
-
-function fix_dpi(canvasId) {
-  let dpi = window.devicePixelRatio;
-    let style_height = +getComputedStyle(canvas).getPropertyValue("height").slice(0, -2);
-    let style_width = +getComputedStyle(canvas).getPropertyValue("width").slice(0, -2);
-    canvas.setAttribute('height', style_height * dpi);
-    canvas.setAttribute('width', style_width * dpi);
+function weightedRandom(max, numDice) {
+  var num = 0;
+  for (var i = 0; i < numDice; i++) {
+    num += Math.random() * (max / numDice);
+  }
+  return num;
 }
 
-init();
-function init(){
-  //finds the canvas in the html and saves its width and height in a variable
-  canvas = document.getElementById("binarySnowflakeCanvas");
-  canvas.width = window.innerWidth; //document.width is obsolete
-  canvas.height = 450;
-  fix_dpi(canvas);
-  canvasW = canvas.width;
-  canvasH = canvas.height;
-  //more init stuff
-  ctxone= canvas.getContext("2d");
-  ctxone.font = "100 4em Arial";
-  //creates the first snowflake in the snowflake object (must  be done this way because the loop needs at least one "snowflake" to start)
-  var firstObject = new Object();
-  firstObject.x = 300;//give it a set y value
-  firstObject.y = 300;//give it a set x value
-  firstObject.color = "rgba(225,225,225,";//here the snowflake is set to the colour white
-  firstObject.alpha = 1;
-  firstObject.word = 1;
-  numbers.push(firstObject);
-
-  if( canvas.getContext )
-  {
-    //setup();
-    setInterval( run , snowflakeSpeed );//this is the cycle
+function createNodes() {
+  for (let i = 0; i < small_cluster_amt; i++) {
+    let x_loc = weightedRandom(viewWidth, 60);
+    let y_loc = weightedRandom(viewHeight, 30);
+    nodes[i] = new Node(x_loc, y_loc);
+  }
+  for (let i = small_cluster_amt; i < small_cluster_amt + big_cluster_amt; i++) {
+    let x_loc = weightedRandom(viewWidth, 10);
+    let y_loc = weightedRandom(viewHeight, 6);
+    nodes[i] = new Node(x_loc, y_loc);
   }
 }
-//randomly makes the snowflake either a one or zero
-function oneOrZero(){
-  return Math.floor(Math.random()*1.5);
-}
-function run(){
 
-  if(wait == 0){//see if it is time to spawn a new snowflake
-    var randx = Math.floor((Math.random() * canvasW) + 1);
-    //make random y
-    var randy = Math.floor((Math.random() * canvasH) + 1);
-
-    var newObject = new Object();
-    newObject.x = randx;
-    newObject.y = randy;
-    newObject.color = "rgba(255,255,255,"; //currently all snowflakes are set to be white but replace 'rgba(255,255,255,";' with "getRandColor();" to get random coloured snowflakes
-    newObject.alpha =1;//this sets the opacity of the snowflake to 1 (no transparency)
-    newObject.word = oneOrZero()//randomises the snowflake to be 1 or zero (calls function)
-    numbers.push(newObject);//this sends the created snowflake into the snowflake array so it can be rendered on screen
-    wait = waitAmount;//sets the wait variable back to the orginal amount
-  }else{
-    wait --;//decreases wait variable
-  }
-  //this renders the snowflakes on the canvas
-  ctxone.clearRect(0, 0, canvasW, canvasH);
-  drawNum();
-}
-//this reads the javascript array that contains all of the snowflakes and draws them onto the canvas (each snowflake has its own opacity, colour, x,y coords etc. and the draw command renders it)
-var twow = canvas.width/2;
-function drawNum(){
-  for(var i = 0; i < numbers.length; i++){
-    ctxone.fillStyle = numbers[i].color+numbers[i].alpha+")";//draws opacity
-    numbers[i].alpha = numbers[i].alpha-fadeoutAmount;//reduces opacity (for fadeout affect)
-    ctxone.fillText(numbers[i].word,numbers[i].x,numbers[i].y);//makes it one or zero
-    numbers[i].y = numbers[i].y +3;
-    if(numbers[i].alpha < 0){//if the opacity of the snowflake is zero remove it from the array of snowflakes
-      numbers.splice(i, 1);
+function connectNodes() {
+  let connection, j, connectCount;
+  for (let i = 0; i < nodes.length; i++) {
+    j = 0;
+    connectCount = Math.floor(randomRange(2, 4));
+    while (j < connectCount) {
+      connection = getRandom(nodes);
+      if (nodes[i] !== connection) {
+        nodes[i].connections.push(connection);
+        j++;
+      }
     }
   }
 }
+
+function init() {
+
+  small_cluster_amt = Math.floor(viewWidth/32); // This is around 50 nodes for me
+  big_cluster_amt = Math.floor((4*small_cluster_amt)/5); // 5:4 is a good ratio
+  console.log("Number of nodes: " + (small_cluster_amt + big_cluster_amt));
+
+  createNodes();
+  connectNodes();
+  transmit();
+  setInterval(transmit, 1600);
+
+  requestAnimationFrame(loop);
+  drawingCanvas.width = viewWidth;
+  drawingCanvas.height = viewHeight;
+  ctx = setupCanvas(drawingCanvas);
+}
+init();

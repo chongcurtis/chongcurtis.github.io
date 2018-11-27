@@ -5,8 +5,8 @@ $(document).ready(function () {
     $(".fadeIn").each(function () {
       var pos = $(this).offset().top,
         winTop = $(window).scrollTop();
-      if (pos + 200 < winTop + vH ) {
-        if ($(this).context.classList.contains("splitHr")){
+      if (pos + 200 < winTop + vH) {
+        if ($(this).context.classList.contains("splitHr")) {
           let ctx = $(this);
           var hrwidthtimer = window.setInterval(function () {
             var hrwidth = ctx.width();
@@ -18,14 +18,14 @@ $(document).ready(function () {
           }, 16);
         } else if ($(this).is($("#hackathonNum"))) {
           if ($(this).html() == 0) {
-            (function myLoop(cur_step){
+            (function myLoop(cur_step) {
               let time_delay = 1 / cur_step;
-              setTimeout(function(){
+              setTimeout(function () {
                 $("#hackathonNum").html(cur_step + "  ");
                 if (cur_step < 24) {
-                  myLoop(cur_step+1);
+                  myLoop(cur_step + 1);
                 }
-              },1000*time_delay);
+              }, 1000 * time_delay);
             })(0);
           }
         } else if ($(this).is($("#winNum"))) {
@@ -65,8 +65,8 @@ $(document).ready(function () {
               $("#htnLogo").stop().animate({
                 left: vW / 2 - 170
               }, {
-                  queue: false
-                });
+                queue: false
+              });
               $("#htnWords").fadeTo(1000, 1);
             }, 1500);
           }
@@ -113,11 +113,14 @@ $(document).ready(function () {
     });
   });
 
+  // TODO: Deal with this later. changing the parallax library might affect this
   $("#binarySnowflakeCanvas").width(vW);
+  let networkHeight = $("#network").offset().top;
+  $("#workExperience").css("top", $("#network").offset().top + $("#experienceIntro").css("height")/2);
+  $("#workExperience").css("top", networkHeight);
   if (vW < 500) {
-    $("#network").remove();
-    $("#experienceIntro").css("height", 260);
-    $("#workExperience").css("top", 80);
+    //$("#network").remove();
+    //$("#experienceIntro").css("height", 260);
     $("#winningHacksPadding").css("padding-top", 60);
     $("#visualizationsPadding").css("padding-top", 30);
     $("#visualizationsPadding").css("padding-bottom", 60);
@@ -126,8 +129,10 @@ $(document).ready(function () {
     $("#personalFavouritesPadding").css("padding-top", 30);
     $("#personalFavouritesPadding").css("padding-bottom", 60);
   } else if (vW < 1280) {
-    $("#network").css("width", vW * 0.9);
+    //$("#network").css("width", vW * 0.9);
   }
+
+  //$("#workExperience").css("top", $("#network").offset().top);
   $("#htnLogo").css("top", $("#htn").height() / 2 - 75);
   $("#htnLogo").css("left", vW / 2 - 75);
   $("#htnWords").css("top", $("#htn").height() / 2 - 35);
@@ -137,7 +142,7 @@ $(document).ready(function () {
   if (vW < 530) {
     $("#bannerPhoto").css("left", -400);
     $("#bannerPhoto").css("width", vW + 400);
-    $("#network").css("top", $("#experienceIntro").offset().top - 705);
+    //$("#network").css("top", $("#experienceIntro").offset().top - 705);
     $("#title").css("top", 60);
     $("#title").css("left", 0);
     $("#title").css("width", vW);
@@ -146,21 +151,29 @@ $(document).ready(function () {
     $("#subHeaders").css("left", 0);
     $("#subHeaders").css("width", vW);
     $("#subHeaders").css("text-align", "center");
-    $("#title").animate({ top: 80 }, 1000);
+    $("#title").animate({
+      top: 80
+    }, 1000);
     setTimeout(function () {
-      $("#subHeaders").animate({ top: 150 }, {
+      $("#subHeaders").animate({
+        top: 150
+      }, {
         queue: false,
         duration: 1000
       });
       $("#subHeaders").fadeTo(800, 1);
     }, 300);
   } else {
-    $("#network").css("top", $("#experienceIntro").offset().top - 855);
+    //$("#network").css("top", $("#experienceIntro").offset().top - 855);
     $("#title").css("top", vH - 260);
     $("#subHeaders").css("top", vH - 190);
-    $("#title").animate({ top: vH - 300 }, 1000);
+    $("#title").animate({
+      top: vH - 300
+    }, 1000);
     setTimeout(function () {
-      $("#subHeaders").animate({ top: vH - 230 }, {
+      $("#subHeaders").animate({
+        top: vH - 230
+      }, {
         queue: false,
         duration: 1000
       });
@@ -272,4 +285,5 @@ $(document).ready(function () {
     $("#prjRepo").show();
     $("#prjRepo").attr("href", $(this).attr("repoLink"));
   });
+
 });

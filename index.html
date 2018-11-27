@@ -25,9 +25,8 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="main.css">
   <script>
-    let enable_https = false;
-  if (enable_https && location.protocol != 'https:')
- location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+    const ENABLE_HTTPS = false;
+    if (ENABLE_HTTPS && location.protocol != 'https:') location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
   </script>
 </head>
 
@@ -68,8 +67,9 @@
     </div>
   </div>
   <div class="container-fluid" style="padding: 0px;" id="experienceIntro">
-    <p id="workExperience" class="fadeIn" style="color: white;">Work Experience</p>
-    <canvas id="network" class="fadeIn"></canvas>
+    <canvas id="network" class="fadeIn">
+    </canvas>
+      <p id="workExperience">Work Experience</p>
   </div>
   <div class="container-fluid" style="padding: 0px;" id="flipp">
     <div class="row-fluid">
@@ -406,8 +406,9 @@
 </div>
 <script src="parallax.min.js"></script>
 <script src="typed.js-master/js/typed.js"></script>
+<script type="text/javascript" src="binary-snowflakes.js"></script>
 <script type="text/javascript" src="main.js"></script>
-<script src="network-vis.js"></script>
+<script type="text/javascript" src="network-vis.js"></script>
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
