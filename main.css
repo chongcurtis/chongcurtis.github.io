@@ -22,6 +22,11 @@ a:visited {
 .fadeIn {
   opacity: 0.01;
 }
+.centered{
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 body{
   margin: 0px;
 }
@@ -47,12 +52,22 @@ body{
   margin-bottom: 50px;
 }
 #bannerPhoto{
+  width: 100%;
+  z-index: 0;
+  filter: brightness(80%);
+}
+#bannerPhotoWrapper{
+  background-color: grey;
+  z-index: 0;
+}
+/*
+#bannerPhotoWrapper{
   height: 600px;
   top: 0px;
   position: relative;
   width: 100%;
   background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) );
-}
+}*/
 #issueInfo{
   height: 400px;
   background-color: #2C3E50;
@@ -103,16 +118,20 @@ body{
   padding-right: 0px;
   padding-left: 0px;
 }
-#flippImg{
-  height: 530px;
+#flippBannerPhotoWrapper{
   position: relative;
-  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) );
+  height: 100%;
+  height: 800px;
+}
+#flippImg{
+  position: relative;
+  width: 100%;
+  height: 300px;
 }
 #flippLogo{
   position: absolute;
   z-index: 3;
   width: 250px;
-  top: 200px;
   filter: brightness(95%);
 }
 #projects{
@@ -157,6 +176,9 @@ body{
   height: 30%;
 }
 #experienceIntro{
+  position: relative;
+  padding: 0px;
+  z-index: 5;
   background-color: #070502;
   width: 100%;
 }
@@ -166,8 +188,6 @@ body{
   padding-bottom: 50px;
 }
 #workExperience{
-  text-align: center;
-  width: 100%;
   font-size: 30px;
   position: absolute;
   z-index: 3;

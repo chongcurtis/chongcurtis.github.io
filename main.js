@@ -114,13 +114,9 @@ $(document).ready(function () {
   });
 
   // TODO: Deal with this later. changing the parallax library might affect this
+  // TODO: make this work for mobile
   $("#binarySnowflakeCanvas").width(vW);
-  let networkHeight = $("#network").offset().top;
-  $("#workExperience").css("top", $("#network").offset().top + $("#experienceIntro").css("height")/2);
-  $("#workExperience").css("top", networkHeight);
   if (vW < 500) {
-    //$("#network").remove();
-    //$("#experienceIntro").css("height", 260);
     $("#winningHacksPadding").css("padding-top", 60);
     $("#visualizationsPadding").css("padding-top", 30);
     $("#visualizationsPadding").css("padding-bottom", 60);
@@ -128,21 +124,14 @@ $(document).ready(function () {
     $("#archivesPadding").css("padding-bottom", 60);
     $("#personalFavouritesPadding").css("padding-top", 30);
     $("#personalFavouritesPadding").css("padding-bottom", 60);
-  } else if (vW < 1280) {
-    //$("#network").css("width", vW * 0.9);
   }
 
-  //$("#workExperience").css("top", $("#network").offset().top);
   $("#htnLogo").css("top", $("#htn").height() / 2 - 75);
   $("#htnLogo").css("left", vW / 2 - 75);
   $("#htnWords").css("top", $("#htn").height() / 2 - 35);
   $("#htnWords").css("left", vW / 2);
-  $("#flippLogo").css("left", vW / 2 - 125);
 
   if (vW < 530) {
-    $("#bannerPhoto").css("left", -400);
-    $("#bannerPhoto").css("width", vW + 400);
-    //$("#network").css("top", $("#experienceIntro").offset().top - 705);
     $("#title").css("top", 60);
     $("#title").css("left", 0);
     $("#title").css("width", vW);
@@ -164,7 +153,6 @@ $(document).ready(function () {
       $("#subHeaders").fadeTo(800, 1);
     }, 300);
   } else {
-    //$("#network").css("top", $("#experienceIntro").offset().top - 855);
     $("#title").css("top", vH - 260);
     $("#subHeaders").css("top", vH - 190);
     $("#title").animate({
@@ -180,7 +168,7 @@ $(document).ready(function () {
       $("#subHeaders").fadeTo(800, 1);
     }, 300);
   }
-  $("#bannerPhoto").css("height", vH);
+  $("#bannerPhotoWrapper").css("height", vH);
 
   $("#t1").fadeTo(200, 1);
   setTimeout(function () {
