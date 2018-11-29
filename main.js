@@ -123,7 +123,10 @@ $(document).ready(function () {
     $("#subHeaders").css("left", 0);
     $("#subHeaders").css("width", vW);
     $("#subHeaders").css("text-align", "center");
-    $("#educationHeader").css("top", vH - 200);
+    $("#educationHeader").css("top", 225);
+    $("#educationHeader").css("left", 0);
+    $("#educationHeader").css("width", vW);
+    $("#educationHeader").css("text-align", "center");
     setTimeout(function () {
       $("#educationHeader").fadeTo(800, 1);
     },400);
@@ -265,5 +268,4 @@ $(document).ready(function () {
     $("#prjRepo").show();
     $("#prjRepo").attr("href", $(this).attr("repoLink"));
   });
-  
 });
