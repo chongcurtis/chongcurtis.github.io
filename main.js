@@ -1,6 +1,8 @@
-$(document).ready(function () {
+
   var vH = window.innerHeight;
   var vW = window.innerWidth;
+  $("#binarySnowflakeCanvas").width(vW);
+$(document).ready(function () {
   $(window).scroll(function () {
     $(".fadeIn").each(function () {
       var pos = $(this).offset().top,
@@ -96,7 +98,6 @@ $(document).ready(function () {
 
   // TODO: Deal with this later. changing the parallax library might affect this
   // TODO: make this work for mobile
-  $("#binarySnowflakeCanvas").width(vW);
 
   $("#htnLogo").css("top", $("#htn").height() / 2 - 75);
   $("#htnLogo").css("left", vW / 2 - 75);

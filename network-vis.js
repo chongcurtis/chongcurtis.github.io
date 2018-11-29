@@ -304,7 +304,7 @@ function connectNodes() {
 
 function init() {
 
-  small_cluster_amt = Math.floor(viewWidth/32); // This is around 50 nodes for me
+  small_cluster_amt = Math.floor(50); // This is around 50 nodes for me
   big_cluster_amt = Math.floor((4*small_cluster_amt)/5); // 5:4 is a good ratio
   console.log("Number of nodes: " + (small_cluster_amt + big_cluster_amt));
 
