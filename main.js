@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
   var vH = window.innerHeight;
   var vW = window.innerWidth;
@@ -50,13 +49,13 @@ $(document).ready(function () {
                   i++;
                   $("#winNum").html(i);
                   if (i < 6) myLoop(i);
-                }, 300)
+                }, 300);
               } else {
                 setTimeout(function () {
                   i++;
                   $("#winNum").html(i);
                   if (i < 6) myLoop(i);
-                }, 700)
+                }, 700);
               }
             })(0);
           }
@@ -72,38 +71,19 @@ $(document).ready(function () {
             }, 1500);
           }
         } else if ($(this).is($("#typingCon"))) {
-          $("#mailElement").typed({
-            strings: ["<a href='mailto:curtischong5@gmail.com' style='color: #00FF00;' target='_blank'>curtischong5@gmail.com</a>"],
-            typeSpeed: 6
-          });
-          setTimeout(function () {
-            $(".typed-cursor").remove();
-          }, 6000);
-          $("#linkedinElement").typed({
-            strings: ["<a href='https://www.linkedin.com/in/chongcurtis'  style='color: #00FF00;' target='_blank'>linkedin.com/in/chongcurtis</a>"],
-            typeSpeed: 6
-          });
-          setTimeout(function () {
-            $(".typed-cursor").remove();
-          }, 6000);
-          $("#githubElement").typed({
-            strings: ["<a href='https://github.com/curtischong'  style='color: #00FF00;' target='_blank'>github.com/curtischong</a>"],
-            typeSpeed: 6
-          });
-          setTimeout(function () {
-            $(".typed-cursor").remove();
-          }, 6000);
-          $("#devpostElement").typed({
-            strings: ["<a href='https://devpost.com/curtischong'  style='color: #00FF00;' target='_blank'>devpost.com/curtischong</a>"],
-            typeSpeed: 6
-          });
-          setTimeout(function () {
-            $(".typed-cursor").remove();
-          }, 6000);
-          $("#stElement").typed({
-            strings: ["<a href='http://stackoverflow.com/users/4647924/curtis-chong'  style='color: #00FF00;' target='_blank'>stackoverflow.com/users/4647924/curtis-chong</a>"],
-            typeSpeed: 6
-          });
+          const numElements = 5;
+          let listOfElements = ["mailElement", "linkedinElement", "githubElement", "devpostElement", "stElement"];
+          let listOfElementLinks = ["<a href='mailto:curtischong5@gmail.com' style='color: #00FF00;'>curtischong5@gmail.com</a>", 
+          "<a href='https://www.linkedin.com/in/chongcurtis'  style='color: #00FF00;' target='_blank'>linkedin.com/in/chongcurtis</a>",
+           "<a href='https://github.com/curtischong'  style='color: #00FF00;' target='_blank'>github.com/curtischong</a>", 
+           "<a href='https://devpost.com/curtischong'  style='color: #00FF00;' target='_blank'>devpost.com/curtischong</a>", 
+           "<a href='http://stackoverflow.com/users/4647924/curtis-chong' style='color: #00FF00;' target='_blank'>stackoverflow.com/users/4647924/curtis-chong</a>"];
+           for(let r = 0; r < numElements; r++){
+              $("#" + listOfElements[r]).typed({
+                strings: [listOfElementLinks[r]],
+                typeSpeed: 6
+              })
+           }
           setTimeout(function () {
             $(".typed-cursor").remove();
           }, 6000);
@@ -117,6 +97,12 @@ $(document).ready(function () {
   // TODO: Deal with this later. changing the parallax library might affect this
   // TODO: make this work for mobile
   $("#binarySnowflakeCanvas").width(vW);
+
+  $("#htnLogo").css("top", $("#htn").height() / 2 - 75);
+  $("#htnLogo").css("left", vW / 2 - 75);
+  $("#htnWords").css("top", $("#htn").height() / 2 - 35);
+  $("#htnWords").css("left", vW / 2);
+
   if (vW < 500) {
     $("#winningHacksPadding").css("padding-top", 60);
     $("#visualizationsPadding").css("padding-top", 30);
@@ -127,12 +113,8 @@ $(document).ready(function () {
     $("#personalFavouritesPadding").css("padding-bottom", 60);
   }
 
-  $("#htnLogo").css("top", $("#htn").height() / 2 - 75);
-  $("#htnLogo").css("left", vW / 2 - 75);
-  $("#htnWords").css("top", $("#htn").height() / 2 - 35);
-  $("#htnWords").css("left", vW / 2);
 
-  if (vW < 530) {
+  if (vW < 530) { // mobile
     $("#title").css("top", 60);
     $("#title").css("left", 0);
     $("#title").css("width", vW);
@@ -141,6 +123,10 @@ $(document).ready(function () {
     $("#subHeaders").css("left", 0);
     $("#subHeaders").css("width", vW);
     $("#subHeaders").css("text-align", "center");
+    $("#educationHeader").css("top", vH - 200);
+    setTimeout(function () {
+      $("#educationHeader").fadeTo(800, 1);
+    },400);
     $("#title").animate({
       top: 80
     }, 1000);
@@ -152,10 +138,15 @@ $(document).ready(function () {
         duration: 1000
       });
       $("#subHeaders").fadeTo(800, 1);
+      $("#quickLinks").fadeTo(800,1);
     }, 300);
-  } else {
+  } else { // Desktop
     $("#title").css("top", vH - 260);
     $("#subHeaders").css("top", vH - 190);
+    $("#educationHeader").css("top", vH - 190);
+    setTimeout(function () {
+      $("#educationHeader").fadeTo(1000, 1);
+    },800);
     $("#title").animate({
       top: vH - 300
     }, 1000);
@@ -167,9 +158,9 @@ $(document).ready(function () {
         duration: 1000
       });
       $("#subHeaders").fadeTo(800, 1);
+      $("#quickLinks").fadeTo(800,1);
     }, 300);
   }
-  // $("#bannerPhotoWrapper").css("height", vH);
 
   $("#t1").fadeTo(200, 1);
   setTimeout(function () {
@@ -274,8 +265,5 @@ $(document).ready(function () {
     $("#prjRepo").show();
     $("#prjRepo").attr("href", $(this).attr("repoLink"));
   });
-let myParaxify = paraxify('.paraxify',{
-    speed: 1,
-    boost: 0
-  });
+  
 });
