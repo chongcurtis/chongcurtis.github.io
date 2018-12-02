@@ -1,3 +1,5 @@
+const NUM_HACKATHONS = 23;
+
 var vH = window.innerHeight;
 var vW = window.innerWidth;
 $("#binarySnowflakeCanvas").width(vW);
@@ -32,7 +34,7 @@ $(document).ready(function () {
               let time_delay = 1 / cur_step;
               setTimeout(function () {
                 $("#hackathonNum").html(cur_step + "  ");
-                if (cur_step < 24) {
+                if (cur_step < NUM_HACKATHONS) {
                   myLoop(cur_step + 1);
                 }
               }, 1000 * time_delay);
