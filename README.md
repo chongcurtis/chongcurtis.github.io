@@ -6,3 +6,6 @@ If I change my domain name remember to update the READMEs to the Photos/gifs fou
 - Greenfoot_Physics_Engine
 - Musr
 - se101
+- coworm
+- Canadian forest fires
+- rehackilation
