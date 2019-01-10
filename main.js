@@ -6,105 +6,111 @@ $("#binarySnowflakeCanvas").width(vW);
 $(function () {
   $('.lazy').lazy();
 });
-$(document).ready(function () {
-  $(window).scroll(function () {
-    $(".fadeIn").each(function () {
-      var pos = $(this).offset().top,
-        winTop = $(window).scrollTop();
 
-      if ($(this).is($("#network"))) { // Since the network is really tall I want to display it later
-        if (pos + 400 < winTop + vH) {
-          $(this).fadeTo(1000, 1);
-          $(this).removeClass("fadeIn");
-        }
-      } else if (pos + 200 < winTop + vH) {
-        if ($(this).context.classList.contains("splitHr")) {
-          let ctx = $(this);
-          var hrwidthtimer = window.setInterval(function () {
-            var hrwidth = ctx.width();
-            if (hrwidth < vW - vH / 4) {
-              ctx.css("width", hrwidth + 5);
-            } else {
-              window.clearTimeout(hrwidthtimer);
-            }
-          }, 16);
-        } else if ($(this).is($("#hackathonNum"))) {
-          if ($(this).html() == 0) {
-            (function myLoop(cur_step) {
-              let time_delay = 1 / cur_step;
-              setTimeout(function () {
-                $("#hackathonNum").html(cur_step + "  ");
-                if (cur_step < NUM_HACKATHONS) {
-                  myLoop(cur_step + 1);
-                }
-              }, 1000 * time_delay);
-            })(0);
-          }
-        } else if ($(this).is($("#winNum"))) {
-          // I can't get a good enough function for this :(
-          /*if ($(this).html() == 0) {
-            (function myLoop(cur_step){
-              let time_delay = 40*Math.sqrt(20*Math.pow(cur_step,3) + 1);
-              setTimeout(function(){
-                $("#winNum").html(cur_step + "  ");
-                if (cur_step < 6) {
-                  myLoop(cur_step+1);
-                }
-              }, time_delay);
-            })(0);
-          }*/
+let handlePageUpdates = function(){
+  $(".fadeIn").each(function () {
+    var pos = $(this).offset().top,
+      winTop = $(window).scrollTop();
 
-          if ($(this).html() == 0) {
-            (function myLoop(i) {
-              if (i < 3) {
-                setTimeout(function () {
-                  i++;
-                  $("#winNum").html(i);
-                  if (i < 6) myLoop(i);
-                }, 300);
-              } else {
-                setTimeout(function () {
-                  i++;
-                  $("#winNum").html(i);
-                  if (i < 6) myLoop(i);
-                }, 700);
-              }
-            })(0);
-          }
-        } else if ($(this).is($("#htnLogo"))) {
-          if ($(this).css("left") == (vW / 2 - 75) + "px") {
-            setTimeout(function () {
-              $("#htnLogo").stop().animate({
-                left: vW / 2 - 170
-              }, {
-                  queue: false
-                });
-              $("#htnWords").fadeTo(1000, 1);
-            }, 1500);
-          }
-        } else if ($(this).is($("#typingCon"))) {
-          const numElements = 5;
-          let listOfElements = ["mailElement", "linkedinElement", "githubElement", "devpostElement", "stElement"];
-          let listOfElementLinks = ["<a href='mailto:curtischong5@gmail.com' style='color: #00FF00;'>curtischong5@gmail.com</a>",
-            "<a href='https://www.linkedin.com/in/chongcurtis'  style='color: #00FF00;' target='_blank'>linkedin.com/in/chongcurtis</a>",
-            "<a href='https://github.com/curtischong'  style='color: #00FF00;' target='_blank'>github.com/curtischong</a>",
-            "<a href='https://devpost.com/curtischong'  style='color: #00FF00;' target='_blank'>devpost.com/curtischong</a>",
-            "<a href='http://stackoverflow.com/users/4647924/curtis-chong' style='color: #00FF00;' target='_blank'>stackoverflow.com/users/4647924/curtis-chong</a>"
-          ];
-          for (let r = 0; r < numElements; r++) {
-            $("#" + listOfElements[r]).typed({
-              strings: [listOfElementLinks[r]],
-              typeSpeed: 6
-            })
-          }
-          setTimeout(function () {
-            $(".typed-cursor").remove();
-          }, 6000);
-        }
+    if ($(this).is($("#network"))) { // Since the network is really tall I want to display it later
+      if (pos + 400 < winTop + vH) {
         $(this).fadeTo(1000, 1);
         $(this).removeClass("fadeIn");
       }
-    });
+    } else if (pos + 200 < winTop + vH) {
+      if ($(this).context.classList.contains("splitHr")) {
+        let ctx = $(this);
+        var hrwidthtimer = window.setInterval(function () {
+          var hrwidth = ctx.width();
+          if (hrwidth < vW - vH / 4) {
+            ctx.css("width", hrwidth + 5);
+          } else {
+            window.clearTimeout(hrwidthtimer);
+          }
+        }, 16);
+      } else if ($(this).is($("#hackathonNum"))) {
+        if ($(this).html() == 0) {
+          (function myLoop(cur_step) {
+            let time_delay = 1 / cur_step;
+            setTimeout(function () {
+              $("#hackathonNum").html(cur_step + "  ");
+              if (cur_step < NUM_HACKATHONS) {
+                myLoop(cur_step + 1);
+              }
+            }, 1000 * time_delay);
+          })(0);
+        }
+      } else if ($(this).is($("#winNum"))) {
+        // I can't get a good enough function for this :(
+        /*if ($(this).html() == 0) {
+          (function myLoop(cur_step){
+            let time_delay = 40*Math.sqrt(20*Math.pow(cur_step,3) + 1);
+            setTimeout(function(){
+              $("#winNum").html(cur_step + "  ");
+              if (cur_step < 6) {
+                myLoop(cur_step+1);
+              }
+            }, time_delay);
+          })(0);
+        }*/
+
+        if ($(this).html() == 0) {
+          (function myLoop(i) {
+            if (i < 3) {
+              setTimeout(function () {
+                i++;
+                $("#winNum").html(i);
+                if (i < 6) myLoop(i);
+              }, 300);
+            } else {
+              setTimeout(function () {
+                i++;
+                $("#winNum").html(i);
+                if (i < 6) myLoop(i);
+              }, 700);
+            }
+          })(0);
+        }
+      } else if ($(this).is($("#htnLogo"))) {
+        if ($(this).css("left") == (vW / 2 - 75) + "px") {
+          setTimeout(function () {
+            $("#htnLogo").stop().animate({
+              left: vW / 2 - 170
+            }, {
+                queue: false
+              });
+            $("#htnWords").fadeTo(1000, 1);
+          }, 1500);
+        }
+      } else if ($(this).is($("#typingCon"))) {
+        const numElements = 5;
+        let listOfElements = ["mailElement", "linkedinElement", "githubElement", "devpostElement", "stElement"];
+        let listOfElementLinks = ["<a href='mailto:curtischong5@gmail.com' style='color: #00FF00;'>curtischong5@gmail.com</a>",
+          "<a href='https://www.linkedin.com/in/chongcurtis'  style='color: #00FF00;' target='_blank'>linkedin.com/in/chongcurtis</a>",
+          "<a href='https://github.com/curtischong'  style='color: #00FF00;' target='_blank'>github.com/curtischong</a>",
+          "<a href='https://devpost.com/curtischong'  style='color: #00FF00;' target='_blank'>devpost.com/curtischong</a>",
+          "<a href='http://stackoverflow.com/users/4647924/curtis-chong' style='color: #00FF00;' target='_blank'>stackoverflow.com/users/4647924/curtis-chong</a>"
+        ];
+        for (let r = 0; r < numElements; r++) {
+          $("#" + listOfElements[r]).typed({
+            strings: [listOfElementLinks[r]],
+            typeSpeed: 6
+          })
+        }
+        setTimeout(function () {
+          $(".typed-cursor").remove();
+        }, 6000);
+      }
+      $(this).fadeTo(1000, 1);
+      $(this).removeClass("fadeIn");
+    }
+  });
+}
+
+$(document).ready(function () {
+    handlePageUpdates();
+  $(window).scroll(function () {
+    handlePageUpdates();
   });
 
   // TODO: Deal with this later. changing the parallax library might affect this
@@ -117,8 +123,8 @@ $(document).ready(function () {
 
   if (vW < 500) {
     $("#winningHacksPadding").css("padding-top", 60);
-    $("#visualizationsPadding").css("padding-top", 30);
-    $("#visualizationsPadding").css("padding-bottom", 60);
+    $("#otherProjectsPadding").css("padding-top", 30);
+    $("#otherProjectsPadding").css("padding-bottom", 60);
     $("#archivesPadding").css("padding-top", 30);
     $("#archivesPadding").css("padding-bottom", 60);
     $("#personalFavouritesPadding").css("padding-top", 30);
@@ -255,6 +261,21 @@ $(document).ready(function () {
     showEvent(this);
     showProject();
   });
+
+
+  $("#viewKaggleQuora").on("click", function () {
+    $(this).attr("repoLink", $("#SFfirstLink").attr("repoLink"));
+    $(this).attr("hackName", $("#SFfirstLink").attr("hackName"));
+    $(this).attr("hackathon", $("#SFfirstLink").attr("hackathon"));
+    $(this).attr("place", $("#SFfirstLink").attr("place"));
+    $(this).attr("thePrjImg", $("#SFfirstLink").attr("thePrjImg"));
+    $(this).attr("popupImg", $("#SFfirstLink").attr("popupImg"));
+    $(this).attr("eventDesc", $("#SFfirstLink").attr("eventDesc"));
+    $(this).attr("desc", $("#SFfirstLink").attr("desc"));
+    showEvent(this);
+    showProject();
+  });
+
 
   $("#backToEvent").on("click", function () {
     $("#viewProject").show();
