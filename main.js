@@ -56,17 +56,17 @@ let handlePageUpdates = function(){
 
         if ($(this).html() == 0) {
           (function myLoop(i) {
-            if (i < 3) {
+            if (i < 6) {
               setTimeout(function () {
                 i++;
                 $("#winNum").html(i);
-                if (i < 6) myLoop(i);
+                if (i < 10) myLoop(i);
               }, 300);
             } else {
               setTimeout(function () {
                 i++;
                 $("#winNum").html(i);
-                if (i < 6) myLoop(i);
+                if (i < 10) myLoop(i);
               }, 700);
             }
           })(0);
