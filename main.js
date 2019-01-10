@@ -6,7 +6,7 @@ $("#binarySnowflakeCanvas").width(vW);
 $(function () {
   $('.lazy').lazy();
 });
-
+var showUrlLink = true
 let handlePageUpdates = function(){
   $(".fadeIn").each(function () {
     var pos = $(this).offset().top,
@@ -112,6 +112,20 @@ $(document).ready(function () {
   $(window).scroll(function () {
     handlePageUpdates();
   });
+
+var url_string = window.location.href;
+var url = new URL(url_string);
+var project = url.searchParams.get("project");
+if (project == "kaggle_quora_insincere_questions_classification" && showUrlLink) {
+  $([document.documentElement, document.body]).animate({
+    scrollTop: $("#kaggleSection").offset().top-500
+  }, 2000,function(){
+    $("#kaggleQuoraInsincereQuestionsClassificationProject").click();
+  });
+}
+
+
+
 
   // TODO: Deal with this later. changing the parallax library might affect this
   // TODO: make this work for mobile
