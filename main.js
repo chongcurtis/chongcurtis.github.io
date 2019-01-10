@@ -56,7 +56,7 @@ let handlePageUpdates = function(){
 
         if ($(this).html() == 0) {
           (function myLoop(i) {
-            if (i < 6) {
+            if (i < 7) {
               setTimeout(function () {
                 i++;
                 $("#winNum").html(i);
