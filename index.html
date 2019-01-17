@@ -187,7 +187,7 @@
       <div class="col-md-4">
         <p class="fadeIn" id="kaggleSection" style="text-align: center; font-size: 30px; margin-top: 50px;font-weight: 100;color: white;">Kaggle</p><br>
         <p class="fadeIn">GPUs are expensive. So after tipping my toe into 10 competitions, I set up a persistent p2.xlarge spot instance and started to write neural nets. Take a look at my <a href="https://github.com/curtischong/ec2_kaggle" target="_blank">new repo</a> and a write-up on my latest competitions:</p>
-        <p class="fadeIn prjimg" id="kaggleQuoraInsincereQuestionsClassificationProject" style="font-size: 20px;cursor: pointer;width: 100%;color: white; margin-bottom: 240px; margin-top: 20px;" thePrjImg="photos/quora_eda.png" hackName="Quora Insincere Questions Classification" repoLink="https://www.kaggle.com/c/quora-insincere-questions-classification" desc="<h3>Premise</h3> <br>Every day thousands of questions are asked on Quora, but not all questions were asked with positive intentions. Quora calls these questions insincere. Intrigued by the issue, my teammate Kevin Shen and I joined the competition to predict if a submitted question had violated Quora’s terms of service. The cross validation for this competition was an f1 score between these two classes: sincere and insincere problems.<br>
+        <p class="fadeIn prjimg" id="kaggleQuoraInsincereQuestionsClassificationProject" style="font-size: 20px;cursor: pointer;width: 100%;color: white; margin-bottom: 240px; margin-top: 20px;" thePrjImg="photos/quora_eda.png" hackName="Quora Insincere Questions Classification" repoLink="https://www.kaggle.com/c/quora-insincere-questions-classification" desc="<h3>Premise</h3>Every day thousands of questions are asked on Quora, but not all questions were asked with positive intentions. Quora calls these questions insincere. Intrigued by the issue, my teammate Kevin Shen and I joined the competition to predict if a submitted question had violated Quora’s terms of service. The cross validation for this competition was an f1 score between these two classes: sincere and insincere problems.<br>
           Like all Kernel Competitions, we only had 2 hours to load data, preprocess, train, and predict classes without the use of external data. Yikes, this killed any opportunity for large robust ensembles and heavy feature engineering. Since the only provided variable were the questions, we began with heavy EDA on the words used,
           <h3>Exploratory Data Analysis</h3> By now have a fairly standard method for text data. We’d run a script for token correlations, the most common n-grams for each class, an analysis on sentence structure using NLTK, and of course, just reading the questions in the dataset. Surprise surprise, most of the flagged questions were blatantly racist or inherently stupid.
           <h3>Preprocessing</h3> Next, we followed the standard procedure of cleaning the data and generating a custom dictionary for misspellings, importing the text embeddings etc. Unfortunately, the FastText .bin file was not provided so we couldn’t generate out of vocabulary embeddings (Since all processing would have to be completed in 2 hours, re-generating embeddings weren’t an option)
@@ -197,7 +197,7 @@
           neutral word either (bacon, eggs, or ham), our f1 score increased by 0.02. We had this idea because we wanted the
           network to understand the underlying semantics of how insincere questions were semantically worded instead of blindly
           looking for the right keywords. Granted, we added another 2 features that stated the number of common insincere/sincere
-          words that were found in each question (to increase training time)<br><br>
+          words that were found in each question (to increase training time).<br><br>
           All in all, this led to a pretty stable model and we ended with an f1 score of 0.685!" >Quora Insincere Questions Classification<i class="fa fa-angle-right" aria-hidden="true" style="margin-left: 10px;"></i></p> </p>
       </div>
     </div>
@@ -220,11 +220,6 @@
   <div class="row-fluid" style="background-color: #070502">
     <div class="col-md-8 col-md-offset-2">
       <p style="position: relative; top: 30px; font-size: 16px;" class="fadeIn">On the stage of Canada's largest hackathon, our team proposed Agrigate, a solution to better Ontario's agricultural security. Using a combination of geographic data from Nasa and Ontario's land surveys, our webapp could deliver current climate statistics as well as project crop prices until the year 2020.</p>
-    </div>
-  </div>
-  <div class="row-fluid">
-    <div class="col-md-12">
-      <p style="text-align: center; margin-top: 40px; font-size: 20px;"><a class="fadeIn" style="color: white;font-weight: 100;" href="https://gist.github.com/curtischong/68237f2b76f6b014af7dbe37953261f5" target="_blank">View All Hackathons<i class="fa fa-angle-right" aria-hidden="true" style="margin-left: 10px;"></i></a></p>
     </div>
   </div>
 
@@ -291,6 +286,11 @@
     </div>
   </div>
 </div>
+  <div class="row-fluid">
+    <div class="col-md-12">
+      <p style="text-align: center; margin-top: 40px; font-size: 20px;"><a class="fadeIn" style="color: white;font-weight: 100;" href="https://gist.github.com/curtischong/68237f2b76f6b014af7dbe37953261f5" target="_blank">View All Hackathons<i class="fa fa-angle-right" aria-hidden="true" style="margin-left: 10px;"></i></a></p>
+    </div>
+  </div>
 <div class="container-fluid" id="personalFavourites">
   <div class="row-fluid" style="background-color: #070502">
     <div class="col-md-12 fadeIn">
