@@ -6,7 +6,6 @@ $("#binarySnowflakeCanvas").width(vW);
 $(function () {
   $('.lazy').lazy();
 });
-var showUrlLink = true
 let handlePageUpdates = function(){
   $(".fadeIn").each(function () {
     var pos = $(this).offset().top,
@@ -42,33 +41,18 @@ let handlePageUpdates = function(){
         }
       } else if ($(this).is($("#winNum"))) {
         // I can't get a good enough function for this :(
-        /*if ($(this).html() == 0) {
+        if ($(this).html() == 0) {
           (function myLoop(cur_step){
-            let time_delay = 40*Math.sqrt(20*Math.pow(cur_step,3) + 1);
+            // let time_delay = 40*Math.sqrt(20*Math.pow(cur_step,3) + 1);
+            // let time_delay = -4500/(cur_step + 15) + 500;
+            // let time_delay = -265/(0.2*Math.pow(cur_step,3) + 1) + 400;
+            let time_delay = 50*cur_step + 100;
             setTimeout(function(){
               $("#winNum").html(cur_step + "  ");
-              if (cur_step < 6) {
+              if (cur_step < 10) {
                 myLoop(cur_step+1);
               }
             }, time_delay);
-          })(0);
-        }*/
-
-        if ($(this).html() == 0) {
-          (function myLoop(i) {
-            if (i < 7) {
-              setTimeout(function () {
-                i++;
-                $("#winNum").html(i);
-                if (i < 10) myLoop(i);
-              }, 300);
-            } else {
-              setTimeout(function () {
-                i++;
-                $("#winNum").html(i);
-                if (i < 10) myLoop(i);
-              }, 700);
-            }
           })(0);
         }
       } else if ($(this).is($("#htnLogo"))) {
@@ -116,12 +100,20 @@ $(document).ready(function () {
 var url_string = window.location.href;
 var url = new URL(url_string);
 var project = url.searchParams.get("project");
-if (project == "kaggle_quora_insincere_questions_classification" && showUrlLink) {
-  $([document.documentElement, document.body]).animate({
-    scrollTop: $("#kaggleSection").offset().top-500
-  }, 2000,function(){
-    $("#kaggleQuoraInsincereQuestionsClassificationProject").click();
-  });
+if(project != ""){
+  if (project == "kaggle_quora_insincere_questions_classification") {
+    $([document.documentElement, document.body]).animate({
+      scrollTop: $("#kaggleSection").offset().top-500
+    }, 2000,function(){
+      $("#kaggleQuoraInsincereQuestionsClassificationProject").click();
+    });
+  }else if(project == "agrigate"){
+    $([document.documentElement, document.body]).animate({
+      scrollTop: $("#kaggleSection").offset().top-500
+    }, 2000,function(){
+        $("#agrigate").click();
+    });
+  }
 }
 
 
