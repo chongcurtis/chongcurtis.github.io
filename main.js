@@ -43,9 +43,6 @@ let handlePageUpdates = function(){
         // I can't get a good enough function for this :(
         if ($(this).html() == 0) {
           (function myLoop(cur_step){
-            // let time_delay = 40*Math.sqrt(20*Math.pow(cur_step,3) + 1);
-            // let time_delay = -4500/(cur_step + 15) + 500;
-            // let time_delay = -265/(0.2*Math.pow(cur_step,3) + 1) + 400;
             let time_delay = 50*cur_step + 100;
             setTimeout(function(){
               $("#winNum").html(cur_step + "  ");
@@ -109,9 +106,15 @@ if(project != ""){
     });
   }else if(project == "agrigate"){
     $([document.documentElement, document.body]).animate({
-      scrollTop: $("#kaggleSection").offset().top-500
+      scrollTop: $("#agrigate").offset().top - 500
     }, 2000,function(){
         $("#agrigate").click();
+    });
+  } else if (project == "recap") {
+    $([document.documentElement, document.body]).animate({
+      scrollTop: $("#recap").offset().top - 500
+    }, 2000, function () {
+        $("#recap").click();
     });
   }
 }
