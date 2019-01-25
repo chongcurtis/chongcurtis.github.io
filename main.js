@@ -118,10 +118,6 @@ if(project != ""){
     });
   }
 }
-
-
-
-
   // TODO: Deal with this later. changing the parallax library might affect this
   // TODO: make this work for mobile
 
