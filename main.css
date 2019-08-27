@@ -133,7 +133,14 @@ body,html{
 #svg_stackoverflow:hover{
   fill: #f48024;
 }
+#svg_kaggle{
+}
+#svg_kaggle:hover{
+  fill: #20beff;
+}
 #quickResumeLink{
+  position: relative;
+  display: inline-block;
   text-decoration: none !important;
   border: 1px solid white;
   border-radius: 6px;
