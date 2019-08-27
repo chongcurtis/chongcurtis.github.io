@@ -1,4 +1,4 @@
-const NUM_HACKATHONS = 23;
+const NUM_HACKATHONS = 24;
 
 var vH = window.innerHeight;
 var vW = window.innerWidth;
@@ -43,10 +43,10 @@ let handlePageUpdates = function(){
         // I can't get a good enough function for this :(
         if ($(this).html() == 0) {
           (function myLoop(cur_step){
-            let time_delay = 50*cur_step + 100;
+            let time_delay = 100*(Math.pow(1.23,cur_step)/3) + 100;
             setTimeout(function(){
               $("#winNum").html(cur_step + "  ");
-              if (cur_step < 10) {
+              if (cur_step < 11) {
                 myLoop(cur_step+1);
               }
             }, time_delay);
