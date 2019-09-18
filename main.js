@@ -1,4 +1,4 @@
-const NUM_HACKATHONS = 24;
+const NUM_HACKATHONS = 25;
 
 var vH = window.innerHeight;
 var vW = window.innerWidth;
@@ -46,7 +46,7 @@ let handlePageUpdates = function(){
             let time_delay = 100*(Math.pow(1.23,cur_step)/3) + 100;
             setTimeout(function(){
               $("#winNum").html(cur_step + "  ");
-              if (cur_step < 11) {
+              if (cur_step < 12) {
                 myLoop(cur_step+1);
               }
             }, time_delay);
