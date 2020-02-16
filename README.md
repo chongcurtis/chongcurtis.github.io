@@ -14,3 +14,6 @@ If I change my domain name remember to update the READMEs to the Photos/gifs fou
 - Lweb
 - Messenger Summarizer
 - Messenger Assistant
+
+# Dev Notes
+- Use `python3 -m http.server` so jquery can load html files.

@@ -222,6 +222,7 @@ if(project != ""){
   }, 30);
 
   var showProject = function () {
+    console.log("asd project")
     $("#viewProject").hide();
     $("#backToEvent").show();
     $("#prjTitle").attr("popupImg", $("#prjImg").attr("src"));
@@ -230,6 +231,7 @@ if(project != ""){
     $("#prjRepo").show();
   };
   var showEvent = function (ctx) {
+    console.log("asd event")
     $("#viewProject").show();
     $("#backToEvent").hide();
     $("#myModal").modal("show");
@@ -242,7 +244,7 @@ if(project != ""){
     $("#prjTitle").html(title);
     $("#prjTitle").attr("thePrjImg", thePrjImg);
     $("#prjTitle").attr("eventDesc", $(ctx).attr("eventDesc"));
-    $("#prjTitle").attr("desc", $(ctx).attr("desc"));
+    $("#prjTitle").attr("desc", $(ctx).load("desc"));
     $("#prjRepo").attr("href", $(ctx).attr("repoLink"));
     $("#prjTitleEvent").html(hackathon);
     $("#prjTitlePlace").html(place);
@@ -269,6 +271,7 @@ if(project != ""){
 
 
   $("#viewKaggleQuora").on("click", function () {
+    console.log("this is a thing")
     $(this).attr("repoLink", $("#SFfirstLink").attr("repoLink"));
     $(this).attr("hackName", $("#SFfirstLink").attr("hackName"));
     $(this).attr("hackathon", $("#SFfirstLink").attr("hackathon"));
@@ -277,7 +280,7 @@ if(project != ""){
     $(this).attr("popupImg", $("#SFfirstLink").attr("popupImg"));
     $(this).attr("eventDesc", $("#SFfirstLink").attr("eventDesc"));
     $(this).attr("desc", $("#SFfirstLink").attr("desc"));
-    showEvent(this);
+    showEvent(this); // Since kaggle is an event there really isn't a
     showProject();
   });
 
@@ -299,7 +302,7 @@ if(project != ""){
     $("#viewProject").hide();
     $("#backToEvent").hide();
     $("#myModal").modal("show");
-    $("#prjP").html($(this).attr("desc"));
+    $("#prjP").load($(this).attr("desc"));
     $("#prjImg").attr("src", $(this).attr("thePrjImg"));
     $("#prjTitle").html($(this).attr("hackName"));
     $("#prjTitleEvent").html($(this).attr("hackathon"));
