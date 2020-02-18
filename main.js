@@ -222,20 +222,18 @@ if(project != ""){
   }, 30);
 
   var showProject = function () {
-    console.log("asd project")
     $("#viewProject").hide();
     $("#backToEvent").show();
     $("#prjTitle").attr("popupImg", $("#prjImg").attr("src"));
     $("#prjImg").attr("src", $("#prjTitle").attr("thePrjImg"));
-    $("#prjP").html($("#prjTitle").attr("desc"));
+    $("#prjP").load($("#prjTitle").attr("desc"));
     $("#prjRepo").show();
   };
   var showEvent = function (ctx) {
-    console.log("asd event")
     $("#viewProject").show();
     $("#backToEvent").hide();
     $("#myModal").modal("show");
-    $("#prjP").html($(ctx).attr("eventDesc"));
+    $("#prjP").load($(ctx).attr("eventDesc"));
     var hackathon = $(ctx).attr("hackathon");
     var place = $(ctx).attr("place");
     var title = $(ctx).attr("hackname");
@@ -244,7 +242,7 @@ if(project != ""){
     $("#prjTitle").html(title);
     $("#prjTitle").attr("thePrjImg", thePrjImg);
     $("#prjTitle").attr("eventDesc", $(ctx).attr("eventDesc"));
-    $("#prjTitle").attr("desc", $(ctx).load("desc"));
+    $("#prjTitle").attr("desc", $(ctx).attr("desc"));
     $("#prjRepo").attr("href", $(ctx).attr("repoLink"));
     $("#prjTitleEvent").html(hackathon);
     $("#prjTitlePlace").html(place);
@@ -289,7 +287,7 @@ if(project != ""){
     $("#viewProject").show();
     $("#backToEvent").hide();
     $("#prjImg").attr("src", $("#prjTitle").attr("popupImg"));
-    $("#prjP").html($("#prjTitle").attr("eventDesc"));
+    $("#prjP").load($("#prjTitle").attr("eventDesc"));
     $("#prjRepo").hide();
   });
 
