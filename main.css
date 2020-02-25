@@ -63,11 +63,22 @@ body,html{
   position: relative;
   filter: brightness(80%);
   height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  width: 80%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 1.0));
+  flex-grow: 1;
+}
+#bannerIntro{
+  position: relative;
+  flex-grow: 2;
+  width: 20%;
+  background-color: black;
 }
 #bannerPhotoWrapper{
   position: relative;
   height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
 }
 #issueInfo{
   height: 400px;
