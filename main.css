@@ -211,19 +211,44 @@ svg{
   position: relative;
   padding: 0px;
   height: 550px;
+  display: flex;
 }
 #flippPhoto{
   position: relative;
   height: 550px;
-  width: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15));
+  width: 20%;
+  /*background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15));*/
+  border-right: 1px solid white;
+  display: flex;
+}
+.workLogo{
+  height:100%;
+  width:100%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  max-height: 100px;
 }
 #flippLogo{
-  position: absolute;
-  z-index: 3;
-  width: 250px;
-  filter: brightness(95%);
 }
+#maxqLogo{
+}
+#bigTerminalLogo{
+  min-height: 220px;
+}
+#bigTerminaPhoto{
+
+}
+#maxQPhoto{
+  position: relative;
+  height: 550px;
+  width: 20%;
+  background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15));
+  border-right: 1px solid white;
+}
+
 #projects{
   position: relative;
   top: -10px;
@@ -295,6 +320,14 @@ svg{
   position: relative;
   padding-bottom: 50px;
 }
+#workExperiencePCon{
+  background-color: black;
+}
+#workExperienceP{
+  position: relative;
+  text-align: center;
+  margin-top: 40px;
+}
 #workExperience{
   font-size: 30px;
   position: absolute;
@@ -302,7 +335,6 @@ svg{
   width: 100%;
   text-align: center;
   text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
-  0 0 10px rgba(0, 0, 0, 0.9);
 }
 #hackathons{
   background-color: #070502;
