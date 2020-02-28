@@ -207,20 +207,45 @@ svg{
   margin-top: 10px;
   vertical-align: top;
 }
-#flipp{
+#workExperiencePhotos{
   position: relative;
   padding: 0px;
   height: 550px;
   display: flex;
 }
 #flippPhoto{
+}
+#maxQPhoto{
+}
+.workPhoto{
   position: relative;
   height: 550px;
   width: 20%;
   /*background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15));*/
   border-right: 1px solid white;
   display: flex;
+  cursor: pointer;
+  flex-direction: column;
 }
+
+.workPhoto:hover >.workLogo{
+  transform: translateY(-60%);
+  transition: 0.1s;
+}
+.workPhoto:hover >.upArrow{
+  transform: translateY(-10px);
+  transition: 0.1s;
+  opacity: 1;
+}
+.upArrow{
+  position: absolute;
+  max-height: 40px;
+  width: 100%;
+  order: 2;
+  bottom: 20px;
+  opacity: 0;
+}
+
 .workLogo{
   height:100%;
   width:100%;
@@ -230,6 +255,7 @@ svg{
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   max-height: 100px;
+  order: 1;
 }
 #flippLogo{
 }
@@ -238,15 +264,11 @@ svg{
 #bigTerminalLogo{
   min-height: 220px;
 }
+#luminaLogo{
+  padding: 30px;
+}
 #bigTerminaPhoto{
 
-}
-#maxQPhoto{
-  position: relative;
-  height: 550px;
-  width: 20%;
-  background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15));
-  border-right: 1px solid white;
 }
 
 #projects{
