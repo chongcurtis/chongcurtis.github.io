@@ -1,4 +1,5 @@
-const NUM_HACKATHONS = 25;
+const NUM_HACKATHONS = 26;
+const NUM_HACKATHON_WINS = 13;
 
 var vH = window.innerHeight;
 var vW = window.innerWidth;
@@ -46,7 +47,7 @@ let handlePageUpdates = function(){
             let time_delay = 100*(Math.pow(1.23,cur_step)/3) + 100;
             setTimeout(function(){
               $("#winNum").html(cur_step + "  ");
-              if (cur_step < 12) {
+              if (cur_step < NUM_HACKATHON_WINS) {
                 myLoop(cur_step+1);
               }
             }, time_delay);
@@ -267,22 +268,6 @@ if(project != ""){
     showProject();
   });
 
-
-  $("#viewKaggleQuora").on("click", function () {
-    console.log("this is a thing")
-    $(this).attr("repoLink", $("#SFfirstLink").attr("repoLink"));
-    $(this).attr("hackName", $("#SFfirstLink").attr("hackName"));
-    $(this).attr("hackathon", $("#SFfirstLink").attr("hackathon"));
-    $(this).attr("place", $("#SFfirstLink").attr("place"));
-    $(this).attr("thePrjImg", $("#SFfirstLink").attr("thePrjImg"));
-    $(this).attr("popupImg", $("#SFfirstLink").attr("popupImg"));
-    $(this).attr("eventDesc", $("#SFfirstLink").attr("eventDesc"));
-    $(this).attr("desc", $("#SFfirstLink").attr("desc"));
-    showEvent(this); // Since kaggle is an event there really isn't a
-    showProject();
-  });
-
-
   $("#backToEvent").on("click", function () {
     $("#viewProject").show();
     $("#backToEvent").hide();
@@ -294,6 +279,20 @@ if(project != ""){
   $(".competitionWin").on("click", function () {
     showEvent(this);
     //$(".modal-content").css("background-image","url(http://res.cloudinary.com/dj2eq8czc/image/upload/v1486482255/flybits_pukqgx.jpg)")
+  });
+
+  $(".workPhoto").on("click", function () {
+    $("#viewProject").hide();
+    $("#backToEvent").hide();
+    $("#myModal").modal("show");
+    $("#prjP").load($(this).attr("desc"));
+    $("#prjImg").attr("src", $(this).attr("thePrjImg"));
+    $("#prjTitle").html($(this).attr("hackName"));
+    $("#prjTitleEvent").html($(this).attr("hackathon"));
+    $("#prjTitlePlace").html("");
+    $("#prjRepo").attr("href", $(this).attr("repoLink"));
+
+    $("#prjRepo").hide();
   });
 
   $(".prjimg").on("click", function () {
