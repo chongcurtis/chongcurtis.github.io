@@ -211,7 +211,11 @@ svg{
   position: relative;
   padding: 0px;
   height: 550px;
+}
+
+#workBanner{
   display: flex;
+  width: 100%;
 }
 #flippPhoto{
 }
@@ -237,6 +241,15 @@ svg{
   transition: 0.1s;
   opacity: 1;
 }
+
+.jobTagline{
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 20%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .upArrow{
   position: absolute;
   max-height: 40px;
@@ -271,6 +284,17 @@ svg{
 
 }
 
+#kaggleSection{
+  text-align: center;
+  font-size: 30px;
+  margin-top: 30px;
+  font-weight: 100;
+  color: white;
+}
+#kaggleImg{
+  vertical-align: middle;
+}
+
 #projects{
   position: relative;
   top: -10px;
@@ -280,6 +304,16 @@ svg{
   cursor: pointer;
   border-radius: 10px;
   z-index: 1;
+}
+.prjimg:hover{
+  transform: translateY(-3px);
+  transition: 0.1s;
+}
+.kagglePrj{
+  font-size: 20px;
+  cursor: pointer;
+  width: 100%;
+  color: white;
 }
 #visualizations{
   background-color: #070502;
@@ -448,6 +482,8 @@ svg{
 .competitionWin:hover {
   text-decoration: none !important;
   color: #00bbff !important;
+  transform: translateY(-3px);
+  transition: 0.1s;
 }
 .HackathonName{
   position: relative;

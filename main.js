@@ -18,7 +18,7 @@ let handlePageUpdates = function(){
         $(this).removeClass("fadeIn");
       }
     } else if (pos + 200 < winTop + vH) {
-      if ($(this).context.classList.contains("splitHr")) {
+      if ($(this).hasClass("splitHr")) {
         let ctx = $(this);
         var hrwidthtimer = window.setInterval(function () {
           var hrwidth = ctx.width();
@@ -61,7 +61,7 @@ let handlePageUpdates = function(){
             }, {
                 queue: false
               });
-            $("#htnWords").fadeTo(1000, 1);
+            $("#htnWords").fadeTo("slow", 1);
           }, 1500);
         }
       } else if ($(this).is($("#typingCon"))) {
@@ -83,7 +83,7 @@ let handlePageUpdates = function(){
           $(".typed-cursor").remove();
         }, 6000);
       }
-      $(this).fadeTo(1000, 1);
+      $(this).fadeTo("slow", 1);
       $(this).removeClass("fadeIn");
     }
   });
