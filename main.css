@@ -481,7 +481,6 @@ svg{
 }
 .competitionWin:hover {
   text-decoration: none !important;
-  color: #00bbff !important;
   transform: translateY(-3px);
   transition: 0.1s;
 }
