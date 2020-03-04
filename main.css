@@ -23,7 +23,7 @@ a:focus {
   outline: none;
 }
 .fadeIn {
-  opacity: 0.01;
+  opacity: 0;
 }
 .centered{
   top: 50%;
@@ -444,19 +444,15 @@ svg{
   height: 530px;
   position: relative;
   width: 100%;
-  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) );
+  background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) );
 }
-#htnLogo{
-  position: absolute;
-  z-index: 3;
-  width: 150px;
-  height: 150px;
-}
-#htnWords{
+#hackathonWords{
   position: absolute;
   font-size: 32px;
   opacity: 0.01;
   color: white;
+  font-weight: 100;
+  left: 40%;
 }
 #htnDesc{
   border-top: 1px solid white;

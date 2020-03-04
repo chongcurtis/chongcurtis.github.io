@@ -40,6 +40,15 @@ let handlePageUpdates = function(){
             }, 1000 * time_delay);
           })(0);
         }
+      } else if ($(this).is($("#hackathonWords"))) {
+        $(this).fadeTo(1000, 1);
+        $(this).removeClass("fadeIn");
+        $(this).animate({
+          left: (vW / 2) - ($(this).innerWidth()/2),
+        },{
+          duration: 1000,
+          queue: false,
+        });
       } else if ($(this).is($("#winNum"))) {
         // I can't get a good enough function for this :(
         if ($(this).html() == 0) {
@@ -52,17 +61,6 @@ let handlePageUpdates = function(){
               }
             }, time_delay);
           })(0);
-        }
-      } else if ($(this).is($("#htnLogo"))) {
-        if ($(this).css("left") == (vW / 2 - 75) + "px") {
-          setTimeout(function () {
-            $("#htnLogo").stop().animate({
-              left: vW / 2 - 170
-            }, {
-                queue: false
-              });
-            $("#htnWords").fadeTo("slow", 1);
-          }, 1500);
         }
       } else if ($(this).is($("#typingCon"))) {
         const numElements = 5;
@@ -122,10 +120,7 @@ if(project != ""){
   // TODO: Deal with this later. changing the parallax library might affect this
   // TODO: make this work for mobile
 
-  $("#htnLogo").css("top", $("#htn").height() / 2 - 75);
-  $("#htnLogo").css("left", vW / 2 - 75);
-  $("#htnWords").css("top", $("#htn").height() / 2 - 35);
-  $("#htnWords").css("left", vW / 2);
+  $("#hackathonWords").css("top", $("#htn").height() / 2 - 35);
 
   if (vW < 500) {
     $("#winningHacksPadding").css("padding-top", 60);

@@ -17,3 +17,4 @@ If I change my domain name remember to update the READMEs to the Photos/gifs fou
 
 # Dev Notes
 - Use `python3 -m http.server` so jquery can load html files.
+- The collage was built on https://www.photocollage.com/
