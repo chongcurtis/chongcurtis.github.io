@@ -256,7 +256,7 @@ svg{
   width: 100%;
   order: 2;
   bottom: 20px;
-  opacity: 0;
+  opacity: 0.5;
 }
 
 .workLogo{
