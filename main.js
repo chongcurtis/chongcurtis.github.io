@@ -1,5 +1,4 @@
-const NUM_HACKATHONS = 26;
-const NUM_HACKATHON_WINS = 13;
+const NUM_HACKATHONS = 25;
 
 var vH = window.innerHeight;
 var vW = window.innerWidth;
@@ -18,7 +17,7 @@ let handlePageUpdates = function(){
         $(this).removeClass("fadeIn");
       }
     } else if (pos + 200 < winTop + vH) {
-      if ($(this).hasClass("splitHr")) {
+      if ($(this).context.classList.contains("splitHr")) {
         let ctx = $(this);
         var hrwidthtimer = window.setInterval(function () {
           var hrwidth = ctx.width();
@@ -40,15 +39,6 @@ let handlePageUpdates = function(){
             }, 1000 * time_delay);
           })(0);
         }
-      } else if ($(this).is($("#hackathonWords"))) {
-        $(this).fadeTo(1000, 1);
-        $(this).removeClass("fadeIn");
-        $(this).animate({
-          left: (vW / 2) - ($(this).innerWidth()/2),
-        },{
-          duration: 1000,
-          queue: false,
-        });
       } else if ($(this).is($("#winNum"))) {
         // I can't get a good enough function for this :(
         if ($(this).html() == 0) {
@@ -56,11 +46,22 @@ let handlePageUpdates = function(){
             let time_delay = 100*(Math.pow(1.23,cur_step)/3) + 100;
             setTimeout(function(){
               $("#winNum").html(cur_step + "  ");
-              if (cur_step < NUM_HACKATHON_WINS) {
+              if (cur_step < 12) {
                 myLoop(cur_step+1);
               }
             }, time_delay);
           })(0);
+        }
+      } else if ($(this).is($("#htnLogo"))) {
+        if ($(this).css("left") == (vW / 2 - 75) + "px") {
+          setTimeout(function () {
+            $("#htnLogo").stop().animate({
+              left: vW / 2 - 170
+            }, {
+                queue: false
+              });
+            $("#htnWords").fadeTo(1000, 1);
+          }, 1500);
         }
       } else if ($(this).is($("#typingCon"))) {
         const numElements = 5;
@@ -81,7 +82,7 @@ let handlePageUpdates = function(){
           $(".typed-cursor").remove();
         }, 6000);
       }
-      $(this).fadeTo("slow", 1);
+      $(this).fadeTo(1000, 1);
       $(this).removeClass("fadeIn");
     }
   });
@@ -120,7 +121,10 @@ if(project != ""){
   // TODO: Deal with this later. changing the parallax library might affect this
   // TODO: make this work for mobile
 
-  $("#hackathonWords").css("top", $("#htn").height() / 2 - 35);
+  $("#htnLogo").css("top", $("#htn").height() / 2 - 75);
+  $("#htnLogo").css("left", vW / 2 - 75);
+  $("#htnWords").css("top", $("#htn").height() / 2 - 35);
+  $("#htnWords").css("left", vW / 2);
 
   if (vW < 500) {
     $("#winningHacksPadding").css("padding-top", 60);
@@ -263,6 +267,22 @@ if(project != ""){
     showProject();
   });
 
+
+  $("#viewKaggleQuora").on("click", function () {
+    console.log("this is a thing")
+    $(this).attr("repoLink", $("#SFfirstLink").attr("repoLink"));
+    $(this).attr("hackName", $("#SFfirstLink").attr("hackName"));
+    $(this).attr("hackathon", $("#SFfirstLink").attr("hackathon"));
+    $(this).attr("place", $("#SFfirstLink").attr("place"));
+    $(this).attr("thePrjImg", $("#SFfirstLink").attr("thePrjImg"));
+    $(this).attr("popupImg", $("#SFfirstLink").attr("popupImg"));
+    $(this).attr("eventDesc", $("#SFfirstLink").attr("eventDesc"));
+    $(this).attr("desc", $("#SFfirstLink").attr("desc"));
+    showEvent(this); // Since kaggle is an event there really isn't a
+    showProject();
+  });
+
+
   $("#backToEvent").on("click", function () {
     $("#viewProject").show();
     $("#backToEvent").hide();
@@ -274,20 +294,6 @@ if(project != ""){
   $(".competitionWin").on("click", function () {
     showEvent(this);
     //$(".modal-content").css("background-image","url(http://res.cloudinary.com/dj2eq8czc/image/upload/v1486482255/flybits_pukqgx.jpg)")
-  });
-
-  $(".workPhoto").on("click", function () {
-    $("#viewProject").hide();
-    $("#backToEvent").hide();
-    $("#myModal").modal("show");
-    $("#prjP").load($(this).attr("desc"));
-    $("#prjImg").attr("src", $(this).attr("thePrjImg"));
-    $("#prjTitle").html($(this).attr("hackName"));
-    $("#prjTitleEvent").html($(this).attr("hackathon"));
-    $("#prjTitlePlace").html("");
-    $("#prjRepo").attr("href", $(this).attr("repoLink"));
-
-    $("#prjRepo").hide();
   });
 
   $(".prjimg").on("click", function () {

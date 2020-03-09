@@ -29,7 +29,8 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="main.css">
   <script>
-    if(window.location.hostname != "0.0.0.0" && location.protocol != 'https:') location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+    const ENABLE_HTTPS = false;
+    if (ENABLE_HTTPS && location.protocol != 'https:') location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
   </script>
 </head>
 
@@ -48,49 +49,45 @@
           <img id="prjImg" class="aPhoto image-responsive" style="position: relative; margin-bottom: 40px; margin-top: -20px;"/>
           <p id="prjP"></p>
           <p style="color: white;"><a id="prjRepo" target='_blank'>Link to Repo</a></p>
-          <p id="viewProject">View The Project<i class="fa fa-angle-right" aria-hidden="true" style="margin-left: 10px;"></i></p>
+          <p id="viewProject">View the Project <i class="fa fa-angle-right" aria-hidden="true" style="margin-left: 10px;"></i></p>
           <p id="backToEvent"><i class="fa fa-angle-left" aria-hidden="true" style="margin-left: 10px;"></i> To Event</p>
         </div>
       </div>
     </div>
   </div>
 <div id="bannerPhotoWrapper">
-<div id="bannerPhoto" class="parallax-window" data-parallax="scroll" data-image-src="photos/curtis-chong-homepage-background.jpg" data-bleed="10">
+<img style=" display:none" class="lazy"><div id="bannerPhoto" class="parallax-window" data-parallax="scroll" data-image-src="photos/curtis-chong-homepage-background.jpg" data-bleed="50">
   <div id="quickLinks">
-    <a href="mailto:curtischong5@gmail.com" class="quickLinksLink">
-      <svg id="svg_email" class="svg_icon" aria-hidden="true" data-prefix="far" data-icon="envelope" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-        <path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"></path>
-      </svg>
-    </a>
-    <a href="https://github.com/curtischong" class="quickLinksLink" target='_blank'>
-      <svg id="svg_github" class="svg_icon" aria-hidden="true" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
-        <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
-      </svg>
-    </a>
-    <a href="https://www.linkedin.com/in/chongcurtis" class="quickLinksLink" target='_blank'>
-      <svg id="svg_linkedin" class="svg_icon" aria-hidden="true" data-prefix="fab" data-icon="linkedin" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-        <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path>
-      </svg>
-    </a>
-    <a href="http://stackoverflow.com/users/4647924/curtis-chong" class="quickLinksLink" target='_blank'>
-      <svg id="svg_stackoverflow" class="svg_icon" aria-hidden="true" data-prefix="fab" data-icon="stack-overflow" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-        <path d="M293.7 300l-181.2-84.5 16.7-36.5 181.3 84.7-16.8 36.3zm48-76L188.2 95.7l-25.5 30.8 153.5 128.3 25.5-30.8zm39.6-31.7L262 32l-32 24 119.3 160.3 32-24zM290.7 311L95 269.7 86.8 309l195.7 41 8.2-39zm31.6 129H42.7V320h-40v160h359.5V320h-40v120zm-39.8-80h-200v39.7h200V360z"></path>
-      </svg>
+    <a href="mailto:curtischong5@gmail.com" class="quickLinksLink"><svg id="svg_email" class="svg_icon" aria-hidden="true" data-prefix="far" data-icon="envelope" role="img" xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512">
+      <path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"></path>
+    </svg></a>
+    <a href="https://github.com/curtischong" class="quickLinksLink" target='_blank'><svg id="svg_github" class="svg_icon" aria-hidden="true" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 496 512">
+      <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+    </svg></a>
+    <a href="https://www.linkedin.com/in/chongcurtis" class="quickLinksLink" target='_blank'><svg id="svg_linkedin" class="svg_icon" aria-hidden="true" data-prefix="fab" data-icon="linkedin" role="img"
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+      <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path>
+    </svg></a>
+    <a href="http://stackoverflow.com/users/4647924/curtis-chong" class="quickLinksLink" target='_blank'><svg id="svg_stackoverflow" class="svg_icon" aria-hidden="true" data-prefix="fab" data-icon="stack-overflow"
+      role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+      <path d="M293.7 300l-181.2-84.5 16.7-36.5 181.3 84.7-16.8 36.3zm48-76L188.2 95.7l-25.5 30.8 153.5 128.3 25.5-30.8zm39.6-31.7L262 32l-32 24 119.3 160.3 32-24zM290.7 311L95 269.7 86.8 309l195.7 41 8.2-39zm31.6 129H42.7V320h-40v160h359.5V320h-40v120zm-39.8-80h-200v39.7h200V360z"></path>
+    </svg>
     </a>
     <!--Note: to control the size of the svg, change the width of the <a>-->
-    <a href="https://www.kaggle.com/splacorn" class="quickLinksLink" style="width: 70px" target='_blank'>
-      <svg id="svg_kaggle" class="svg_icon" aria-hidden="true" data-prefix="fab" data-icon="kaggle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="15 0 90 50" >
-        <path clip-path="url(#a)" d="m105.75 102.968c-.06.238-.298.357-.713.357h-7.937c-.477 0-.9-.208-1.248-.625l-13.106-16.672-3.655 3.477v12.93c0 .595-.298.892-.892.892h-6.152c-.595 0-.892-.297-.892-.892v-58.935c0-.593.297-.9.892-.9h6.153c.594 0 .892.298.892.9v36.288l15.692-15.87c.416-.415.832-.624 1.248-.624h8.204c.356 0 .593.15.713.445.12.357.1.624-.1.803l-16.575 16.046 17.297 21.488c.237.238.297.535.18.892m32.144.356h-6.152c-.654 0-.98-.296-.98-.9v-1.25c-2.616 1.96-5.974 2.942-10.075 2.942-3.744 0-6.985-1.16-9.72-3.476-2.675-2.377-4.012-5.4-4.012-9.094 0-5.825 3.625-9.778 10.877-11.858 2.853-.833 7.162-1.545 12.928-2.14.18-2.198-.4-4.07-1.738-5.617s-3.285-2.318-5.84-2.318c-3.33 0-6.717 1.2-10.164 3.566-.535.298-.922.238-1.16-.178l-3.2-4.547c-.298-.357-.208-.772.267-1.248 4.577-3.15 9.332-4.726 14.266-4.726 3.804 0 7.044.892 9.72 2.675 3.923 2.616 5.884 6.806 5.884 12.57v24.697c0 .595-.298.9-.9.9m-7.134-18.622c-5.826.595-9.807 1.368-11.947 2.318-2.913 1.248-4.222 3.03-3.924 5.35.178 1.308.833 2.363 1.962 3.165s2.437 1.264 3.923 1.382c4.16.297 7.5-.803 9.986-3.3zm44.463 34.093c-3.24 3.357-7.832 5.038-13.775 5.038-3.448 0-6.717-.862-9.807-2.585-.655-.417-1.427-.967-2.318-1.65s-1.933-1.53-3.12-2.54c-.417-.356-.446-.802-.1-1.338l4.2-4.2c.178-.18.416-.268.713-.268.237 0 .446.1.624.268 3.328 3.328 6.568 4.993 9.718 4.993 7.2 0 10.788-3.745 10.788-11.234v-4.636c-2.794 2.318-6.508 3.477-11.145 3.477-5.766 0-10.284-2.168-13.552-6.508-2.853-3.803-4.28-8.6-4.28-14.354 0-5.468 1.367-10.104 4.102-13.9 3.2-4.576 7.757-6.865 13.642-6.865 4.458 0 8.203 1.16 11.233 3.478v-1.783c0-.594.297-.892.892-.892h6.153c.593 0 .9.298.9.892v39.854c0 6.476-1.62 11.395-4.86 14.753m-3.077-42.84c-1.486-3.803-4.934-5.706-10.342-5.706-6.954 0-10.43 4.34-10.43 13.017 0 4.814 1.16 8.323 3.477 10.52 1.723 1.725 3.952 2.586 6.687 2.586 5.586 0 9.123-1.902 10.6-5.706zm45.006 42.85c-3.24 3.357-7.832 5.038-13.775 5.038-3.45 0-6.718-.862-9.808-2.585-.655-.417-1.427-.967-2.318-1.65s-1.932-1.53-3.12-2.54c-.416-.356-.446-.802-.1-1.338l4.2-4.2c.178-.18.416-.268.713-.268.237 0 .446.1.624.268 3.328 3.328 6.567 4.993 9.718 4.993 7.2 0 10.8-3.745 10.8-11.234v-4.636c-2.795 2.318-6.5 3.477-11.145 3.477-5.766 0-10.284-2.168-13.552-6.508-2.854-3.803-4.28-8.6-4.28-14.354 0-5.468 1.367-10.104 4.1-13.9 3.2-4.576 7.757-6.865 13.642-6.865 4.458 0 8.202 1.16 11.234 3.478v-1.783c0-.594.296-.892.892-.892h6.152c.593 0 .9.298.9.892v39.854c0 6.476-1.62 11.395-4.858 14.753m-3.076-42.84c-1.487-3.803-4.935-5.706-10.343-5.706-6.955 0-10.432 4.34-10.432 13.017 0 4.814 1.16 8.323 3.477 10.52 1.724 1.725 3.953 2.586 6.687 2.586 5.586 0 9.124-1.902 10.6-5.706v-14.7zm21.575 27.36h-6.153c-.594 0-.9-.296-.9-.9v-58.923c0-.593.297-.9.9-.9h6.153c.593 0 .9.297.9.9v58.935c0 .594-.298.9-.9.9m44.843-18.1c0 .595-.3.892-.892.892h-28.977c.356 2.913 1.605 5.35 3.745 7.3 2.437 2.082 5.498 3.12 9.184 3.12 3.268 0 6.2-.92 8.826-2.764.536-.357.98-.357 1.338 0l4.2 4.28c.476.477.476.9 0 1.248-4.28 3.2-9.244 4.814-14.9 4.814-6.063 0-11.116-2.02-15.158-6.062-3.922-3.982-5.884-9.064-5.884-15.246 0-5.825 1.93-10.758 5.795-14.8 3.567-3.685 8.203-5.527 13.9-5.527 5.408 0 9.955 1.932 13.642 5.795 3.803 3.983 5.557 8.976 5.26 14.98zm-11.68-13.106c-2.02-1.842-4.458-2.764-7.3-2.764-2.675 0-5.024.892-7.043 2.674s-3.3 4.102-3.834 6.955h21.487c-.06-2.733-1.16-5.023-3.3-6.865" transform="matrix(.405932 0 0 .405932 -11.403348 -3.781452)"/>
+    <a href="https://www.kaggle.com/splacorn" class="quickLinksLink" style="width: 70px" target='_blank'><svg id="svg_kaggle" class="svg_icon" aria-hidden="true" data-prefix="fab" data-icon="kaggle" role="img" xmlns="http://www.w3.org/2000/svg"
+      viewBox="15 0 90 50" >
+      <!--<path d="m105.75 102.968c-.06.238-.298.357-.713.357h-7.937c-.477 0-.89-.208-1.248-.625l-13.106-16.672-3.655 3.477v12.93c0 .595-.298.892-.892.892h-6.152c-.595 0-.892-.297-.892-.892v-58.935c0-.593.297-.89.892-.89h6.153c.594 0 .892.298.892.89v36.288l15.692-15.87c.416-.415.832-.624 1.248-.624h8.204c.356 0 .593.15.713.445.12.357.09.624-.09.803l-16.585 16.046 17.297 21.488c.237.238.297.535.18.892" transform="matrix(.527027 0 0 .527027 -30.632288 -22.45559)"></path>
+      -->
+<path clip-path="url(#a)" d="m105.75 102.968c-.06.238-.298.357-.713.357h-7.937c-.477 0-.9-.208-1.248-.625l-13.106-16.672-3.655 3.477v12.93c0 .595-.298.892-.892.892h-6.152c-.595 0-.892-.297-.892-.892v-58.935c0-.593.297-.9.892-.9h6.153c.594 0 .892.298.892.9v36.288l15.692-15.87c.416-.415.832-.624 1.248-.624h8.204c.356 0 .593.15.713.445.12.357.1.624-.1.803l-16.575 16.046 17.297 21.488c.237.238.297.535.18.892m32.144.356h-6.152c-.654 0-.98-.296-.98-.9v-1.25c-2.616 1.96-5.974 2.942-10.075 2.942-3.744 0-6.985-1.16-9.72-3.476-2.675-2.377-4.012-5.4-4.012-9.094 0-5.825 3.625-9.778 10.877-11.858 2.853-.833 7.162-1.545 12.928-2.14.18-2.198-.4-4.07-1.738-5.617s-3.285-2.318-5.84-2.318c-3.33 0-6.717 1.2-10.164 3.566-.535.298-.922.238-1.16-.178l-3.2-4.547c-.298-.357-.208-.772.267-1.248 4.577-3.15 9.332-4.726 14.266-4.726 3.804 0 7.044.892 9.72 2.675 3.923 2.616 5.884 6.806 5.884 12.57v24.697c0 .595-.298.9-.9.9m-7.134-18.622c-5.826.595-9.807 1.368-11.947 2.318-2.913 1.248-4.222 3.03-3.924 5.35.178 1.308.833 2.363 1.962 3.165s2.437 1.264 3.923 1.382c4.16.297 7.5-.803 9.986-3.3zm44.463 34.093c-3.24 3.357-7.832 5.038-13.775 5.038-3.448 0-6.717-.862-9.807-2.585-.655-.417-1.427-.967-2.318-1.65s-1.933-1.53-3.12-2.54c-.417-.356-.446-.802-.1-1.338l4.2-4.2c.178-.18.416-.268.713-.268.237 0 .446.1.624.268 3.328 3.328 6.568 4.993 9.718 4.993 7.2 0 10.788-3.745 10.788-11.234v-4.636c-2.794 2.318-6.508 3.477-11.145 3.477-5.766 0-10.284-2.168-13.552-6.508-2.853-3.803-4.28-8.6-4.28-14.354 0-5.468 1.367-10.104 4.102-13.9 3.2-4.576 7.757-6.865 13.642-6.865 4.458 0 8.203 1.16 11.233 3.478v-1.783c0-.594.297-.892.892-.892h6.153c.593 0 .9.298.9.892v39.854c0 6.476-1.62 11.395-4.86 14.753m-3.077-42.84c-1.486-3.803-4.934-5.706-10.342-5.706-6.954 0-10.43 4.34-10.43 13.017 0 4.814 1.16 8.323 3.477 10.52 1.723 1.725 3.952 2.586 6.687 2.586 5.586 0 9.123-1.902 10.6-5.706zm45.006 42.85c-3.24 3.357-7.832 5.038-13.775 5.038-3.45 0-6.718-.862-9.808-2.585-.655-.417-1.427-.967-2.318-1.65s-1.932-1.53-3.12-2.54c-.416-.356-.446-.802-.1-1.338l4.2-4.2c.178-.18.416-.268.713-.268.237 0 .446.1.624.268 3.328 3.328 6.567 4.993 9.718 4.993 7.2 0 10.8-3.745 10.8-11.234v-4.636c-2.795 2.318-6.5 3.477-11.145 3.477-5.766 0-10.284-2.168-13.552-6.508-2.854-3.803-4.28-8.6-4.28-14.354 0-5.468 1.367-10.104 4.1-13.9 3.2-4.576 7.757-6.865 13.642-6.865 4.458 0 8.202 1.16 11.234 3.478v-1.783c0-.594.296-.892.892-.892h6.152c.593 0 .9.298.9.892v39.854c0 6.476-1.62 11.395-4.858 14.753m-3.076-42.84c-1.487-3.803-4.935-5.706-10.343-5.706-6.955 0-10.432 4.34-10.432 13.017 0 4.814 1.16 8.323 3.477 10.52 1.724 1.725 3.953 2.586 6.687 2.586 5.586 0 9.124-1.902 10.6-5.706v-14.7zm21.575 27.36h-6.153c-.594 0-.9-.296-.9-.9v-58.923c0-.593.297-.9.9-.9h6.153c.593 0 .9.297.9.9v58.935c0 .594-.298.9-.9.9m44.843-18.1c0 .595-.3.892-.892.892h-28.977c.356 2.913 1.605 5.35 3.745 7.3 2.437 2.082 5.498 3.12 9.184 3.12 3.268 0 6.2-.92 8.826-2.764.536-.357.98-.357 1.338 0l4.2 4.28c.476.477.476.9 0 1.248-4.28 3.2-9.244 4.814-14.9 4.814-6.063 0-11.116-2.02-15.158-6.062-3.922-3.982-5.884-9.064-5.884-15.246 0-5.825 1.93-10.758 5.795-14.8 3.567-3.685 8.203-5.527 13.9-5.527 5.408 0 9.955 1.932 13.642 5.795 3.803 3.983 5.557 8.976 5.26 14.98zm-11.68-13.106c-2.02-1.842-4.458-2.764-7.3-2.764-2.675 0-5.024.892-7.043 2.674s-3.3 4.102-3.834 6.955h21.487c-.06-2.733-1.16-5.023-3.3-6.865" transform="matrix(.405932 0 0 .405932 -11.403348 -3.781452)"/>
       </svg>
     </a>
     <a href="https://chongcurtis.com/Curtis_Chong.pdf" target="_blank" id="quickResumeLink">Résumé</a>
   </div>
-</div>
-<!--<div id="bannerIntro">
-  <p>hi I'm Curtis</p>
-</div>-->
+</div></img>
   <div id="title"><span style="display: inline; color: white;" id="t1" class="tword"><p style="display: inline;color: white;">C</p></span><span style="display: inline;color: white;" id="t2" class="tword"><p style="display: inline;color: white;">u</p></span><span style="display: inline;color: white;" id="t3" class="tword"><p style="display: inline;color: white;">r</p></span><span style="display: inline;color: white;" id="t4" class="tword"><p style="display: inline;color: white;">t</p></span><span style="display: inline;color: white;" id="t5" class="tword"><p style="display: inline;color: white;">i</p></span><span style="display: inline;color: white;" id="t6" class="tword"><p style="display: inline;color: white;">s</p></span> <span style="display: inline;color: white;" id="t7" class="tword"><p style="display: inline;color: white;">C</p></span><span style="display: inline;color: white;" id="t8" class="tword"><p style="display: inline;color: white;">h</p></span><span style="display: inline;color: white;" id="t9" class="tword"><p style="display: inline;color: white;">o</p></span><span style="display: inline;color: white;" id="t10" class="tword"><p style="display: inline;color: white;">n</p></span><span style="display: inline;color: white;" id="t11" class="tword"><p style="display: inline;color: white;">g</p></span></div>
-  <!--<p id="subHeaders">Working on projects that I can't live without 4 months from now</p>-->
+  <p id="subHeaders">Kaggler & Hacker</p>
   <p id="educationHeader">Honours Software Engineering Co-op &nbsp;&nbsp;&nbsp; University of Waterloo &nbsp;&nbsp;&nbsp; Class of 2023</p>
 </div>
 
@@ -98,11 +95,11 @@
     <div class="row-fluid">
       <div class="col-md-12">
         <p id="introTitle" class="fadeIn" style="color: white;">Hello!</p>
-        </div>
+      </div>
     </div>
     <div class="row-fluid">
       <div class="col-md-12">
-        <p id="introduction" class="fadeIn">I’m Curtis, a lover of Github’s Newsfeed, Kaggle, and linear algebra. I’ve spent the last 5 years losing faaaar too much sleep to hackathons and side projects. This site is my Yellow Brick Road to becoming a brilliant programmer. <br><br>Mind if you scroll down?</p>
+        <p id="introduction" class="fadeIn">I'm a programmer that adores GitHub as much as AWS' Spot Instances. As a university student, I’ve learned more than ever that time is priceless. So I try to squeeze enough of it for hackathons, hiking trips, and the occasional ML Book Club. I also program competitively and aspire to use data to influence policy in the city I love. So without further adieu, here lies an archive of my past projects, work experiences, and achievements. Mind if you scroll down?</p>
       </div>
     </div>
   </div>
@@ -111,91 +108,94 @@
     </canvas>
       <p id="workExperience" class="fadeIn centered">Work Experience</p>
   </div>
-  <div class="container-fluid" id="workExperiencePhotos">
-    <div id="workBanner" class="parallax-window" data-parallax="scroll" data-image-src="photos/work/banner_small.jpg" data-bleed="10">
-      <div id="luminaPhoto" class="workPhoto" thePrjImg="photos/work/lumina.jpg" hackName="Lumina" hackathon="January to April 2020" desc="./descriptions/jobs/lumina.html">
-        <img class="workLogo fadeIn" id="luminaLogo" src="photos/lumina_logo.svg"/>
-        <p class="fadeIn jobTagline">Crypto Portfolio Services (Jan 2020)</p>
-        <svg class="upArrow" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="chevron-circle-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-chevron-circle-up fa-w-16 fa-9x"><path fill="currentColor" d="M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm224.5-86.6l115 115.1c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L256 209l-99.5 99.5c-4.7 4.7-12.3 4.7-17 0l-7.1-7.1c-4.7-4.7-4.7-12.3 0-17l115-115.1c4.8-4.6 12.4-4.6 17.1.1z"></path></svg>
-      </div>
-      <div id="bigTerminalPhoto" class="workPhoto" thePrjImg="photos/work/big_terminal.jpg" hackName="Big Terminal" hackathon="August 2018" desc="./descriptions/jobs/big_terminal.html">
-        <img class="workLogo fadeIn" id="big_terminal_logo" src="photos/big_terminal_logo.svg"/>
-        <p class="fadeIn jobTagline">Crypto Hedge Fund (Aug 2018)</p>
-        <svg class="upArrow" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="chevron-circle-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-chevron-circle-up fa-w-16 fa-9x"><path fill="currentColor" d="M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm224.5-86.6l115 115.1c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L256 209l-99.5 99.5c-4.7 4.7-12.3 4.7-17 0l-7.1-7.1c-4.7-4.7-4.7-12.3 0-17l115-115.1c4.8-4.6 12.4-4.6 17.1.1z"></path></svg>
-      </div>
-      <div id="maxQPhoto" class="workPhoto" thePrjImg="photos/work/maxq.jpg" hackName="MaxQ" hackathon="August 2016" desc="./descriptions/jobs/maxq.html">
-        <img class="workLogo fadeIn" id="maxqLogo" src="photos/maxq_logo.svg"/>
-        <svg class="upArrow" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="chevron-circle-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-chevron-circle-up fa-w-16 fa-9x"><path fill="currentColor" d="M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm224.5-86.6l115 115.1c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L256 209l-99.5 99.5c-4.7 4.7-12.3 4.7-17 0l-7.1-7.1c-4.7-4.7-4.7-12.3 0-17l115-115.1c4.8-4.6 12.4-4.6 17.1.1z"></path></svg>
-        <p class="fadeIn jobTagline">Space Accelerator (July 2016)</p>
-      </div>
-      <div id="flippPhoto" class="workPhoto" thePrjImg="photos/work/flipp.jpg" hackName="Flipp" hackathon="January to April 2017" desc="./descriptions/jobs/flipp.html">
-        <img class="workLogo fadeIn" id="flipp" src="photos/flipp_logo.svg"/>
-        <svg class="upArrow" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="chevron-circle-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-chevron-circle-up fa-w-16 fa-9x"><path fill="currentColor" d="M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm224.5-86.6l115 115.1c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L256 209l-99.5 99.5c-4.7 4.7-12.3 4.7-17 0l-7.1-7.1c-4.7-4.7-4.7-12.3 0-17l115-115.1c4.8-4.6 12.4-4.6 17.1.1z"></path></svg>
-        <p class="fadeIn jobTagline">Retail Advertiser (July 2017)</p>
-      </div>
-      <div id="kikPhoto" class="workPhoto" style="border-right: none;" thePrjImg="photos/work/kik.jpg" hackName="Kik" hackathon="May to August 2019" desc="./descriptions/jobs/kik.html">
-        <img class="workLogo fadeIn" src="photos/kik_logo.svg"/>
-        <svg class="upArrow" aria-hidden="true" focusable="false" data-prefix="fal" data-icon="chevron-circle-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-chevron-circle-up fa-w-16 fa-9x"><path fill="currentColor" d="M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zM40 256c0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216-118.7 0-216-96.1-216-216zm224.5-86.6l115 115.1c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L256 209l-99.5 99.5c-4.7 4.7-12.3 4.7-17 0l-7.1-7.1c-4.7-4.7-4.7-12.3 0-17l115-115.1c4.8-4.6 12.4-4.6 17.1.1z"></path></svg>
-        <p class="fadeIn jobTagline">Communications (May 2019)</p>
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid" id="workExperiencePCon">
-    <div class="row-fluid">
-      <div class="col-md-12">
-        <p class="fadeIn" id="workExperienceP">
-          I often find myself getting lost at work and missing the bus on purpose to push that last commit. Work is exciting because I get to decipher written communication and improve upon the solutions of others.
-          <br><br>
-          While writing tons of documentation in the process :)
-        </p>
-      </div>
-    </div>
+  <div class="container-fluid" id="flipp">
+<img style=" display:none" class="lazy"><div id="flippPhoto" class="parallax-window lazy" data-parallax="scroll" data-image-src="photos/me_at_flipp.png" data-bleed="50"></div></img>
+    <img id="flippLogo" class="fadeIn centered lazy" src="photos/flipp_logo.png">
   </div>
   <div class="container-fluid" id="experience">
+    <div class="row-fluid" style="background-color: #070502">
+      <div class="col-md-8 col-md-offset-2">
+        <p style="position: relative; padding-top: 30px; font-size: 16px;" class="fadeIn">Flipp was a dream come true for me and I couldn't have asked for a better way to spend 2 months of my eleventh-grade summer. At Flipp, I worked as a data scientist where I normalized and engineered features out of 50,000 resumes. Using these features (over 30 independent ones), and multiple bags of words, I fed my data into machine learning algorithms to predict how well candidates will fare during the hiring process.<br><br> I remember constantly asking our Talent Team over specific details in every resume to acquire a deeper understanding of the hiring process of every role at Flipp. Turns out, hockey players could become our next Operations Coordinator! I also developed an extremely accurate resume parser in response to imprecise open-source and industry parsers.<br><br>If you're interested in learning more about my time at Flipp, take a look at my work term evaluation <a href="https://chongcurtis.com/flipp_term_review.pdf" target="_blank">here</a></p>
+      </div>
+    </div>
     <div class="row-fluid">
       <div class="col-md-12">
         <hr class="splitHr fadeIn" id="splitHr5">
       </div>
     </div>
+    <div class="row-fluid">
+      <div class="col-md-8 col-md-offset-2">
+        <img class="aPhoto image-responsive fadeIn lazy" style="position: relative;filter:brightness(90%); margin-top: 100px;" src="https://res.cloudinary.com/dj2eq8czc/image/upload/v1473913752/curtis-chong-at-maxq.jpg"/>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="col-md-8 col-md-offset-2">
+        <p class="fadeIn" style="margin-top: 20px;">As Canada's first space accelerator, <a href="http://www.maxq.ca/" target="_blank">MaxQ</a> aims to lead space startups to success by providing mentorship and capital. During my tenth grade summer, I interned at one of their startups <a href="https://www.skywatch.co/" target="_blank">Skywatch</a> and created an API that parsed HDF files (from NASA's satellites) into JSON. This data is then inserted into a PostgreSQL database where third parties can query the API by geological region and time.</p>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="col-md-12">
+        <hr class="splitHr fadeIn">
+      </div>
+    </div>
     <br>
     <div class="row-fluid">
       <div class="col-md-4 col-md-offset-2">
-        <img class="aPhoto image-responsive fadeIn lazy" style="position: relative;filter:brightness(90%);" src="photos/competitive_programming_header.jpg"/>
+        <p class="fadeIn" style="text-align: center; font-size: 30px; margin-top: 50px; font-weight: 100;color: white;">STEM Fellowship</p><br>
+        <p class="fadeIn" style="">After placing <span id="SFfirstLink" class="competitionWin" repoLink="https://github.com/curtischong/Canadian_Forest_Fires" hackName="Canadian Forest Fires" hackathon="Big Data Challenge 2017" place="First Place" thePrjImg="photos/project_wind_farms.png" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1490895115/curtis-chong-team-photo-stem-fellowship-big-data-challenge.jpg" eventDesc="The STEM Fellowship's Big Data Challenge is an annual competition that spurs youth to use data science and provide insights on issues. This year, the fellowship challenged 21 teams to use <a href='https://www.altmetric.com/' target='_blank'>Altmetric data</a> and identify opportunities for scientific research. Following their discoveries, contestants compiled an abstract that described their findings in detail. Impressed by our results, our team was invited to big data day and pitched our verdicts towards a panel of judges. After a tortuous journey, our team became a finalist, placed first, and published our abstract to the STEM Fellowship Journal." desc="Inspired by the tragedy at Fort McMurray, my team wanted to discover ways to reduce the frequency and size of forest fires; we began by looking at the National Fire Database. This database describes all Canadian forest fires since the 1930s and underscores features such as size, location, and other government responses. To describe the fires in more detail, we attributed each fire to the nearest weather station to determine weather conditions at the time of the fire, namely precipitation, pressure, wind speed, and temperature. After a couple of covariance graphs and casual observations, we discovered that low humidity was a large contributing factor and that 40% of the naturally occurring fires were sparked by a lightning strike.<br><br>Soon it was evident that we needed to build structures to decrease the speed of winds and the number of lightning strikes. After a couple of days to mull the problem in our heads, only one proposal seemed plausible, the green light of wind farms in fire-prone regions. Using the geographic data of previous fires, we ran a k-means algorithm to group forest fires into 200 regions, all in northern Alberta, where most fires are crowned. We then proposed to place wind farms at the centroids of the regions to create a protective area against forest fires. All in all, our proposal won first place and landed me a spot on the STEM Fellowship's Data Science Team. For a detailed look at our procedure, view our report <a href='affects_of_climate_change_on_forest_fires.pdf' target='_blank'>here</a>!">first</span> at the STEM Fellowship's <a href="http://stemfellowship.org/big-data-challenge/" target="_blank">Big Data Challenge</a>, I jumped down a rabbit hole and joined the Fellowship's Data Science Team to train future analysts. The nonprofit is run by Canadian students who hope to equip fellow colleagues with skills in data science and scholarly writing. At the organization, I pass my days by preparing datasets for our Kaggle-like competitions and organize academic reporting challenges.</p>
+        <p class="fadeIn" style="font-size: 20px;cursor: pointer;width: 60%;color: white;margin-bottom: 40px;" class="competitionWin" id="viewFire">View the project<i class="fa fa-angle-right" aria-hidden="true" style="margin-left: 10px;"></i></p>
       </div>
       <div class="col-md-4">
-        <p class="fadeIn" style="text-align: center; font-size: 30px; margin-top: 50px; font-weight: 100;color: white;">Competitive Programming</p><br>
-        <p class="fadeIn">The one thing that separates a computer scientist from a competitive programmer is an obsession with Good Will Hunting. I specialize in writing C++ structs to help my BIT offline query at O(nlogn) complexity. Running Square Root Decomp to find the LCA is also fun. Come check out my solutions to over <a href="https://github.com/curtischong/contest" target="_blank ">500 problems.</a></p>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="col-md-12">
-        <hr class="splitHr fadeIn">
-      </div>
-    </div>
-    <div class="row-fluid align-items-center" style="position: relative;">
-      <div class="col-md-4 col-md-offset-2">
-        <p class="fadeIn" id="kaggleSection">Kaggle</p><br>
-        <p class="fadeIn">GPUs are expensive. So after tipping my toe into 10 competitions, I set up a persistent p2.xlarge spot instance and started to write neural nets. You'll find me lurking on Kaggle <a href="https://www.kaggle.com/splacorn" target="_blank">here</a> and I hope that you enjoy the write-ups to my latest competitions:</p>
-        <p class="fadeIn prjimg kagglePrj" id="kaggleQuoraInsincereQuestionsClassificationProject" thePrjImg="photos/kaggle/quora.jpg" hackName="Quora - Insincere Questions Classification" repoLink="https://www.kaggle.com/c/quora-insincere-questions-classification" desc="./descriptions/kaggle/quora.html" >Quora Insincere Questions Classification<i class="fa fa-angle-right" aria-hidden="true" style="margin-left: 10px;"></i></p> </p>
-        <p class="fadeIn prjimg kagglePrj" id="kaggleJigsawToxicCommentsProject" thePrjImg="photos/kaggle/jigsaw.jpg" hackName="Jigsaw - Unintended Bias in Toxicity Classification" repoLink="https://github.com/curtischong/kaggle_jigsaw" desc="./descriptions/kaggle/jigsaw.html" >Jigsaw Toxicity Classification<i class="fa fa-angle-right" aria-hidden="true" style="margin-left: 10px;"></i></p> </p>
-      </div>
-      <div class="col-md-4">
-        <img id="#kaggleImg" class="aPhoto image-responsive fadeIn lazy" style="position: relative;filter:brightness(100%);" src="photos/kaggle_team.jpg"/>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="col-md-12">
-        <hr class="splitHr fadeIn">
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="col-md-4 col-md-offset-2">
         <img class="aPhoto image-responsive fadeIn lazy" style="position: relative;filter:brightness(90%);" src="https://res.cloudinary.com/dj2eq8czc/image/upload/v1490162876/curtis-chong-stem-data-challenge.jpg"/>
       </div>
+    </div>
+    <div class="row-fluid">
+      <div class="col-md-12">
+        <hr class="splitHr fadeIn">
+      </div>
+    </div>
+    <div class="row-fluid" style="position: relative;">
+      <div class="col-md-4 col-md-offset-2">
+        <img id="tohcImg" class="aPhoto image-responsive fadeIn lazy" style="position: relative;filter:brightness(100%);" src="https://res.cloudinary.com/dfcfsw4mv/image/upload/v1492233134/curtis-chong-toronto-hacker-club.jpg"/>
+      </div>
       <div class="col-md-4">
-        <p class="fadeIn" style="text-align: center; font-size: 30px; margin-top: 50px; font-weight: 100;color: white;">STEM Fellowship</p><br>
-        <p class="fadeIn">After placing <span id="SFfirstLink" class="competitionWin" repoLink="https://github.com/curtischong/Canadian_Forest_Fires" hackName="Canadian Forest Fires" hackathon="Big Data Challenge 2017" place="First Place" thePrjImg="photos/project_wind_farms.png" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1490895115/curtis-chong-team-photo-stem-fellowship-big-data-challenge.jpg" eventDesc="./descriptions/events/bdc.html" desc="./descriptions/projects/forest_fires.html">first</span> at the STEM Fellowship's <a href="http://stemfellowship.org/big-data-challenge/" target="_blank">Big Data Challenge</a>, I jumped down a rabbit hole and joined the Fellowship's Data Science Team to organize data analysis competitions for undergraduates and high school students. For a year and a half, my team and I wrote a series of data science tutorials, hosted weekly webinars, and mentored participants throughout each competition.<br><br>My door’s always open if you need help!</p><br>
-        <p class="fadeIn competitionWin" style="font-size: 20px;cursor: pointer;width: 60%;color: white;margin-bottom: 40px;" id="viewFire">View the project<i class="fa fa-angle-right" aria-hidden="true" style="margin-left: 10px;"></i></p>
+        <p class="fadeIn" style="text-align: center; font-size: 30px; margin-top: 50px;font-weight: 100;color: white;">Toronto Hacker Club</p><br>
+        <p class="fadeIn" id="tohcDesc"><a href="http://torontohacker.club/" target='_blank'>Toronto Hacker club</a> is an organization that strives towards promoting Computer Science education towards students. The club has hosted four hackathons to date and have been humbled to work alongside the likes of Google, Mozilla, and RBC to deliver education workshops for the high school tech scene. Before I left the club to focus on school, I managed partnerships and lead the search for the club's funding as the director of Corporate Relations.</p>
+      </div>
+    </div>
+
+
+    <div class="row-fluid">
+      <div class="col-md-12">
+        <hr class="splitHr fadeIn">
+      </div>
+    </div>
+
+
+    <div class="row-fluid">
+      <div class="col-md-4 col-md-offset-2">
+        <p class="fadeIn" style="text-align: center; font-size: 30px; margin-top: 50px; font-weight: 100;color: white;">Competitive Programming</p><br>
+        <p class="fadeIn">The one thing that separates a computer scientist from a competitive programmer is an obsession with Good Will Hunting. No matter how many Segment trees, Dijkstras, or BITs you make, school will never teach you how to cleverly implement the algorithms we take for granted. I specialize in writing C++ structs to help my BIT offline query at O(nlogn) complexity. Running Square Root Decomp to find the LCA is also fun. Come check out my solutions to over <a href="https://github.com/curtischong/contest" target="_blank ">500 problems.</a></p>
+      </div>
+      <div class="col-md-4">
+        <img class="aPhoto image-responsive fadeIn lazy" style="position: relative;filter:brightness(90%);" src="photos/competitive_programming_header.jpg"/>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="col-md-12">
+        <hr class="splitHr fadeIn">
+      </div>
+    </div>
+
+    <div class="row-fluid" style="position: relative; ">
+      <div class="col-md-4 col-md-offset-2">
+        <img id="" class="aPhoto image-responsive fadeIn lazy" style="position: relative;filter:brightness(100%);" src="photos/kaggle_team.jpg"/>
+      </div>
+      <div class="col-md-4">
+        <p class="fadeIn" id="kaggleSection" style="text-align: center; font-size: 30px; margin-top: 50px;font-weight: 100;color: white;">Kaggle</p><br>
+        <p class="fadeIn">GPUs are expensive. So after tipping my toe into 10 competitions, I set up a persistent p2.xlarge spot instance and started to write neural nets. You'll find me lurking on Kaggle <a href="https://www.kaggle.com/splacorn" target="_blank">here</a> and I hope that you enjoy the write-ups to my latest competitions:</p>
+        <p class="fadeIn prjimg" id="kaggleQuoraInsincereQuestionsClassificationProject" style="font-size: 20px;cursor: pointer;width: 100%;color: white; margin-bottom: 240px; margin-top: 20px;" thePrjImg="photos/quora_eda.png" hackName="Quora Insincere Questions Classification" repoLink="https://www.kaggle.com/c/quora-insincere-questions-classification" desc="./descriptions/kaggle/jigsaw.html" >Quora Insincere Questions Classification<i class="fa fa-angle-right" aria-hidden="true" style="margin-left: 10px;"></i></p> </p>
       </div>
     </div>
 </div>
@@ -209,15 +209,14 @@
   </div>
 </div>
 <div class="container-fluid" id="htn">
-  <div>
-    <div id="htn2016Img" class="parallax-window" data-parallax="scroll" data-image-src="photos/hackathon_banner.jpg" data-bleed="50"></div>
-  </div>
-    <h1 id="hackathonWords" class="fadeIn">Hackathons Are the Largest Part of My Life</h1>
+    <div id="htn2016Img" class="parallax-window" data-parallax="scroll" data-image-src="photos/curtis-chong-hack-the-north.jpg" data-bleed="50"></div>
+  <img id="htnLogo" class="fadeIn lazy" src="https://res.cloudinary.com/dfcfsw4mv/image/upload/v1475351540/logo_dx7ei5.png">
+  <h1 id="htnWords">2016 Winner</h1>
 </div>
 <div class="container-fluid" id="htnDesc">
   <div class="row-fluid" style="background-color: #070502">
     <div class="col-md-8 col-md-offset-2">
-      <p style="position: relative; top: 30px; font-size: 16px; text-align: center" class="fadeIn">Three bullet points why: Friends, Cool projects and the flurry of chemicals that eclipses extraordinary concentration.</p>
+      <p style="position: relative; top: 30px; font-size: 16px;" class="fadeIn">On the stage of Canada's largest hackathon, our team proposed Agrigate, a solution to better Ontario's agricultural security. Using a combination of geographic data from Nasa and Ontario's land surveys, our webapp could deliver current climate statistics as well as project crop prices until the year 2020.</p>
     </div>
   </div>
 
@@ -230,59 +229,60 @@
 <div class="container-fluid" id="winningHacks">
   <div class="row-fluid" style="background-color: #070502">
     <div class="col-md-12 fadeIn">
-      <p style="width: 100%; text-align: center; font-size: 28px; position: relative;font-weight: 100;color: white;">My Favourite Winning Hacks</p>
+      <p style="width: 100%; text-align: center; font-size: 28px; position: relative;font-weight: 100;color: white;">Winning Hacks</p>
     </div>
   </div>
   <div class="row-fluid" id="winningHacksPadding" style="position: relative; padding-top: 120px;">
     <div class="col-md-2 col-xs-6">
       <div class="row-fluid">
-        <img id="recap" hackName="Recap" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin lazy" repoLink="https://github.com/kpsuperplane/mhacks9" hackathon="Mhacks 9" place="Second Place" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1490769301/curtis-chong-recap-editor_dfv1ku.png" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1490716933/Curtis-Chong-Mhacks9.jpg" eventDesc="./descriptions/events/mhacks9.html" desc="./descriptions/projects/recap.html" data-src="photos/header_recap.jpg">
+        <img id="recap" hackName="Recap" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin lazy" repoLink="https://github.com/kpsuperplane/mhacks9" hackathon="Mhacks 9" place="Second Place" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1490769301/curtis-chong-recap-editor_dfv1ku.png" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1490716933/Curtis-Chong-Mhacks9.jpg" eventDesc="./descriptions/events/mhacks9.html" desc="./descriptions/projects/recap.html" src="photos/header_recap.jpg">
       </div>
       <div class="row-fluid">
-        <p class="HackathonName fadeIn">2nd - MHacks 9</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img id="fintech" hackName="FinTech" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin lazy" repoLink="https://github.com/kshen3778/fintech" hackathon="Fishackathon Toronto" place="First Place" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1468226326/fintechLargest_ycddax.jpg" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486497000/curtis-chong-fishackathon-winner.jpg" eventDesc="./descriptions/events/fishackathon.html" desc="./descriptions/projects/fintech.html" data-src="photos/header_fintech.jpg">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">1st - Fishackathon 2016</p>
+        <p class="HackathonName fadeIn">MHacks 9</p>
       </div>
     </div>
     <div class="col-md-2 col-xs-6">
       <div class="row-fluid">
-        <img id="hyperdoc" hackName="HyperDoc" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin lazy" repoLink="https://www.gethyperdoc.com/" hackathon="Y Combinator November 2019" place="First Place" thePrjImg="photos/project/hyperdoc.jpg" popupImg="./photos/hackathon/hyperdoc.jpg" eventDesc="./descriptions/events/ycombinator_2019.html" desc="./descriptions/projects/hyperdoc.html" data-src="photos/header/hyperdoc.jpg">
+        <img id="fintech" hackName="FinTech" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin lazy" repoLink="https://github.com/kshen3778/fintech" hackathon="Fishackathon Toronto" place="First Place" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1468226326/fintechLargest_ycddax.jpg" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486497000/curtis-chong-fishackathon-winner.jpg" eventDesc="./descriptions/events/fishackathon.html" desc="./descriptions/projects/fintech.html" src="photos/header_fintech.jpg">
       </div>
       <div class="row-fluid">
-        <p class="HackathonName fadeIn">1st - Y Combinator 2019</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-xs-6">
-      <div class="row-fluid">
-        <img id="complete" hackName="Complete" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin lazy" repoLink="https://github.com/curtischong/complete" hackathon="Hack The North 2019" place="Winner" thePrjImg="file_hosting/complete_func_gen.gif" popupImg="./photos/hackathon/complete.jpg" eventDesc="./descriptions/events/hack_the_north_2019.html" desc="./descriptions/projects/complete.html" data-src="photos/header/complete.jpg">
-      </div>
-      <div class="row-fluid">
-        <p class="HackathonName fadeIn">Winner - Hack The North 2019</p>
+        <p class="HackathonName fadeIn">Fishackathon 2016</p>
       </div>
     </div>
     <div class="col-md-2 col-xs-6">
       <div class="row-fluid">
-        <img id="agrigate" hackName="Agrigate" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin lazy" repoLink="https://github.com/curtischong/Agrigate" hackathon="Hack the North" place="Winner" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1475448957/agrigate_izu0cv.jpg" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486511861/curtis-chong-hack-the-north-win.jpg" eventDesc="./descriptions/events/hack_the_north_2016.html" desc="./descriptions/projects/agrigate.html" data-src="photos/header_agrigate.jpg">
+        <img id="minotour" hackName="MinoTour" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin lazy" repoLink="https://github.com/marceloneil/MinoTour" hackathon="Flybits Hackathon" place="People's Choice" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486622900/minotour_xkn86o.png" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486482255/curtis-chong-flybits-context-camp-hackathon-win.jpg" eventDesc="./descriptions/events/flybits.html" desc="./descriptions/projects/minotour.html" src="photos/header_minotour.jpg">
       </div>
       <div class="row-fluid">
-        <p class="HackathonName fadeIn">Winner - Hack the North 2016</p>
+        <p class="HackathonName fadeIn">Flybits 2016</p>
       </div>
     </div>
     <div class="col-md-2 col-xs-6">
       <div class="row-fluid">
-        <img id="catchit" hackName="CatchIt!" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin lazy" repoLink="https://github.com/visualizing-wattpads-userbase/visualizing-wattpads-userbase.github.io" hackathon="Hack2Action" place="First Place" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486621792/PitchDeck_TeamCatchIt_GroupD_kuzllk.png" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486505837/curtis-chong-hack-to-action-win.jpg" eventDesc="./descriptions/events/hack2action.html" desc="./descriptions/projects/catchit.html" data-src="photos/header_catchit.jpg">
+        <img id="agrigate" hackName="Agrigate" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin lazy" repoLink="https://github.com/curtischong/Agrigate" hackathon="Hack the North" place="Top 12 Winner" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1475448957/agrigate_izu0cv.jpg" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486511861/curtis-chong-hack-the-north-win.jpg" eventDesc="./descriptions/events/hack_the_north_2016.html" desc="./descriptions/projects/agrigate.html" src="photos/header_agrigate.jpg">
       </div>
       <div class="row-fluid">
-        <p class="HackathonName fadeIn">1st - Hack2Action 2016</p>
+        <p class="HackathonName fadeIn">Hack the North 2016</p>
+      </div>
+    </div>
+    <div class="col-md-2 col-xs-6">
+      <div class="row-fluid">
+        <img id="ttez" hackName="TTEZ" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin lazy" repoLink="https://github.com/curtischong/TTEZ" hackathon="Climation Toronto" place="People's Choice" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486622103/climathonData_nk8qg9.png" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486505956/curtis-chong-toronto-climathon-win.jpg" eventDesc="./descriptions/events/climathon.html" desc="./descriptions/projects/ttez.html" src="photos/header_ttez.jpg">
+      </div>
+      <div class="row-fluid">
+        <p class="HackathonName fadeIn">Climathon 2016</p>
+      </div>
+    </div>
+    <div class="col-md-2 col-xs-6">
+      <div class="row-fluid">
+        <img id="catchit" hackName="CatchIt!" class="aPhoto center-block fadeIn hackathonHighlightsImg competitionWin lazy" repoLink="https://github.com/visualizing-wattpads-userbase/visualizing-wattpads-userbase.github.io" hackathon="YRDSB - Hack to Action" place="First Place" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486621792/PitchDeck_TeamCatchIt_GroupD_kuzllk.png" popupImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1486505837/curtis-chong-hack-to-action-win.jpg" eventDesc="./descriptions/events/hack2action.html" desc="./descriptions/projects/catchit.html" src="photos/header_catchit.jpg">
+      </div>
+      <div class="row-fluid">
+        <p class="HackathonName fadeIn">Hack2Action 2016</p>
       </div>
     </div>
   </div>
+</div>
 <div class="row-fluid">
   <div class="col-md-12">
     <p style="text-align: center; margin-top: 40px; font-size: 20px;"><a class="fadeIn" style="color: white;font-weight: 100;" href="https://gist.github.com/curtischong/68237f2b76f6b014af7dbe37953261f5" target="_blank">View All Hackathons<i class="fa fa-angle-right" aria-hidden="true" style="margin-left: 10px;"></i></a></p>
@@ -293,7 +293,6 @@
     <hr class="splitHr fadeIn">
   </div>
 </div>
-</div>
 <div class="container-fluid" id="personalFavourites">
   <div class="row-fluid" style="background-color: #070502">
     <div class="col-md-12 fadeIn">
@@ -301,9 +300,10 @@
     </div>
   </div>
   <div class="row-fluid">
-    <div class="col-md-2 col-xs-6">
+    <div class="col-md-2 col-xs-6 col-md-offset-1">
       <div class="row-fluid">
-        <img hackName="Lizzie" repoLink="https://github.com/curtischong/lizziewatch" data-src="./photos/header_lizzie.png" class="aPhoto fadeIn prjimg img-responsive center-block lazy" thePrjImg="photos/inner_lizzie.gif" desc="./descriptions/projects/lizzie.html">
+        <img hackName="Lizzie" repoLink="https://github.com/curtischong/lizziewatch" hackathon="" src="photos/header_lizzie.png"
+class="aPhoto fadeIn prjimg img-responsive center-block lazy" thePrjImg="photos/inner_lizzie.gif" desc="./descriptions/projects/lizzie.html">
       </div>
       <div class="row-fluid">
 <p class="HackathonName fadeIn">AI that Collects personal metrics to save time</p>
@@ -311,16 +311,18 @@
     </div>
     <div class="col-md-2 col-xs-6">
       <div class="row-fluid">
-        <img hackName="Parabola" repoLink="https://github.com/curtischong/parabola" hackathon="SE101" data-src="./photos/header_parabola.jpg" class="aPhoto fadeIn prjimg img-responsive center-block lazy" thePrjImg="photos/inner_parabola.gif" desc="./descriptions/projects/parabola.html">
+        <img hackName="Parabola" repoLink="https://github.com/curtischong/parabola" hackathon="SE101" src="photos/header_parabola.jpg"
+class="aPhoto fadeIn prjimg img-responsive center-block lazy" thePrjImg="photos/inner_parabola.gif" desc="./descriptions/projects/parabola.html">
       </div>
       <div class="row-fluid">
-        <p class="HackathonName fadeIn">AR overlay that predicts where objects land</p>
+<p class="HackathonName fadeIn">AR overlay that predicts where objects land</p>
       </div>
     </div>
 
     <div class="col-md-2 col-xs-6">
       <div class="row-fluid">
-        <img hackName="Musr" repoLink="https://github.com/curtischong/Musr" hackathon="Hack the 6ix 2017" data-src="./photos/header2_musr.jpg" class="aPhoto fadeIn prjimg img-responsive center-block lazy" thePrjImg="photos/inner_musr.gif" desc="./descriptions/projects/musr.html">
+        <img hackName="Musr" repoLink="https://github.com/curtischong/Musr" hackathon="Hack the 6ix 2017" src="photos/header2_musr.jpg"
+          class="aPhoto fadeIn prjimg img-responsive center-block lazy" thePrjImg="photos/inner_musr.gif" desc="./descriptions/projects/musr.html">
       </div>
       <div class="row-fluid">
         <p class="HackathonName fadeIn">Tinder with your brainwaves</p>
@@ -328,7 +330,8 @@
     </div>
     <div class="col-md-2 col-xs-6">
       <div class="row-fluid">
-        <img hackName="CatCorp" repoLink="https://github.com/curtischong/Greenfoot_Physics_Engine" data-src="./photos/header_catcorp.jpg" class="aPhoto fadeIn prjimg img-responsive center-block lazy" thePrjImg="photos/inner_catcorp.gif" desc="./descriptions/projects/greenfoot_physics_engine.html">
+        <img hackName="CatCorp" repoLink="https://github.com/curtischong/Greenfoot_Physics_Engine" hackathon="" src="photos/header_catcorp.jpg"
+          class="aPhoto fadeIn prjimg img-responsive center-block lazy" thePrjImg="photos/inner_catcorp.gif" desc="./descriptions/projects/greenfoot_physics_engine.html">
       </div>
       <div class="row-fluid">
         <p class="HackathonName fadeIn">Physics engine in Java</p>
@@ -336,18 +339,10 @@
     </div>
   <div class="col-md-2 col-xs-6">
     <div class="row-fluid">
-        <img hackName="DabCoin" repoLink="https://github.com/curtischong/dabcoin" hackathon="Terrible Hack XI" data-src="./photos/header_dabcoin.jpg" class="aPhoto fadeIn prjimg img-responsive center-block lazy" thePrjImg="photos/inner_dabcoin.gif" desc="./descriptions/projects/dabcoin.html">
+        <img hackName="DabCoin" repoLink="https://github.com/curtischong/dabcoin" hackathon="Terrible Hack XI" src="photos/header_dabcoin.jpg" class="aPhoto fadeIn prjimg img-responsive center-block lazy" thePrjImg="photos/inner_dabcoin.gif" desc="./descriptions/projects/dabcoin.html">
     </div>
     <div class="row-fluid">
       <p class="HackathonName fadeIn">Proof-of-dab based cryptocurrency</p>
-    </div>
-  </div>
-  <div class="col-md-2 col-xs-6">
-    <div class="row-fluid">
-        <img hackName="Messenger Asisstant" repoLink="https://github.com/curtischong/Messenger-Assistant" data-src="./photos/header/messenger_assistant.jpg" class="aPhoto fadeIn prjimg img-responsive center-block lazy" thePrjImg="photos/project/messenger_assistant.jpg" desc="./descriptions/projects/messenger_assistant.html">
-    </div>
-    <div class="row-fluid">
-      <p class="HackathonName fadeIn">Chrome Extensions, But For Messenger.com</p>
     </div>
   </div>
 </div>
@@ -360,47 +355,58 @@
   </div>
   <div class="col-md-2 col-xs-6">
     <div class="row-fluid">
-      <img hackName="Ancient Finders" repoLink="https://github.com/curtischong/ancient_finders" data-src="photos/header_ancient_finders.jpg" class="fadeIn prjimg aPhoto center-block lazy" thePrjImg="photos/inner_ancient_finders.png" desc="./descriptions/projects/ancient_finders.html">
+      <img hackName="Ancient Finders" repoLink="" hackathon="" src="photos/header_ancient_finders.jpg" class="fadeIn prjimg aPhoto center-block lazy" thePrjImg="photos/inner_ancient_finders.png" desc="./descriptions/projects/ancient_finders.html">
     </div>
     <div class="row-fluid">
       <p class="HackathonName fadeIn">Ancient Finders</p>
     </div>
   </div>
+
+
   <div class="col-md-2 col-xs-6">
     <div class="row-fluid">
-      <img hackName="FightVR" repoLink="https://github.com/curtischong/FightVR" hackathon="AdrenaLAN" data-src="photos/header_fightvr.jpg" class="fadeIn prjimg aPhoto center-block lazy" thePrjImg="photos/inner_fightvr.jpg" desc="./descriptions/projects/fight_vr.html">
+      <img hackName="FightVR" repoLink="https://github.com/curtischong/FightVR" hackathon="AdrenaLAN" src="photos/header_fightvr.jpg" class="fadeIn prjimg aPhoto center-block lazy" thePrjImg="photos/inner_fightvr.jpg" desc="./descriptions/projects/fight_vr.html">
     </div>
     <div class="row-fluid">
       <p class="HackathonName fadeIn">FightVR</p>
     </div>
   </div>
+
+
   <div class="col-md-2 col-xs-6">
     <div class="row-fluid">
-      <img hackName="Misconceptions" repoLink="https://github.com/curtischong/misconception" data-src="photos/header_misconceptions.jpg" class="fadeIn prjimg aPhoto center-block lazy" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1468229137/misconceptionAddQuestionBody_gqml6w.png" desc="./descriptions/projects/misconception.html">
+      <img hackName="Misconceptions" repoLink="https://github.com/curtischong/misconception" hackathon="" src="photos/header_misconceptions.jpg" class="fadeIn prjimg aPhoto center-block lazy" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1468229137/misconceptionAddQuestionBody_gqml6w.png" desc="./descriptions/projects/misconception.html">
     </div>
     <div class="row-fluid">
       <p class="HackathonName fadeIn">Misconceptions</p>
     </div>
   </div>
+
+
   <div class="col-md-2 col-xs-6">
     <div class="row-fluid">
-      <img hackName="SentiMint" repoLink="https://github.com/curtischong/sentimint" hackathon="Hack the 6ix 2016 Summer" data-src="photos/header_sentimint.jpg" class="aPhoto fadeIn prjimg img-responsive center-block lazy" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1473814778/sentimint_1_sogk9l.jpg" desc="./descriptions/projects/sentimint.html">
+      <img hackName="SentiMint" repoLink="https://github.com/curtischong/sentimint" hackathon="Hack the 6ix 2016 Summer" src="photos/header_sentimint.jpg" class="aPhoto fadeIn prjimg img-responsive center-block lazy" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1473814778/sentimint_1_sogk9l.jpg" desc="./descriptions/projects/sentimint.html">
     </div>
     <div class="row-fluid">
       <p class="HackathonName fadeIn">SentiMint</p>
     </div>
   </div>
+
+
   <div class="col-md-2 col-xs-6">
     <div class="row-fluid">
-      <img hackName="Wattpad Statistics" repoLink="https://github.com/curtischong/Wattpad-Statistics" hackathon="HackOn(data)" data-src="photos/header_wattpad_statistics.jpg" class="aPhoto fadeIn prjimg img-responsive center-block lazy" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1473918557/wattpadMap_aqhjfh.png" desc="./descriptions/projects/wattpad_statistics.html">
+      <img hackName="Wattpad Statistics" repoLink="https://github.com/curtischong/Wattpad-Statistics" hackathon="HackOn(data)" src="photos/header_wattpad_statistics.jpg" class="aPhoto fadeIn prjimg img-responsive center-block lazy" thePrjImg="https://res.cloudinary.com/dj2eq8czc/image/upload/v1473918557/wattpadMap_aqhjfh.png" desc="./descriptions/projects/wattpad_statistics.html">
     </div>
     <div class="row-fluid">
       <p class="HackathonName fadeIn">Wattpad Statistics</p>
     </div>
   </div>
+
+
+
   <div class="col-md-2 col-xs-6">
     <div class="row-fluid">
-      <img hackName="Alphabet Soup" repoLink="https://github.com/curtischong/pennapps2017w_Alphabet_Soup" hackathon="Pennapps 2017 Winter" data-src="photos/header_alphabet_soup.jpg" class="fadeIn prjimg img-responsive center-block lazy" thePrjImg="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/461/625/datas/gallery.jpg" desc="./descriptions/projects/alphabet_soup.html">
+      <img hackName="Alphabet Soup" repoLink="https://github.com/curtischong/pennapps2017w_Alphabet_Soup" hackathon="Pennapps 2017 Winter" src="photos/header_alphabet_soup.jpg" class="fadeIn prjimg img-responsive center-block lazy" thePrjImg="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/461/625/datas/gallery.jpg" desc="./descriptions/projects/alphabet_soup.html">
     </div>
     <div class="row-fluid">
       <p class="HackathonName fadeIn">Alphabet Soup</p>
@@ -423,29 +429,31 @@
         <p class="vaultName"><a href="https://github.com/curtischong/prom_night" target="_blank">Prom Night</a> - <span class="vaultTagline">Maximum bipartite matching to help you go prom date catching.</span></p>
         <p class="vaultName"><a href="https://github.com/curtischong/Protecting-North-American-Bees" target="_blank">North American Bees</a> - <span class="vaultTagline">Planting flowers on city towers to boost bee powers.</span></p>
         <p class="vaultNotes">Inspired by Maria Spivak's Ted Talk: <a href="https://www.youtube.com/watch?v=dY7iATJVCso" target="_blank">Why Bees are dissapearing.</a> </p>
-        <p class="vaultName"><a href="https://github.com/curtischong/lnews" target="_blank">LNews</a> - <span class="vaultTagline">Your personal newsfeed to exceed daily deeds.</span></p>
-        <p class="vaultName"><a href="https://github.com/curtischong/TTC_Headway_Archive_Dec11-Dec18" target="_blank">TTC Headway</a> - <span class="vaultTagline">Graphing the time in between TTC buses. Insipred by a lifetime of downtime during rushtime.</span></p>
+<p class="vaultName"><a href="https://github.com/curtischong/TTC_Headway_Archive_Dec11-Dec18" target="_blank">TTC Headway</a> - <span class="vaultTagline">Graphing the time in between TTC buses. Insipred by a lifetime of downtime during rushtime.</span></p>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="col-md-12">
+      <hr class="splitHr fadeIn">
+    </div>
+  </div>
+
+  <div class="col-md-10 col-md-offset-2 fadeIn">
+    <div class="row-fluid">
         <p class="vaultName"><a href="https://github.com/curtischong/GeoConnect---Web" target="_blank">Geoconnect</a> - <span class="vaultTagline">When your night’s but spent, Geoconnect hunts for you a nearby event.</span></p>
-        <p class="vaultName"><a href="https://github.com/curtischong/measure_co2" target="_blank">CO₂ in Waterloo</a> - <span class="vaultTagline">Co2 screws the studying kung fu, so I found the best study spots in Waterloo.</span></p>
         <p class="vaultName"><a href="https://github.com/curtischong/coworm" target="_blank">Coworm</a> - <span class="vaultTagline">Have your audience squirm a worm to dodge meteors a million therms.</span></p>
         <p class="vaultName"><a href="https://github.com/curtischong/binarySnowflakes" target="_blank">Binary Snowflakes</a> - <span class="vaultTagline">Ones and Zeros falling on an HTML canvas for those stonewalling with CSS mistakes.</span></p>
         <p class="vaultName"><a href="https://github.com/curtischong/Calendarize" target="_blank">Calendarize</a> - <span class="vaultTagline">A Javascript calendar widget for you to clip.</span></p>
-        <p class="vaultName"><a href="https://github.com/curtischong/citizen_hacks_vimgolf" target="_blank">Vim Golf at Citizen Hacks</a> - <span class="vaultTagline">A lifelong passion turned into terminal fashion.</span></p>
-        <p class="vaultName"><a href="https://github.com/curtischong/WordMix" target="_blank">Word Mix</a> - <span class="vaultTagline">Find the closest name to each word in this PHP game.</span></p>
+        <p class="vaultName"><a href="https://github.com/curtischong/WordMix" target="_blank">Word Mix</a> - <span class="vaultTagline">Find the closest name to each word in this Php game.</span></p>
         <p class="vaultName"><a href="https://github.com/curtischong/excel_to_post-plugin" target="_blank">Excel To Post</a> - <span class="vaultTagline">Converts announcements from a CSV into Wordpress posts. No need for personal accountants!</span></p>
         <p class="vaultName"><a href="https://github.com/curtischong/Html-Games" target="_blank">An Assortment Of HTML Games</a> - <span class="vaultTagline">Birthday presents split into segments.</span></p>
         <p class="vaultName"><a href="https://github.com/curtischong/Rehackilation" target="_blank">Rehackilation</a> - <span class="vaultTagline">Using the leap motion for muscle promotion.</span></p>
         <p class="vaultName"><a href="https://chongcurtis.com/" target="_blank">FaceFind</a> - <span class="vaultTagline">Using Cordova to help you remember a nova of names.</span></p>
-        <p class="vaultName"><a href="https://github.com/curtischong/Lokee" target="_blank">Lokee</a> - <span class="vaultTagline">Report a crime spree to fee local thieves</span></p>
-        <p class="vaultName"><a href="https://github.com/curtischong/TTEZ" target="_blank">TTEZ</a> - <span class="vaultTagline">The average co2 emissions on every TTC route. Feel guilt-free when you dine out!</span></p>
-        <p class="vaultName"><a href="https://github.com/marceloneil/MinoTour" target="_blank">Minotour</a> - <span class="vaultTagline">Recommended tourist attractions based on contextual info. We're ready for you San Francisco!</span></p>
-        <p class="vaultName"><a href="https://github.com/kshen3778/uFund-frontend" target="_blank">Capital μ</a> - <span class="vaultTagline">The blockchain-powered equity portfolio. Hello Crypto!</span></p>
-        <p class="vaultName"><a href="https://github.com/curtischong/TTC_Nextbus_Archive" target="_blank">TTC Nextbus Archive</a> - <span class="vaultTagline">When's the next bus coming?</span></p>
-        <p class="vaultName"><a href="https://github.com/curtischong/ml_in_cpp" target="_blank">ML in C++</a> - <span class="vaultTagline">An implementation of cognition.</span></p>
-        <p class="vaultName"><a href="https://github.com/curtischong/lizzie_alerts" target="_blank">Lizzie alerts</a> - <span class="vaultTagline">Listens for Kaggle updates to change leaderboard fates.</span></p>
-        <p class="vaultName"><a href="https://github.com/curtischong/thacks2016-Javascript-Tutorial" target="_blank">An Intro to JS</a> - <span class="vaultTagline">A workshop I held for THacks. There were many stacks of fat Ajax packs.</span></p>
     </div>
   </div>
+
+  
 
 </div>
 <div class="container-fluid" id="resumeBlock" style="position: relative; top: 0px;height: 300px; background-color: #070502">
