@@ -7,7 +7,7 @@
 <h3>How Does the Pseudocode Generator Work?</h3>
 <ul>
   <li> None of us are qualified to explain this. However, Github, the ones that trained the model, is: <a href="https://github.blog/2018-09-18-towards-natural-language-semantic-code-search/" target="_blank">github.blog/2018-09-18-towards-natural-lan: guage-semantic-code-search.</a></li>
-  <li> From a high level, the model represents your pseudocode description as vector. You can read more about how a vector represents a word <a href="https://towardsdatascience.com/introduction-to-word-embedding-and-word2vec-652d0c2060fa">here</a>. It then takes the vector representation of your pseduocode and will search for a function description that has a similar vector representation. This function description is mapped to the function it describes. So all it needs to do is to find the most similar function description vector that looks like your pseudocode vector, then return the corresponding function of the function description. </li>
+  <li> From a high level, the model represents your pseudocode description as a vector. You can read more about how a vector represents a word <a href="https://towardsdatascience.com/introduction-to-word-embedding-and-word2vec-652d0c2060fa">here</a>. It then takes the vector representation of your pseudocode and will search for a function description that has a similar vector representation. This function description is mapped to the function it describes. So all it needs to do is to find the most similar function description vector that looks like your pseudocode vector, then return the corresponding function of the function description. </li>
 </ul>
 <h3> How Does the Function Search Work?</h3>
 <ul>
