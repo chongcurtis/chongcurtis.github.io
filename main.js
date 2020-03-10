@@ -164,14 +164,14 @@ if(project != ""){
       $("#quickLinks").fadeTo(800, 1);
     }, 300);
   } else { // Desktop
-    $("#title").css("top", vH - 260);
+    $("#title").css("top", vH - 220);
     $("#subHeaders").css("top", vH - 190);
     $("#educationHeader").css("top", vH - 190);
     setTimeout(function () {
       $("#educationHeader").fadeTo(1000, 1);
     }, 800);
     $("#title").animate({
-      top: vH - 300
+      top: vH - 265
     }, 1000);
     setTimeout(function () {
       $("#subHeaders").animate({
