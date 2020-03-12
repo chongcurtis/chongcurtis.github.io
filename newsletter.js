@@ -1,10 +1,36 @@
 $(document).ready(function(){
   let handlePageUpdates = function(){
     $(".fadeIn").each(function () {
-
-      $(this).fadeTo("slow", 1);
+      if ($(this).is($("#title"))) { // Since the network is really tall I want to display it later
+        $(this).fadeTo(500, 1);
+      }else if($(this).is($("#intro"))){
+        $(this).fadeTo(1000, 1);
+        $(this).animate({
+          top: 0,
+        },{
+          duration: 1000,
+          queue: false,
+        });
+      }else if($(this).is($("#hackathonCon"))){
+        $(this).fadeTo(1200, 1);
+        $(this).animate({
+          top: 0,
+        },{
+          duration: 1200,
+          queue: false,
+        });
+      }else if($(this).is($("#secondP"))){
+        $(this).fadeTo(600, 1);
+        $(this).animate({
+          top: 0,
+        },{
+          duration: 600,
+          queue: false,
+        });
+      } else{
+        $(this).fadeTo(1000, 1);
+      }
       $(this).removeClass("fadeIn");
-
     });
   };
 

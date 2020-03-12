@@ -5,12 +5,19 @@
   font-size: 1em;
   background-color: black;
 }
+#bodyCon{
+  position: relative;
+  width: 800px;
+  margin: 0 auto;
+}
 #title{
   position: relative;
   font-size: 30px;
   width: 400px;
   margin: 0 auto;
   text-align: center;
+}
+#intro{
 }
 #hackathonHisto{
   position: absolute;
@@ -26,11 +33,21 @@
 
 #hackathonCon{
   position: relative;
+  top: 20px;
   margin-top: 30px;
+  height: 350px;
 }
 
 #canvasCon{
   width: 600px;
   margin: 0px auto;
   position: relative;
+}
+
+#secondP{
+  margin-top: 50px;
+}
+
+.fadeIn{
+  opacity: 0;
 }
