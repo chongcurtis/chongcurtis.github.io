@@ -6,22 +6,27 @@
   background-color: black;
 }
 #title{
+  position: relative;
   font-size: 30px;
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
 }
 #hackathonHisto{
-  position: relative;
+  position: absolute;
   background-color: rgba(38, 38, 38);
   padding: 30px;
   border-radius: 8px;
   /*border: 1px solid rgba(222, 222, 222);*/
   border: 1px solid rgba(180, 180, 180);
+  width: 600px;
+  margin: 0 auto;
+  left: -31px;
 }
 
 #hackathonCon{
   position: relative;
   margin-top: 30px;
-  display: flex;
-  justify-content: center;
 }
 
 #canvasCon{

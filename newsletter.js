@@ -82,17 +82,7 @@ $(document).ready(function(){
       options: {
         scales: {
           xAxes: [{
-            display: false,
-            barPercentage: 1.3,
-            ticks: {
-                max: 3,
-            },
-        }, {
             display: true,
-            ticks: {
-                autoSkip: true,
-                max: 4,
-            },
             gridLines:{
               display: false,
               color: softGrey,
@@ -108,9 +98,15 @@ $(document).ready(function(){
               color: softGrey,
             }
           }]
-        }
+        },
+        responsive: false,
       }
     });
+
+    /*
+    let targetWidth = $("#hackathonCon").width()
+    let realWidth = $("#hackathonHisto").width()
+    $("#hackathonHisto").attr("left", (realWidth - targetWidth)/2)*/
 
 
     /*var myChart = new Chart(ctx, {
