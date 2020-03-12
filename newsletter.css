@@ -1,0 +1,29 @@
+*{
+  color: #f4f4f4;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1em;
+  background-color: black;
+}
+#title{
+  font-size: 30px;
+}
+#hackathonHisto{
+  position: relative;
+  background-color: rgba(38, 38, 38);
+  padding: 30px;
+  border-radius: 8px;
+}
+
+#hackathonCon{
+  position: relative;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+#canvasCon{
+  width: 600px;
+  margin: 0px auto;
+  position: relative;
+}
