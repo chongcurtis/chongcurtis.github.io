@@ -39,7 +39,17 @@ $(document).ready(function(){
             window.clearTimeout(hrwidthtimer);
           }
         }, 16);
-      } else{
+      }else if ($(this).hasClass("splitHr")) {
+        let ctx = $(this);
+        var hrwidthtimer = window.setInterval(function () {
+          var hrwidth = ctx.width();
+          if (hrwidth < 600) {
+            ctx.css("width", hrwidth + 5);
+          } else {
+            window.clearTimeout(hrwidthtimer);
+          }
+        }, 16);
+      }else{
         $(this).fadeTo(1000, 1);
       }
       $(this).removeClass("fadeIn");
