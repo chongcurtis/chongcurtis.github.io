@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--I really like this font: segoe ui-->
+<html>
+
+<head>
+  <title>Sleepovers at the Office</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="sleepovers.js"></script>
+  <link rel="stylesheet" href="sleepovers.css">
+</head>
+<body>
+<div id="bodyCon">
+  <div id="title" class="fadeIn">
+    <h1>Sleepovers at the Office</h1>
+  </div>
+  <div id="subtitle">A Newsletter About Ideas I have</div>
+  <p id="intro4" class="fadeIn">Why am I doing this? I have a 20-page list of hackathon ideas and I've been attending less and less hackathons over time</p>
+  <div id="hackathonCon" class="fadeIn">
+    <div id="canvasCon">
+      <canvas id="hackathonHisto" width=600 height=300></canvas>
+    </div>
+  </div>
+  <p id="secondP" class="fadeIn">I'd love for someone to make these dreams come true.</p>
+  <br>
+  <p id="secondP2" class="fadeIn">Here's what an email might look like:</p>
+
+  <div id="example">
+    <div id="quoteBar">
+
+    </div>
+    <div id="quoteText">
+      <i>
+        Finding the smash-hit song out of your 30-long Discover Weekly page is hard. It takes me around an hour :/
+        <br>
+        <br>
+        What if we can compress songs into gifs, then display all 30 gifs onto a page. Once we learn how songs "look like" we'll be able to quickly veto bad songs.
+        <br><br>
+        What you'll probably need to make this:
+        <ul>
+        <li>An encoder/decoder network to get compressed song vectors.</li>
+        <li>A way to map song vectors onto images.</li>
+        <li>An algorithm to structure the generated image.</li>
+        </ul>
+        <br>
+        - Curtis
+        </i>
+    </div>
+  </div>
+
+  <p>I hope to see you on my email list!</p>
+
+  <div id="signupCon">
+    <form id="signupForm">
+      <input type="email" id="signup" placeholder="john.doe@gmail.com" required>
+    </form>
+    <div id="signupThankyou"></div>
+    <hr id="lastElement" class="splitHr fadeIn">
+  </div>
+</div>
+</body>
+</html>

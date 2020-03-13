@@ -46,6 +46,24 @@ $(document).ready(function(){
     });
   };
 
+  let addToList = (email) =>{
+    $("#signupThankyou").show();
+    $("#signupThankyou").html(`Thanks for signing up! I've added ${email} to the list :) `)
+  }
+
+  $("#signupForm").submit(function(e) {
+    //ajax call here
+      let email = $("#signup").val()
+    $("#signupForm").hide();
+    $("#lastElement").hide();
+      addToList(email);
+    //stop form submission
+    e.preventDefault();
+    return false
+  });
+
+
+
   handlePageUpdates();
   let renderChart = function(){
     var ctx = document.getElementById('hackathonHisto').getContext('2d');
@@ -91,11 +109,11 @@ $(document).ready(function(){
       "Jan", "Mar"]*/
 
     var biMonthlyLabels= [
-      "Sept 2016", "",
+      "Sept 2015", "",
+      "Jan 2016", "", "May 2016", "", "Sep 2016", "",
       "Jan 2017", "", "May 2017", "", "Sep 2017", "",
       "Jan 2018", "", "May 2018", "", "Sep 2018", "",
       "Jan 2019", "", "May 2019", "", "Sep 2019", "",
-      "Jan 2020", "", "May 2020", "", "Sep 2020", "",
       "Jan 2020", ""]
 
     const softWhite = "rgba(219,219,219,1)";
@@ -140,52 +158,6 @@ $(document).ready(function(){
         responsive: false,
       }
     });
-
-    /*
-    let targetWidth = $("#hackathonCon").width()
-    let realWidth = $("#hackathonHisto").width()
-    $("#hackathonHisto").attr("left", (realWidth - targetWidth)/2)*/
-
-
-    /*var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: dataLabels,
-        datasets: [{
-          label: 'Group A',
-          data: bimonthly,
-          backgroundColor: 'rgba(255, 99, 132, 1)',
-        }]
-      },
-      options: {
-        scales: {
-          xAxes: [{
-            display: false,
-            barPercentage: 1.3,
-            ticks: {
-                max: 3,
-            },
-        }, {
-            display: true,
-            ticks: {
-                autoSkip: true,
-                max: 4,
-            },
-            gridLines:{
-              color: softWhite,
-            }
-          }],
-          yAxes: [{
-            ticks: {
-              beginAtZero:true
-            },
-            gridLines:{
-              color: softWhite,
-            }
-          }]
-        }
-      }
-    });*/
   }
   renderChart();
 });

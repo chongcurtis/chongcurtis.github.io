@@ -300,6 +300,9 @@ svg{
 #kaggleImg{
   vertical-align: middle;
 }
+.kagglePlace{
+  font-size: 15px;
+}
 
 #projects{
   position: relative;
