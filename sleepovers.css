@@ -5,6 +5,9 @@
   font-size: 1em;
   background-color: black;
 }
+.lightText{
+  font-weight: 100;
+}
 .splitHr{
   border: 0;
   height: 1px;
