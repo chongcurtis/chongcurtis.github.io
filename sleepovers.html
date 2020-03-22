@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--I really like this font: segoe ui-->
+<html>
+
+<head>
+  <title>Sleepovers at the Office</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="sleepovers.js"></script>
+  <link rel="stylesheet" href="sleepovers.css">
+</head>
+<body>
+<div id="bodyCon">
+  <div id="title" class="fadeIn">
+    <h1>Sleepovers at the Office</h1>
+  </div>
+  <div id="subtitle" class=fadeIn>A Newsletter of Ideas That Might Never Come True</div>
+  <p id="intro4" class="fadeIn">Heyyyy this is my newsletter!
+    <br><br>
+    It's a collection of ideas that I hope to send to your inbox.
+    <br><br>
+    I think a lot of these ideas have merit, and since It seems like I'm no longer going to hackathons...
+  <div id="hackathonCon" class="fadeIn">
+        <!-- This canvas took farrrr too long to compose. But I think graphs are cool. and yeah, I spend too much time making this. So it's staying :) -->
+    <div id="canvasCon">
+      <canvas id="hackathonHisto" width=600 height=300></canvas>
+    </div>
+  </div>
+  <p id="secondP" class="fadeIn">It'd be pretty cool if these ideas weren't just a collection of never-fullfilled dreams.</p>
+  <hr class="splitHr fadeIn">
+  <p id="secondP2" class="fadeIn">Here's what an email might look like:</p>
+  <div id="example" class="fadeIn">
+    <div id="quoteBar"></div>
+    <div id="quoteText" class="lightText">
+        Finding your smash-hit song on Spotify's "Discover Weekly" page is hard. It takes me around an hour to get through it :/
+        <br>
+        <br>
+        What if we can represent songs as gifs, then display all 30 gifs onto a page.
+        Once we learn how songs "look like" we'll be able to quickly veto bad songs.
+        <br><br>
+        What you'll probably need to make this:
+        <ul>
+        <li class="lightText">An encoder/decoder network to get compressed song vectors.</li>
+        <li class="lightText">A way to map song vectors onto images.</li>
+        <li class="lightText">An algorithm to structure the generated image.</li>
+        </ul>
+        <!-- clearly I reallllly don't know how to end emails-->
+        <!--Seya soon <br><br>-->
+        - Curtis
+    </div>
+  </div>
+
+  <div id="signupCon" class="fadeIn">
+
+    <p style="width: 100%; text-align: center;">I hope to catch you on my list :) </p>
+
+    <!-- Begin Mailchimp Signup Form -->
+    <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      #mc_embed_signup{ clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+      /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+        We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+    </style>
+    <div id="mc_embed_signup">
+    <form action="https://chongcurtis.us19.list-manage.com/subscribe/post?u=dcb9ac87ea46a1ce8616c58f5&amp;id=143adbb116" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div id="mc_embed_signup_scroll">
+      <input type="email" style="background-color: black; border: 0px; border-bottom: 1px solid #f4f4f4; border-radius: 0px; color: #f4f4f4;" id="signup" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="john.doe@gmail.com" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+          <input type="text" name="b_dcb9ac87ea46a1ce8616c58f5_143adbb116" tabindex="-1" value="">
+        </div>
+        <div class="clear">
+          <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe;" style="background-color: black; border: 1px solid #bfbfbf; color: #f4f4f4; margin-left: 5px;"  class="button">
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
+<!--End mc_embed_signup-->
+</div>
+</body>
+</html>
