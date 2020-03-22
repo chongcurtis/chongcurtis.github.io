@@ -1,62 +1,58 @@
 $(document).ready(function(){
-  var vW = window.innerWidth;
   var vH = window.innerHeight;
   let handlePageUpdates = function(){
     $(".fadeIn").each(function () {
-      if ($(this).is($("#title"))) { // Since the network is really tall I want to display it later
-        $(this).fadeTo(500, 1);
-      }else if($(this).is($("#intro"))){
-        $(this).fadeTo(1000, 1);
-        $(this).animate({
-          top: 0,
-        },{
-          duration: 1000,
-          queue: false,
-        });
-      }else if($(this).is($("#hackathonCon"))){
-        $(this).fadeTo(1200, 1);
-        $(this).animate({
-          top: 0,
-        },{
-          duration: 1200,
-          queue: false,
-        });
-      }else if($(this).is($("#secondP"))){
-        $(this).fadeTo(600, 1);
-        $(this).animate({
-          top: 0,
-        },{
-          duration: 600,
-          queue: false,
-        });
-      }else if($(this).is("#lastElement")){
-        let ctx = $(this);
-        var hrwidthtimer = window.setInterval(function () {
-          var hrwidth = ctx.width();
-          if (hrwidth < 450) {
-            ctx.css("width", hrwidth + 5);
-          } else {
-            window.clearTimeout(hrwidthtimer);
-          }
-        }, 16);
-      }else if ($(this).hasClass("splitHr")) {
-        let ctx = $(this);
-        var hrwidthtimer = window.setInterval(function () {
-          var hrwidth = ctx.width();
-          if (hrwidth < 600) {
-            ctx.css("width", hrwidth + 5);
-          } else {
-            window.clearTimeout(hrwidthtimer);
-          }
-        }, 16);
-      }else{
-        $(this).fadeTo(1000, 1);
+      var pos = $(this).offset().top,
+      winTop = $(window).scrollTop();
+      if (pos + 200 < winTop + vH) {
+        if ($(this).is($("#title"))) { // Since the network is really tall I want to display it later
+          $(this).fadeTo(500, 1);
+        }else if($(this).is($("#intro"))){
+          $(this).fadeTo(1000, 1);
+          $(this).animate({
+            top: 0,
+          },{
+            duration: 1000,
+            queue: false,
+          });
+        }else if($(this).is($("#hackathonCon"))){
+          $(this).fadeTo(1200, 1);
+          $(this).animate({
+            top: 0,
+          },{
+            duration: 1200,
+            queue: false,
+          });
+        }else if($(this).is($("#secondP"))){
+          $(this).fadeTo(600, 1);
+          $(this).animate({
+            top: 0,
+          },{
+            duration: 600,
+            queue: false,
+          });
+        }else if ($(this).hasClass("splitHr")) {
+          let ctx = $(this);
+          var hrwidthtimer = window.setInterval(function () {
+            var hrwidth = ctx.width();
+            if (hrwidth < 600) {
+              ctx.css("width", hrwidth + 5);
+            } else {
+              window.clearTimeout(hrwidthtimer);
+            }
+          }, 16);
+        }else{
+          $(this).fadeTo("slow", 1);
+        }
+        $(this).removeClass("fadeIn");
       }
-      $(this).removeClass("fadeIn");
     });
   };
 
   handlePageUpdates();
+  $(window).scroll(function () {
+    handlePageUpdates();
+  });
   let renderChart = function(){
     var ctx = document.getElementById('hackathonHisto').getContext('2d');
 
