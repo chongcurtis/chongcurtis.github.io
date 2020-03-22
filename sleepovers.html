@@ -9,6 +9,10 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="sleepovers.js"></script>
   <link rel="stylesheet" href="sleepovers.css">
+  <!--TODO(Curtis): Remove this redirect hack-->
+  <script>
+    if(window.location.hostname != "0.0.0.0" && location.protocol != 'https:') location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+  </script>
 </head>
 <body>
 <div id="bodyCon">
