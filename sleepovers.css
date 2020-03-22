@@ -4,6 +4,7 @@
   font-weight: 300;
   font-size: 1em;
   background-color: black;
+  /*#121212*/
 }
 .lightText{
   font-weight: 100;
@@ -88,8 +89,14 @@
 
 #signupCon{
   position: relative;
+  border: 1px solid #f4f4f4;
+  margin: 0 auto;
   margin-top: 50px;
-  margin-bottom: 100px;
+  margin-bottom: 200px;
+  padding: 30px;
+  padding-top: 10px;
+  width: 600px;
+  border-radius: 10px;
 }
 #signupForm{
   width: 300px;
@@ -102,6 +109,7 @@
   border: none;
   height: 19px;
   margin: 0 auto;
+  background-color: black;
 }
 #signup::placeholder{
   color: #9c9c9c;
@@ -128,4 +136,5 @@
 #lastElement{
   position: relative;
   margin-top: 0px;
+  margin-bottom: 200px;
 }

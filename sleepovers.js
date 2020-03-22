@@ -56,24 +56,6 @@ $(document).ready(function(){
     });
   };
 
-  let addToList = (email) =>{
-    $("#signupThankyou").show();
-    $("#signupThankyou").html(`Thanks for signing up! I've added ${email} to the list :) `)
-  }
-
-  $("#signupForm").submit(function(e) {
-    //ajax call here
-      let email = $("#signup").val()
-    $("#signupForm").hide();
-    $("#lastElement").hide();
-      addToList(email);
-    //stop form submission
-    e.preventDefault();
-    return false
-  });
-
-
-
   handlePageUpdates();
   let renderChart = function(){
     var ctx = document.getElementById('hackathonHisto').getContext('2d');
