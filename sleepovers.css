@@ -7,7 +7,7 @@
   /*#121212*/
 }
 .lightText{
-  font-weight: 100;
+  font-weight: 200;
 }
 .splitHr{
   border: 0;
@@ -91,7 +91,7 @@
   position: relative;
   border: 1px solid #f4f4f4;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 20px;
   margin-bottom: 200px;
   padding: 30px;
   padding-top: 10px;
