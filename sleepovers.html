@@ -9,6 +9,10 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="sleepovers.js"></script>
   <link rel="stylesheet" href="sleepovers.css">
+  <!--TODO(Curtis): Remove this redirect hack-->
+  <script>
+    if(window.location.hostname != "0.0.0.0" && location.protocol != 'https:') location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+  </script>
 </head>
 <body>
 <div id="bodyCon">
@@ -18,9 +22,9 @@
   <div id="subtitle" class=fadeIn>A Newsletter of Ideas That Might Never Come True</div>
   <p id="intro4" class="fadeIn">Heyyyy this is my newsletter!
     <br><br>
-    It's a collection of ideas that I hope to send to your inbox.
+    It's a collection of ideas that I hope to send to your inbox on Mondays.
     <br><br>
-    I think a lot of these ideas have merit, and since It seems like I'm no longer going to hackathons...
+    My list of hackathon ideas has recently hit 20 pages long, and since It seems like I'm no longer going to hackathons...
   <div id="hackathonCon" class="fadeIn">
         <!-- This canvas took farrrr too long to compose. But I think graphs are cool. and yeah, I spend too much time making this. So it's staying :) -->
     <div id="canvasCon">
