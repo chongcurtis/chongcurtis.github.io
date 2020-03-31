@@ -143,7 +143,7 @@ if(project != ""){
     $("#subHeaders").css("left", 0);
     $("#subHeaders").css("width", vW);
     $("#subHeaders").css("text-align", "center");
-    $("#educationHeader").css("top", 225);
+    $("#educationHeader").css("top", 205);
     $("#educationHeader").css("left", 0);
     $("#educationHeader").css("width", vW);
     $("#educationHeader").css("text-align", "center");
@@ -164,14 +164,14 @@ if(project != ""){
       $("#quickLinks").fadeTo(800, 1);
     }, 300);
   } else { // Desktop
-    $("#title").css("top", vH - 220);
+    $("#title").css("top", vH - 260);
     $("#subHeaders").css("top", vH - 190);
     $("#educationHeader").css("top", vH - 190);
     setTimeout(function () {
       $("#educationHeader").fadeTo(1000, 1);
     }, 800);
     $("#title").animate({
-      top: vH - 265
+      top: vH - 300
     }, 1000);
     setTimeout(function () {
       $("#subHeaders").animate({
