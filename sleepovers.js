@@ -15,14 +15,6 @@ $(document).ready(function(){
             duration: 1000,
             queue: false,
           });
-        }else if($(this).is($("#hackathonCon"))){
-          $(this).fadeTo(1200, 1);
-          $(this).animate({
-            top: 0,
-          },{
-            duration: 1200,
-            queue: false,
-          });
         }else if($(this).is($("#secondP"))){
           $(this).fadeTo(600, 1);
           $(this).animate({
@@ -53,6 +45,16 @@ $(document).ready(function(){
   $(window).scroll(function () {
     handlePageUpdates();
   });
+
+  // On smaller screens this won't instantly show up
+  $("#hackathonCon").fadeTo(1200, 1);
+  $("#hackathonCon").animate({
+    top: 0,
+  },{
+    duration: 1200,
+    queue: false,
+  });
+
   let renderChart = function(){
     var ctx = document.getElementById('hackathonHisto').getContext('2d');
 
@@ -88,14 +90,6 @@ $(document).ready(function(){
       "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
       "Jan", "Feb", "Mar"]
 
-    /*var biMonthlyLabels= [
-      "Sept", "Nov",
-      "Jan", "Mar", "May", "Jul", "Sep", "Nov",
-      "Jan", "Mar", "May", "Jul", "Sep", "Nov",
-      "Jan", "Mar", "May", "Jul", "Sep", "Nov",
-      "Jan", "Mar", "May", "Jul", "Sep", "Nov",
-      "Jan", "Mar"]*/
-
     var biMonthlyLabels= [
       "Sept 2015", "",
       "Jan 2016", "", "May 2016", "", "Sep 2016", "",
@@ -104,10 +98,10 @@ $(document).ready(function(){
       "Jan 2019", "", "May 2019", "", "Sep 2019", "",
       "Jan 2020", ""]
 
-    const softWhite = "rgba(219,219,219,1)";
+    const softWhite = "rgba(99,99,99,1)";
     const softGrey = "rgba(89,89,89,1)";
-    const softBlue= "rgba(25, 123, 145)";
-    const lightBlue= "rgba(69,203,237,1)";
+    const softBlue= "rgba(69,203,237,1)";
+    const lightBlue= "rgba(155, 229, 242, 1)";
     Chart.defaults.global.defaultFontColor = softWhite;
 
     var myChart = new Chart(ctx, {
@@ -117,8 +111,8 @@ $(document).ready(function(){
         datasets: [{
           label: '# Hackathons',
           data: bimonthly,
-          backgroundColor: softBlue,
-          borderColor: lightBlue,
+          backgroundColor: lightBlue,
+          borderColor: softBlue,
           radius: 1,
           borderWidth: 1,
         }]
