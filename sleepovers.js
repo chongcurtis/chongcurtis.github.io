@@ -15,14 +15,6 @@ $(document).ready(function(){
             duration: 1000,
             queue: false,
           });
-        }else if($(this).is($("#hackathonCon"))){
-          $(this).fadeTo(1200, 1);
-          $(this).animate({
-            top: 0,
-          },{
-            duration: 1200,
-            queue: false,
-          });
         }else if($(this).is($("#secondP"))){
           $(this).fadeTo(600, 1);
           $(this).animate({
@@ -53,6 +45,16 @@ $(document).ready(function(){
   $(window).scroll(function () {
     handlePageUpdates();
   });
+
+  // On smaller screens this won't instantly show up
+  $("#hackathonCon").fadeTo(1200, 1);
+  $("#hackathonCon").animate({
+    top: 0,
+  },{
+    duration: 1200,
+    queue: false,
+  });
+
   let renderChart = function(){
     var ctx = document.getElementById('hackathonHisto').getContext('2d');
 
