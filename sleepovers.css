@@ -1,19 +1,19 @@
 *{
-  color: #f4f4f4;
+  color: black;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 1em;
-  background-color: black;
+  background-color: #f7f7f7;
   /*#121212*/
 }
 .lightText{
-  font-weight: 200;
+  font-weight: 300;
 }
 .splitHr{
   border: 0;
   height: 1px;
   width: 1px;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), #FFFFFF, rgba(0, 0, 0, 0.5));
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.0));
   position: relative;
   margin: 0 auto;
   margin-top: 50px;
@@ -28,6 +28,12 @@
   width: 800px;
   margin: 0 auto;
 }
+
+#titlep{
+  color: #ff947d;
+  font-weight: bold;
+}
+
 #title{
   position: relative;
   font-size: 40px;
@@ -37,6 +43,7 @@
   margin-top: 80px;
 }
 #subtitle{
+  color: #66ccff;
   position: relative;
   margin: 0 auto;
   width: 600px;
@@ -48,11 +55,11 @@
 }
 #hackathonHisto{
   position: absolute;
-  background-color: rgba(38, 38, 38);
   padding: 30px;
   border-radius: 8px;
   /*border: 1px solid rgba(222, 222, 222);*/
   border: 1px solid rgba(180, 180, 180);
+  background-color: #f0f0f0;
   width: 600px;
   margin: 0 auto;
   left: -31px;
@@ -80,16 +87,17 @@
 #quoteBar{
   height: 295px;
   width: 10px;
-  background-color: gray;
+  background-color: #cfcfcf;
   margin: 20px;
 }
 #quoteText{
   margin-top: 30px;
+  color: black;
 }
 
 #signupCon{
   position: relative;
-  border: 1px solid #f4f4f4;
+  border: 1px solid black;
   margin: 0 auto;
   margin-top: 20px;
   margin-bottom: 200px;
@@ -97,6 +105,7 @@
   padding-top: 10px;
   width: 600px;
   border-radius: 10px;
+  background-color: #f0f0f0;
 }
 #signupForm{
   width: 300px;
@@ -109,10 +118,10 @@
   border: none;
   height: 19px;
   margin: 0 auto;
-  background-color: black;
+  background-color: #f0f0f0;
 }
 #signup::placeholder{
-  color: #9c9c9c;
+  color: #5e5e5e;
 }
 #signup:focus, input:focus{
   outline: none;
