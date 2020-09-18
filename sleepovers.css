@@ -47,11 +47,24 @@
   position: relative;
   margin: 0 auto;
   width: 600px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   text-align: center;
   font-size: 20px;
 }
-#intro{
+#subtitle2{
+  color: #757575;
+  position: relative;
+  margin: 0 auto;
+  width: 600px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 100;
+}
+#archiveLink{
+  color: #ff947d;
+  text-decoration: none;
+  border-bottom: 1px solid #ff947d;
 }
 #hackathonHisto{
   position: absolute;
