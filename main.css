@@ -290,20 +290,6 @@ svg{
 
 }
 
-#kaggleSection{
-  text-align: center;
-  font-size: 30px;
-  margin-top: 30px;
-  font-weight: 100;
-  color: white;
-}
-#kaggleImg{
-  vertical-align: middle;
-}
-.kagglePlace{
-  font-size: 15px;
-}
-
 #projects{
   position: relative;
   top: -10px;
@@ -317,12 +303,6 @@ svg{
 .prjimg:hover{
   transform: translateY(-3px);
   transition: 0.1s;
-}
-.kagglePrj{
-  font-size: 20px;
-  cursor: pointer;
-  width: 100%;
-  color: white;
 }
 #visualizations{
   background-color: #070502;
@@ -380,13 +360,9 @@ svg{
   background-color: #070502;
   width: 100%;
 }
-#experience{
-  background-color: #070502;
-  position: relative;
-  padding-bottom: 50px;
-}
 #workExperiencePCon{
   background-color: black;
+  padding-bottom: 50px;
 }
 #workExperienceP{
   position: relative;
@@ -401,9 +377,6 @@ svg{
   width: 100%;
   text-align: center;
   text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
-}
-.softSkillsP{
-  font-size: 15px;
 }
 #hackathons{
   background-color: #070502;
