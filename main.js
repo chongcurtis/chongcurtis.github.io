@@ -65,11 +65,11 @@ let handlePageUpdates = function(){
       } else if ($(this).is($("#typingCon"))) {
         const numElements = 5;
         let listOfElements = ["mailElement", "linkedinElement", "githubElement", "devpostElement", "stElement"];
-        let listOfElementLinks = ["<a href='mailto:curtischong5@gmail.com' style='color: #00FF00;'>curtischong5@gmail.com</a>",
-          "<a href='https://www.linkedin.com/in/chongcurtis'  style='color: #00FF00;' target='_blank'>linkedin.com/in/chongcurtis</a>",
-          "<a href='https://github.com/curtischong'  style='color: #00FF00;' target='_blank'>github.com/curtischong</a>",
-          "<a href='https://devpost.com/curtischong'  style='color: #00FF00;' target='_blank'>devpost.com/curtischong</a>",
-          "<a href='http://stackoverflow.com/users/4647924/curtis-chong' style='color: #00FF00;' target='_blank'>stackoverflow.com/users/4647924/curtis-chong</a>"
+        let listOfElementLinks = ["<a href='mailto:curtischong5@gmail.com' style='color: #00FF00; border-bottom: #00FF00;'>curtischong5@gmail.com</a>",
+          "<a href='https://www.linkedin.com/in/chongcurtis'  style='color: #00FF00; border-bottom: #00FF00;' target='_blank'>linkedin.com/in/chongcurtis</a>",
+          "<a href='https://github.com/curtischong'  style='color: #00FF00; border-bottom: #00FF00;' target='_blank'>github.com/curtischong</a>",
+          "<a href='https://devpost.com/curtischong'  style='color: #00FF00; border-bottom: #00FF00;' target='_blank'>devpost.com/curtischong</a>",
+          "<a href='http://stackoverflow.com/users/4647924/curtis-chong' style='color: #00FF00; border-bottom: #00FF00;' target='_blank'>stackoverflow.com/users/4647924/curtis-chong</a>"
         ];
         for (let r = 0; r < numElements; r++) {
           $("#" + listOfElements[r]).typed({
