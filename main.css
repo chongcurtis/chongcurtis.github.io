@@ -16,9 +16,11 @@ a {
 a:hover {
   text-decoration: none !important;
   color: #00bbff !important;
+  border-bottom: 1px solid #00bbff;
 }
 a:visited {
   color: #2397c1;
+  border-bottom: 1px solid #2397c1;
 }
 a:focus {
   outline: none;
