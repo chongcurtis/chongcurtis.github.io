@@ -137,6 +137,9 @@ body,html{
   margin: 10px;
   border-bottom: none;
 }
+.quickLinksLink:hover{
+  border-bottom: none;
+}
 .svg_icon {
   fill: white;
 }
