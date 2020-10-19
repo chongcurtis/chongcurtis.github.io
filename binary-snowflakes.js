@@ -74,4 +74,4 @@ function init_binary_snowflakes() {
 
 
 
-init_binary_snowflakes();
+//init_binary_snowflakes();

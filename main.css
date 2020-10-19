@@ -129,12 +129,17 @@ body,html{
  display: flex;
  justify-content: center;
  align-items: center;
+text-decoration: none;
 }
 .quickLinksLink{
   width: 30px;
   position: relative;
   display: inline-block;
   margin: 10px;
+  border-bottom: none;
+}
+.quickLinksLink:hover{
+  border-bottom: none;
 }
 .svg_icon {
   fill: white;
@@ -402,7 +407,14 @@ svg{
   text-align: center;
   font-weight: 100;
 }
-#hackathonThreeReasons{
+#hackathonDesc{
+  position: relative;
+  top: 30px;
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+}
+/*#hackathonThreeReasons{
   position: relative;
   top: 30px;
   font-size: 20px;
@@ -416,7 +428,7 @@ svg{
   margin-top: 40px;
   font-size: 15px;
   font-weight: 100;
-}
+}*/
 #winNum{
   font-weight: 100;
   margin-right: 15px;
