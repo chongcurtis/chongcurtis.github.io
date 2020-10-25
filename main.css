@@ -3,6 +3,7 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 1em;
+  background-color: black;
 }
 a {
   color: #ff7f00;
@@ -68,18 +69,6 @@ body,html{
   margin-top: 50px;
   margin-bottom: 50px;
 }
-#bannerPhoto{
-  filter: brightness(80%);
-  height: 100%;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
-  flex-grow: 1;
-}
-#bannerIntro{
-  position: relative;
-  flex-grow: 2;
-  width: 20%;
-  background-color: black;
-}
 #bannerPhotoWrapper{
   position: relative;
   height: 100%;
@@ -87,19 +76,39 @@ body,html{
   flex-direction: row;
   flex-wrap: wrap-reverse;
 }
+#bannerPhoto{
+  position: relative;
+  filter: brightness(80%);
+  /*background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));*/
+  width: 40%;
+  background-image: url("photos/curtis-chong-homepage-background2.jpg");
+  background-size: 40%;
+  background-position: left;
+}
+#introSidebar{
+  position: relative;
+  flex-grow: 1;
+  flex-direction: column;
+  display: flex;
+  background-color: black;
+}
 #issueInfo{
   height: 400px;
   background-color: #2C3E50;
 }
+#header{
+  display: flex;
+  flex-direction: column;
+}
 #title{
-  position: absolute;
-  left: 150px;
+  flex-grow: 1;
+  position: relative;
   font-size: 27px;
   color: white;
 }
 #subHeaders{
-  position: absolute;
-  left: 153px;
+  flex-grow: 1;
+  position: relative;
   font-size: 23px;
   opacity: 0.01;
   cursor: default;
@@ -107,35 +116,33 @@ body,html{
   color: white;
 }
 #educationHeader{
- position: absolute;
- left: 155px;
- font-size: 14px;
- opacity: 0.01;
- cursor: default;
- font-weight: 300;
- color: white;
+  flex-grow: 1;
+  position: relative;
+  font-size: 14px;
+  opacity: 0.01;
+  cursor: default;
+  font-weight: 300;
+  color: white;
 }
 #quickLinks{
- position: relative;
- z-index: 1;
- font-size: 19px;
- opacity: 0.01;
- cursor: default;
- font-weight: 300;
- color: white;
- top: 88%;
- width: auto;
-
- display: flex;
- justify-content: center;
- align-items: center;
-text-decoration: none;
+  position: relative;
+  z-index: 1;
+  font-size: 19px;
+  opacity: 0.01;
+  cursor: default;
+  font-weight: 300;
+  color: white;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  width: 400px;
 }
 .quickLinksLink{
   width: 30px;
-  position: relative;
-  display: inline-block;
   margin: 10px;
+  display: inline-block;
+  position: relative;
   border-bottom: none;
 }
 .quickLinksLink:hover{
@@ -205,7 +212,6 @@ svg{
 }
 #introTitle{
   font-size: 47px;
-  width: 100%;
   text-align: center;
   position: relative;
   margin-top: 140px;
