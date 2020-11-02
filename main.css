@@ -3,7 +3,7 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 1em;
-  background-color: black;
+  /*setting a background colour here messes with parallax*/
 }
 a {
   color: #ff7f00;
@@ -74,22 +74,38 @@ body,html{
   height: 100%;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap-reverse;
+  background-color: black;
+  flex-wrap: wrap;
+}
+#bannerPhotoCon{
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center; /*centers children vertically*/
+  justify-content: center; /*centers children horizontally*/
 }
 #bannerPhoto{
   position: relative;
   filter: brightness(80%);
   /*background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));*/
-  width: 45%;
-  background-image: url("photos/curtis-chong-homepage-background2.jpg");
-  background-size: 45%;
-  background-position: left;
+  max-width: 50%;
+  min-width: 300px;
+  border: 4px solid white;
 }
 #introSidebarCon{
-  flex-grow: 1;
+  flex: 1;
   display: flex;
   align-items: center; /*centers children vertically*/
-  justify-content: center; /*centers children horizontally*/
+  justify-content: left; /*centers children horizontally*/
+}
+/*700px is exactly when the introSidebarCon splits into two*/
+@media screen and (max-width: 700px) {
+  #introSidebarCon{
+    flex: 1;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
 }
 #introSidebar{
   position: relative;
@@ -137,10 +153,18 @@ body,html{
   font-weight: 300;
   color: white;
   flex-grow: 1;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   text-decoration: none;
-  width: 400px;
+  width: 100%;
+  display: flex;
+}
+
+@media screen and (max-width: 700px) {
+  #quickLinks{
+    flex: 1;
+    justify-content: center;
+  }
 }
 .quickLinksLink{
   width: 30px;
@@ -479,7 +503,13 @@ svg{
   opacity: 0.01;
   color: white;
   font-weight: 100;
-  left: 40%;
+  left: 35%;
+  /*
+    this is too hard to animate
+    left: 50%;
+    transform: translate(-40%, -40%);
+    transition: 2s ease-in-out
+  */
 }
 #htnDesc{
   border-top: 1px solid white;
