@@ -80,17 +80,21 @@ body,html{
   position: relative;
   filter: brightness(80%);
   /*background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));*/
-  width: 40%;
+  width: 45%;
   background-image: url("photos/curtis-chong-homepage-background2.jpg");
-  background-size: 40%;
+  background-size: 45%;
   background-position: left;
+}
+#introSidebarCon{
+  flex-grow: 1;
+  display: flex;
+  align-items: center; /*centers children vertically*/
+  justify-content: center; /*centers children horizontally*/
 }
 #introSidebar{
   position: relative;
-  flex-grow: 1;
   flex-direction: column;
   display: flex;
-  background-color: black;
 }
 #issueInfo{
   height: 400px;
