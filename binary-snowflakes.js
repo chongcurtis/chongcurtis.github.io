@@ -32,8 +32,8 @@ function run(canvas, ctxone) {
     let canvasW = canvas.width;
     let canvasH = canvas.height;
     if (wait == 0) { //see if it is time to spawn a new snowflake
-        let adjustedCanvasH = canvasH*0.5 // this is the actual height of the canvas cause of the DPI fixing we did
-        let snowflakeMaxY = adjustedCanvasH*0.8 // so snowflakes fade away before the clip the bottom
+        //let adjustedCanvasH = canvasH*0.5 // this is the actual height of the canvas cause of the DPI fixing we did
+        let snowflakeMaxY = canvasH*0.8 // so snowflakes fade away before the clip the bottom
         let newObject = {
             "x": Math.floor((Math.random() * canvasW) + 1),
             "y": Math.floor((Math.random() * snowflakeMaxY) + 1),

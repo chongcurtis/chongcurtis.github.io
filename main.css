@@ -5,6 +5,10 @@
   font-size: 1em;
   /*setting a background colour here messes with parallax*/
 }
+/*html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}*/
 a {
   color: #ff7f00;
   -webkit-transition: 0.5s;

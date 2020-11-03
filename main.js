@@ -3,7 +3,9 @@ const NUM_HACKATHON_WINS = 13;
 
 var vH = window.innerHeight;
 var vW = window.innerWidth;
-$("#binarySnowflakeCanvas").width(vW);
+// https://stackoverflow.com/questions/8339377/how-to-get-screen-width-without-minus-scrollbar
+var actualInnerWidth = document.body.scrollWidth;     // El. width minus scrollbar width
+$("#binarySnowflakeCanvas").width(actualInnerWidth);
 $("#binarySnowflakeCanvas").height(vH);
 $(function () {
   $('.lazy').lazy();
