@@ -47,13 +47,13 @@ $(document).ready(function(){
   });
 
   // On smaller screens this won't instantly show up
-  $("#hackathonCon").fadeTo(1200, 1);
+  /*$("#hackathonCon").fadeTo(1200, 1);
   $("#hackathonCon").animate({
     top: 0,
   },{
     duration: 1200,
     queue: false,
-  });
+  });*/
 
   let renderChart = function(){
     var ctx = document.getElementById('hackathonHisto').getContext('2d');
@@ -141,5 +141,5 @@ $(document).ready(function(){
       }
     });
   }
-  renderChart();
+  //renderChart();
 });
