@@ -32,13 +32,16 @@ function run(canvas, ctxone) {
     let canvasW = canvas.width;
     let canvasH = canvas.height;
     if (wait == 0) { //see if it is time to spawn a new snowflake
+        let adjustedCanvasH = canvasH*0.5 // this is the actual height of the canvas cause of the DPI fixing we did
+        let snowflakeMaxY = adjustedCanvasH*0.8 // so snowflakes fade away before the clip the bottom
         let newObject = {
             "x": Math.floor((Math.random() * canvasW) + 1),
-            "y": Math.floor((Math.random() * canvasH) + 1),
+            "y": Math.floor((Math.random() * snowflakeMaxY) + 1),
             "color": "rgba(225,225,225,", //here the snowflake is set to the colour white
             "alpha": 1,
             "word": Math.floor(Math.random() + 0.5) // makes a random 1 or 0
         }
+        console.log(newObject.y)
         numbers.push(newObject); //this sends the created snowflake into the snowflake array so it can be rendered on screen
         wait = SNOWFLAKE_DELAY; //sets the wait letiable back to the orginal amount
     } else {
@@ -52,10 +55,10 @@ function run(canvas, ctxone) {
 function init_binary_snowflakes() {
     let drawingCanvas = document.getElementById("binarySnowflakeCanvas");
     drawingCanvas.width = window.innerWidth; //document.width is obsolete
-    drawingCanvas.height = 450;
+    drawingCanvas.height = window.innerHeight;
 
     ctxone = setupCanvas(drawingCanvas);
-    ctxone.font = "3 2em Arial";
+    ctxone.font = "30px Arial";
     //creates the first snowflake in the snowflake object (must  be done this way because the loop needs at least one "snowflake" to start)
     let firstObject = {
         "x": 300,
@@ -71,7 +74,4 @@ function init_binary_snowflakes() {
     }, SNOWFLAKE_SPEED); //this is the cycle
 }
 
-
-
-
-//init_binary_snowflakes();
+init_binary_snowflakes();

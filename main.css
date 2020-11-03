@@ -74,7 +74,6 @@ body,html{
   height: 100%;
   display: flex;
   flex-direction: row;
-  background-color: black;
   flex-wrap: wrap;
 }
 #bannerPhotoCon{
@@ -478,10 +477,7 @@ svg{
 }
 #binarySnowflakeCanvas{
   position: absolute;
-  z-index: 1;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
-  right: 0px;
+  left: 0px;
   background-color: #070502;
   top: 0px;
 }

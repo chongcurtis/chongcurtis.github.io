@@ -4,6 +4,7 @@ const NUM_HACKATHON_WINS = 13;
 var vH = window.innerHeight;
 var vW = window.innerWidth;
 $("#binarySnowflakeCanvas").width(vW);
+$("#binarySnowflakeCanvas").height(vH);
 $(function () {
   $('.lazy').lazy();
 });
