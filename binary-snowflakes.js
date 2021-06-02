@@ -41,7 +41,6 @@ function run(canvas, ctxone) {
             "alpha": 1,
             "word": Math.floor(Math.random() + 0.5) // makes a random 1 or 0
         }
-        console.log(newObject.y)
         numbers.push(newObject); //this sends the created snowflake into the snowflake array so it can be rendered on screen
         wait = SNOWFLAKE_DELAY; //sets the wait letiable back to the orginal amount
     } else {
