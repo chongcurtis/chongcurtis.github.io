@@ -12,6 +12,8 @@ module.exports = {
       colors: {
         // color names found via this website: https://www.color-name.com/hex/ff947d
         "background-color": "#FFF9F9",
+        "sleepover-primary": "#FF947D",
+        "sleepover-secondary": "#66ccff",
         "light-salmon": "#FF947D",
         "maya-blue": "#66CCFF",
       },
