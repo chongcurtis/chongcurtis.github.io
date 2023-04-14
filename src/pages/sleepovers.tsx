@@ -47,21 +47,16 @@ export default function Sleepovers() {
                     <br />
                     <br />
                     <p>
-                        There are many reasons why I wanted to start this newsletter, but the largest one is that I
-                        want
-                        to see these ideas come true, I can&apos;t possibly work on every project idea that comes
-                        by, so
-                        hopefully someone will turn one into reality someday.
+                        There are many reasons why I wanted to start this newsletter, but the largest one is that I want
+                        to see these ideas come true. I can&apos;t work on every project, but I hope someone reading
+                        this can.
                     </p>
                     <br /><br />
                     <p className="text-sleepover-primary text-xl">Why is it called Sleepovers at the Office?</p>
                     <br />
-                    When the Coronavirus came, the CEO at Lumina gratiously allowed me to stay at the office to
-                    shelter
-                    from
-                    the disease. I was without words when they offered me a place to stay so I decided to name my
-                    newsletter
-                    after what happened.
+                    When the Coronavirus came, the CEO at Lumina graciously allowed me to stay at the office to
+                    shelter from the disease. I was without words when they offered me a place to stay, so I decided to
+                    name my newsletter after what happened.
                     <br />
                     <ThinLine />
                     <p className="fadeIn mt-2">Here&apos;s what an email might look like:</p>
@@ -72,24 +67,66 @@ export default function Sleepovers() {
                     background-color: #cfcfcf;
                     margin: 20px;
                     */}
+                        {/*TODO: add title*/}
                         {/*<div id="quoteBar"></div>*/}
-                        <div className="text-slate-800 mt-20">
-                            Finding your smash-hit song on Spotify&apos;s &ldquo;Discover Weekly&rdquo; page is
-                            hard. It
-                            takes me around an hour to get through it :/
+                        <div className="text-slate-800 mt-10 border-l-8 border-l-slate-100 pl-6">
+                            <p className="text-3xl">Technology to Divert Hurricanes</p>
+                            <div className="flex items-center justify-start">
+                                <p className="text-xl text-sleepover-primary mr-2">Sleepovers at the Office</p>
+                                <p className="text-md text-sleepover-secondary">• Idea #98</p>
+                            </div>
                             <br />
                             <br />
-                            What if we can represent songs as gifs, then display all 30 gifs onto a page.
-                            Once we learn how songs &ldquo;look like&rdquo; we&apos;ll be able to quickly veto bad
-                            songs.
-                            <br /><br />
-                            What you&apos;ll probably need to make this:
-                            <ul>
-                                <li>An encoder/decoder network to get compressed song vectors.</li>
-                                <li>A way to map song vectors onto images.</li>
-                                <li>An algorithm to structure the generated image.</li>
+                            Hurricanes suck.
+                            <br />
+                            <br />
+                            What if we could redirect them so that instead of hitting Florida, they remain in the
+                            Atlantic before dying off?
+                            <br />
+                            <br />
+                            Here&apos;s how we might do it:
+                            <ol className="list-decimal ml-[20px] mt-4 mb-6 marker:font-extrabold marker:text-slate-800 marker:text-center">
+                                <li className="mb-2 pl-2">Predict where/when a storm will form.</li>
+                                <li className="mb-2 pl-2">Send a fleet of 50 planes near that area. They will create
+                                    clouds
+                                    to reflect
+                                    sunlight
+                                    and change the temperature of the water below.
+                                </li>
+                                <li className="mb-2 pl-2">This change in atmosphere will deviate the storm from its
+                                    initial
+                                    path, saving
+                                    billions
+                                    of dollars of damage.
+                                </li>
+                            </ol>
+                            The hard part is telling the planes where to fly. We&apos;ll need the following:
+                            <ul className="list-disc ml-[20px] mt-4 mb-6 marker:font-extrabold marker:text-slate-800 marker:text-center">
+                                <li className="mb-2 pl-2">
+                                    A model to predict the storm&apos;s future trajectory given the current
+                                    measurements.
+                                </li>
+                                <li className="mb-2 pl-2">
+                                    A reinforcement learning algorithm (Monte Carlo tree search?) to determine the best
+                                    locations to &ldquo;remove heat&rdquo; and redirect the storm away from people.
+                                </li>
                             </ul>
-                            Or you can just learn how to read spectrograms.
+                            It&apos;d be breathtaking to see aircraft carriers launch hundreds of jets to redirect
+                            the tempest.
+                            <br />
+                            <br />
+                            We may not even need planes to fly; autonomous drones could be enough. Since this is a
+                            control problem, we&apos;ll need extremely responsive agents, i.e. computers.
+                            <br />
+                            <br />
+                            On the other hand, this technology may encourage more development in hazardous areas because
+                            people may falsely assume that this technology will work all the time. There are also
+                            ethical concerns. If you can redirect storms away from people, you certainly have the means
+                            to direct them toward people…
+                            <br />
+                            <br />
+                            Concerns aside, I need to find out if this fiction is the future. I hope it is because it
+                            feels like a fun problem to solve. I hope you have a great week!
                             <br />
                             <br />
                             - Curtis
