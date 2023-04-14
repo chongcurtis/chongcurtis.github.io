@@ -5,7 +5,7 @@ export default function MailchimpSignup() {
 // I'm also not using the validation code at https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js
     return (
         <div
-            className="fadeIn relative border border-gray-300 mt-20 mb-70 px-50 py-10 rounded-lg bg-gray-100 max-w-md">
+            className="fadeIn relative border border-gray-300 px-50 py-1 rounded-lg bg-gray-100 ">
 
             {/*Begin Mailchimp Signup Form*/}
             <div id="mc_embed_signup" className="w-full">
