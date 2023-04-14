@@ -111,10 +111,10 @@ export default function Sleepovers() {
                                 - Curtis
                             </div>
                         </div>
-                        <MailchimpSignup />
                     </div>
                 </div>
             </div>
+            <MailchimpSignup />
         </div>
     );
 }
