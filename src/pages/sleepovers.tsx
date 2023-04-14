@@ -3,24 +3,30 @@
 import ThinLine from "@/components/ThinLine";
 import MailchimpSignup from "@/components/MailchimpSignup";
 import sleepoversBanner from "public/sleepovers/sleepovers-banner.jpg";
-import Image from "next/image";
 
 
 export default function Sleepovers() {
     // I really like this font: segoe ui
     return (
         <div className="flex flex-col justify-center align-center max-w-3xl place-items-center mx-auto">
-            <div className="fadeIn relative text-3xl text-center mt-20 max-w-xl">
-                {/*<img src={sleepoversBanner.src} alt="Sleepovers at the Office" />*/}
-                <Image src={sleepoversBanner.src} alt="Sleepovers at the Office" width={1000} height={1000} />
-            </div>
-            <h3 className="fadeIn text-sleepover-secondary text-center text-sm">
-                Projects Ideas to Talk About at Slumber Parties
-            </h3>
-            <div className="fadeIn text-[#757575] text-center">
-                View past issues <a className="text-[#ff947d] no-underline border-b-2 border-orange-500"
+            <div className="fadeIn relative text-3xl text-center mt-20 max-w-2xl">
+                <img src={sleepoversBanner.src} alt="Sleepovers at the Office" />
 
-                                    href="https://github.com/curtischong/Sleepovers-at-the-Office">here</a>
+                {/* Nextjs optimizes the image. However, it decreases the saturation of the colors. So for this img.
+                To disable saturation, unoptimized needs to be true, but I don't think it offers any advantages now.
+                 So I'm using the <img> tag */}
+                {/*<Image src={sleepoversBanner.src} alt="Sleepovers at the Office" width={600} height={600}*/}
+                {/*       quality={100}*/}
+                {/*       unoptimized={true}*/}
+                {/*/>*/}
+            </div>
+            <p className="fadeIn text-sleepover-primary text-center text-2xl mt-10 px-2">
+                Projects Ideas to Bring up at Slumber Parties
+            </p>
+            <div className="fadeIn text-gray-400 text-center mt-5">
+                View past issues <a
+                className="text-sleepover-secondary no-underline border-b-2 border-sleepover-secondary hover:border-sleepover-primary hover:text-sleepover-primary transition duration-300 ease-in-out"
+                href="https://github.com/curtischong/Sleepovers-at-the-Office">here</a>
             </div>
 
             {/* Important! setting w-full makes it fill the full width of max-2-2xl */}
@@ -30,13 +36,16 @@ export default function Sleepovers() {
             </div>
 
             <div className="px-5">
-                <p className="fadeIn">Hello!</p>
+                <p className="fadeIn"></p>
                 <div>
-                    <br /><br />
+                    Hello!
+                    <br />
+                    <br />
                     <p>Sleepovers at the Office is my weekly newsletter. It&apos;s a collection of tech-related
                         project
                         ideas that I send out every Monday.</p>
-                    <br /><br /><br />
+                    <br />
+                    <br />
                     <p>
                         There are many reasons why I wanted to start this newsletter, but the largest one is that I
                         want
@@ -44,9 +53,9 @@ export default function Sleepovers() {
                         by, so
                         hopefully someone will turn one into reality someday.
                     </p>
-                    <br /><br /><br />
-                    Why is it called Sleepovers at the Office?
                     <br /><br />
+                    <p className="text-sleepover-primary text-xl">Why is it called Sleepovers at the Office?</p>
+                    <br />
                     When the Coronavirus came, the CEO at Lumina gratiously allowed me to stay at the office to
                     shelter
                     from
@@ -88,8 +97,10 @@ export default function Sleepovers() {
                     </div>
                 </div>
             </div>
+
+            <p className="text-sleepover-primary mt-8 text-lg">I hope to see you every Monday!</p>
             {/*Important! setting w-full makes it fill the full width of max-2-2xl */}
-            <div className="mt-10 mb-[250px] w-full max-w-2xl px-5">
+            <div className="mt-6 mb-[250px] w-full max-w-2xl px-5">
                 <MailchimpSignup />
             </div>
         </div>

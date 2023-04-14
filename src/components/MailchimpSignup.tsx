@@ -26,7 +26,7 @@ export default function MailchimpSignup() {
                         </div>
                         <div className="flex-1 flex-grow-0 flex-shrink-0 ml-2">
                             <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe"
-                                   className="bg-gray-200 border border-gray-300 hover:bg-gray-300 transition duration-300 ease-in-out cursor-pointer text-black ml-15 rounded-md px-2 py-1 text-xs button" />
+                                   className="bg-gray-200 border border-gray-300 hover:bg-gray-300 transition duration-300 ease-in-out cursor-pointer text-black ml-15 rounded-md min-px-2 px-4 py-1 text-xs button" />
                         </div>
                     </div>
                 </form>
