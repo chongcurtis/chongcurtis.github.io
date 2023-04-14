@@ -6,10 +6,16 @@ export default function MailchimpSignup() {
 /* MailChimp Form Embed Code - Classic - 12/17/2015 v10.7 */
 #mc_embed_signup form {display:block; position:relative; text-align:left; margin: 20px}
 #mc_embed_signup h2 {font-weight:bold; padding:0; margin:15px 0; font-size:1.4em;}
-#mc_embed_signup input {border: 1px solid #ABB0B2; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;}
+
+/* Commented cause I don't like the default styles*/
+/*#mc_embed_signup input {border: 1px solid #ABB0B2; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;}*/
+
 #mc_embed_signup input[type=checkbox]{-webkit-appearance:checkbox;}
 #mc_embed_signup input[type=radio]{-webkit-appearance:radio;}
-#mc_embed_signup input:focus {border-color:#333;}
+
+/* Commented cause I don't like the default styles*/
+/*#mc_embed_signup input:focus {border-color:#333;}*/
+
 #mc_embed_signup .button {clear:both; background-color: #aaa; border: 0 none; border-radius:4px; transition: all 0.23s ease-in-out 0s; color: #FFFFFF; cursor: pointer; display: inline-block; font-size:15px; font-weight: normal; height: 32px; line-height: 32px; margin: 0 5px 10px 0; padding: 0 22px; text-align: center; text-decoration: none; vertical-align: top; white-space: nowrap; width: fit-content; width: -moz-fit-content;}
 #mc_embed_signup .button:hover {background-color:#777;}
 #mc_embed_signup .small-meta {font-size: 11px;}
@@ -61,12 +67,7 @@ export default function MailchimpSignup() {
 
     return (
         <div
-            className="fadeIn relative border border-gray-300 mx-auto mt-40 mb-70 p-30 rounded-lg bg-gray-100 w-600">
-            {/*<style*/}
-            {/*    dangerouslySetInnerHTML={{*/}
-            {/*        __html: mailchimpCss,*/}
-            {/*    }}*/}
-            {/*/>*/}
+            className="fadeIn relative border border-gray-300 mx-auto mt-20 mb-70 p-30 rounded-lg bg-gray-100 max-w-3xl">
 
             {/*Begin Mailchimp Signup Form*/}
             <style type="text/css"
@@ -74,21 +75,23 @@ export default function MailchimpSignup() {
                        __html: `
 ${mailchimpCss}
 
-#mc_embed_signup{clear:left; font:14px Helvetica,Arial,sans-serif;  width:600px;}
+#mc_embed_signup{clear:left; font:14px Helvetica,Arial,sans-serif}
 /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
 We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
                         `,
                    }}
             />
-            <div id="mc_embed_signup">
+            <div id="mc_embed_signup" className="w-full">
                 <form
                     action="https://chongcurtis.us19.list-manage.com/subscribe/post?u=dcb9ac87ea46a1ce8616c58f5&amp;id=143adbb116&amp;f_id=008eb1e4f0"
                     method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate"
                     target="_blank" noValidate>
                     <div id="mc_embed_signup_scroll">
                         <div className="mc-field-group">
-                            <input type="email" defaultValue="" name="EMAIL" className="required email" id="mce-EMAIL"
-                                   required />
+                            <input type="email" defaultValue="" name="EMAIL"
+                                   className="bg-[#f0f0f0] border-b-[1px] border-b-gray-300 text-slate-800 focus:outline-none required email"
+                                   id="mce-EMAIL"
+                                   placeholder="john.doe@gmail.com" required />
                         </div>
                         <div id="mce-responses" className="clear foot">
                             <div className="response hidden" id="mce-error-response" />
@@ -104,7 +107,7 @@ We recommend moving this block and the preceding CSS link to the HEAD of your HT
                         <div className="optionalParent">
                             <div className="clear foot">
                                 <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe"
-                                       className="button" />
+                                       className="bg-gray-300 border border-gray-400 text-black ml-15 button" />
                             </div>
                         </div>
                     </div>
