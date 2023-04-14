@@ -19,7 +19,9 @@ export default function Sleepovers() {
                                     href="https://github.com/curtischong/Sleepovers-at-the-Office">here</a>
             </div>
 
-            <MailchimpSignup />
+            <div className="flex justify-center ">
+                <MailchimpSignup />
+            </div>
 
             <div className="flex justify-center ">
                 <div className="content-center max-w-md">
