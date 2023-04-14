@@ -11,6 +11,7 @@ module.exports = {
     extend: {
       colors: {
         // color names found via this website: https://www.color-name.com/hex/ff947d
+        "background-color": "#FFF9F9",
         "light-salmon": "#FF947D",
         "maya-blue": "#66CCFF",
       },
