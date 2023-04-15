@@ -120,7 +120,7 @@ export default function Sleepovers() {
                             className="fade-in-on-scroll text-slate-800 mt-10 sm:border-l-8 border-l-4 border-l-slate-100 sm:pl-6 pl-4">
                             <div>
                                 <p className="fade-in-on-scroll text-3xl">Technology to Divert Hurricanes</p>
-                                <div className="flex items-center justify-start">
+                                <div className="flex items-center justify-start mt-1">
                                     <p className="text-xl text-sleepover-primary mr-2">Sleepovers at the Office</p>
                                     <p className="text-md text-sleepover-secondary">• Idea #98</p>
                                 </div>
@@ -185,7 +185,7 @@ export default function Sleepovers() {
                             <br />
                             <p className="fade-in-on-scroll">Concerns aside, I need to find out if this fiction is the
                                 future. I hope it is because it
-                                feels like a fun problem to solve. I hope you have a great week!</p>
+                                feels like a fun problem to solve. I wish you the best of weeks!</p>
                             <br />
                             <br />
                             <p className="fade-in-on-scroll">- Curtis</p>
@@ -194,8 +194,8 @@ export default function Sleepovers() {
                 </div>
             </div>
 
-            <p className="fade-in-on-scroll text-sleepover-primary mt-8 text-lg px-5 text-center">I hope to land in your
-                inbox!</p>
+            <p className="fade-in-on-scroll text-sleepover-primary mt-8 text-lg px-5 text-center">Thank you so much for
+                reading that and I hope to land in your inbox!</p>
             {/*Important! setting w-full makes it fill the full width of max-2-2xl */}
             <div className="fade-in-on-scroll mt-6 mb-[250px] w-full max-w-2xl px-5">
                 <MailchimpSignup />
