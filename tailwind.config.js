@@ -19,7 +19,7 @@ module.exports = {
                 sans: ["Inter var", ...defaultTheme.fontFamily.sans],
             },
             gridTemplateColumns: {
-                sidebar: "450px auto", // for sidebar sidebar. adds grid-cols-sidebar class
+                sidebar: "350px auto", // for sidebar sidebar. adds grid-cols-sidebar class
             },
         },
         ...defaultTheme,

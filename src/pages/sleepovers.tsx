@@ -59,8 +59,8 @@ export default function Sleepovers() {
 
     return (
         // this was the style before the sidebar
-        // <div className="align-center mx-auto flex max-w-3xl flex-col justify-center place-items-center">
-        <div className="align-center mx-auto flex max-w-3xl flex-col place-items-center justify-center md:ml-10">
+        <div className="align-center mx-auto flex max-w-3xl flex-col place-items-center justify-center">
+            {/*<div className="align-center mx-auto flex max-w-3xl flex-col place-items-center justify-center md:ml-10">*/}
             <div className="fade-in-on-scroll relative mt-20 max-w-2xl text-center text-3xl">
                 <img src={sleepoversBanner.src} alt="Sleepovers at the Office" />
 

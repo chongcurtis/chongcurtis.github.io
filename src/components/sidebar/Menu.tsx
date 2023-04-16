@@ -35,11 +35,11 @@ const Menu = ({ open, setOpen, navLinks }: Props) => {
             ref={ref}
             className={classNames({
                 "flex flex-col justify-between": true, // sidebar
-                "bg-indigo-700 text-zinc-50": true, // colors
-                "fixed top-0 z-20 md:sticky md:top-16 md:z-0 md:w-full md:pl-[150px]": true, // positioning
+                "md:bg-primary bg-[#ffe2d6] md:bg-transparent": true,
+                "fixed top-0 z-20 md:sticky md:top-16 md:z-0 md:w-full 2xl:pl-[50px]": true, // positioning
                 // NOTE: to change the width, you need to modify tailwind.config.js
-                "h-full w-[300px] md:h-[calc(100vh_-_64px)] md:w-[450px]": true, // for height and width
-                ".3s transition-transform ease-in-out md:translate-x-0": true, //animations
+                "h-full w-[300px] md:h-[100vh] md:w-[350px]": true, // for height and width
+                ".3s transition-transform ease-in-out 2xl:translate-x-0": true, //animations
                 "-translate-x-full": !open, //hide sidebar to the left when closed
             })}
         >
@@ -51,10 +51,16 @@ const Menu = ({ open, setOpen, navLinks }: Props) => {
                         <ul className="flex flex-col gap-2 py-2">
                             {navLinks.map((item, index) => {
                                 return (
-                                    <Link key={index} href={item.href}>
+                                    <Link
+                                        key={index}
+                                        href={item.href}
+                                        onClick={() => {
+                                            setOpen(false);
+                                        }}
+                                    >
                                         <li
                                             className={classNames({
-                                                "text-indigo-100 hover:bg-indigo-900": true, //colors
+                                                "hover:bg-indigo-900": true, //colors
                                                 "flex items-center gap-4 ": true, //layout
                                                 "transition-colors duration-300": true, //animation
                                                 "mx-2 rounded-md p-2": true, //self style
