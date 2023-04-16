@@ -58,8 +58,10 @@ export default function Sleepovers() {
     };
 
     return (
-        <div className="flex flex-col justify-center align-center max-w-3xl place-items-center mx-auto">
-            <div className="fade-in-on-scroll relative text-3xl text-center mt-20 max-w-2xl">
+        // this was the style before the sidebar
+        // <div className="align-center mx-auto flex max-w-3xl flex-col justify-center place-items-center">
+        <div className="align-center mx-auto flex max-w-3xl flex-col place-items-center justify-center md:ml-10">
+            <div className="fade-in-on-scroll relative mt-20 max-w-2xl text-center text-3xl">
                 <img src={sleepoversBanner.src} alt="Sleepovers at the Office" />
 
                 {/* Nextjs optimizes the image. However, it decreases the saturation of the colors. So for this img.
@@ -70,13 +72,13 @@ export default function Sleepovers() {
                 {/*       unoptimized={true}*/}
                 {/*/>*/}
             </div>
-            <p className="fade-in-on-scroll text-sleepover-primary text-center text-2xl mt-10 px-2">
+            <p className="fade-in-on-scroll mt-10 px-2 text-center text-2xl text-sleepover-primary">
                 Projects Ideas to Bring up at Slumber Parties
             </p>
-            <div className="fade-in-on-scroll text-gray-400 text-center mt-5">
+            <div className="fade-in-on-scroll mt-5 text-center text-gray-400">
                 View past issues{" "}
                 <a
-                    className="text-sleepover-secondary no-underline border-b-2 border-sleepover-secondary hover:border-sleepover-primary hover:text-sleepover-primary transition duration-300 ease-in-out"
+                    className="border-b-2 border-sleepover-secondary text-sleepover-secondary no-underline transition duration-300 ease-in-out hover:border-sleepover-primary hover:text-sleepover-primary"
                     href="https://github.com/curtischong/Sleepovers-at-the-Office"
                 >
                     here
@@ -85,7 +87,7 @@ export default function Sleepovers() {
 
             {/* Important! setting w-full makes it fill the full width of max-2-2xl */}
             {/* Also, the px-5 is so it doesn't touch the edge of the screen on mobile */}
-            <div className="fade-in-on-scroll mt-10 mb-10 w-full max-w-2xl px-5">
+            <div className="fade-in-on-scroll mb-10 mt-10 w-full max-w-2xl px-5">
                 <MailchimpSignup />
             </div>
 
@@ -107,7 +109,7 @@ export default function Sleepovers() {
                     </p>
                     <br />
                     <br />
-                    <p className="fade-in-on-scroll text-sleepover-primary text-xl">
+                    <p className="fade-in-on-scroll text-xl text-sleepover-primary">
                         Why is it called Sleepovers at the Office?
                     </p>
                     <br />
@@ -122,14 +124,14 @@ export default function Sleepovers() {
                     <p className="fade-in-on-scroll mt-2">
                         Here&apos;s what an email might look like:
                     </p>
-                    <div className="flex fade-in">
-                        <div className="fade-in-on-scroll text-slate-800 mt-10 sm:border-l-8 border-l-4 border-l-slate-100 sm:pl-6 pl-4">
+                    <div className="fade-in flex">
+                        <div className="fade-in-on-scroll mt-10 border-l-4 border-l-slate-100 pl-4 text-slate-800 sm:border-l-8 sm:pl-6">
                             <div>
                                 <p className="fade-in-on-scroll text-3xl">
                                     Technology to Divert Hurricanes
                                 </p>
-                                <div className="flex items-center justify-start mt-1">
-                                    <p className="text-xl text-sleepover-primary mr-2">
+                                <div className="mt-1 flex items-center justify-start">
+                                    <p className="mr-2 text-xl text-sleepover-primary">
                                         Sleepovers at the Office
                                     </p>
                                     <p className="text-md text-sleepover-secondary">• Idea #98</p>
@@ -147,7 +149,7 @@ export default function Sleepovers() {
                             <br />
                             <br />
                             <p className="fade-in-on-scroll">Here&apos;s how we might do it:</p>
-                            <ol className="list-decimal ml-[20px] mt-4 mb-6 marker:font-extrabold marker:text-slate-800 marker:text-center">
+                            <ol className="mb-6 ml-[20px] mt-4 list-decimal marker:text-center marker:font-extrabold marker:text-slate-800">
                                 <li className="fade-in-on-scroll mb-2 pl-2">
                                     Predict where/when a storm will form.
                                 </li>
@@ -166,7 +168,7 @@ export default function Sleepovers() {
                                 The hard part is telling the planes where to fly. We&apos;ll need
                                 the following:
                             </p>
-                            <ul className="list-disc ml-[20px] mt-4 mb-6 marker:font-extrabold marker:text-slate-800 marker:text-center">
+                            <ul className="mb-6 ml-[20px] mt-4 list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
                                 <li className="fade-in-on-scroll mb-2 pl-2">
                                     A model to predict the storm&apos;s future trajectory given the
                                     current measurements.
@@ -213,11 +215,11 @@ export default function Sleepovers() {
                 </div>
             </div>
 
-            <p className="fade-in-on-scroll text-sleepover-primary mt-8 text-lg px-5 text-center">
+            <p className="fade-in-on-scroll mt-8 px-5 text-center text-lg text-sleepover-primary">
                 Thank you so much for reading that and I hope to land in your inbox!
             </p>
             {/*Important! setting w-full makes it fill the full width of max-2-2xl */}
-            <div className="fade-in-on-scroll mt-6 mb-[250px] w-full max-w-2xl px-5">
+            <div className="fade-in-on-scroll mb-[250px] mt-6 w-full max-w-2xl px-5">
                 <MailchimpSignup />
             </div>
         </div>
