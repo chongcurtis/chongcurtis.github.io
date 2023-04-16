@@ -4,6 +4,7 @@ import { Bars3Icon } from "@heroicons/react/24/outline";
 import Menu from "@/components/sidebar/Menu";
 import { NavLinks } from "@/components/sidebar/NavLinks";
 import { useRouter } from "next/router";
+import classNames from "classnames";
 
 // from https://reacthustle.com/blog/next-js-tailwind-responsive-sidebar-layout
 const Sidebar = (props: PropsWithChildren) => {
@@ -27,7 +28,16 @@ const Sidebar = (props: PropsWithChildren) => {
                     <Menu open={isMenuVisible} setOpen={setIsMenuVisible} navLinks={NavLinks} />
                 </div>
             </div>
-            <div className="z-1 shadow-sm">{props.children}</div>
+            <div
+                className={classNames({
+                    "z-1": true,
+                    ".3s transition-transform ease-in-out ": isMenuVisible,
+                    "bg-black opacity-50": isMenuVisible,
+                    "bg-none opacity-100": isMenuVisible,
+                })}
+            >
+                <div>{props.children}</div>
+            </div>
         </div>
     );
 };

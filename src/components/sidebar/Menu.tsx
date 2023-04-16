@@ -60,7 +60,8 @@ const Menu = ({ open, setOpen, navLinks }: Props) => {
                                     >
                                         <li
                                             className={classNames({
-                                                "hover:bg-indigo-900": true, //colors
+                                                "decoration-sleepover-secondary underline-offset-2 hover:underline hover:decoration-wavy ":
+                                                    true,
                                                 "flex items-center gap-4 ": true, //layout
                                                 "transition-colors duration-300": true, //animation
                                                 "mx-2 rounded-md p-2": true, //self style
