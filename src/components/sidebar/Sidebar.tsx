@@ -10,20 +10,17 @@ const Sidebar = (props: PropsWithChildren) => {
     const [isMenuVisible, setIsMenuVisible] = useState(false);
 
     const router = useRouter();
-
-    // check if the user is on the specific page
-    console.log(router.pathname);
     const isOnMainPage = router.pathname === "/";
 
     return (
         <div>
-            <div className="fixed" hidden={isOnMainPage}>
-                <div className="z-10 shadow-sm">
+            <div className="fixed z-10" hidden={isOnMainPage}>
+                <div className="w-full">
                     <button
-                        className="2xl:hidden"
+                        className="m-2 rounded-2xl bg-red-50 p-2 shadow-md 2xl:hidden"
                         onClick={() => setIsMenuVisible((prev) => !prev)}
                     >
-                        <Bars3Icon className="h-6 w-6" />
+                        <Bars3Icon className="h-10 w-10 text-slate-500" />
                     </button>
                 </div>
                 <div className="grid md:grid-cols-sidebar">

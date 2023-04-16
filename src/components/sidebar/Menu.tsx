@@ -35,7 +35,7 @@ const Menu = ({ open, setOpen, navLinks }: Props) => {
             ref={ref}
             className={classNames({
                 "flex flex-col justify-between": true, // sidebar
-                "md:bg-primary bg-[#ffe2d6] md:bg-transparent": true,
+                "bg-red-50 md:bg-transparent": true,
                 "fixed top-0 z-20 md:sticky md:top-16 md:z-0 md:w-full 2xl:pl-[50px]": true, // positioning
                 // NOTE: to change the width, you need to modify tailwind.config.js
                 "h-full w-[300px] md:h-[100vh] md:w-[350px]": true, // for height and width
