@@ -28,15 +28,27 @@ const Sidebar = (props: PropsWithChildren) => {
                     <Menu open={isMenuVisible} setOpen={setIsMenuVisible} navLinks={NavLinks} />
                 </div>
             </div>
-            <div
-                className={classNames({
-                    "z-1": true,
-                    ".3s transition-transform ease-in-out ": isMenuVisible,
-                    "bg-black opacity-50": isMenuVisible,
-                    "bg-none opacity-100": isMenuVisible,
-                })}
-            >
-                <div>{props.children}</div>
+            <div>
+                <div
+                    className={classNames({
+                        "bg-background-color": true,
+                        // TODO: make the site unscrollable when the menu is open
+                        // "overflow-auto": !isMenuVisible,
+                        // "overflow-hidden": isMenuVisible,
+                    })}
+                >
+                    {props.children}
+                </div>
+                <div
+                    hidden={isOnMainPage}
+                    className={classNames({
+                        "fixed left-0 top-0 h-full w-full bg-black": true,
+
+                        "pointer-events-none opacity-30 transition-opacity duration-300 ease-in":
+                            isMenuVisible,
+                        "opacity-0 transition-opacity duration-300 ease-out": !isMenuVisible,
+                    })}
+                ></div>
             </div>
         </div>
     );
