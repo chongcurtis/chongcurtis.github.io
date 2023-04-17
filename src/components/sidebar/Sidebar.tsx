@@ -16,15 +16,15 @@ const Sidebar = (props: PropsWithChildren) => {
     return (
         <div>
             <div className="fixed z-10" hidden={isOnMainPage}>
-                <div className="w-full">
+                <div className="w-full" hidden={isMenuVisible}>
                     <button
-                        className="m-2 rounded-2xl bg-red-50 p-2 shadow-md 2xl:hidden"
+                        className="m-2 rounded-2xl bg-red-50 p-2 shadow-md xl:hidden"
                         onClick={() => setIsMenuVisible((prev) => !prev)}
                     >
                         <Bars3Icon className="h-10 w-10 text-slate-500" />
                     </button>
                 </div>
-                <div className="grid md:grid-cols-sidebar">
+                <div className="md:grid-cols-sidebar grid ">
                     <Menu open={isMenuVisible} setOpen={setIsMenuVisible} navLinks={NavLinks} />
                 </div>
             </div>

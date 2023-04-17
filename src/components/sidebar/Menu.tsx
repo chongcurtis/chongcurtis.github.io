@@ -35,17 +35,17 @@ const Menu = ({ open, setOpen, navLinks }: Props) => {
             ref={ref}
             className={classNames({
                 "flex flex-col justify-between": true, // sidebar
-                "bg-red-50 md:bg-background-color": true,
-                "fixed top-0 z-0 md:sticky md:top-16 md:z-0 md:w-full 2xl:pl-[50px]": true, // positioning
+                "bg-background-color": true,
+                "pl-10px fixed top-0 z-0 md:sticky md:top-16 md:z-0 md:w-full 2xl:pl-[10vh]": true, // positioning
                 // NOTE: to change the width, you need to modify tailwind.config.js
-                "h-full w-[300px] md:h-[100vh] md:w-[350px]": true, // for height and width
-                ".3s transition-transform ease-in-out 2xl:translate-x-0": true, //animations
+                "h-full w-3/4 md:h-[100vh] 2xl:w-[25rem]": true, // for height and width
+                ".3s transition-transform ease-in-out xl:translate-x-0": true, //animations
                 "-translate-x-full": !open, // hide sidebar to the left when closed
             })}
         >
-            <nav className="top-0 md:sticky md:top-16">
+            <nav className="pt-8 md:sticky">
                 <Link
-                    className="ml-4 text-2xl text-slate-800 decoration-sleepover-secondary underline-offset-2 hover:underline hover:decoration-wavy"
+                    className="ml-4 text-xl text-slate-800 decoration-sleepover-secondary underline-offset-2 hover:underline hover:decoration-wavy"
                     href="/"
                 >
                     curtischong.me
