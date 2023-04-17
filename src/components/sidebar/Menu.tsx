@@ -36,14 +36,14 @@ const Menu = ({ open, setOpen, navLinks }: Props) => {
             className={classNames({
                 "flex flex-col justify-between": true, // sidebar
                 "bg-background-color": true,
-                "pl-10px fixed top-0 z-0 md:sticky md:top-16 md:z-0 md:w-full 2xl:pl-[10vh]": true, // positioning
+                "fixed top-0 z-0 pl-[1.6rem] md:sticky md:z-0 md:w-full 2xl:pl-[10vh]": true, // positioning
                 // NOTE: to change the width, you need to modify tailwind.config.js
                 "h-full w-3/4 md:h-[100vh] 2xl:w-[25rem]": true, // for height and width
                 ".3s transition-transform ease-in-out xl:translate-x-0": true, //animations
                 "-translate-x-full": !open, // hide sidebar to the left when closed
             })}
         >
-            <nav className="pt-8 md:sticky">
+            <nav className="pt-[8rem] md:sticky">
                 <Link
                     className="ml-4 text-xl text-slate-800 decoration-sleepover-secondary underline-offset-2 hover:underline hover:decoration-wavy"
                     href="/"
