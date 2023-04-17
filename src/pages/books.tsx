@@ -1,6 +1,6 @@
 export default function Books() {
     return (
-        <div>
+        <>
             <p>
                 Have you read Zero to One? Do you listen to All-in? Have you read the Three Body
                 Problem? Unforunately, I have to answer yes to all three.
@@ -19,6 +19,6 @@ export default function Books() {
                 </p>
                 <div></div>
             </div>
-        </div>
+        </>
     );
 }

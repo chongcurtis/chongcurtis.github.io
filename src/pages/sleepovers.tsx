@@ -58,7 +58,8 @@ export default function Sleepovers() {
     };
 
     return (
-        <div className="align-center mx-auto flex max-w-3xl flex-col place-items-center justify-center">
+        // <div className="align-center mx-auto flex max-w-3xl flex-col place-items-center justify-center">
+        <>
             <div className="fade-in-on-scroll relative mt-20 max-w-2xl text-center text-3xl">
                 <img src={sleepoversBanner.src} alt="Sleepovers at the Office" />
 
@@ -220,6 +221,6 @@ export default function Sleepovers() {
             <div className="fade-in-on-scroll mb-[250px] mt-6 w-full max-w-2xl px-5">
                 <MailchimpSignup />
             </div>
-        </div>
+        </>
     );
 }
