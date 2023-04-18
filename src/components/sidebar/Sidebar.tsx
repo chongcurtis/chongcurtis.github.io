@@ -40,8 +40,11 @@ const Sidebar = (props: PropsWithChildren) => {
                 >
                     {props.children}
                 </div>
+
+                {/* This element is an overlay element to dim the background when the sidebar is opened*/}
+                {/* Only show this element if we are NOT on the main page AND they expand the sidebar */}
                 <div
-                    hidden={isOnMainPage}
+                    hidden={isOnMainPage || !isMenuVisible}
                     className={classNames({
                         "fixed left-0 top-0 h-full w-full bg-black": true,
 

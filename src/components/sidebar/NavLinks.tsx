@@ -8,7 +8,7 @@ export const NavLinks: NavLink[] = [
         icon: <PencilIcon className="h-4 w-4 text-slate-400" />,
     },
     {
-        label: "Books",
+        label: "Books That Stole My Heart",
         href: "/books",
         icon: <BookOpenIcon className="h-4 w-4 text-slate-400" />,
     },

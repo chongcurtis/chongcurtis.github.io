@@ -1,22 +1,20 @@
+import Link from "next/link";
+
 export default function Books() {
     return (
+        // NOTE: <> must be used since styles are applied in a parent div
         <>
             <p>
-                Have you read Zero to One? Do you listen to All-in? Have you read the Three Body
-                Problem? Unforunately, I have to answer yes to all three.
+                These are the books are the reason why I stopped attending class. They would occupy
+                my thoughts for months and shape how I spent my evenings. So I wanted to make a
+                series of interactive pages so hopefully more people will pick them up
             </p>
             <p>Here are my favourite books:</p>
             <div>
                 <p>The Alchemy of Air</p>
-                <p>
-                    This book changed my life because it taught me that humanity has solved
-                    calamity-scale problems before: Running out of food. It's about how a scientist
-                    and an engineer spent years bringing down the cost of man-made fertilizer to
-                    replace the world's limitted supply of natural fertilizer, feeding half the
-                    world population. It made me much more optimistic about climate change. It was
-                    really fascinating because these people solved the world's biggest problem and
-                    nobody knows about it.
-                </p>
+                <p>How to Write Funny</p>
+                <Link href="/books/the-dark-forest">The Dark Forest</Link>
+                <p>Feeling Great</p>
                 <div></div>
             </div>
         </>

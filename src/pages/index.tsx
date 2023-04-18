@@ -29,6 +29,12 @@ export default function Home() {
                         >
                             My newsletter about project ideas
                         </Link>
+                        <Link
+                            href="/sleepovers"
+                            className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                        >
+                            Books That Stole My Heart
+                        </Link>
                     </div>
                 </div>
             </div>
