@@ -10,13 +10,13 @@ export const ThreeBodySystem = [
 ];
 
 export const ManyBodySystem = [
-    new Body(10, 300, 200, 4, -0.4, SUN_R, SUN_COLOR),
-    new Body(10, 250, 270, -1, -0.4, SUN_R, SUN_COLOR),
-    new Body(10, 100, 220, 0, -0.4, SUN_R, SUN_COLOR),
-    new Body(10, 350, 200, -3, 1.2, SUN_R, SUN_COLOR),
-    new Body(1, 250, 250, 0, -1, 2, "#fa438c"),
-    new Body(3, 150, 120, 0, 0, 2, "#322bff"),
-    new Body(1, 250, 100, 0, 1, 2, "#20d49b"),
+    new Body(1000, 300, 200, 0.4, -0.04, SUN_R, SUN_COLOR),
+    new Body(1000, 250, 270, -0.1, -0.04, SUN_R, SUN_COLOR),
+    new Body(1000, 100, 220, 0, -0.04, SUN_R, SUN_COLOR),
+    new Body(1000, 350, 200, -0.3, 0.12, SUN_R, SUN_COLOR),
+    new Body(100, 250, 250, 0, -0.1, 2, "#f25eff"),
+    new Body(300, 150, 120, 0, 0, 2, "#322bff"),
+    new Body(100, 250, 100, 0, 1, 2, "#20d49b"),
 ];
 
 export const BinaryStarSystem = [

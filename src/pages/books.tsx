@@ -5,9 +5,9 @@ export default function Books() {
         // NOTE: <> must be used since styles are applied in a parent div
         <>
             <p>
-                These are the books are the reason why I stopped attending class. They would occupy
-                my thoughts for months and shape how I spent my evenings. So I wanted to make a
-                series of interactive pages so hopefully more people will pick them up
+                These books curtsied their way into my thoughts for months on end. I loved them so
+                much I made a series of "trailers"/analysis of my favourite moments. These pages are
+                interactive, so I hope you enjoy them!
             </p>
             <p>Here are my favourite books:</p>
             <div>

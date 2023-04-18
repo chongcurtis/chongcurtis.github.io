@@ -4,15 +4,11 @@ import ThinLine from "@/components/ThinLine";
 import MailchimpSignup from "@/components/MailchimpSignup";
 import sleepoversBanner from "public/sleepovers/sleepovers-banner.jpg";
 import React from "react";
-import { tryStartAnimations } from "@/common/animations";
+import { initAnimations } from "@/common/animations";
 
 export default function Sleepovers() {
     React.useEffect(() => {
-        setTimeout(tryStartAnimations, 100);
-        window.addEventListener("scroll", tryStartAnimations);
-        return () => {
-            window.removeEventListener("scroll", tryStartAnimations);
-        };
+        return initAnimations();
     }, []);
 
     return (

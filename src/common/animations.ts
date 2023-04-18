@@ -1,28 +1,51 @@
 type Animation = {
     initialClass: string;
+    inQueueClass: string; // has same style as initialClass, but is used to indicate that the element is in the queue, so we don't put it into another queue
     finalClass: string;
 };
 
 // these classes are defined in globals.css
-const fadeInAnimation = {
+const fadeInAnimation: Animation = {
     initialClass: "fade-in-on-scroll",
+    inQueueClass: "in-fade-in-on-scroll-queue",
     finalClass: "faded-in",
 };
-const expandAnimation = {
+const expandAnimation: Animation = {
     initialClass: "expand-on-scroll",
+    inQueueClass: "in-expand-on-scroll-queue",
     finalClass: "expanded",
 };
 
-export const tryStartAnimations = () => {
-    const noMoreFadeIns = tryStartAnimation(fadeInAnimation);
-    const noMoreExpands = tryStartAnimation(expandAnimation);
-    // DO NOT put join the two functions in this if statement with a && cause of early return, the later ones won't run
-    if (noMoreFadeIns && noMoreExpands) {
-        // All elements have faded in. So remove handler to save computation
-        window.removeEventListener("scroll", tryStartAnimations);
-    }
+const setupAnimationHandler = (animation: Animation) => {
+    const triggerAnimations = () => {
+        const noMoreAnimations = tryStartAnimation(animation);
+        if (noMoreAnimations) {
+            // console.log("removed" + animation.initialClass);
+            // All elements have faded in. So remove handler to save computation
+            window.removeEventListener("scroll", triggerAnimations);
+        }
+    };
+    // delay the iniital animation by 100ms so the user first sees a blank page
+    setTimeout(() => {
+        triggerAnimations();
+    }, 100);
+    window.addEventListener("scroll", triggerAnimations);
+    return () => {
+        window.removeEventListener("scroll", triggerAnimations);
+    };
 };
 
+export const initAnimations = () => {
+    const cleanupFunctions = [
+        setupAnimationHandler(fadeInAnimation),
+        setupAnimationHandler(expandAnimation),
+    ];
+    return () => {
+        cleanupFunctions.forEach((cleanup) => cleanup());
+    };
+};
+
+// const inAnimationQueue = "in-animation-queue";
 // returns a boolean, indicating that we are done starting all animations
 const tryStartAnimation = (animation: Animation): boolean => {
     // I am using querySelectorAll since getElementsByClassName doesn't return all elements
@@ -32,13 +55,25 @@ const tryStartAnimation = (animation: Animation): boolean => {
         return true;
     }
 
+    const animateQueue: HTMLElement[] = [];
     for (let i = 0; i < elements.length; i++) {
         const element = elements[i] as HTMLElement;
         const elementTop = element.offsetTop;
         if (elementTop <= window.scrollY + (window.innerHeight * 7) / 8) {
-            element.classList.add(animation.finalClass);
+            animateQueue.push(element);
+            element.classList.add(animation.inQueueClass);
             element.classList.remove(animation.initialClass);
         }
     }
+    // pop off elements from the queue and add the final class every x seconds
+    const interval = setInterval(() => {
+        const element = animateQueue.shift(); // pop off the first element
+        if (element) {
+            element.classList.remove(animation.inQueueClass);
+            element.classList.add(animation.finalClass);
+        } else {
+            clearInterval(interval);
+        }
+    }, 100);
     return false;
 };
