@@ -59,7 +59,12 @@ const tryStartAnimation = (animation: Animation): boolean => {
     for (let i = 0; i < elements.length; i++) {
         const element = elements[i] as HTMLElement;
         const elementTop = element.offsetTop;
-        if (elementTop <= window.scrollY + (window.innerHeight * 7) / 8) {
+        if (elementTop <= window.scrollY) {
+            // The element is off the screen, so fade them in immediately (don't put into queue)
+            element.classList.add(animation.finalClass);
+            element.classList.remove(animation.initialClass);
+        } else if (elementTop <= window.scrollY + (window.innerHeight * 7) / 8) {
+            // do the fancy animations for elements that are in the viewport
             animateQueue.push(element);
             element.classList.add(animation.inQueueClass);
             element.classList.remove(animation.initialClass);
