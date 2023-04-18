@@ -3,10 +3,12 @@ import { Body } from "./Body";
 
 type Props = {
     bodies: Body[];
+    canvasWidth: number;
+    canvasHeight: number;
 };
-export default function NBodyCanvas({ bodies }: Props) {
+export default function NBodyCanvas({ bodies, canvasWidth, canvasHeight }: Props) {
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
-    const SIMULATION_SPEED = 15;
+    const SIMULATION_SPEED = 30; // 40ms between each frame = 25fps
     const VELOCITY_STEP_SIZE = 10; // in terms of seconds
     let G = 100;
 
@@ -92,8 +94,8 @@ export default function NBodyCanvas({ bodies }: Props) {
             return;
         }
         const canvas = canvasRef.current;
-        canvas.width = window.innerWidth; //document.width is obsolete
-        canvas.height = window.innerHeight;
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
 
         const ctx = setupCanvas(canvas);
         ctx.font = "30px Arial";
@@ -103,5 +105,11 @@ export default function NBodyCanvas({ bodies }: Props) {
         }, SIMULATION_SPEED); //this is the cycle
     }, [canvasRef]);
 
-    return <canvas id="canvas" ref={canvasRef} className="w-500 h-500 bg-black"></canvas>;
+    return (
+        <canvas
+            id="canvas"
+            ref={canvasRef}
+            className="h-[500px] w-[500px] bg-background-color"
+        ></canvas>
+    );
 }

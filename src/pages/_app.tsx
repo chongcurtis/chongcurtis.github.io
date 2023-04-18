@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { Poppins } from "next/font/google";
 import type { AppProps } from "next/app";
 import Sidebar from "@/components/sidebar/Sidebar";
+import classNames from "classnames";
 
 // how to serve fonts: https://nextjs.org/docs/basic-features/font-optimization
 const poppins = Poppins({
@@ -13,7 +14,7 @@ const poppins = Poppins({
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
-        <main className={poppins.className}>
+        <main className={classNames(poppins.className, "bg-background-color")}>
             <Sidebar>
                 <Component {...pageProps} />
             </Sidebar>
