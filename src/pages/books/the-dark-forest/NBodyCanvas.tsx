@@ -1,5 +1,6 @@
 import React from "react";
 import { Body } from "./Body";
+import { startAnimationEventName } from "@/common/animations";
 
 type Props = {
     bodies: Body[];
@@ -93,6 +94,7 @@ export default function NBodyCanvas({ bodies, canvasWidth, canvasHeight }: Props
         if (!canvasRef.current) {
             return;
         }
+
         const canvas = canvasRef.current;
         canvas.width = canvasWidth;
         canvas.height = canvasHeight;
@@ -100,16 +102,20 @@ export default function NBodyCanvas({ bodies, canvasWidth, canvasHeight }: Props
         const ctx = setupCanvas(canvas);
         ctx.font = "30px Arial";
 
-        setInterval(function () {
-            run(canvas, ctx);
-        }, SIMULATION_SPEED); //this is the cycle
+        canvasRef.current.addEventListener(startAnimationEventName, () => {
+            // only start the animation once we have the startAnimationEvent
+            setInterval(function () {
+                run(canvas, ctx);
+            }, SIMULATION_SPEED); //this is the cycle
+        });
     }, [canvasRef]);
 
     return (
         <canvas
             id="canvas"
             ref={canvasRef}
-            className="h-[500px] w-[500px] bg-background-color"
-        ></canvas>
+            // NOTE: the fade-in-on-scroll is really important because without it the startAnimationEvent won't be called for this canvas
+            className="fade-in-on-scroll h-[500px] w-[500px] bg-background-color"
+        />
     );
 }

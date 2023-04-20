@@ -16,6 +16,16 @@ const expandAnimation: Animation = {
     finalClass: "expanded",
 };
 
+// used to trigger the start animation event on the canvas when it's in view
+export const startAnimationEventName = "start-animation-event";
+const newStartAnimationEvent = () => {
+    return new Event(startAnimationEventName, {
+        bubbles: true, // the event can bubble up through the DOM tree
+        cancelable: true, // the event can be cancelled using preventDefault()
+        composed: false, // the event does not propagate outside of the shadow DOM
+    });
+};
+
 const setupAnimationHandler = (animation: Animation) => {
     const triggerAnimations = () => {
         const noMoreAnimations = tryStartAnimation(animation);
@@ -63,8 +73,9 @@ const tryStartAnimation = (animation: Animation): boolean => {
             // The element is off the screen, so fade them in immediately (don't put into queue)
             element.classList.add(animation.finalClass);
             element.classList.remove(animation.initialClass);
+            element.dispatchEvent(newStartAnimationEvent());
         } else if (elementTop <= window.scrollY + (window.innerHeight * 7) / 8) {
-            // do the fancy animations for elements that are in the viewport
+            // These elements are on the viewport. So push them into the queue to do fancy animations
             animateQueue.push(element);
             element.classList.add(animation.inQueueClass);
             element.classList.remove(animation.initialClass);
@@ -76,7 +87,9 @@ const tryStartAnimation = (animation: Animation): boolean => {
         if (element) {
             element.classList.remove(animation.inQueueClass);
             element.classList.add(animation.finalClass);
+            element.dispatchEvent(newStartAnimationEvent());
         } else {
+            // we are done with the animations
             clearInterval(interval);
         }
     }, 100);
