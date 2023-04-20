@@ -14,7 +14,7 @@ const poppins = Poppins({
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
-        <main className={classNames(poppins.className, "bg-background-color")}>
+        <main className={classNames(poppins.className)}>
             <Sidebar>
                 <Component {...pageProps} />
             </Sidebar>
