@@ -41,11 +41,11 @@ export default function TheDarkForest() {
             </div>
 
             <p className="fade-in-on-scroll mt-4">And stop your technological progress</p>
-            <p className="fade-in-on-scroll mb-80 text-center">
-                Lastly I will say this: The book makes an implicitly strong assumption. That all
-                civilizations are concerned with survival. Because all their actions serve this
-                instinct.
+            <p className="fade-in-on-scroll mt-4">Entrusted with the future of humanity</p>
+            <p className="fade-in-on-scroll mt-4">
+                Is a <span className="underline-on-scroll">hedonist</span>
             </p>
+            <div className="mb-[500px]" />
         </>
     );
 }

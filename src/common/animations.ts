@@ -15,6 +15,11 @@ const expandAnimation: Animation = {
     inQueueClass: "in-expand-on-scroll-queue",
     finalClass: "expanded",
 };
+const underlineAnimation: Animation = {
+    initialClass: "underline-on-scroll",
+    inQueueClass: "in-underline-on-scroll-queue",
+    finalClass: "underlined",
+};
 
 // used to trigger the start animation event on the canvas when it's in view
 export const startAnimationEventName = "start-animation-event";
@@ -49,6 +54,7 @@ export const initAnimations = () => {
     const cleanupFunctions = [
         setupAnimationHandler(fadeInAnimation),
         setupAnimationHandler(expandAnimation),
+        setupAnimationHandler(underlineAnimation),
     ];
     return () => {
         cleanupFunctions.forEach((cleanup) => cleanup());

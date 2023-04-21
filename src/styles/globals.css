@@ -2,12 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.fade-in-on-scroll {
-    opacity: 0.01;
-    transition: opacity 0.5s ease-in;
-}
-
-.in-fade-in-on-scroll-queue {
+.fade-in-on-scroll, .in-fade-in-on-scroll-queue {
     opacity: 0.01;
     transition: opacity 0.5s ease-in;
 }
@@ -17,19 +12,39 @@
     transition: opacity 0.5s ease-in;
 }
 
-.expand-on-scroll {
+.expand-on-scroll, .in-expand-on-scroll-queue {
     width: 1px;
     transition: width 2s ease-in;
 }
 
-.in-expand-on-scroll-queue {
-    width: 1px;
-    transition: width 2s ease-in;
-}
 
 .expanded {
     width: 100%;
     transition: width 2s ease-in;
+}
+
+.underline-on-scroll, .underlined, .in-underline-on-scroll-queue {
+    display: inline-block;
+    position: relative;
+}
+
+.underline-on-scroll::after, .underlined::after, .in-underline-on-scroll-queue::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff7c1f;
+    transform-origin: bottom right;
+    transition: transform 2s ease-out;
+    border-radius: 10px;
+}
+
+.underlined::after, .in-underline-on-scroll-queue::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
 
 
