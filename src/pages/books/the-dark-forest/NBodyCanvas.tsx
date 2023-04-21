@@ -1,7 +1,7 @@
 import React from "react";
 import { Body } from "./Body";
 import { startAnimationEventName } from "@/common/animations";
-import cloneDeep from "lodash/cloneDeep";
+import cloneDeep from "lodash.clonedeep";
 
 type Props = {
     bodies: Body[];
