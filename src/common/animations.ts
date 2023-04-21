@@ -74,7 +74,7 @@ const tryStartAnimation = (animation: Animation): boolean => {
             element.classList.add(animation.finalClass);
             element.classList.remove(animation.initialClass);
             element.dispatchEvent(newStartAnimationEvent());
-        } else if (elementTop <= window.scrollY + (window.innerHeight * 7) / 8) {
+        } else if (elementTop <= window.scrollY + (window.innerHeight * 6.5) / 8) {
             // These elements are on the viewport. So push them into the queue to do fancy animations
             animateQueue.push(element);
             element.classList.add(animation.inQueueClass);

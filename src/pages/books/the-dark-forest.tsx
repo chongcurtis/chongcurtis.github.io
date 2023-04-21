@@ -1,7 +1,7 @@
-import NBodyCanvas from "@/pages/books/the-dark-forest/NBodyCanvas";
-import { BinaryStarSystem, ManyBodySystem } from "@/pages/books/the-dark-forest/NBodySystems";
 import React from "react";
 import { initAnimations } from "@/common/animations";
+import NBodyCanvas from "@/pages/books/the-dark-forest/NBodyCanvas";
+import { BinaryStarSystem, ManyBodySystem } from "@/pages/books/the-dark-forest/NBodySystems";
 
 export default function TheDarkForest() {
     React.useEffect(() => {
@@ -41,7 +41,7 @@ export default function TheDarkForest() {
             </div>
 
             <p className="fade-in-on-scroll mt-4">And stop your technological progress</p>
-            <p className="fade-in-on-scroll mb-80">
+            <p className="fade-in-on-scroll mb-80 text-center">
                 Lastly I will say this: The book makes an implicitly strong assumption. That all
                 civilizations are concerned with survival. Because all their actions serve this
                 instinct.
