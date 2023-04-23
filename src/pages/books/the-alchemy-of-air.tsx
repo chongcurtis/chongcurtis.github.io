@@ -1,8 +1,11 @@
+import Boiler from "@/pages/books/the-alchemy-of-air/Boiler";
+
 export default function TheAlchemyOfAir() {
     return (
         <div>
             <p>The Alchemy of Air</p>
 
+            <Boiler />
             <p>
                 This book changed my life because it taught me that humanity has solved
                 calamity-scale problems before: Running out of food. It's about how a scientist and

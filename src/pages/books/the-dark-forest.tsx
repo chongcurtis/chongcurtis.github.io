@@ -1,6 +1,6 @@
 import React from "react";
 import { initAnimations } from "@/common/animations";
-import NBodyCanvas from "@/pages/books/the-dark-forest/NBodyCanvas";
+import NBodySimulationCanvas from "@/pages/books/the-dark-forest/NBodySimulationCanvas";
 import { BinaryStarSystem, ManyBodySystem } from "@/pages/books/the-dark-forest/NBodySystems";
 
 export default function TheDarkForest() {
@@ -31,13 +31,21 @@ export default function TheDarkForest() {
             <p className="fade-in-on-scroll mt-4">The war is lost.</p>
             <p className="fade-in-on-scroll mt-4">It has been for 50 years.</p>
             <div className="h-[500px] w-[500px]">
-                <NBodyCanvas bodies={ManyBodySystem} canvasWidth={500} canvasHeight={500} />
+                <NBodySimulationCanvas
+                    bodies={ManyBodySystem}
+                    canvasWidth={500}
+                    canvasHeight={500}
+                />
             </div>
             <p className="fade-in-on-scrollmt-4">What can you do if there's an enemy that can</p>
             <p className="fade-in-on-scroll mt-20 w-full">Hear your every conversation</p>
 
             <div className="h-[500px] w-[500px]">
-                <NBodyCanvas bodies={BinaryStarSystem} canvasWidth={500} canvasHeight={500} />
+                <NBodySimulationCanvas
+                    bodies={BinaryStarSystem}
+                    canvasWidth={500}
+                    canvasHeight={500}
+                />
             </div>
 
             <p className="fade-in-on-scroll mt-4">And stop your technological progress</p>

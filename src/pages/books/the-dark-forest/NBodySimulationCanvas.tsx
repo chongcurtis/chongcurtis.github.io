@@ -8,7 +8,7 @@ type Props = {
     canvasWidth: number;
     canvasHeight: number;
 };
-export default function NBodyCanvas({ bodies: initialBodies, canvasWidth, canvasHeight }: Props) {
+export default function NBodySimulationCanvas({ bodies: initialBodies, canvasWidth, canvasHeight }: Props) {
     const bodies = React.useRef(cloneDeep(initialBodies));
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
     const SIMULATION_SPEED = 30; // 40ms between each frame = 25fps
