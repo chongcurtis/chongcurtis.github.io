@@ -32,11 +32,11 @@ export class Particle {
         this.timeToLive = timeToLive;
     }
 
-    x() {
+    get x() {
         return this.position.x;
     }
 
-    y() {
+    get y() {
         return this.position.y;
     }
 
