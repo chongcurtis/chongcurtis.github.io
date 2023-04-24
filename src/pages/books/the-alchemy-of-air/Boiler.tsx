@@ -9,7 +9,7 @@ const initialParticles = [
     new Particle(100, 100, 140, 3, 3, 0, 0, 5, "red", 50),
     new Particle(100, 150, 200, -3, -3, 0, 0, 5, "red", 50),
 ];
-const blocks = [new Block(20, 70, 500, 10, "black", 110)];
+const blocks = [new Block(-250, 70, 500, 10, "black", 110)];
 
 export default function Boiler() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
@@ -28,7 +28,8 @@ export default function Boiler() {
             const spawnDelay = Math.floor(Math.random() * 201) + 200; // randomize the spawn delay
             timeoutId.current = setTimeout(spawnParticle, spawnDelay);
         };
-        spawnParticle();
+        // TODO: uncomment
+        // spawnParticle();
 
         const startAnimation = () => {
             // the simulation canvas should already be running. so all we need to do is set the particles
