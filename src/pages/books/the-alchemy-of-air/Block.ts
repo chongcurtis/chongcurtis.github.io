@@ -1,4 +1,4 @@
-export class Surface {
+export class Block {
     x: number;
     y: number;
     w: number;

@@ -3,11 +3,14 @@ import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
 import React from "react";
 import cloneDeep from "lodash.clonedeep";
 import { startAnimationEventName } from "@/common/animations";
+import { Block } from "@/pages/books/the-alchemy-of-air/Block";
 
 const initialParticles = [
     new Particle(100, 100, 140, 3, 3, 0, 0, 5, "red", 50),
     new Particle(100, 150, 200, -3, -3, 0, 0, 5, "red", 50),
 ];
+const blocks = [new Block(20, 70, 500, 10, "black")];
+
 export default function Boiler() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef(cloneDeep(initialParticles));
@@ -43,7 +46,7 @@ export default function Boiler() {
         <div ref={boilerRef}>
             <ParticleSimulationCanvas
                 particles={particles}
-                surfaces={[]}
+                blocks={blocks}
                 canvasWidth={500}
                 canvasHeight={500}
             />
