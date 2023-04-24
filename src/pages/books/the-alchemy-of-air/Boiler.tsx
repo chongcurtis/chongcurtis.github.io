@@ -5,7 +5,10 @@ export default function Boiler() {
     return (
         <div>
             <ParticleSimulationCanvas
-                particles={[new Particle(100, 100, 10, 10, 10, 0, 0, 5, "red")]}
+                particles={[
+                    new Particle(100, 100, 140, 3, 3, 0, 0, 5, "red"),
+                    new Particle(100, 150, 200, -3, -3, 0, 0, 5, "red"),
+                ]}
                 surfaces={[]}
                 canvasWidth={500}
                 canvasHeight={500}

@@ -1,6 +1,12 @@
 import Boiler from "@/pages/books/the-alchemy-of-air/Boiler";
+import React from "react";
+import { initAnimations } from "@/common/animations";
 
 export default function TheAlchemyOfAir() {
+    React.useEffect(() => {
+        return initAnimations();
+    }, []);
+
     return (
         <div>
             <p>The Alchemy of Air</p>
