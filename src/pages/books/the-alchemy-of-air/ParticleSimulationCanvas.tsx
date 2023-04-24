@@ -1,23 +1,20 @@
 import React from "react";
-import { startAnimationEventName } from "@/common/animations";
-import cloneDeep from "lodash.clonedeep";
 import { Surface } from "@/pages/books/the-alchemy-of-air/Surface";
 import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
 import Vector2 from "@/pages/books/the-alchemy-of-air/Vector2";
 
 type Props = {
-    particles: Particle[];
+    particles: React.MutableRefObject<Particle[]>;
     surfaces: Surface[];
     canvasWidth: number;
     canvasHeight: number;
 };
 export default function ParticleSimulationCanvas({
-    particles: initialParticles,
+    particles,
     surfaces,
     canvasWidth,
     canvasHeight,
 }: Props) {
-    const particles = React.useRef(cloneDeep(initialParticles));
     const SIMULATION_SPEED = 100; // 40ms between each frame = 25fps
 
     const ENERGY_RETAINMENT_ON_COLLISION_DECIMAL = 1;
@@ -34,21 +31,10 @@ export default function ParticleSimulationCanvas({
         canvas.height = canvasHeight;
 
         const ctx = setupCanvas(canvas);
+        setInterval(function () {
+            run(canvas, ctx);
+        }, SIMULATION_SPEED); //this is the cycle
         ctx.font = "30px Arial";
-
-        const startAnimation = () => {
-            particles.current = cloneDeep(initialParticles);
-            // only start the animation once we have the startAnimationEvent
-            setInterval(function () {
-                run(canvas, ctx);
-            }, SIMULATION_SPEED); //this is the cycle
-        };
-
-        canvas.addEventListener(startAnimationEventName, startAnimation);
-        return () => {
-            // cleanup
-            canvas.removeEventListener(startAnimationEventName, startAnimation);
-        };
     }, [canvasRef]);
 
     function setupCanvas(canvas: HTMLCanvasElement) {
@@ -65,18 +51,40 @@ export default function ParticleSimulationCanvas({
     }
 
     function drawBodies(ctx: CanvasRenderingContext2D) {
-        particles.current.forEach((particle) => {
+        particles.current!!.forEach((particle) => {
+            ctx.fillStyle = particle.color;
             ctx.beginPath();
             ctx.arc(particle.x(), particle.y(), particle.radius, 0, 2.0 * Math.PI, false);
             ctx.closePath();
             ctx.fill();
+
+            // Without this stroke, the colliding particles don't appear to touch
+            ctx.strokeStyle = particle.color;
+            ctx.lineWidth = 2;
+            ctx.stroke();
         });
     }
 
+    function isParticleAlive(particle: Particle): boolean {
+        return (
+            particle.timeToLive > 0 &&
+            0 <= particle.y() &&
+            particle.y() <= canvasHeight &&
+            0 <= particle.x() &&
+            particle.x() <= canvasWidth
+        );
+    }
+
     function run(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
+        if (!particles.current) {
+            return;
+        }
         //console.log(bodies);
         let canvasW = canvas.width;
         let canvasH = canvas.height;
+
+        particles.current = particles.current.filter(isParticleAlive);
+        console.log(particles.current.length);
 
         // figure out new velocities and positions
         for (let i = 0; i < particles.current.length; i++) {
@@ -84,7 +92,6 @@ export default function ParticleSimulationCanvas({
             p1.simulate();
             for (let j = i + 1; j < particles.current.length; j++) {
                 let p2 = particles.current[j];
-                // TODO: make a const for the restitution
                 handleBallCollision(p1, p2);
             }
         }

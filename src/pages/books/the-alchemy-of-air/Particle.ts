@@ -9,6 +9,7 @@ export class Particle {
     // I don't expect acceleration to change over time
     radius: number;
     color: string;
+    timeToLive: number;
 
     constructor(
         m: number,
@@ -19,7 +20,8 @@ export class Particle {
         ax: number,
         ay: number,
         r: number,
-        color: string
+        color: string,
+        timeToLive: number // the number of simulation steps before the particle dies
     ) {
         this.mass = m;
         this.position = new Vector2(x, y);
@@ -27,6 +29,7 @@ export class Particle {
         this.acceleration = new Vector2(ax, ay);
         this.radius = r;
         this.color = color;
+        this.timeToLive = timeToLive;
     }
 
     x() {
