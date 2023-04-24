@@ -9,7 +9,7 @@ const initialParticles = [
     new Particle(100, 100, 140, 3, 3, 0, 0, 5, "red", 50),
     new Particle(100, 150, 200, -3, -3, 0, 0, 5, "red", 50),
 ];
-const blocks = [new Block(20, 70, 500, 10, "black")];
+const blocks = [new Block(20, 70, 500, 10, "black", 110)];
 
 export default function Boiler() {
     const timeoutId = React.useRef<NodeJS.Timeout>();

@@ -65,12 +65,21 @@ export default function ParticleSimulationCanvas({
         });
 
         blocks.forEach((block) => {
+            const rotationInRads = block.rotationDegrees* (Math.PI / 180)
             // now draw rectangles
-            ctx.translate(block.x, block.y);
-            ctx.rotate(block.rotationDegrees); // 5rad
-            ctx.fillRect(-block.width / 2, -block.height / 2, block.width, block.height);
-            ctx.rotate(-block.rotationDegrees);
-            ctx.translate(-block.x, -block.y);
+            // ctx.translate(block.x, block.y);
+            // ctx.rotate(rotationInRads);
+            // ctx.translate(-block.x, -block.y);
+            //
+            // ctx.fillRect(block.x, block.y, block.width, block.height);
+            // ctx.rotate(-rotationInRads);
+
+            ctx.translate(block.x + (block.width/2), block.y + (block.height/2));
+            ctx.rotate(rotationInRads); // rotate the canvas by 45 degrees
+            ctx.fillStyle = "red";   // set the fill color
+            ctx.fillRect(-block.width/2, -block.height/2, block.width, block.height); // draw the rectangle centered on the origin
+
+            ctx.restore(); // restore the canvas to its original state
         });
     }
 
