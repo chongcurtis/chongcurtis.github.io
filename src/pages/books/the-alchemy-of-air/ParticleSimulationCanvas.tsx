@@ -18,12 +18,38 @@ export default function ParticleSimulationCanvas({
     canvasHeight,
 }: Props) {
     const particles = React.useRef(cloneDeep(initialParticles));
-    const canvasRef = React.useRef<HTMLCanvasElement>(null);
     const SIMULATION_SPEED = 100; // 40ms between each frame = 25fps
 
     const ENERGY_RETAINMENT_ON_COLLISION_DECIMAL = 1;
+    const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
-    // if you don't want the bodies to fly off the screent, make the initial momentums sum to 0
+    React.useEffect(() => {
+        if (!canvasRef.current) {
+            return;
+        }
+        // console.log("useEffect canvas");
+
+        const canvas = canvasRef.current;
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+
+        const ctx = setupCanvas(canvas);
+        ctx.font = "30px Arial";
+
+        const startAnimation = () => {
+            particles.current = cloneDeep(initialParticles);
+            // only start the animation once we have the startAnimationEvent
+            setInterval(function () {
+                run(canvas, ctx);
+            }, SIMULATION_SPEED); //this is the cycle
+        };
+
+        canvas.addEventListener(startAnimationEventName, startAnimation);
+        return () => {
+            // cleanup
+            canvas.removeEventListener(startAnimationEventName, startAnimation);
+        };
+    }, [canvasRef]);
 
     function setupCanvas(canvas: HTMLCanvasElement) {
         // Fixes the DPI of the canvas
@@ -95,34 +121,6 @@ export default function ParticleSimulationCanvas({
         p1.velocity.add(dir, newV1 - v1);
         p2.velocity.add(dir, newV2 - v2);
     }
-
-    React.useEffect(() => {
-        if (!canvasRef.current) {
-            return;
-        }
-        // console.log("useEffect canvas");
-
-        const canvas = canvasRef.current;
-        canvas.width = canvasWidth;
-        canvas.height = canvasHeight;
-
-        const ctx = setupCanvas(canvas);
-        ctx.font = "30px Arial";
-
-        const startAnimation = () => {
-            particles.current = cloneDeep(initialParticles);
-            // only start the animation once we have the startAnimationEvent
-            setInterval(function () {
-                run(canvas, ctx);
-            }, SIMULATION_SPEED); //this is the cycle
-        };
-
-        canvas.addEventListener(startAnimationEventName, startAnimation);
-        return () => {
-            // cleanup
-            canvas.removeEventListener(startAnimationEventName, startAnimation);
-        };
-    }, [canvasRef]);
 
     return (
         <canvas
