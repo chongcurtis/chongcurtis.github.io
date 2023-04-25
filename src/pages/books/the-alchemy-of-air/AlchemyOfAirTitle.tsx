@@ -12,16 +12,17 @@ const initialObstacles = [
 export default function AlchemyOfAirTitle() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const [obstacles, setObstacles] = React.useState<Obstacle[]>([]);
-    const titleRef = React.useRef<HTMLDivElement>(null);
+    const canvasContainerRef = React.useRef<HTMLDivElement>(null);
     // ref to the ParticleSimulationCanvas
     React.useEffect(() => {
-        if (!titleRef.current) {
+        if (!canvasContainerRef.current) {
             return;
         }
-        const title = titleRef.current;
+        const title = canvasContainerRef.current;
 
         const startAnimation = () => {
             // the simulation canvas should already be running. so all we need to do is set the particles
+            console.log("cloned");
             setObstacles(cloneDeep(initialObstacles));
         };
 
@@ -31,23 +32,29 @@ export default function AlchemyOfAirTitle() {
             title.removeEventListener(startAnimationEventName, startAnimation);
             clearTimeout(timeoutId.current);
         };
-    }, [titleRef]);
+    }, [canvasContainerRef]);
     return (
-        <div className="align-center flex flex-col justify-center">
-            <p className="px-5 text-center text-6xl font-thin">
-                <span className="fade-in-on-scroll">The</span>{" "}
-                <span className="fade-in-on-scroll">Alchemy</span>{" "}
-                <span className="fade-in-on-scroll">of</span>
+        <>
+            {/*<div className="align-center flex flex-col justify-center">*/}
+            {/*<p className="px-5 text-center text-6xl font-thin">*/}
+            {/*    <span className="fade-in-on-scroll">The</span>{" "}*/}
+            {/*    <span className="fade-in-on-scroll">Alchemy</span>{" "}*/}
+            {/*    <span className="fade-in-on-scroll">of</span>*/}
+            {/*</p>*/}
+            {/*<div*/}
+            {/*    ref={titleRef}*/}
+            {/*    className="align-center fade-in-on-scroll fade-in-on-scroll-slow animation-delay-400 ml-5 flex h-[500px] w-[500px] justify-center "*/}
+            {/*>*/}
+            <p className="fade-in-on-scroll absolute left-1/2 -translate-x-1/2 translate-y-[242px] transform text-6xl font-thin italic">
+                Air
             </p>
             <div
-                ref={titleRef}
-                className="align-center fade-in-on-scroll fade-in-on-scroll-slow animation-delay-400 ml-5 flex h-[500px] w-[500px] justify-center "
+                ref={canvasContainerRef}
+                className="fade-in-on-scroll h-[350px] w-[350px] md:h-[500px] md:w-[500px]"
             >
-                <p className="absolute left-1/2 -translate-x-1/2 translate-y-[242px] transform text-6xl font-thin">
-                    Air
-                </p>
                 <FluidSimulationCanvas obstacles={obstacles} canvasWidth={500} canvasHeight={500} />
             </div>
-        </div>
+            {/*</div>*/}
+        </>
     );
 }
