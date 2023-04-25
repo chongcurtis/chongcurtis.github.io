@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NavLinks } from "@/components/sidebar/NavLinks";
 
 {
     /*
@@ -23,18 +24,17 @@ export default function Home() {
                         in progress. Wanna look around?
                     </p>
                     <div className="flex justify-center">
-                        <Link
-                            href="/sleepovers"
-                            className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                        >
-                            My newsletter about project ideas
-                        </Link>
-                        <Link
-                            href="/sleepovers"
-                            className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                        >
-                            Books That Stole My Heart
-                        </Link>
+                        {NavLinks.map((navLink, idx) => {
+                            return (
+                                <Link
+                                    key={`navlink-${idx}`}
+                                    href={navLink.href}
+                                    className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                                >
+                                    {navLink.label}
+                                </Link>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

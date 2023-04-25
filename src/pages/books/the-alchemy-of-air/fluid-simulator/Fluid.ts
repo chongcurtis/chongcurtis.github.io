@@ -32,7 +32,6 @@ export default class Fluid {
         this.m = new Float32Array(this.numCells);
         this.newM = new Float32Array(this.numCells);
         this.m.fill(1.0);
-        let num = numX * numY;
     }
 
     integrate(dt, gravity) {
@@ -40,7 +39,7 @@ export default class Fluid {
         for (let i = 1; i < this.numX; i++) {
             for (let j = 1; j < this.numY - 1; j++) {
                 if (this.s[i * n + j] != 0.0 && this.s[i * n + j - 1] != 0.0)
-                    this.v[i * n + j] += gravity * dt;
+                    this.v[i * n + j] += gravity * dt; // m/s^2 * s = m/s
             }
         }
     }

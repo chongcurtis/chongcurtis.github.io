@@ -1,7 +1,5 @@
 import React from "react";
 import { Block } from "@/pages/books/the-alchemy-of-air/Block";
-import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
-import Vector2 from "@/pages/books/the-alchemy-of-air/Vector2";
 import Fluid, { U_FIELD, V_FIELD } from "@/pages/books/the-alchemy-of-air/fluid-simulator/Fluid";
 
 type Props = {
@@ -15,12 +13,10 @@ export default function FluidSimulationCanvas({
     canvasWidth,
     canvasHeight,
 }: Props) {
-    const SIMULATION_SPEED = 100; // 40ms between each frame = 25fps
-
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
     const sceneRef = React.useRef<any>({
         gravity: -9.81,
-        dt: 1.0 / 120.0,
+        dt: 1.0 / 120.0, // stands for "delta time" in between each frame. We need this to calculate how much distance an object travelled within that time frame
         numIters: 100,
         frameNr: 0,
         overRelaxation: 1.9,
@@ -37,21 +33,23 @@ export default function FluidSimulationCanvas({
         fluid: null,
     });
 
-    const cellScale = 5;
-    const simHeight = 5;
-    const cellSize = 1;
+    // const cellScale = 5;
+    // const simHeight = 5;
+    const cellSize = 5;
     // const simHeight = 1
 
     // TODO: the simWidth determines the number of cells. I think this value is wrong
-    const cScale = canvasHeight / simHeight;
-    const simWidth = canvasWidth / cScale;
+    // const cScale = canvasHeight / simHeight;
+    // const simWidth = canvasWidth / cScale;
 
     function cX(x) {
-        return x * cScale;
+        // return x * cScale;
+        return x;
     }
 
     function cY(y) {
-        return canvasHeight - y * cScale;
+        // return canvasHeight - y * cScale;
+        return y;
     }
 
     React.useEffect(() => {
@@ -98,24 +96,24 @@ export default function FluidSimulationCanvas({
         scene.dt = 1.0 / 60.0;
         scene.numIters = 40;
 
-        let res = 100;
+        // let res = 100;
+        //
+        // if (sceneNr == 0) {
+        //     res = 50;
+        // } else if (sceneNr == 3) {
+        //     res = 200;
+        // }
 
-        if (sceneNr == 0) {
-            res = 50;
-        } else if (sceneNr == 3) {
-            res = 200;
-        }
+        // const domainHeight = 1.0;
+        // const domainWidth = (domainHeight / simHeight) * simWidth;
+        // const h = domainHeight / res;
 
-        const domainHeight = 1.0;
-        const domainWidth = (domainHeight / simHeight) * simWidth;
-        const h = domainHeight / res;
-
-        const numX = Math.floor(canvasWidth / cellScale); //Math.floor(domainWidth / h) + 50;
-        const numY = Math.floor(canvasHeight / cellScale); //Math.floor(domainHeight / h) + 50;
+        const numX = Math.floor(canvasWidth / cellSize); //Math.floor(domainWidth / h) + 50;
+        const numY = Math.floor(canvasHeight / cellSize); //Math.floor(domainHeight / h) + 50;
 
         const density = 1000.0;
 
-        const f = (scene.fluid = new Fluid(density, numX, numY, h));
+        const f = (scene.fluid = new Fluid(density, numX, numY, 1));
 
         const n = f.numY;
 
@@ -281,15 +279,15 @@ export default function FluidSimulationCanvas({
             maxP = Math.max(maxP, f.p[i]);
         }
 
-        // let imgData = c.getImageData(0, 0, canvas.width, canvas.height);
+        let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
         let color = [255, 255, 255, 255];
 
-        for (let i = 0; i < f.numX; i++) {
-            for (let j = 0; j < f.numY; j++) {
+        for (let x = 0; x < f.numX; x++) {
+            for (let y = 0; y < f.numY; y++) {
                 if (scene.showPressure) {
-                    const p = f.p[i * n + j];
-                    const s = f.m[i * n + j];
+                    const p = f.p[x * n + y];
+                    const s = f.m[x * n + y];
                     color = getSciColor(p, minP, maxP);
                     if (scene.showSmoke) {
                         color[0] = Math.max(0.0, color[0] - 255 * s);
@@ -297,12 +295,12 @@ export default function FluidSimulationCanvas({
                         color[2] = Math.max(0.0, color[2] - 255 * s);
                     }
                 } else if (scene.showSmoke) {
-                    const s = f.m[i * n + j];
+                    const s = f.m[x * n + y];
                     color[0] = 255 * s;
                     color[1] = 255 * s;
                     color[2] = 255 * s;
                     if (scene.sceneNr == 2) color = getSciColor(s, 0.0, 1.0);
-                } else if (f.s[i * n + j] === 0.0) {
+                } else if (f.s[x * n + y] === 0.0) {
                     // color[0] = 0;
                     // color[1] = 0;
                     // color[2] = 0;
@@ -310,29 +308,27 @@ export default function FluidSimulationCanvas({
                     continue;
                 }
 
-                const x = Math.floor(cX(i * h));
-                const y = Math.floor(cY((j + 1) * h));
-                const cx = Math.floor(cScale * cellScale * h) + 1;
-                const cy = Math.floor(cScale * cellScale * h) + 1;
+                // const x = Math.floor(cX(i * h));
+                // const y = Math.floor(cY((j + 1) * h));
+                // const cx = Math.floor(cScale * cellScale * h) + 1;
+                // const cy = Math.floor(cScale * cellScale * h) + 1;
 
                 const r = color[0];
                 const g = color[1];
                 const b = color[2];
 
-                ctx.fillStyle = `rgb(${r},${g},${b})`; // set the fill color
-                ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize); // draw the rectangle centered on the origin
-                // for (let yi = y; yi < y + cy; yi++) {
-                //     let p = 4 * (yi * canvas.width + x);
-                //
-                //     for (let xi = 0; xi < cx; xi++) {
-                //         // imgData.data[p++] = r;
-                //         // imgData.data[p++] = g;
-                //         // imgData.data[p++] = b;
-                //         // imgData.data[p++] = 255;
-                //         ctx.fillStyle = `rgb(${r},${g},${b})`; // set the fill color
-                //         ctx.fillRect(x, y, cellSize, cellSize); // draw the rectangle centered on the origin
-                //     }
-                // }
+                // imgData is faster than fillRect
+                // ctx.fillStyle = `rgb(${r},${g},${b})`; // set the fill color
+                // ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize); // draw the rectangle centered on the origin
+                let p = 4 * (y * cellSize * canvas.width) + 4 * (x * cellSize);
+                // console.log(p);
+
+                for (let xi = 0; xi < cellSize * cellSize; xi++) {
+                    imgData.data[p++] = r;
+                    imgData.data[p++] = g;
+                    imgData.data[p++] = b;
+                    imgData.data[p++] = 255;
+                }
             }
         }
 
@@ -370,7 +366,7 @@ export default function FluidSimulationCanvas({
         }
 
         if (scene.showStreamlines) {
-            const segLen = f.h * 0.2;
+            // const segLen = f.h * 0.2;
             const numSegs = 15;
 
             ctx.strokeStyle = "#000000";
@@ -410,14 +406,16 @@ export default function FluidSimulationCanvas({
                 ctx.fillStyle = "#DDDDDD";
             }
             ctx.beginPath();
-            ctx.arc(cX(scene.obstacleX), cY(scene.obstacleY), cScale * r, 0.0, 2.0 * Math.PI);
+            // ctx.arc(cX(scene.obstacleX), cY(scene.obstacleY), cScale * r, 0.0, 2.0 * Math.PI);
+            ctx.arc(cX(scene.obstacleX), cY(scene.obstacleY), r, 0.0, 2.0 * Math.PI);
             ctx.closePath();
             ctx.fill();
 
             ctx.lineWidth = 3.0;
             ctx.strokeStyle = "#000000";
             ctx.beginPath();
-            ctx.arc(cX(scene.obstacleX), cY(scene.obstacleY), cScale * r, 0.0, 2.0 * Math.PI);
+            // ctx.arc(cX(scene.obstacleX), cY(scene.obstacleY), cScale * r, 0.0, 2.0 * Math.PI);
+            ctx.arc(cX(scene.obstacleX), cY(scene.obstacleY), r, 0.0, 2.0 * Math.PI);
             ctx.closePath();
             ctx.stroke();
             ctx.lineWidth = 1.0;

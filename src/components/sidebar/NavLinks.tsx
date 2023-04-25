@@ -9,7 +9,7 @@ export const NavLinks: NavLink[] = [
     },
     {
         label: "Books That Stole My Heart",
-        href: "/books",
+        href: "/books/the-alchemy-of-air",
         icon: <BookOpenIcon className="h-4 w-4 text-slate-400" />,
     },
 ];
