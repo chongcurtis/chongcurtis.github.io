@@ -77,7 +77,7 @@ export default function FluidSimulationCanvas({
 
         function update() {
             simulate();
-            draw();
+            draw(ctx);
             requestAnimationFrame(update);
         }
 
@@ -152,6 +152,7 @@ export default function FluidSimulationCanvas({
                 }
             }
 
+            // I'm not sure what this is. Maybe it's for the jet streams on the left side?
             const pipeH = 0.1 * f.numY;
             const minJ = Math.floor(0.5 * f.numY - 0.5 * pipeH);
             const maxJ = Math.floor(0.5 * f.numY + 0.5 * pipeH);
@@ -160,6 +161,7 @@ export default function FluidSimulationCanvas({
                 f.m[j] = 0.0;
             }
 
+            // setObstacle(canvasWidth / 2, canvasWidth / 2, true);
             setObstacle(0.5, 0.5, true);
 
             scene.gravity = 0.0;
@@ -200,7 +202,8 @@ export default function FluidSimulationCanvas({
         // canvas.height = canvas.height * dpr;
         canvas.width = canvas.width * dpr;
         canvas.height = canvas.height * dpr;
-        const ctx = canvas.getContext("2d")!;
+        // const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
+        const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
         ctx.scale(dpr, dpr);
         return ctx;
     }
@@ -254,14 +257,13 @@ export default function FluidSimulationCanvas({
         return [255 * r, 255 * g, 255 * b, 255];
     }
 
-    function draw() {
+    function draw(ctx: CanvasRenderingContext2D) {
         if (!canvasRef.current) {
             return;
         }
         const scene = sceneRef.current;
 
         const canvas = canvasRef.current;
-        const ctx = canvas.getContext("2d");
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -283,6 +285,7 @@ export default function FluidSimulationCanvas({
 
         let color = [255, 255, 255, 255];
 
+        let numDrew = 0;
         for (let x = 0; x < f.numX; x++) {
             for (let y = 0; y < f.numY; y++) {
                 if (scene.showPressure) {
@@ -296,10 +299,15 @@ export default function FluidSimulationCanvas({
                     }
                 } else if (scene.showSmoke) {
                     const s = f.m[x * n + y];
+                    if (s > 0.5) {
+                        continue;
+                    }
                     color[0] = 255 * s;
                     color[1] = 255 * s;
                     color[2] = 255 * s;
-                    if (scene.sceneNr == 2) color = getSciColor(s, 0.0, 1.0);
+                    if (scene.sceneNr == 2) {
+                        color = getSciColor(s, 0.0, 1.0);
+                    }
                 } else if (f.s[x * n + y] === 0.0) {
                     // color[0] = 0;
                     // color[1] = 0;
@@ -320,10 +328,10 @@ export default function FluidSimulationCanvas({
                 // imgData is faster than fillRect
                 // ctx.fillStyle = `rgb(${r},${g},${b})`; // set the fill color
                 // ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize); // draw the rectangle centered on the origin
-                let p = 4 * (y * cellSize * canvas.width) + 4 * (x * cellSize);
-                // console.log(p);
+                let p = 4 * (x * cellSize * canvas.width) + 4 * (y * cellSize);
+                numDrew++;
 
-                for (let xi = 0; xi < cellSize * cellSize; xi++) {
+                for (let idxInCell = 0; idxInCell < cellSize * cellSize; idxInCell++) {
                     imgData.data[p++] = r;
                     imgData.data[p++] = g;
                     imgData.data[p++] = b;
@@ -331,8 +339,9 @@ export default function FluidSimulationCanvas({
                 }
             }
         }
+        // console.log(numDrew);
 
-        // c.putImageData(imgData, 0, 0);
+        ctx.putImageData(imgData, 0, 0);
 
         if (scene.showVelocities) {
             ctx.strokeStyle = "#000000";
@@ -434,11 +443,11 @@ export default function FluidSimulationCanvas({
         let vy = 0.0;
         const scene = sceneRef.current;
 
-        if (!reset) {
-            vx = (x - scene.obstacleX) / scene.dt;
-            vy = (y - scene.obstacleY) / scene.dt;
-        }
-
+        // if (!reset) {
+        //     vx = (x - scene.obstacleX) / scene.dt;
+        //     vy = (y - scene.obstacleY) / scene.dt;
+        // }
+        //
         scene.obstacleX = x;
         scene.obstacleY = y;
         const r = scene.obstacleRadius;
@@ -455,9 +464,11 @@ export default function FluidSimulationCanvas({
 
                 if (dx * dx + dy * dy < r * r) {
                     f.s[i * n + j] = 0.0;
-                    if (scene.sceneNr == 2)
+                    if (scene.sceneNr == 2) {
                         f.m[i * n + j] = 0.5 + 0.5 * Math.sin(0.1 * scene.frameNr);
-                    else f.m[i * n + j] = 1.0;
+                    } else {
+                        f.m[i * n + j] = 1.0;
+                    }
                     f.u[i * n + j] = vx;
                     f.u[(i + 1) * n + j] = vx;
                     f.v[i * n + j] = vy;
