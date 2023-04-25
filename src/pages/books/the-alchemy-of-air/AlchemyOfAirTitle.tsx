@@ -25,10 +25,10 @@ export default function AlchemyOfAirTitle() {
             setObstacles(cloneDeep(initialObstacles));
 
             // the simulation canvas should already be running. so all we need to do is set the particles
-            // 2s for the "Air" to appear, and 200ms for buffer
+            // 2s for the "Air" to appear
             setTimeout(() => {
                 setStartAnimation(true);
-            }, 2200);
+            }, 2000);
         };
 
         title.addEventListener(startAnimationEventName, startAnimation);
@@ -42,15 +42,16 @@ export default function AlchemyOfAirTitle() {
     return (
         <>
             {/*<div className="align-center flex flex-col justify-center">*/}
-            <p className="translate-y-[100px] px-5 text-center text-4xl font-thin md:text-6xl">
-                <span className="fade-in-on-scroll">The</span>{" "}
-                <span className="fade-in-on-scroll">Alchemy</span>{" "}
-                <span className="fade-in-on-scroll">of</span>
-            </p>
+            {/*<p className="translate-y-[100px] px-5 text-center text-4xl font-thin md:text-6xl">*/}
             {/*This parent div MUST be relative so the p tag holding "Air" will e properly centered within it*/}
+            <p className="translate-y-[8rem] text-center text-4xl font-thin md:text-6xl">
+                <span className="fade-in-on-scroll animation-delay-200">The</span>{" "}
+                <span className="fade-in-on-scroll animation-delay-200">Alchemy</span>{" "}
+                <span className="fade-in-on-scroll animation-delay-200">of</span>
+            </p>
             <div
                 ref={canvasContainerRef}
-                className="relative h-[350px] w-[350px] md:h-[500px] md:w-[500px]"
+                className="relative h-[300px] w-[350px] md:h-[400px] md:w-[500px]"
             >
                 <p className="fade-in-on-scroll-slow animation-delay-600 absolute left-1/2 top-1/2 -translate-x-[90%] -translate-y-[20%] transform text-4xl font-thin italic md:text-6xl">
                     {/*<p className="fade-in-on-scroll absolute left-0 right-0 m-auto text-4xl font-thin italic md:text-6xl">*/}

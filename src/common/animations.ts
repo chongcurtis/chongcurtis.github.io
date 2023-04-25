@@ -95,8 +95,11 @@ const tryStartAnimation = (animation: Animation): boolean => {
     const animateQueue: [HTMLElement, number][] = [];
     for (let i = 0; i < elements.length; i++) {
         const element = elements[i] as HTMLElement;
-        const elementTop = element.offsetTop;
+        // const elementTop = element.offsetTop;
+        const elementTop = element.getBoundingClientRect().top;
         if (elementTop <= window.scrollY) {
+            console.log(element.innerText);
+            console.log(elementTop, window.scrollY);
             // The element is off the screen, so fade them in immediately (don't put into queue)
             element.classList.add(animation.finalClass);
             element.classList.remove(animation.initialClass);
@@ -114,6 +117,7 @@ const tryStartAnimation = (animation: Animation): boolean => {
     const animateElement = () => {
         const res = animateQueue.shift(); // pop off the first element
         if (res) {
+            console.log(res[0].innerText);
             const [element, animationDelay] = res;
             setTimeout(() => {
                 element.classList.remove(animation.inQueueClass);
