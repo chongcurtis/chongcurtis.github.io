@@ -3,20 +3,14 @@ import { Block } from "@/pages/books/the-alchemy-of-air/Block";
 import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
 import Vector2 from "@/pages/books/the-alchemy-of-air/Vector2";
 import Fluid, { U_FIELD, V_FIELD } from "@/pages/books/the-alchemy-of-air/fluid-simulator/Fluid";
+import { Obstacle } from "@/pages/books/the-alchemy-of-air/fluid-simulator/Obstacle";
 
 type Props = {
-    blocks: React.MutableRefObject<Block[]>;
+    obstacles: Obstacle[];
     canvasWidth: number;
     canvasHeight: number;
 };
-export default function FluidSimulationCanvas({
-    particles,
-    blocks,
-    canvasWidth,
-    canvasHeight,
-}: Props) {
-    const SIMULATION_SPEED = 100; // 40ms between each frame = 25fps
-
+export default function FluidSimulationCanvas({ obstacles, canvasWidth, canvasHeight }: Props) {
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
     const sceneRef = React.useRef<any>({
         gravity: -9.81,
@@ -52,6 +46,12 @@ export default function FluidSimulationCanvas({
     function cY(y) {
         return canvasHeight - y * cScale;
     }
+
+    React.useEffect(() => {
+        for (const obstacle of obstacles) {
+            setObstacle(obstacle, true);
+        }
+    }, [obstacles]);
 
     React.useEffect(() => {
         if (!canvasRef.current) {
@@ -152,7 +152,11 @@ export default function FluidSimulationCanvas({
 
             for (var j = minJ; j < maxJ; j++) f.m[j] = 0.0;
 
-            setObstacle(0.5, 0.5, true);
+            if (obstacles) {
+                for (const obstacle of obstacles) {
+                    setObstacle(obstacle, true);
+                }
+            }
 
             scene.gravity = 0.0;
             scene.showPressure = false;
@@ -295,9 +299,9 @@ export default function FluidSimulationCanvas({
                         // this is an optimization to improve the frame rate
                         continue;
                     }
-                    color[0] = 255 * s;
-                    color[1] = 255 * s;
-                    color[2] = 255 * s;
+                    color[0] = 255 * s * 1.2;
+                    color[1] = 255 * s * 1.2;
+                    color[2] = 255 * s * 1.2;
                     if (scene.sceneNr == 2) color = getSciColor(s, 0.0, 1.0);
                 } else if (f.s[i * n + j] == 0.0) {
                     color[0] = 0;
@@ -428,7 +432,10 @@ export default function FluidSimulationCanvas({
         }
     }
 
-    function setObstacle(x, y, reset) {
+    function setObstacle(obstacle: Obstacle, reset) {
+        const x = obstacle.x;
+        const y = obstacle.y;
+        const r = obstacle.radius;
         var vx = 0.0;
         var vy = 0.0;
         const scene = sceneRef.current;
@@ -440,10 +447,13 @@ export default function FluidSimulationCanvas({
 
         scene.obstacleX = x;
         scene.obstacleY = y;
-        var r = scene.obstacleRadius;
         var f = scene.fluid;
+        if (!f) {
+            // the fluid hasn't been initalized yet
+            return;
+        }
         var n = f.numY;
-        var cd = Math.sqrt(2) * f.h;
+        // var cd = Math.sqrt(2) * f.h;
 
         for (var i = 1; i < f.numX - 2; i++) {
             for (var j = 1; j < f.numY - 2; j++) {
@@ -454,9 +464,11 @@ export default function FluidSimulationCanvas({
 
                 if (dx * dx + dy * dy < r * r) {
                     f.s[i * n + j] = 0.0;
-                    if (scene.sceneNr == 2)
+                    if (scene.sceneNr == 2) {
                         f.m[i * n + j] = 0.5 + 0.5 * Math.sin(0.1 * scene.frameNr);
-                    else f.m[i * n + j] = 1.0;
+                    } else {
+                        f.m[i * n + j] = 1.0;
+                    }
                     f.u[i * n + j] = vx;
                     f.u[(i + 1) * n + j] = vx;
                     f.v[i * n + j] = vy;
@@ -473,7 +485,7 @@ export default function FluidSimulationCanvas({
             id="canvas"
             ref={canvasRef}
             // NOTE: the fade-in-on-scroll is really important because without it the startAnimationEvent won't be called for this canvas
-            className={`fade-in-on-scroll w-[${canvasWidth}px] h-[${canvasHeight}px] bg-background-color`}
+            className={`w-[${canvasWidth}px] h-[${canvasHeight}px] bg-background-color`}
         />
     );
 }

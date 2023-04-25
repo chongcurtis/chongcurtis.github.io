@@ -7,7 +7,7 @@ import classNames from "classnames";
 
 // how to serve fonts: https://nextjs.org/docs/basic-features/font-optimization
 const poppins = Poppins({
-    weight: "300",
+    weight: ["100", "300"],
     style: "normal",
     subsets: ["latin-ext"],
 });
