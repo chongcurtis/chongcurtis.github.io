@@ -10,7 +10,7 @@ export default function TheAlchemyOfAir() {
 
     return (
         <>
-            <div className="mt-80" />
+            <div className="mt-20" />
             <AlchemyOfAirTitle />
             {/*TODO: uncomment after fixing collision*/}
             {/*<Boiler />*/}

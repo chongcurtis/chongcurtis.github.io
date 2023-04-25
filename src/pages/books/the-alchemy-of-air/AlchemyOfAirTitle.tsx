@@ -12,6 +12,7 @@ const initialObstacles = [
 export default function AlchemyOfAirTitle() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const [obstacles, setObstacles] = React.useState<Obstacle[]>([]);
+    const [startAnimation, setStartAnimation] = React.useState<boolean>(false);
     const canvasContainerRef = React.useRef<HTMLDivElement>(null);
     // ref to the ParticleSimulationCanvas
     React.useEffect(() => {
@@ -21,9 +22,13 @@ export default function AlchemyOfAirTitle() {
         const title = canvasContainerRef.current;
 
         const startAnimation = () => {
+            setObstacles(cloneDeep(initialObstacles));
+
             // the simulation canvas should already be running. so all we need to do is set the particles
             // 2s for the "Air" to appear, and 200ms for buffer
-            setTimeout(() => setObstacles(cloneDeep(initialObstacles)), 2200);
+            setTimeout(() => {
+                setStartAnimation(true);
+            }, 2200);
         };
 
         title.addEventListener(startAnimationEventName, startAnimation);
@@ -37,7 +42,7 @@ export default function AlchemyOfAirTitle() {
     return (
         <>
             {/*<div className="align-center flex flex-col justify-center">*/}
-            <p className="px-5 text-center text-6xl font-thin">
+            <p className="translate-y-[100px] px-5 text-center text-4xl font-thin md:text-6xl">
                 <span className="fade-in-on-scroll">The</span>{" "}
                 <span className="fade-in-on-scroll">Alchemy</span>{" "}
                 <span className="fade-in-on-scroll">of</span>
@@ -52,6 +57,7 @@ export default function AlchemyOfAirTitle() {
                     Air
                 </p>
                 <FluidSimulationCanvas
+                    startAnimation={startAnimation}
                     obstacles={obstacles}
                     canvasWidth={1000}
                     canvasHeight={1000}

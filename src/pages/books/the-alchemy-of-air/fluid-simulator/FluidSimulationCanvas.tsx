@@ -9,8 +9,14 @@ type Props = {
     obstacles: Obstacle[];
     canvasWidth: number;
     canvasHeight: number;
+    startAnimation: boolean;
 };
-export default function FluidSimulationCanvas({ obstacles, canvasWidth, canvasHeight }: Props) {
+export default function FluidSimulationCanvas({
+    obstacles,
+    canvasWidth,
+    canvasHeight,
+    startAnimation,
+}: Props) {
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
     const sceneRef = React.useRef<any>({
         gravity: -9.81,
@@ -54,7 +60,7 @@ export default function FluidSimulationCanvas({ obstacles, canvasWidth, canvasHe
     }, [obstacles]);
 
     React.useEffect(() => {
-        if (!canvasRef.current) {
+        if (!canvasRef.current || !startAnimation) {
             return;
         }
         // console.log("useEffect canvas");
@@ -88,7 +94,7 @@ export default function FluidSimulationCanvas({ obstacles, canvasWidth, canvasHe
         update();
 
         ctx.font = "30px Arial";
-    }, [canvasRef]);
+    }, [startAnimation]);
 
     function setupScene(sceneNr = 0) {
         const scene = sceneRef.current;
