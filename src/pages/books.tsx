@@ -12,9 +12,9 @@ export default function Books() {
             <p>Here are my favourite books:</p>
             <div>
                 <Link href="/books/the-alchemy-of-air">The Alchemy of Air</Link>
-                <p>How to Write Funny</p>
+                <p>Coming soon: How to Write Funny</p>
                 <Link href="/books/the-dark-forest">The Dark Forest</Link>
-                <p>Feeling Great</p>
+                <p>Common soon: Feeling Great</p>
                 <div></div>
             </div>
         </>

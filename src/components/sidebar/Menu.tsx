@@ -1,11 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import classNames from "classnames";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export type NavLink = {
     label: string;
     href: string;
     icon?: React.ReactNode;
+    children?: NavLink[];
 };
 
 type Props = {
@@ -30,6 +32,10 @@ const Menu = ({ open, setOpen, navLinks }: Props) => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
+
+    const router = useRouter();
+    const currentPage = router.asPath;
+
     return (
         <div
             ref={ref}
@@ -55,27 +61,60 @@ const Menu = ({ open, setOpen, navLinks }: Props) => {
                     <nav className="top-0 md:sticky md:top-16">
                         {/* nav items */}
                         <ul className="flex flex-col gap-2 py-2">
-                            {navLinks.map((item, index) => {
+                            {navLinks.map((navLink, index) => {
                                 return (
-                                    <Link
-                                        key={index}
-                                        href={item.href}
-                                        onClick={() => {
-                                            setOpen(false);
-                                        }}
-                                    >
-                                        <li
-                                            className={classNames({
-                                                "decoration-sleepover-secondary underline-offset-2 hover:underline hover:decoration-wavy":
-                                                    true, // underline
-                                                "flex items-center gap-4 ": true, //layout
-                                                "transition-colors duration-300": true, //animation
-                                                "mx-2 rounded-md p-2 text-slate-500": true, //self style
-                                            })}
+                                    <>
+                                        <Link
+                                            key={`navlink-${index}`}
+                                            href={navLink.href}
+                                            onClick={() => {
+                                                setOpen(false);
+                                            }}
                                         >
-                                            {item.icon} {item.label}
-                                        </li>
-                                    </Link>
+                                            <li
+                                                className={classNames({
+                                                    "decoration-sleepover-secondary underline-offset-2 hover:underline hover:decoration-wavy":
+                                                        true, // underline
+                                                    "flex items-center gap-4 ": true, //layout
+                                                    "transition-colors duration-300": true, //animation
+                                                    "mx-2 rounded-md p-2 text-slate-500": true, //self style
+                                                    "font-bold":
+                                                        currentPage === navLink.href &&
+                                                        !navLink.children, // don't bold if we have children cause the child page would be bold
+                                                })}
+                                            >
+                                                {navLink.icon} {navLink.label}
+                                            </li>
+                                        </Link>
+                                        {navLink.children && (
+                                            <div className="ml-8">
+                                                {navLink.children.map((childLink, childIdx) => {
+                                                    return (
+                                                        <Link
+                                                            href={childLink.href}
+                                                            key={`navlink-${index}-${childIdx}`}
+                                                            onClick={() => {
+                                                                setOpen(false);
+                                                            }}
+                                                            className={classNames({
+                                                                "decoration-sleepover-secondary underline-offset-2 hover:underline hover:decoration-wavy":
+                                                                    true, // underline
+                                                                "flex items-center gap-4 ": true, //layout
+                                                                "transition-colors duration-300":
+                                                                    true, //animation
+                                                                "mx-2 rounded-md p-2 text-slate-500":
+                                                                    true, //self style
+                                                                "font-bold":
+                                                                    currentPage === childLink.href,
+                                                            })}
+                                                        >
+                                                            {childLink.label}
+                                                        </Link>
+                                                    );
+                                                })}
+                                            </div>
+                                        )}
+                                    </>
                                 );
                             })}
                         </ul>

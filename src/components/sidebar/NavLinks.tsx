@@ -11,5 +11,15 @@ export const NavLinks: NavLink[] = [
         label: "Books That Stole My Heart",
         href: "/books/the-alchemy-of-air",
         icon: <BookOpenIcon className="h-4 w-4 text-slate-400" />,
+        children: [
+            {
+                label: "The Alchemy of Air",
+                href: "/books/the-alchemy-of-air",
+            },
+            {
+                label: "The Dark Forest",
+                href: "/books/the-dark-forest",
+            },
+        ],
     },
 ];
