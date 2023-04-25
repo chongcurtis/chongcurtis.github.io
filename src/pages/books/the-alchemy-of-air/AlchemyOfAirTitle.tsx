@@ -33,6 +33,11 @@ export default function AlchemyOfAirTitle() {
             clearTimeout(timeoutId.current);
         };
     }, [canvasContainerRef]);
+
+    // const myElement = document.querySelector(".my-element");
+    // const isHidden =
+    //     window.getComputedStyle(myElement!, null).getPropertyValue("display") === "none";
+
     return (
         <>
             {/*<div className="align-center flex flex-col justify-center">*/}
@@ -45,14 +50,20 @@ export default function AlchemyOfAirTitle() {
             {/*    ref={titleRef}*/}
             {/*    className="align-center fade-in-on-scroll fade-in-on-scroll-slow animation-delay-400 ml-5 flex h-[500px] w-[500px] justify-center "*/}
             {/*>*/}
-            <p className="fade-in-on-scroll absolute left-1/2 -translate-x-1/2 translate-y-[242px] transform text-6xl font-thin italic">
-                Air
-            </p>
+            {/*<div className="my-element md:hidden"></div>*/}
             <div
                 ref={canvasContainerRef}
-                className="fade-in-on-scroll h-[350px] w-[350px] md:h-[500px] md:w-[500px]"
+                className="fade-in-on-scroll relative h-[350px] w-[350px] md:h-[500px] md:w-[500px]"
             >
-                <FluidSimulationCanvas obstacles={obstacles} canvasWidth={500} canvasHeight={500} />
+                <p className="fade-in-on-scroll absolute left-1/2 top-1/2 -translate-x-[90%] -translate-y-[20%] transform text-4xl font-thin italic md:text-6xl">
+                    {/*<p className="fade-in-on-scroll absolute left-0 right-0 m-auto text-4xl font-thin italic md:text-6xl">*/}
+                    Air
+                </p>
+                <FluidSimulationCanvas
+                    obstacles={obstacles}
+                    canvasWidth={1000}
+                    canvasHeight={1000}
+                />
             </div>
             {/*</div>*/}
         </>

@@ -196,8 +196,8 @@ export default function FluidSimulationCanvas({ obstacles, canvasWidth, canvasHe
         // console.log(dpr);
         // canvas.width = canvas.width * dpr;
         // canvas.height = canvas.height * dpr;
-        canvas.width = canvas.width * dpr;
-        canvas.height = canvas.height * dpr;
+        canvas.width = canvas.width;
+        canvas.height = canvas.height;
         // TODO: test to see if willReadFrequently results in faster renders
         const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
         ctx.scale(dpr, dpr);
