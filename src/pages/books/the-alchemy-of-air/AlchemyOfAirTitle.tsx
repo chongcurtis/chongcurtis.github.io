@@ -34,7 +34,7 @@ export default function AlchemyOfAirTitle() {
     }, [titleRef]);
     return (
         <div className="align-center flex h-[500px] w-[500px] flex-col justify-center">
-            <p className="text-center text-6xl">
+            <p className="text-center text-6xl font-thin">
                 <span className="fade-in-on-scroll">The</span>{" "}
                 <span className="fade-in-on-scroll">Alchemy</span>{" "}
                 <span className="fade-in-on-scroll">of</span>
