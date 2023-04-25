@@ -60,8 +60,8 @@ export default function FluidSimulationCanvas({ obstacles, canvasWidth, canvasHe
         // console.log("useEffect canvas");
 
         const canvas = canvasRef.current;
-        canvas.width = canvasWidth * 0.5;
-        canvas.height = canvasHeight * 0.5;
+        canvas.width = canvasWidth * 0.25;
+        canvas.height = canvasHeight * 0.25;
 
         const ctx = setupCanvas(canvas);
         // setInterval(function () {
@@ -480,12 +480,13 @@ export default function FluidSimulationCanvas({ obstacles, canvasWidth, canvasHe
         scene.showObstacle = false;
     }
 
+    // className="h-[350px] w-[350px] md:h-[500px] md:w-[500px]"
     return (
         <canvas
             id="canvas"
             ref={canvasRef}
+            className="h-full w-full"
             // NOTE: the fade-in-on-scroll is really important because without it the startAnimationEvent won't be called for this canvas
-            className={`w-[${canvasWidth}px] h-[${canvasHeight}px] bg-background-color`}
         />
     );
 }

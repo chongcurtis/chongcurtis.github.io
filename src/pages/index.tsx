@@ -27,7 +27,7 @@ export default function Home() {
                         {NavLinks.map((navLink, idx) => {
                             return (
                                 <Link
-                                    key={`navlink-${idx}`}
+                                    key={`home-navlink-${idx}`}
                                     href={navLink.href}
                                     className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
                                 >

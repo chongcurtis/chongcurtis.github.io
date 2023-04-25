@@ -63,9 +63,8 @@ const Menu = ({ open, setOpen, navLinks }: Props) => {
                         <ul className="flex flex-col gap-2 py-2">
                             {navLinks.map((navLink, index) => {
                                 return (
-                                    <>
+                                    <div key={`navlink-${index}`}>
                                         <Link
-                                            key={`navlink-${index}`}
                                             href={navLink.href}
                                             onClick={() => {
                                                 setOpen(false);
@@ -114,7 +113,7 @@ const Menu = ({ open, setOpen, navLinks }: Props) => {
                                                 })}
                                             </div>
                                         )}
-                                    </>
+                                    </div>
                                 );
                             })}
                         </ul>
