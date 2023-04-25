@@ -22,8 +22,8 @@ export default function AlchemyOfAirTitle() {
 
         const startAnimation = () => {
             // the simulation canvas should already be running. so all we need to do is set the particles
-            console.log("cloned");
-            setObstacles(cloneDeep(initialObstacles));
+            // 2s for the "Air" to appear, and 200ms for buffer
+            setTimeout(() => setObstacles(cloneDeep(initialObstacles)), 2200);
         };
 
         title.addEventListener(startAnimationEventName, startAnimation);
@@ -34,28 +34,20 @@ export default function AlchemyOfAirTitle() {
         };
     }, [canvasContainerRef]);
 
-    // const myElement = document.querySelector(".my-element");
-    // const isHidden =
-    //     window.getComputedStyle(myElement!, null).getPropertyValue("display") === "none";
-
     return (
         <>
             {/*<div className="align-center flex flex-col justify-center">*/}
-            {/*<p className="px-5 text-center text-6xl font-thin">*/}
-            {/*    <span className="fade-in-on-scroll">The</span>{" "}*/}
-            {/*    <span className="fade-in-on-scroll">Alchemy</span>{" "}*/}
-            {/*    <span className="fade-in-on-scroll">of</span>*/}
-            {/*</p>*/}
-            {/*<div*/}
-            {/*    ref={titleRef}*/}
-            {/*    className="align-center fade-in-on-scroll fade-in-on-scroll-slow animation-delay-400 ml-5 flex h-[500px] w-[500px] justify-center "*/}
-            {/*>*/}
-            {/*<div className="my-element md:hidden"></div>*/}
+            <p className="px-5 text-center text-6xl font-thin">
+                <span className="fade-in-on-scroll">The</span>{" "}
+                <span className="fade-in-on-scroll">Alchemy</span>{" "}
+                <span className="fade-in-on-scroll">of</span>
+            </p>
+            {/*This parent div MUST be relative so the p tag holding "Air" will e properly centered within it*/}
             <div
                 ref={canvasContainerRef}
-                className="fade-in-on-scroll relative h-[350px] w-[350px] md:h-[500px] md:w-[500px]"
+                className="relative h-[350px] w-[350px] md:h-[500px] md:w-[500px]"
             >
-                <p className="fade-in-on-scroll absolute left-1/2 top-1/2 -translate-x-[90%] -translate-y-[20%] transform text-4xl font-thin italic md:text-6xl">
+                <p className="fade-in-on-scroll-slow animation-delay-600 absolute left-1/2 top-1/2 -translate-x-[90%] -translate-y-[20%] transform text-4xl font-thin italic md:text-6xl">
                     {/*<p className="fade-in-on-scroll absolute left-0 right-0 m-auto text-4xl font-thin italic md:text-6xl">*/}
                     Air
                 </p>

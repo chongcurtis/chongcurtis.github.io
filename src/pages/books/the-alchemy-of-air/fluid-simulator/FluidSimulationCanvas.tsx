@@ -486,7 +486,7 @@ export default function FluidSimulationCanvas({ obstacles, canvasWidth, canvasHe
         <canvas
             id="canvas"
             ref={canvasRef}
-            className="h-full w-full "
+            className="fade-in-on-scroll animation-delay-200 h-full w-full"
             // NOTE: the fade-in-on-scroll is really important because without it the startAnimationEvent won't be called for this canvas
         />
     );
