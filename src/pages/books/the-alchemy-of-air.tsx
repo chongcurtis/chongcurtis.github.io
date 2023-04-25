@@ -9,7 +9,7 @@ export default function TheAlchemyOfAir() {
     }, []);
 
     return (
-        <div>
+        <>
             <div className="mt-80" />
             <p className="fade-in-on-scroll text-center text-6xl">The Alchemy of Air</p>
 
@@ -24,6 +24,6 @@ export default function TheAlchemyOfAir() {
                 made me much more optimistic about climate change. It was really fascinating because
                 these people solved the world's biggest problem and nobody knows about it.
             </p>
-        </div>
+        </>
     );
 }

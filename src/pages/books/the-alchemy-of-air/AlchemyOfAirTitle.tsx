@@ -30,7 +30,7 @@ export default function AlchemyOfAirTitle() {
         };
     }, [titleRef]);
     return (
-        <div ref={titleRef}>
+        <div ref={titleRef} className="align-center flex h-[500px] w-[500px] justify-center">
             <FluidSimulationCanvas blocks={blocks} canvasWidth={500} canvasHeight={500} />
         </div>
     );
