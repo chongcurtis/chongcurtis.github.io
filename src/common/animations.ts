@@ -1,3 +1,7 @@
+import { useSelectedLayoutSegment } from "next/navigation";
+import { Simulate } from "react-dom/test-utils";
+import mouseLeave = Simulate.mouseLeave;
+
 type Animation = {
     initialClass: string;
     inQueueClass: string; // has same style as initialClass, but is used to indicate that the element is in the queue, so we don't put it into another queue
@@ -9,6 +13,11 @@ const fadeInAnimation: Animation = {
     initialClass: "fade-in-on-scroll",
     inQueueClass: "in-fade-in-on-scroll-queue",
     finalClass: "faded-in",
+};
+const fadeInSlowAnimation: Animation = {
+    initialClass: "fade-in-on-scroll-slow",
+    inQueueClass: "in-fade-in-on-scroll-slow-queue",
+    finalClass: "faded-in-slow",
 };
 const expandAnimation: Animation = {
     initialClass: "expand-on-scroll",
@@ -53,12 +62,24 @@ const setupAnimationHandler = (animation: Animation) => {
 export const initAnimations = () => {
     const cleanupFunctions = [
         setupAnimationHandler(fadeInAnimation),
+        setupAnimationHandler(fadeInSlowAnimation),
         setupAnimationHandler(expandAnimation),
         setupAnimationHandler(underlineAnimation),
     ];
     return () => {
         cleanupFunctions.forEach((cleanup) => cleanup());
     };
+};
+
+const DEFAULT_ANIMATION_DELAY_MS = 100;
+const animationDelayStr = "animation-delay-";
+const getAnimationDelay = (element: HTMLElement): number => {
+    for (const elementClass of element.classList) {
+        if (elementClass.startsWith(animationDelayStr)) {
+            return parseInt(elementClass.substring(animationDelayStr.length));
+        }
+    }
+    return DEFAULT_ANIMATION_DELAY_MS;
 };
 
 // const inAnimationQueue = "in-animation-queue";
@@ -71,7 +92,7 @@ const tryStartAnimation = (animation: Animation): boolean => {
         return true;
     }
 
-    const animateQueue: HTMLElement[] = [];
+    const animateQueue: [HTMLElement, number][] = [];
     for (let i = 0; i < elements.length; i++) {
         const element = elements[i] as HTMLElement;
         const elementTop = element.offsetTop;
@@ -82,22 +103,28 @@ const tryStartAnimation = (animation: Animation): boolean => {
             element.dispatchEvent(newStartAnimationEvent());
         } else if (elementTop <= window.scrollY + (window.innerHeight * 6.5) / 8) {
             // These elements are on the viewport. So push them into the queue to do fancy animations
-            animateQueue.push(element);
+            const animationDelayMs = getAnimationDelay(element);
+            animateQueue.push([element, animationDelayMs]);
             element.classList.add(animation.inQueueClass);
             element.classList.remove(animation.initialClass);
         }
     }
+
     // pop off elements from the queue and add the final class every x seconds
-    const interval = setInterval(() => {
-        const element = animateQueue.shift(); // pop off the first element
-        if (element) {
-            element.classList.remove(animation.inQueueClass);
-            element.classList.add(animation.finalClass);
-            element.dispatchEvent(newStartAnimationEvent());
-        } else {
-            // we are done with the animations
-            clearInterval(interval);
+    const animateElement = () => {
+        const res = animateQueue.shift(); // pop off the first element
+        if (res) {
+            const [element, animationDelay] = res;
+            setTimeout(() => {
+                element.classList.remove(animation.inQueueClass);
+                element.classList.add(animation.finalClass);
+                element.dispatchEvent(newStartAnimationEvent());
+                animateElement();
+            }, animationDelay);
         }
-    }, 100);
+    };
+
+    setTimeout(animateElement, DEFAULT_ANIMATION_DELAY_MS);
+
     return false;
 };

@@ -41,7 +41,7 @@ export default function AlchemyOfAirTitle() {
             </p>
             <div
                 ref={titleRef}
-                className="align-center fade-in-on-scroll ml-5 flex h-[500px] w-[500px] justify-center "
+                className="align-center fade-in-on-scroll fade-in-on-scroll-slow animation-delay-400 ml-5 flex h-[500px] w-[500px] justify-center "
             >
                 <p className="absolute left-1/2 -translate-x-1/2 translate-y-[242px] transform text-6xl font-thin">
                     Air

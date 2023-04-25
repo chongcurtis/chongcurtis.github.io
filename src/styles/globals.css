@@ -3,13 +3,23 @@
 @tailwind utilities;
 
 .fade-in-on-scroll, .in-fade-in-on-scroll-queue {
-    opacity: 0.01;
+    opacity: 0.0;
     transition: opacity 0.5s ease-in;
 }
 
 .faded-in {
     opacity: 1;
     transition: opacity 0.5s ease-in;
+}
+
+.fade-in-on-scroll-slow, .in-fade-in-on-scroll-slow-queue {
+    opacity: 0.0;
+    transition: opacity 2s ease-in;
+}
+
+.faded-in-slow {
+    opacity: 1;
+    transition: opacity 2s ease-in;
 }
 
 .expand-on-scroll, .in-expand-on-scroll-queue {
