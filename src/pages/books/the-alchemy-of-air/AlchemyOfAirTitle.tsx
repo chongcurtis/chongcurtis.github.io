@@ -5,6 +5,7 @@ import { Block } from "@/pages/books/the-alchemy-of-air/Block";
 import FluidSimulationCanvas from "@/pages/books/the-alchemy-of-air/fluid-simulator/FluidSimulationCanvas";
 import { Obstacle } from "@/pages/books/the-alchemy-of-air/fluid-simulator/Obstacle";
 import { createZeroToOne } from "@/common/types/ZeroToOne";
+import BulletsStrikeSand from "@/pages/books/the-alchemy-of-air/BulletsStrikeSand";
 
 const initialObstacles = [
     new Obstacle(createZeroToOne(0.5), createZeroToOne(0.5), createZeroToOne(0.1)),
@@ -64,7 +65,6 @@ export default function AlchemyOfAirTitle() {
                     canvasHeight={1000}
                 />
             </div>
-            {/*</div>*/}
         </>
     );
 }

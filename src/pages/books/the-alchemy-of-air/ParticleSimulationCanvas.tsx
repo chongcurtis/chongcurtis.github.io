@@ -8,12 +8,14 @@ type Props = {
     blocks: Block[];
     canvasWidth: number;
     canvasHeight: number;
+    checkCollision: boolean;
 };
 export default function ParticleSimulationCanvas({
     particles,
     blocks,
     canvasWidth,
     canvasHeight,
+    checkCollision,
 }: Props) {
     const SIMULATION_SPEED = 100; // 40ms between each frame = 25fps
 
@@ -65,7 +67,7 @@ export default function ParticleSimulationCanvas({
         });
 
         blocks.forEach((block) => {
-            const rotationInRads = block.rotationDegrees//block.rotationDegrees* (Math.PI / 180)
+            const rotationInRads = block.rotationDegrees; //block.rotationDegrees* (Math.PI / 180)
             // now draw rectangles
             // ctx.translate(block.x, block.y);
             // ctx.rotate(rotationInRads);
@@ -74,13 +76,13 @@ export default function ParticleSimulationCanvas({
             // ctx.fillRect(block.x, block.y, block.width, block.height);
             // ctx.rotate(-rotationInRads);
 
-            ctx.translate(block.x + (block.width/2), block.y + (block.height/2));
+            ctx.translate(block.x + block.width / 2, block.y + block.height / 2);
             ctx.rotate(rotationInRads); // rotate the canvas by 45 degrees
-            ctx.fillStyle = "red";   // set the fill color
-            ctx.fillRect(-block.width/2, -block.height/2, block.width, block.height); // draw the rectangle centered on the origin
+            ctx.fillStyle = "red"; // set the fill color
+            ctx.fillRect(-block.width / 2, -block.height / 2, block.width, block.height); // draw the rectangle centered on the origin
 
             ctx.rotate(-rotationInRads); // rotate the canvas by 45 degrees
-            ctx.translate(-(block.x + (block.width/2)), -(block.y + (block.height/2)));
+            ctx.translate(-(block.x + block.width / 2), -(block.y + block.height / 2));
             // ctx.restore(); // restore the canvas to its original state
         });
     }
@@ -109,6 +111,9 @@ export default function ParticleSimulationCanvas({
         for (let i = 0; i < particles.current.length; i++) {
             const p1 = particles.current[i];
             p1.simulate();
+            if (!checkCollision) {
+                continue;
+            }
             for (let j = i + 1; j < particles.current.length; j++) {
                 let p2 = particles.current[j];
                 handleBallCollision(p1, p2);

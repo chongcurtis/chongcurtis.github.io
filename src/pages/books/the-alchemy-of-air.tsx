@@ -2,6 +2,7 @@ import Boiler from "@/pages/books/the-alchemy-of-air/Boiler";
 import React from "react";
 import { initAnimations } from "@/common/animations";
 import AlchemyOfAirTitle from "@/pages/books/the-alchemy-of-air/AlchemyOfAirTitle";
+import BulletsStrikeSand from "@/pages/books/the-alchemy-of-air/BulletsStrikeSand";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -11,9 +12,11 @@ export default function TheAlchemyOfAir() {
     return (
         <>
             <div className="mt-20" />
-            <AlchemyOfAirTitle />
+            {/*<AlchemyOfAirTitle />*/}
             {/*TODO: uncomment after fixing collision*/}
             {/*<Boiler />*/}
+            <BulletsStrikeSand />
+            {/*</div>*/}
             <p className="fade-in-on-scroll">
                 This book changed my life because it taught me that humanity has solved
                 calamity-scale problems before: Running out of food. It's about how a scientist and

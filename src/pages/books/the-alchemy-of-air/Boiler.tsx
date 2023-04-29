@@ -50,6 +50,7 @@ export default function Boiler() {
                 blocks={blocks}
                 canvasWidth={500}
                 canvasHeight={500}
+                checkCollision={false}
             />
         </div>
     );
