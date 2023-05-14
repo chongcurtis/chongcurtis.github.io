@@ -1,5 +1,4 @@
 import React from "react";
-import { Body } from "@/pages/books/the-dark-forest/Body";
 import ParticleSimulationCanvas from "@/pages/books/the-alchemy-of-air/ParticleSimulationCanvas";
 import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
 import { Block } from "@/pages/books/the-alchemy-of-air/Block";
@@ -39,7 +38,7 @@ export default function BulletsStrikeSand() {
                 particles={particles}
                 canvasWidth={1000}
                 canvasHeight={1000}
-                checkCollision={false}
+                isCollisionEnabled={false}
             />
         </div>
     );

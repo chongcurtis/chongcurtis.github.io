@@ -8,14 +8,14 @@ type Props = {
     blocks: Block[];
     canvasWidth: number;
     canvasHeight: number;
-    checkCollision: boolean;
+    isCollisionEnabled: boolean;
 };
 export default function ParticleSimulationCanvas({
     particles,
     blocks,
     canvasWidth,
     canvasHeight,
-    checkCollision,
+    isCollisionEnabled,
 }: Props) {
     const SIMULATION_SPEED = 100; // 40ms between each frame = 25fps
 
@@ -67,7 +67,7 @@ export default function ParticleSimulationCanvas({
         });
 
         blocks.forEach((block) => {
-            const rotationInRads = block.rotationDegrees; //block.rotationDegrees* (Math.PI / 180)
+            const rotationInRads = block.rotationDegrees * (Math.PI / 180);
             // now draw rectangles
             // ctx.translate(block.x, block.y);
             // ctx.rotate(rotationInRads);
@@ -75,14 +75,16 @@ export default function ParticleSimulationCanvas({
             //
             // ctx.fillRect(block.x, block.y, block.width, block.height);
             // ctx.rotate(-rotationInRads);
+            const halfWidth = block.width / 2;
+            const halfHeight = block.height / 2;
 
-            ctx.translate(block.x + block.width / 2, block.y + block.height / 2);
+            ctx.translate(block.x, block.y);
             ctx.rotate(rotationInRads); // rotate the canvas by 45 degrees
             ctx.fillStyle = "red"; // set the fill color
-            ctx.fillRect(-block.width / 2, -block.height / 2, block.width, block.height); // draw the rectangle centered on the origin
+            ctx.fillRect(-halfWidth, -halfHeight, block.width, block.height); // draw the rectangle centered on the origin
 
             ctx.rotate(-rotationInRads); // rotate the canvas by 45 degrees
-            ctx.translate(-(block.x + block.width / 2), -(block.y + block.height / 2));
+            ctx.translate(-block.x, -block.y);
             // ctx.restore(); // restore the canvas to its original state
         });
     }
@@ -111,7 +113,7 @@ export default function ParticleSimulationCanvas({
         for (let i = 0; i < particles.current.length; i++) {
             const p1 = particles.current[i];
             p1.simulate();
-            if (!checkCollision) {
+            if (!isCollisionEnabled) {
                 continue;
             }
             for (let j = i + 1; j < particles.current.length; j++) {
@@ -121,7 +123,8 @@ export default function ParticleSimulationCanvas({
 
             for (let j = 0; j < blocks.length; j++) {
                 let block = blocks[j];
-                handleBlockCollision(p1, block);
+                handleBlockCollision(block, p1);
+                // handleBlockCollision(p1, block);
             }
         }
 
@@ -158,55 +161,148 @@ export default function ParticleSimulationCanvas({
         p2.velocity.add(dir, newV2 - v2);
     }
 
-    function intersectsCircleAndRotatedRectangle(circle: Particle, rectangle: Block) {
-        const cx = rectangle.x + rectangle.width / 2;
-        const cy = rectangle.y + rectangle.height / 2;
-        const distX = Math.abs(circle.x - cx);
-        const distY = Math.abs(circle.y - cy);
-        const rectHalfWidth = rectangle.width / 2;
-        const rectHalfHeight = rectangle.height / 2;
+    // function intersectsCircleAndRotatedRectangle(circle: Particle, rectangle: Block) {
+    //     const cx = rectangle.x + rectangle.width / 2;
+    //     const cy = rectangle.y + rectangle.height / 2;
+    //     const distX = Math.abs(circle.x - cx);
+    //     const distY = Math.abs(circle.y - cy);
+    //     const rectHalfWidth = rectangle.width / 2;
+    //     const rectHalfHeight = rectangle.height / 2;
+    //
+    //     // Calculate angle of the rectangle in radians
+    //     const angleRad = rectangle.rotationDegrees * (Math.PI / 180);
+    //
+    //     // Calculate coordinates of the corners after rotation
+    //     const sinAngle = Math.sin(angleRad);
+    //     const cosAngle = Math.cos(angleRad);
+    //     const topLeftX = -rectHalfWidth * cosAngle - rectHalfHeight * sinAngle + cx;
+    //     const topLeftY = -rectHalfWidth * sinAngle + rectHalfHeight * cosAngle + cy;
+    //     const topRightX = rectHalfWidth * cosAngle - rectHalfHeight * sinAngle + cx;
+    //     const topRightY = rectHalfWidth * sinAngle + rectHalfHeight * cosAngle + cy;
+    //     const bottomLeftX = -rectHalfWidth * cosAngle + rectHalfHeight * sinAngle + cx;
+    //     const bottomLeftY = -rectHalfWidth * sinAngle - rectHalfHeight * cosAngle + cy;
+    //     const bottomRightX = rectHalfWidth * cosAngle + rectHalfHeight * sinAngle + cx;
+    //     const bottomRightY = rectHalfWidth * sinAngle - rectHalfHeight * cosAngle + cy;
+    //
+    //     if (distX > rectHalfWidth + circle.radius || distY > rectHalfHeight + circle.radius) {
+    //         return false;
+    //     }
+    //
+    //     if (distX <= rectHalfWidth || distY <= rectHalfHeight) {
+    //         return true;
+    //     }
+    //
+    //     const cornerDistanceSq =
+    //         Math.pow(topLeftX - circle.x, 2) + Math.pow(topLeftY - circle.y, 2) <=
+    //             Math.pow(circle.radius, 2) ||
+    //         Math.pow(topRightX - circle.x, 2) + Math.pow(topRightY - circle.y, 2) <=
+    //             Math.pow(circle.radius, 2) ||
+    //         Math.pow(bottomLeftX - circle.x, 2) + Math.pow(bottomLeftY - circle.y, 2) <=
+    //             Math.pow(circle.radius, 2) ||
+    //         Math.pow(bottomRightX - circle.x, 2) + Math.pow(bottomRightY - circle.y, 2) <=
+    //             Math.pow(circle.radius, 2);
+    //
+    //     return cornerDistanceSq;
+    // }
 
-        // Calculate angle of the rectangle in radians
-        const angleRad = rectangle.rotationDegrees * (Math.PI / 180);
+    // function handleBlockCollision(p: Particle, b: Block) {
+    //     // if (intersectsCircleAndRotatedRectangle(p, b)) {
+    //     //     console.log("collision");
+    //     // }
+    // }
 
-        // Calculate coordinates of the corners after rotation
-        const sinAngle = Math.sin(angleRad);
-        const cosAngle = Math.cos(angleRad);
-        const topLeftX = -rectHalfWidth * cosAngle - rectHalfHeight * sinAngle + cx;
-        const topLeftY = -rectHalfWidth * sinAngle + rectHalfHeight * cosAngle + cy;
-        const topRightX = rectHalfWidth * cosAngle - rectHalfHeight * sinAngle + cx;
-        const topRightY = rectHalfWidth * sinAngle + rectHalfHeight * cosAngle + cy;
-        const bottomLeftX = -rectHalfWidth * cosAngle + rectHalfHeight * sinAngle + cx;
-        const bottomLeftY = -rectHalfWidth * sinAngle - rectHalfHeight * cosAngle + cy;
-        const bottomRightX = rectHalfWidth * cosAngle + rectHalfHeight * sinAngle + cx;
-        const bottomRightY = rectHalfWidth * sinAngle - rectHalfHeight * cosAngle + cy;
+    function projectPolygon(vertices: Vector2[], axis: Vector2) {
+        let min = axis.dotProduct(vertices[0]);
+        let max = min;
 
-        if (distX > rectHalfWidth + circle.radius || distY > rectHalfHeight + circle.radius) {
-            return false;
+        for (let i = 1; i < vertices.length; i++) {
+            const p = axis.dotProduct(vertices[i]);
+
+            if (p < min) {
+                min = p;
+            } else if (p > max) {
+                max = p;
+            }
         }
 
-        if (distX <= rectHalfWidth || distY <= rectHalfHeight) {
-            return true;
-        }
-
-        const cornerDistanceSq =
-            Math.pow(topLeftX - circle.x, 2) + Math.pow(topLeftY - circle.y, 2) <=
-                Math.pow(circle.radius, 2) ||
-            Math.pow(topRightX - circle.x, 2) + Math.pow(topRightY - circle.y, 2) <=
-                Math.pow(circle.radius, 2) ||
-            Math.pow(bottomLeftX - circle.x, 2) + Math.pow(bottomLeftY - circle.y, 2) <=
-                Math.pow(circle.radius, 2) ||
-            Math.pow(bottomRightX - circle.x, 2) + Math.pow(bottomRightY - circle.y, 2) <=
-                Math.pow(circle.radius, 2);
-
-        return cornerDistanceSq;
+        return { min, max };
     }
 
-    function handleBlockCollision(p: Particle, b: Block) {
-        if (intersectsCircleAndRotatedRectangle(p, b)) {
-            console.log("collision");
+    function handleBlockCollision(block: Block, particle: Particle) {
+        // Treat the particle as a square for SAT
+        const particleAsBlock = new Block(
+            particle.position.x - particle.radius,
+            particle.position.y - particle.radius,
+            particle.radius * 2,
+            particle.radius * 2,
+            particle.color,
+            0 // no rotation
+        );
+
+        const axes1 = block.getAxes();
+        console.log(axes1);
+        const axes2 = particleAsBlock.getAxes();
+
+        let minOverlap = Infinity;
+        let collisionAxis: Vector2 | null = null;
+
+        // Test all axes
+        for (let i = 0; i < axes1.length; i++) {
+            const axis = axes1[i];
+
+            const projection1 = projectPolygon(block.getVertices(), axis);
+            const projection2 = projectPolygon(particleAsBlock.getVertices(), axis);
+
+            const overlap =
+                Math.min(projection1.max, projection2.max) -
+                Math.max(projection1.min, projection2.min);
+
+            if (overlap < 0) {
+                return false; // No collision
+            }
+
+            if (overlap < minOverlap) {
+                minOverlap = overlap;
+                collisionAxis = axis;
+            }
         }
+
+        for (let i = 0; i < axes2.length; i++) {
+            const axis = axes2[i];
+
+            const projection1 = projectPolygon(block.getVertices(), axis);
+            const projection2 = projectPolygon(particleAsBlock.getVertices(), axis);
+
+            const overlap =
+                Math.min(projection1.max, projection2.max) -
+                Math.max(projection1.min, projection2.min);
+
+            if (overlap < 0) {
+                return false; // No collision
+            }
+
+            if (overlap < minOverlap) {
+                minOverlap = overlap;
+                collisionAxis = axis;
+            }
+        }
+
+        // Collision detected - compute new velocity
+        if (collisionAxis) {
+            const v = particle.velocity;
+            const d = 2 * v.dotProduct(collisionAxis);
+            particle.velocity = new Vector2(v.x - d * collisionAxis.x, v.y - d * collisionAxis.y);
+        }
+
+        return true;
     }
+
+    // function overlap(p1, p2) {
+    //     if (p1.min > p2.max || p2.min > p1.max) {
+    //         return false;
+    //     }
+    //     return true;
+    // }
 
     return (
         <canvas

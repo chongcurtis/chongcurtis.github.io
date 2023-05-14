@@ -55,4 +55,12 @@ export default class Vector2 {
     dot(v: Vector2): number {
         return this.x * v.x + this.y * v.y;
     }
+
+    dotProduct(other: Vector2) {
+        return this.x * other.x + this.y * other.y;
+    }
+
+    getPerpendicular() {
+        return new Vector2(this.y, -this.x);
+    }
 }
