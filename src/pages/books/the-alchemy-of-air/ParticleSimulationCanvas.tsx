@@ -19,7 +19,7 @@ export default function ParticleSimulationCanvas({
 }: Props) {
     const SIMULATION_SPEED = 100; // 40ms between each frame = 25fps
 
-    const ENERGY_RETAINMENT_ON_COLLISION_DECIMAL = 1;
+    const COEFFICIENT_OF_RESTITUTION = 1; // the ratio of the final to initial relative speed between two objects after they collide.
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
     React.useEffect(() => {
@@ -124,7 +124,9 @@ export default function ParticleSimulationCanvas({
             for (let j = 0; j < blocks.length; j++) {
                 let block = blocks[j];
                 // handleBlockCollision(p1, block);
-                handleBlockCollision(p1, block);
+                if (checkCollision(p1, block)) {
+                    handleBlockCollision(p1, block);
+                }
             }
         }
 
@@ -133,16 +135,15 @@ export default function ParticleSimulationCanvas({
     }
 
     function handleBallCollision(p1: Particle, p2: Particle) {
-        let dir = new Vector2();
-        dir.subtractVectors(p2.position, p1.position);
+        let dir = p2.position.subtract(p1.position);
         let d = dir.length();
         if (d === 0.0 || d > p1.radius + p2.radius) return;
 
         dir.scale(1.0 / d);
 
         let corr = (p1.radius + p2.radius - d) / 2.0;
-        p1.position.add(dir, -corr);
-        p2.position.add(dir, corr);
+        p1.position = p1.position.add(dir, -corr);
+        p2.position = p2.position.add(dir, corr);
 
         let v1 = p1.velocity.dot(dir);
         let v2 = p2.velocity.dot(dir);
@@ -150,189 +151,88 @@ export default function ParticleSimulationCanvas({
         let m1 = p1.mass;
         let m2 = p2.mass;
 
-        let newV1 =
-            (m1 * v1 + m2 * v2 - m2 * (v1 - v2) * ENERGY_RETAINMENT_ON_COLLISION_DECIMAL) /
-            (m1 + m2);
-        let newV2 =
-            (m1 * v1 + m2 * v2 - m1 * (v2 - v1) * ENERGY_RETAINMENT_ON_COLLISION_DECIMAL) /
-            (m1 + m2);
+        let newV1 = (m1 * v1 + m2 * v2 - m2 * (v1 - v2) * COEFFICIENT_OF_RESTITUTION) / (m1 + m2);
+        let newV2 = (m1 * v1 + m2 * v2 - m1 * (v2 - v1) * COEFFICIENT_OF_RESTITUTION) / (m1 + m2);
 
-        p1.velocity.add(dir, newV1 - v1);
-        p2.velocity.add(dir, newV2 - v2);
+        p1.velocity = p1.velocity.add(dir, newV1 - v1);
+        p2.velocity = p2.velocity.add(dir, newV2 - v2);
     }
 
-    function intersectsCircleAndRotatedRectangle(circle: Particle, rectangle: Block) {
-        const cx = rectangle.position.x + rectangle.width / 2;
-        const cy = rectangle.position.y + rectangle.height / 2;
-        const distX = Math.abs(circle.x - cx);
-        const distY = Math.abs(circle.y - cy);
-        const rectHalfWidth = rectangle.width / 2;
-        const rectHalfHeight = rectangle.height / 2;
+    function rotatePoint(point: Vector2, center: Vector2, angle: number): Vector2 {
+        const translatedPoint = point.subtract(center);
 
-        // Calculate angle of the rectangle in radians
-        const angleRad = rectangle.rotationDegrees * (Math.PI / 180);
+        const rotatedPoint = new Vector2(
+            translatedPoint.x * Math.cos(angle) - translatedPoint.y * Math.sin(angle),
+            translatedPoint.x * Math.sin(angle) + translatedPoint.y * Math.cos(angle)
+        );
 
-        // Calculate coordinates of the corners after rotation
-        const sinAngle = Math.sin(angleRad);
-        const cosAngle = Math.cos(angleRad);
-        const topLeftX = -rectHalfWidth * cosAngle - rectHalfHeight * sinAngle + cx;
-        const topLeftY = -rectHalfWidth * sinAngle + rectHalfHeight * cosAngle + cy;
-        const topRightX = rectHalfWidth * cosAngle - rectHalfHeight * sinAngle + cx;
-        const topRightY = rectHalfWidth * sinAngle + rectHalfHeight * cosAngle + cy;
-        const bottomLeftX = -rectHalfWidth * cosAngle + rectHalfHeight * sinAngle + cx;
-        const bottomLeftY = -rectHalfWidth * sinAngle - rectHalfHeight * cosAngle + cy;
-        const bottomRightX = rectHalfWidth * cosAngle + rectHalfHeight * sinAngle + cx;
-        const bottomRightY = rectHalfWidth * sinAngle - rectHalfHeight * cosAngle + cy;
+        return rotatedPoint.add(center);
+    }
 
-        if (distX > rectHalfWidth + circle.radius || distY > rectHalfHeight + circle.radius) {
-            return false;
-        }
+    function checkCollision(circle: Particle, rectangle: Block): boolean {
+        const rotatedCircleCenter: Vector2 = rotatePoint(
+            circle.position,
+            rectangle.position,
+            -rectangle.rotationDegrees * (Math.PI / 180)
+        );
 
-        if (distX <= rectHalfWidth || distY <= rectHalfHeight) {
+        const hw: number = rectangle.width / 2;
+        const hh: number = rectangle.height / 2;
+
+        if (
+            Math.abs(rotatedCircleCenter.x - rectangle.position.x) <= hw + circle.radius &&
+            Math.abs(rotatedCircleCenter.y - rectangle.position.y) <= hh + circle.radius
+        ) {
+            console.log(true);
             return true;
         }
 
-        const cornerDistanceSq =
-            Math.pow(topLeftX - circle.x, 2) + Math.pow(topLeftY - circle.y, 2) <=
-                Math.pow(circle.radius, 2) ||
-            Math.pow(topRightX - circle.x, 2) + Math.pow(topRightY - circle.y, 2) <=
-                Math.pow(circle.radius, 2) ||
-            Math.pow(bottomLeftX - circle.x, 2) + Math.pow(bottomLeftY - circle.y, 2) <=
-                Math.pow(circle.radius, 2) ||
-            Math.pow(bottomRightX - circle.x, 2) + Math.pow(bottomRightY - circle.y, 2) <=
-                Math.pow(circle.radius, 2);
-
-        return cornerDistanceSq;
+        console.log(false);
+        return false;
     }
 
-    function handleBlockCollision(p: Particle, b: Block) {
-        const relativePosition = p.position.subtract(b.position);
-
-        const inverseRotationMatrix: number[][] = [
-            [Math.cos(-b.rotationDegrees), -Math.sin(-b.rotationDegrees)],
-            [Math.sin(-b.rotationDegrees), Math.cos(-b.rotationDegrees)],
-        ];
-
-        const rotatedPosition = new Vector2(
-            relativePosition.x * inverseRotationMatrix[0][0] +
-                relativePosition.y * inverseRotationMatrix[0][1],
-            relativePosition.x * inverseRotationMatrix[1][0] +
-                relativePosition.y * inverseRotationMatrix[1][1]
+    function handleBlockCollision(circle: Particle, rectangle: Block): void {
+        const rotatedCircleCenter: Vector2 = rotatePoint(
+            circle.position,
+            rectangle.position,
+            -rectangle.rotationDegrees // TODO: pi?
         );
 
-        // Step 5: Determine closest point on the rectangle
-        const clampedPosition = new Vector2(
-            Math.max(-1, Math.min(rotatedPosition.x / (b.width / 2), 1)),
-            Math.max(-1, Math.min(rotatedPosition.y / (b.height / 2), 1))
+        const hw: number = rectangle.width / 2;
+        const hh: number = rectangle.height / 2;
+
+        // Find the point of contact on the rectangle
+        let closestPoint = new Vector2(
+            Math.max(
+                rectangle.position.x - hw,
+                Math.min(rotatedCircleCenter.x, rectangle.position.x + hw)
+            ),
+            Math.max(
+                rectangle.position.y - hh,
+                Math.min(rotatedCircleCenter.y, rectangle.position.y + hh)
+            )
         );
 
-        // Step 6: Calculate closest point on the rectangle
-        const closestPoint = new Vector2(
-            clampedPosition.x * (b.width / 2),
-            clampedPosition.y * (b.height / 2)
-        );
+        // Calculate the collision normal vector
+        const collisionNormal = rotatedCircleCenter.subtract(closestPoint).normalize();
 
-        // Step 7: Calculate normal vector
-        const normalVector = p.position.subtract(closestPoint);
+        // Reflect the velocity vector of the circle around the collision normal vector
+        const dotProduct: number =
+            circle.velocity.x * collisionNormal.x + circle.velocity.y * collisionNormal.y;
+        // const reflection: Vector2 = {
+        //     x: circle.velocity.x - 2 * dotProduct * collisionNormal.x,
+        //     y: circle.velocity.y - 2 * dotProduct * collisionNormal.y,
+        // };
 
-        const magnitude: number = Math.sqrt(normalVector.x ** 2 + normalVector.y ** 2);
-        const normalizedNormalVector = normalVector.normalize();
-        console.log(normalizedNormalVector);
+        const reflection = circle.velocity.subtract(collisionNormal.multiply(2 * dotProduct));
+
+        // Apply coefficient of restitution
+        reflection.x *= COEFFICIENT_OF_RESTITUTION;
+        reflection.y *= COEFFICIENT_OF_RESTITUTION;
+
+        // Update the circle's velocity
+        circle.velocity = reflection;
     }
-
-    function projectPolygon(vertices: Vector2[], axis: Vector2) {
-        let min = axis.dotProduct(vertices[0]);
-        let max = min;
-
-        for (let i = 1; i < vertices.length; i++) {
-            const p = axis.dotProduct(vertices[i]);
-
-            if (p < min) {
-                min = p;
-            } else if (p > max) {
-                max = p;
-            }
-        }
-
-        return { min, max };
-    }
-
-    // function handleBlockCollision(block: Block, particle: Particle) {
-    //     // Treat the particle as a square for SAT
-    //     const particleAsBlock = new Block(
-    //         particle.position.x - particle.radius,
-    //         particle.position.y - particle.radius,
-    //         particle.radius * 2,
-    //         particle.radius * 2,
-    //         particle.color,
-    //         0 // no rotation
-    //     );
-    //
-    //     const axes1 = block.getAxes();
-    //     // console.log(axes1);
-    //     const axes2 = particleAsBlock.getAxes();
-    //
-    //     let minOverlap = Infinity;
-    //     let collisionAxis: Vector2 | null = null;
-    //
-    //     // Test all axes
-    //     for (let i = 0; i < axes1.length; i++) {
-    //         const axis = axes1[i];
-    //
-    //         const projection1 = projectPolygon(block.getVertices(), axis);
-    //         const projection2 = projectPolygon(particleAsBlock.getVertices(), axis);
-    //
-    //         const overlap =
-    //             Math.min(projection1.max, projection2.max) -
-    //             Math.max(projection1.min, projection2.min);
-    //
-    //         if (overlap < 0) {
-    //             return false; // No collision
-    //         }
-    //
-    //         if (overlap < minOverlap) {
-    //             minOverlap = overlap;
-    //             collisionAxis = axis;
-    //         }
-    //     }
-    //
-    //     for (let i = 0; i < axes2.length; i++) {
-    //         const axis = axes2[i];
-    //
-    //         const projection1 = projectPolygon(block.getVertices(), axis);
-    //         const projection2 = projectPolygon(particleAsBlock.getVertices(), axis);
-    //
-    //         const overlap =
-    //             Math.min(projection1.max, projection2.max) -
-    //             Math.max(projection1.min, projection2.min);
-    //
-    //         if (overlap < 0) {
-    //             return false; // No collision
-    //         }
-    //
-    //         if (overlap < minOverlap) {
-    //             minOverlap = overlap;
-    //             collisionAxis = axis;
-    //         }
-    //     }
-    //
-    //     // Collision detected - compute new velocity
-    //     if (collisionAxis) {
-    //         debugger;
-    //         const v = particle.velocity;
-    //         const d = 2 * v.dotProduct(collisionAxis);
-    //         particle.velocity = new Vector2(v.x - d * collisionAxis.x, v.y - d * collisionAxis.y);
-    //     }
-    //
-    //     return true;
-    // }
-
-    // function overlap(p1, p2) {
-    //     if (p1.min > p2.max || p2.min > p1.max) {
-    //         return false;
-    //     }
-    //     return true;
-    // }
 
     return (
         <canvas

@@ -20,9 +20,7 @@ export default class Vector2 {
     }
 
     add(v: Vector2, s: number = 1.0): Vector2 {
-        this.x += v.x * s;
-        this.y += v.y * s;
-        return this;
+        return new Vector2(this.x + v.x * s, this.y + v.y * s);
     }
 
     addVectors(a: Vector2, b: Vector2): Vector2 {
@@ -33,12 +31,6 @@ export default class Vector2 {
 
     subtract(v: Vector2, s: number = 1.0): Vector2 {
         return new Vector2(this.x - v.x * s, this.y - v.y * s);
-    }
-
-    subtractVectors(a: Vector2, b: Vector2): Vector2 {
-        this.x = a.x - b.x;
-        this.y = a.y - b.y;
-        return this;
     }
 
     length(): number {
