@@ -123,7 +123,10 @@ export default function ParticleSimulationCanvas({
 
             for (let j = 0; j < blocks.length; j++) {
                 let block = blocks[j];
-                // handleBlockCollision(p1, block);
+                // the prompt:
+                // simulate a circle colliding with a rotated rectangle and it bouncing off
+                // - it generated written instructions
+                // give me this code in typescript
                 if (checkCollision(p1, block)) {
                     handleBlockCollision(p1, block);
                 }
@@ -219,10 +222,6 @@ export default function ParticleSimulationCanvas({
         // Reflect the velocity vector of the circle around the collision normal vector
         const dotProduct: number =
             circle.velocity.x * collisionNormal.x + circle.velocity.y * collisionNormal.y;
-        // const reflection: Vector2 = {
-        //     x: circle.velocity.x - 2 * dotProduct * collisionNormal.x,
-        //     y: circle.velocity.y - 2 * dotProduct * collisionNormal.y,
-        // };
 
         const reflection = circle.velocity.subtract(collisionNormal.multiply(2 * dotProduct));
 
