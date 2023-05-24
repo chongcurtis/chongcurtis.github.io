@@ -81,6 +81,10 @@ export default function ParticleSimulationCanvas({
             ctx.translate(block.position.x, block.position.y);
             ctx.rotate(rotationInRads); // rotate the canvas by 45 degrees
             ctx.fillStyle = "red"; // set the fill color
+
+            // ctx.strokeStyle = block.color;
+            // ctx.lineWidth = 2;
+            // ctx.stroke();
             ctx.fillRect(-halfWidth, -halfHeight, block.width, block.height); // draw the rectangle centered on the origin
 
             ctx.rotate(-rotationInRads); // rotate the canvas by 45 degrees
@@ -186,11 +190,9 @@ export default function ParticleSimulationCanvas({
             Math.abs(rotatedCircleCenter.x - rectangle.position.x) <= hw + circle.radius &&
             Math.abs(rotatedCircleCenter.y - rectangle.position.y) <= hh + circle.radius
         ) {
-            console.log(true);
             return true;
         }
 
-        console.log(false);
         return false;
     }
 
@@ -218,6 +220,8 @@ export default function ParticleSimulationCanvas({
 
         // Calculate the collision normal vector
         const collisionNormal = rotatedCircleCenter.subtract(closestPoint).normalize();
+
+        // TODO: there is a bug, if the particle scrapes the corner of the block, the collision normal is calculated for the wrong side of the rectangle
 
         // Reflect the velocity vector of the circle around the collision normal vector
         const dotProduct: number =
