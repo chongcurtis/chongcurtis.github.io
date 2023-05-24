@@ -1,11 +1,9 @@
 import React from "react";
 import cloneDeep from "lodash.clonedeep";
 import { startAnimationEventName } from "@/common/animations";
-import { Block } from "@/pages/books/the-alchemy-of-air/Block";
 import FluidSimulationCanvas from "@/pages/books/the-alchemy-of-air/fluid-simulator/FluidSimulationCanvas";
 import { Obstacle } from "@/pages/books/the-alchemy-of-air/fluid-simulator/Obstacle";
 import { createZeroToOne } from "@/common/types/ZeroToOne";
-import BulletsStrikeSand from "@/pages/books/the-alchemy-of-air/BulletsStrikeSand";
 
 const initialObstacles = [
     new Obstacle(createZeroToOne(0.5), createZeroToOne(0.5), createZeroToOne(0.1)),
@@ -54,7 +52,7 @@ export default function AlchemyOfAirTitle() {
                 ref={canvasContainerRef}
                 className="relative h-[300px] w-[350px] md:h-[400px] md:w-[500px]"
             >
-                <p className="fade-in-on-scroll-slow animation-delay-600 absolute left-1/2 top-1/2 -translate-x-[90%] -translate-y-[20%] transform text-4xl font-thin italic md:text-6xl">
+                <p className="fade-in-on-scroll-slow absolute left-1/2 top-1/2 -translate-x-[90%] -translate-y-[20%] transform text-4xl font-thin italic md:text-6xl">
                     {/*<p className="fade-in-on-scroll absolute left-0 right-0 m-auto text-4xl font-thin italic md:text-6xl">*/}
                     Air
                 </p>

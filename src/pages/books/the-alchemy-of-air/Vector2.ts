@@ -32,9 +32,7 @@ export default class Vector2 {
     }
 
     subtract(v: Vector2, s: number = 1.0): Vector2 {
-        this.x -= v.x * s;
-        this.y -= v.y * s;
-        return this;
+        return new Vector2(this.x - v.x * s, this.y - v.y * s);
     }
 
     subtractVectors(a: Vector2, b: Vector2): Vector2 {
@@ -62,5 +60,39 @@ export default class Vector2 {
 
     getPerpendicular() {
         return new Vector2(this.y, -this.x);
+    }
+
+    normalize(): Vector2 {
+        const length = Math.sqrt(this.x * this.x + this.y * this.y);
+        const normalizedX = this.x / length;
+        const normalizedY = this.y / length;
+        return new Vector2(normalizedX, normalizedY);
+    }
+
+    magnitude(): number {
+        return Math.sqrt(this.x * this.x + this.y * this.y);
+    }
+
+    multiply(factor: number): Vector2 {
+        const scaledX = this.x * factor;
+        const scaledY = this.y * factor;
+        return new Vector2(scaledX, scaledY);
+    }
+
+    rotate(angle: number): Vector2 {
+        const cos = Math.cos(angle);
+        const sin = Math.sin(angle);
+        const rotatedX = this.x * cos - this.y * sin;
+        const rotatedY = this.x * sin + this.y * cos;
+        return new Vector2(rotatedX, rotatedY);
+    }
+
+    project(other: Vector2): Vector2 {
+        const dotProduct = this.x * other.x + this.y * other.y;
+        const otherMagnitudeSquared = other.x * other.x + other.y * other.y;
+        const scalar = dotProduct / otherMagnitudeSquared;
+        const projectedX = scalar * other.x;
+        const projectedY = scalar * other.y;
+        return new Vector2(projectedX, projectedY);
     }
 }
