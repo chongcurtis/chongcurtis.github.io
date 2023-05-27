@@ -270,6 +270,8 @@ export default function ParticleSimulationCanvas({
             }
 
             // put the circle on the edge of the rectangle, so we don't stay inside the rectangle in the next frame
+            // To verify that we are setting the circle's position on the right side of the rectangle,
+            // multiply the radius by 4, and you'll see that the circles ends up on the correct side (the side it came from)
             const newCirclePosition = rectangleSurface.add(collisionNormal.multiply(circle.radius));
             // now we rotate the point back in the circle's coordinate system
             circle.position = rotatePoint(
@@ -281,10 +283,18 @@ export default function ParticleSimulationCanvas({
         // console.log(collisionNormal);
         // TODO: there is a bug, if the particle scrapes the corner of the block, the collision normal is calculated for the wrong side of the rectangle
 
+        // I changed how we update the collisionnormal because I think that we need to put the velocity vector back in the frame of reference of the rotated rectangle's degree
+        collisionNormal = rotatePoint(
+            collisionNormal,
+            new Vector2(0, 0),
+            rectangle.rotationDegrees * (Math.PI / 180)
+        );
+
         // Reflect the velocity vector of the circle around the collision normal vector
         const dotProduct: number = circle.velocity.dot(collisionNormal);
 
         const reflection = circle.velocity.subtract(collisionNormal.multiply(2 * dotProduct));
+
         // console.log(
         //     reflection,
         //     circle.velocity,
@@ -308,7 +318,7 @@ export default function ParticleSimulationCanvas({
             id="canvas"
             ref={canvasRef}
             // NOTE: the fade-in-on-scroll is really important because without it the startAnimationEvent won't be called for this canvas
-            className="fade-in-on-scroll h-full w-full bg-slate-300"
+            className="fade-in-on-scroll h-full w-full bg-white"
         />
     );
 }

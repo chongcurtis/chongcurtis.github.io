@@ -11,7 +11,7 @@ module.exports = {
         extend: {
             colors: {
                 // color names found via this website: https://www.color-name.com/hex/ff947d
-                "background-color": "#FFF9F9", // TODO: restore this color
+                "background-color": "white", // TODO: restore this color
                 // "background-color": "black",
                 // "text-primary": "white",
                 "sleepover-primary": "#FF947D",
