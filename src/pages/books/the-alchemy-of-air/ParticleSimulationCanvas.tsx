@@ -221,6 +221,21 @@ export default function ParticleSimulationCanvas({
         return Math.max(min, Math.min(value, max));
     }
 
+    // how this method works:
+    // to know the velocity of the ball after it bounces off, we just need to know the normal vector of the ball when
+    // it collides with the rectangle, then just subtract it's velocity by TWICE the normal vector
+    //
+    // the tricky part is calculating the normal vector since the rectangle is rotated
+    // this approach is really bad because it's verbose, but what it does is:
+    // 1) rotate the ball, so it is rotated in the same way as the rectangle
+    // 2) use the clamp function to determine the closest point (on the surface) the ball is to the rectangle
+    // - note: there is an edge case where the ball moves so fast, it's inside the rectangle, but we handle this case
+    // 3) calculate the normal vector by subtracting the closest point from the center of the ball
+    // 4) After we calculate the normal vector, we need to rotate it back, so it's relative to the ball's original rotation (not rotated at all)
+    // 5) finally, with the normal vector in the right rotation direction, we can calculate the new velocity by dot-producting the normal vector with the ball's velocity
+    //
+    // I think we can simplify this logic (without the whole rotation business) by using trig to find the normal vector
+    // however, we still need to know the closest surface location the ball collides with the rectalbe, so I'm not sure if the logic to handle this edge case is any simpler
     function handleBlockCollision(circle: Particle, rectangle: Block): void {
         const rotatedCircleCenter: Vector2 = rotatePoint(
             circle.position,
