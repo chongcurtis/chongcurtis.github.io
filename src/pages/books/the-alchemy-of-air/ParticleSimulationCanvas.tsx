@@ -53,7 +53,7 @@ export default function ParticleSimulationCanvas({
     }
 
     function drawBodies(ctx: CanvasRenderingContext2D) {
-        particles.current!!.forEach((particle) => {
+        particles.current.forEach((particle) => {
             ctx.fillStyle = particle.color;
             ctx.beginPath();
             ctx.arc(particle.x, particle.y, particle.radius, 0, 2.0 * Math.PI, false);
@@ -112,11 +112,28 @@ export default function ParticleSimulationCanvas({
         let canvasH = canvas.height;
 
         particles.current = particles.current.filter(isParticleAlive);
+        // console.log(particles.current);
 
+        const filteredIndexes: number[] = [];
         // figure out new velocities and positions
         for (let i = 0; i < particles.current.length; i++) {
             const p1 = particles.current[i];
             p1.simulate();
+
+            // TODO: figure out why this can be nan
+            if (
+                isNaN(p1.position.x) ||
+                isNaN(p1.position.y) ||
+                isNaN(p1.velocity.x) ||
+                isNaN(p1.velocity.y)
+            ) {
+                console.log("killed particle");
+                // debugger;
+                // console.log(p1);
+                filteredIndexes.push(i);
+                continue;
+            }
+
             if (!isCollisionEnabled) {
                 continue;
             }
@@ -136,6 +153,9 @@ export default function ParticleSimulationCanvas({
                 }
             }
         }
+        particles.current = particles.current.filter(
+            (_, index) => !filteredIndexes.includes(index)
+        );
 
         ctx.clearRect(0, 0, canvasW, canvasH);
         drawBodies(ctx);
@@ -196,43 +216,89 @@ export default function ParticleSimulationCanvas({
         return false;
     }
 
+    // limits value to the range [min, max]
+    function clamp(value: number, min: number, max: number): number {
+        return Math.max(min, Math.min(value, max));
+    }
+
     function handleBlockCollision(circle: Particle, rectangle: Block): void {
         const rotatedCircleCenter: Vector2 = rotatePoint(
             circle.position,
             rectangle.position,
-            -rectangle.rotationDegrees // TODO: pi?
+            -rectangle.rotationDegrees * (Math.PI / 180)
         );
 
         const hw: number = rectangle.width / 2;
         const hh: number = rectangle.height / 2;
 
         // Find the point of contact on the rectangle
+        // NOTE: if the center of the circle is INSIDE the rectangle this returns the center, which breaks calculations
+        // the normal vector has magnitude 0
         let closestPoint = new Vector2(
-            Math.max(
-                rectangle.position.x - hw,
-                Math.min(rotatedCircleCenter.x, rectangle.position.x + hw)
-            ),
-            Math.max(
-                rectangle.position.y - hh,
-                Math.min(rotatedCircleCenter.y, rectangle.position.y + hh)
-            )
+            clamp(rotatedCircleCenter.x, rectangle.position.x - hw, rectangle.position.x + hw),
+            clamp(rotatedCircleCenter.y, rectangle.position.y - hh, rectangle.position.y + hh)
         );
+        const collisionDistanceVector = rotatedCircleCenter.subtract(closestPoint);
 
         // Calculate the collision normal vector
-        const collisionNormal = rotatedCircleCenter.subtract(closestPoint).normalize();
+        let collisionNormal;
+        if (collisionDistanceVector.length() > 0) {
+            collisionNormal = collisionDistanceVector.normalize();
+        } else {
+            // the circle is either inside the rectangle or on the border, we
+            // assume that the normal vector is the closest distance between the point and one of the borders of the rectangle
+            // we need to do this, cause otherwise, we can't properly calculate a normal vector
+            const closestX =
+                rectangle.position.x + (rotatedCircleCenter.x > rectangle.position.x ? hw : -hw);
+            const closestY =
+                rectangle.position.y + (rotatedCircleCenter.y > rectangle.position.y ? hh : -hh);
 
+            let rectangleSurface;
+            if (
+                Math.abs(rotatedCircleCenter.x - closestX) <
+                Math.abs(rotatedCircleCenter.y - closestY)
+            ) {
+                // if the circle is closer to the x-edge than the y-edge, the x-edge is the closest
+                // the normal is thus, 90 degrees against this edge
+                const normalDirection = rotatedCircleCenter.x < rectangle.position.x ? -1 : 1;
+                collisionNormal = new Vector2(1 * normalDirection, 0);
+                rectangleSurface = new Vector2(closestX, rotatedCircleCenter.y);
+            } else {
+                const normalDirection = rotatedCircleCenter.y < rectangle.position.y ? -1 : 1;
+                collisionNormal = new Vector2(0, 1 * normalDirection);
+                rectangleSurface = new Vector2(rotatedCircleCenter.x, closestY);
+            }
+
+            // put the circle on the edge of the rectangle, so we don't stay inside the rectangle in the next frame
+            const newCirclePosition = rectangleSurface.add(collisionNormal.multiply(circle.radius));
+            // now we rotate the point back in the circle's coordinate system
+            circle.position = rotatePoint(
+                newCirclePosition,
+                rectangle.position,
+                rectangle.rotationDegrees * (Math.PI / 180)
+            );
+        }
+        // console.log(collisionNormal);
         // TODO: there is a bug, if the particle scrapes the corner of the block, the collision normal is calculated for the wrong side of the rectangle
 
         // Reflect the velocity vector of the circle around the collision normal vector
-        const dotProduct: number =
-            circle.velocity.x * collisionNormal.x + circle.velocity.y * collisionNormal.y;
+        const dotProduct: number = circle.velocity.dot(collisionNormal);
 
         const reflection = circle.velocity.subtract(collisionNormal.multiply(2 * dotProduct));
+        // console.log(
+        //     reflection,
+        //     circle.velocity,
+        //     collisionNormal,
+        //     dotProduct,
+        //     rotatedCircleCenter,
+        //     closestPoint
+        // );
 
         // Apply coefficient of restitution
         reflection.x *= COEFFICIENT_OF_RESTITUTION;
         reflection.y *= COEFFICIENT_OF_RESTITUTION;
 
+        // circle.position = closestPoint.add(collisionNormal.multiply(circle.radius));
         // Update the circle's velocity
         circle.velocity = reflection;
     }

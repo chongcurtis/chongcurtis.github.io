@@ -23,12 +23,6 @@ export default class Vector2 {
         return new Vector2(this.x + v.x * s, this.y + v.y * s);
     }
 
-    addVectors(a: Vector2, b: Vector2): Vector2 {
-        this.x = a.x + b.x;
-        this.y = a.y + b.y;
-        return this;
-    }
-
     subtract(v: Vector2, s: number = 1.0): Vector2 {
         return new Vector2(this.x - v.x * s, this.y - v.y * s);
     }
@@ -57,6 +51,9 @@ export default class Vector2 {
     normalize(): Vector2 {
         const length = Math.sqrt(this.x * this.x + this.y * this.y);
         const normalizedX = this.x / length;
+        // if (isNaN(normalizedX)) {
+        //     debugger;
+        // }
         const normalizedY = this.y / length;
         return new Vector2(normalizedX, normalizedY);
     }
