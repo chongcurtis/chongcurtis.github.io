@@ -22,4 +22,9 @@ export const NavLinks: NavLink[] = [
             },
         ],
     },
+    {
+        label: "Dreams",
+        href: "/dreams",
+        icon: <PencilIcon className="h-4 w-4 text-slate-400" />,
+    },
 ];

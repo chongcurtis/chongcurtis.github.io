@@ -8,16 +8,18 @@ type Props = {
     blocks: Block[];
     canvasWidth: number;
     canvasHeight: number;
+    isCollisionEnabled: boolean;
 };
 export default function ParticleSimulationCanvas({
     particles,
     blocks,
     canvasWidth,
     canvasHeight,
+    isCollisionEnabled,
 }: Props) {
     const SIMULATION_SPEED = 100; // 40ms between each frame = 25fps
 
-    const ENERGY_RETAINMENT_ON_COLLISION_DECIMAL = 1;
+    const COEFFICIENT_OF_RESTITUTION = 1; // the ratio of the final to initial relative speed between two objects after they collide.
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
     React.useEffect(() => {
@@ -51,7 +53,7 @@ export default function ParticleSimulationCanvas({
     }
 
     function drawBodies(ctx: CanvasRenderingContext2D) {
-        particles.current!!.forEach((particle) => {
+        particles.current.forEach((particle) => {
             ctx.fillStyle = particle.color;
             ctx.beginPath();
             ctx.arc(particle.x, particle.y, particle.radius, 0, 2.0 * Math.PI, false);
@@ -65,7 +67,7 @@ export default function ParticleSimulationCanvas({
         });
 
         blocks.forEach((block) => {
-            const rotationInRads = block.rotationDegrees//block.rotationDegrees* (Math.PI / 180)
+            const rotationInRads = block.rotationDegrees * (Math.PI / 180);
             // now draw rectangles
             // ctx.translate(block.x, block.y);
             // ctx.rotate(rotationInRads);
@@ -73,14 +75,20 @@ export default function ParticleSimulationCanvas({
             //
             // ctx.fillRect(block.x, block.y, block.width, block.height);
             // ctx.rotate(-rotationInRads);
+            const halfWidth = block.width / 2;
+            const halfHeight = block.height / 2;
 
-            ctx.translate(block.x + (block.width/2), block.y + (block.height/2));
+            ctx.translate(block.position.x, block.position.y);
             ctx.rotate(rotationInRads); // rotate the canvas by 45 degrees
-            ctx.fillStyle = "red";   // set the fill color
-            ctx.fillRect(-block.width/2, -block.height/2, block.width, block.height); // draw the rectangle centered on the origin
+            ctx.fillStyle = "red"; // set the fill color
+
+            // ctx.strokeStyle = block.color;
+            // ctx.lineWidth = 2;
+            // ctx.stroke();
+            ctx.fillRect(-halfWidth, -halfHeight, block.width, block.height); // draw the rectangle centered on the origin
 
             ctx.rotate(-rotationInRads); // rotate the canvas by 45 degrees
-            ctx.translate(-(block.x + (block.width/2)), -(block.y + (block.height/2)));
+            ctx.translate(-block.position.x, -block.position.y);
             // ctx.restore(); // restore the canvas to its original state
         });
     }
@@ -104,11 +112,31 @@ export default function ParticleSimulationCanvas({
         let canvasH = canvas.height;
 
         particles.current = particles.current.filter(isParticleAlive);
+        // console.log(particles.current);
 
+        const filteredIndexes: number[] = [];
         // figure out new velocities and positions
         for (let i = 0; i < particles.current.length; i++) {
             const p1 = particles.current[i];
             p1.simulate();
+
+            // TODO: figure out why this can be nan
+            if (
+                isNaN(p1.position.x) ||
+                isNaN(p1.position.y) ||
+                isNaN(p1.velocity.x) ||
+                isNaN(p1.velocity.y)
+            ) {
+                console.log("killed particle");
+                // debugger;
+                // console.log(p1);
+                filteredIndexes.push(i);
+                continue;
+            }
+
+            if (!isCollisionEnabled) {
+                continue;
+            }
             for (let j = i + 1; j < particles.current.length; j++) {
                 let p2 = particles.current[j];
                 handleBallCollision(p1, p2);
@@ -116,25 +144,33 @@ export default function ParticleSimulationCanvas({
 
             for (let j = 0; j < blocks.length; j++) {
                 let block = blocks[j];
-                handleBlockCollision(p1, block);
+                // the prompt:
+                // simulate a circle colliding with a rotated rectangle and it bouncing off
+                // - it generated written instructions
+                // give me this code in typescript
+                if (checkCollision(p1, block)) {
+                    handleBlockCollision(p1, block);
+                }
             }
         }
+        particles.current = particles.current.filter(
+            (_, index) => !filteredIndexes.includes(index)
+        );
 
         ctx.clearRect(0, 0, canvasW, canvasH);
         drawBodies(ctx);
     }
 
     function handleBallCollision(p1: Particle, p2: Particle) {
-        let dir = new Vector2();
-        dir.subtractVectors(p2.position, p1.position);
+        let dir = p2.position.subtract(p1.position);
         let d = dir.length();
         if (d === 0.0 || d > p1.radius + p2.radius) return;
 
         dir.scale(1.0 / d);
 
         let corr = (p1.radius + p2.radius - d) / 2.0;
-        p1.position.add(dir, -corr);
-        p2.position.add(dir, corr);
+        p1.position = p1.position.add(dir, -corr);
+        p2.position = p2.position.add(dir, corr);
 
         let v1 = p1.velocity.dot(dir);
         let v2 = p2.velocity.dot(dir);
@@ -142,65 +178,154 @@ export default function ParticleSimulationCanvas({
         let m1 = p1.mass;
         let m2 = p2.mass;
 
-        let newV1 =
-            (m1 * v1 + m2 * v2 - m2 * (v1 - v2) * ENERGY_RETAINMENT_ON_COLLISION_DECIMAL) /
-            (m1 + m2);
-        let newV2 =
-            (m1 * v1 + m2 * v2 - m1 * (v2 - v1) * ENERGY_RETAINMENT_ON_COLLISION_DECIMAL) /
-            (m1 + m2);
+        let newV1 = (m1 * v1 + m2 * v2 - m2 * (v1 - v2) * COEFFICIENT_OF_RESTITUTION) / (m1 + m2);
+        let newV2 = (m1 * v1 + m2 * v2 - m1 * (v2 - v1) * COEFFICIENT_OF_RESTITUTION) / (m1 + m2);
 
-        p1.velocity.add(dir, newV1 - v1);
-        p2.velocity.add(dir, newV2 - v2);
+        p1.velocity = p1.velocity.add(dir, newV1 - v1);
+        p2.velocity = p2.velocity.add(dir, newV2 - v2);
     }
 
-    function intersectsCircleAndRotatedRectangle(circle: Particle, rectangle: Block) {
-        const cx = rectangle.x + rectangle.width / 2;
-        const cy = rectangle.y + rectangle.height / 2;
-        const distX = Math.abs(circle.x - cx);
-        const distY = Math.abs(circle.y - cy);
-        const rectHalfWidth = rectangle.width / 2;
-        const rectHalfHeight = rectangle.height / 2;
+    function rotatePoint(point: Vector2, center: Vector2, angle: number): Vector2 {
+        const translatedPoint = point.subtract(center);
 
-        // Calculate angle of the rectangle in radians
-        const angleRad = rectangle.rotationDegrees * (Math.PI / 180);
+        const rotatedPoint = new Vector2(
+            translatedPoint.x * Math.cos(angle) - translatedPoint.y * Math.sin(angle),
+            translatedPoint.x * Math.sin(angle) + translatedPoint.y * Math.cos(angle)
+        );
 
-        // Calculate coordinates of the corners after rotation
-        const sinAngle = Math.sin(angleRad);
-        const cosAngle = Math.cos(angleRad);
-        const topLeftX = -rectHalfWidth * cosAngle - rectHalfHeight * sinAngle + cx;
-        const topLeftY = -rectHalfWidth * sinAngle + rectHalfHeight * cosAngle + cy;
-        const topRightX = rectHalfWidth * cosAngle - rectHalfHeight * sinAngle + cx;
-        const topRightY = rectHalfWidth * sinAngle + rectHalfHeight * cosAngle + cy;
-        const bottomLeftX = -rectHalfWidth * cosAngle + rectHalfHeight * sinAngle + cx;
-        const bottomLeftY = -rectHalfWidth * sinAngle - rectHalfHeight * cosAngle + cy;
-        const bottomRightX = rectHalfWidth * cosAngle + rectHalfHeight * sinAngle + cx;
-        const bottomRightY = rectHalfWidth * sinAngle - rectHalfHeight * cosAngle + cy;
+        return rotatedPoint.add(center);
+    }
 
-        if (distX > rectHalfWidth + circle.radius || distY > rectHalfHeight + circle.radius) {
-            return false;
-        }
+    function checkCollision(circle: Particle, rectangle: Block): boolean {
+        const rotatedCircleCenter: Vector2 = rotatePoint(
+            circle.position,
+            rectangle.position,
+            -rectangle.rotationDegrees * (Math.PI / 180)
+        );
 
-        if (distX <= rectHalfWidth || distY <= rectHalfHeight) {
+        const hw: number = rectangle.width / 2;
+        const hh: number = rectangle.height / 2;
+
+        if (
+            Math.abs(rotatedCircleCenter.x - rectangle.position.x) <= hw + circle.radius &&
+            Math.abs(rotatedCircleCenter.y - rectangle.position.y) <= hh + circle.radius
+        ) {
             return true;
         }
 
-        const cornerDistanceSq =
-            Math.pow(topLeftX - circle.x, 2) + Math.pow(topLeftY - circle.y, 2) <=
-                Math.pow(circle.radius, 2) ||
-            Math.pow(topRightX - circle.x, 2) + Math.pow(topRightY - circle.y, 2) <=
-                Math.pow(circle.radius, 2) ||
-            Math.pow(bottomLeftX - circle.x, 2) + Math.pow(bottomLeftY - circle.y, 2) <=
-                Math.pow(circle.radius, 2) ||
-            Math.pow(bottomRightX - circle.x, 2) + Math.pow(bottomRightY - circle.y, 2) <=
-                Math.pow(circle.radius, 2);
-
-        return cornerDistanceSq;
+        return false;
     }
 
-    function handleBlockCollision(p: Particle, b: Block) {
-        if (intersectsCircleAndRotatedRectangle(p, b)) {
-            console.log("collision");
+    // limits value to the range [min, max]
+    function clamp(value: number, min: number, max: number): number {
+        return Math.max(min, Math.min(value, max));
+    }
+
+    // how this method works:
+    // to know the velocity of the ball after it bounces off, we just need to know the normal vector of the ball when
+    // it collides with the rectangle, then just subtract it's velocity by TWICE the normal vector
+    //
+    // the tricky part is calculating the normal vector since the rectangle is rotated
+    // this approach is really bad because it's verbose, but what it does is:
+    // 1) rotate the ball, so it is rotated in the same way as the rectangle
+    // 2) use the clamp function to determine the closest point (on the surface) the ball is to the rectangle
+    // - note: there is an edge case where the ball moves so fast, it's inside the rectangle, but we handle this case
+    // 3) calculate the normal vector by subtracting the closest point from the center of the ball
+    // 4) After we calculate the normal vector, we need to rotate it back, so it's relative to the ball's original rotation (not rotated at all)
+    // 5) finally, with the normal vector in the right rotation direction, we can calculate the new velocity by dot-producting the normal vector with the ball's velocity
+    //
+    // I think we can simplify this logic (without the whole rotation business) by using trig to find the normal vector
+    // however, we still need to know the closest surface location the ball collides with the rectalbe, so I'm not sure if the logic to handle this edge case is any simpler
+    function handleBlockCollision(circle: Particle, rectangle: Block): void {
+        const rotatedCircleCenter: Vector2 = rotatePoint(
+            circle.position,
+            rectangle.position,
+            -rectangle.rotationDegrees * (Math.PI / 180)
+        );
+
+        const hw: number = rectangle.width / 2;
+        const hh: number = rectangle.height / 2;
+
+        // Find the point of contact on the rectangle
+        // NOTE: if the center of the circle is INSIDE the rectangle this returns the center, which breaks calculations
+        // the normal vector has magnitude 0
+        let closestPoint = new Vector2(
+            clamp(rotatedCircleCenter.x, rectangle.position.x - hw, rectangle.position.x + hw),
+            clamp(rotatedCircleCenter.y, rectangle.position.y - hh, rectangle.position.y + hh)
+        );
+        const collisionDistanceVector = rotatedCircleCenter.subtract(closestPoint);
+
+        // Calculate the collision normal vector
+        let collisionNormal;
+        if (collisionDistanceVector.length() > 0) {
+            collisionNormal = collisionDistanceVector.normalize();
+        } else {
+            // the circle is either inside the rectangle or on the border, we
+            // assume that the normal vector is the closest distance between the point and one of the borders of the rectangle
+            // we need to do this, cause otherwise, we can't properly calculate a normal vector
+            const closestX =
+                rectangle.position.x + (rotatedCircleCenter.x > rectangle.position.x ? hw : -hw);
+            const closestY =
+                rectangle.position.y + (rotatedCircleCenter.y > rectangle.position.y ? hh : -hh);
+
+            let rectangleSurface;
+            if (
+                Math.abs(rotatedCircleCenter.x - closestX) <
+                Math.abs(rotatedCircleCenter.y - closestY)
+            ) {
+                // if the circle is closer to the x-edge than the y-edge, the x-edge is the closest
+                // the normal is thus, 90 degrees against this edge
+                const normalDirection = rotatedCircleCenter.x < rectangle.position.x ? -1 : 1;
+                collisionNormal = new Vector2(1 * normalDirection, 0);
+                rectangleSurface = new Vector2(closestX, rotatedCircleCenter.y);
+            } else {
+                const normalDirection = rotatedCircleCenter.y < rectangle.position.y ? -1 : 1;
+                collisionNormal = new Vector2(0, 1 * normalDirection);
+                rectangleSurface = new Vector2(rotatedCircleCenter.x, closestY);
+            }
+
+            // put the circle on the edge of the rectangle, so we don't stay inside the rectangle in the next frame
+            // To verify that we are setting the circle's position on the right side of the rectangle,
+            // multiply the radius by 4, and you'll see that the circles ends up on the correct side (the side it came from)
+            const newCirclePosition = rectangleSurface.add(collisionNormal.multiply(circle.radius));
+            // now we rotate the point back in the circle's coordinate system
+            circle.position = rotatePoint(
+                newCirclePosition,
+                rectangle.position,
+                rectangle.rotationDegrees * (Math.PI / 180)
+            );
         }
+        // console.log(collisionNormal);
+        // TODO: there is a bug, if the particle scrapes the corner of the block, the collision normal is calculated for the wrong side of the rectangle
+
+        // I changed how we update the collisionnormal because I think that we need to put the velocity vector back in the frame of reference of the rotated rectangle's degree
+        collisionNormal = rotatePoint(
+            collisionNormal,
+            new Vector2(0, 0),
+            rectangle.rotationDegrees * (Math.PI / 180)
+        );
+
+        // Reflect the velocity vector of the circle around the collision normal vector
+        const dotProduct: number = circle.velocity.dot(collisionNormal);
+
+        const reflection = circle.velocity.subtract(collisionNormal.multiply(2 * dotProduct));
+
+        // console.log(
+        //     reflection,
+        //     circle.velocity,
+        //     collisionNormal,
+        //     dotProduct,
+        //     rotatedCircleCenter,
+        //     closestPoint
+        // );
+
+        // Apply coefficient of restitution
+        reflection.x *= COEFFICIENT_OF_RESTITUTION;
+        reflection.y *= COEFFICIENT_OF_RESTITUTION;
+
+        // circle.position = closestPoint.add(collisionNormal.multiply(circle.radius));
+        // Update the circle's velocity
+        circle.velocity = reflection;
     }
 
     return (
@@ -208,7 +333,7 @@ export default function ParticleSimulationCanvas({
             id="canvas"
             ref={canvasRef}
             // NOTE: the fade-in-on-scroll is really important because without it the startAnimationEvent won't be called for this canvas
-            className="fade-in-on-scroll h-full w-full bg-background-color"
+            className="fade-in-on-scroll h-full w-full bg-white"
         />
     );
 }

@@ -17,7 +17,7 @@ export default function TheDarkForest() {
                 </p>
                 <p className="text-md fade-in-on-scroll relative mt-4 text-center text-lg">
                     Note: You can read The Dark Forest without reading the previous book because
-                    it's about completely new characters
+                    it's a standalone story
                     {/*first But if you'll learn why it's the best sci fi book of all time.
                 {/*further, if plan on reading the Three Body Problem series, you should probably stop*/}
                     {/*because I spoil the second book. You can read the second book without reading the*/}

@@ -1,6 +1,7 @@
+import Vector2 from "@/pages/books/the-alchemy-of-air/Vector2";
+
 export class Block {
-    x: number;
-    y: number;
+    position: Vector2; // the (x,y) coord is the center of the block
     width: number;
     height: number;
     color: string;
@@ -14,8 +15,7 @@ export class Block {
         color: string,
         rotationDegrees: number
     ) {
-        this.x = x;
-        this.y = y;
+        this.position = new Vector2(x, y);
         this.width = w;
         this.height = h;
         this.color = color;
