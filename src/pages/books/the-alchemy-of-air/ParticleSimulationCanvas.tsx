@@ -17,7 +17,7 @@ export default function ParticleSimulationCanvas({
     canvasHeight,
     isCollisionEnabled,
 }: Props) {
-    const SIMULATION_SPEED = 100; // 40ms between each frame = 25fps
+    const SIMULATION_SPEED = 35; // 40ms between each frame = 25fps
 
     const COEFFICIENT_OF_RESTITUTION = 1; // the ratio of the final to initial relative speed between two objects after they collide.
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
@@ -33,10 +33,18 @@ export default function ParticleSimulationCanvas({
         canvas.height = canvasHeight;
 
         const ctx = setupCanvas(canvas);
+        ctx.font = "30px Arial";
+
+        // const update = () => {
+        //     run(canvas, ctx);
+        //     requestAnimationFrame(update); // Schedule next frame
+        // };
+        // requestAnimationFrame(update);
+
+        // I opted for a setInterval solution sine requestAnimationFrame was causing the simulation to run too fast
         setInterval(function () {
             run(canvas, ctx);
         }, SIMULATION_SPEED); //this is the cycle
-        ctx.font = "30px Arial";
     }, [canvasRef]);
 
     function setupCanvas(canvas: HTMLCanvasElement) {
@@ -119,20 +127,6 @@ export default function ParticleSimulationCanvas({
         for (let i = 0; i < particles.current.length; i++) {
             const p1 = particles.current[i];
             p1.simulate();
-
-            // TODO: figure out why this can be nan
-            if (
-                isNaN(p1.position.x) ||
-                isNaN(p1.position.y) ||
-                isNaN(p1.velocity.x) ||
-                isNaN(p1.velocity.y)
-            ) {
-                console.log("killed particle");
-                // debugger;
-                // console.log(p1);
-                filteredIndexes.push(i);
-                continue;
-            }
 
             if (!isCollisionEnabled) {
                 continue;
@@ -319,7 +313,6 @@ export default function ParticleSimulationCanvas({
         //     closestPoint
         // );
 
-        // Apply coefficient of restitution
         reflection.x *= COEFFICIENT_OF_RESTITUTION;
         reflection.y *= COEFFICIENT_OF_RESTITUTION;
 

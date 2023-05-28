@@ -38,6 +38,10 @@ export default function AlchemyOfAirTitle() {
         };
     }, [canvasContainerRef]);
 
+    // TODO: consider drawing an image of sir william crookes using a bezier curve (and increasing time t for the polynomials decribing the x/y points)
+    // maybe use this to draw the path https://stackoverflow.com/questions/13612942/how-to-animate-an-image-along-a-path-with-bezier-curves
+    // I used this to convert to svg https://express.adobe.com/tools/convert-to-svg/#, but it doesn't have the lines
+    // I need to use an image contour finding tool
     return (
         <>
             {/*<div className="align-center flex flex-col justify-center">*/}

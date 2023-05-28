@@ -1,6 +1,8 @@
 import React from "react";
 import { initAnimations } from "@/common/animations";
 import Boiler from "@/pages/books/the-alchemy-of-air/Boiler";
+import AlchemyOfAirTitle from "@/pages/books/the-alchemy-of-air/AlchemyOfAirTitle";
+import BulletsStrikeSand from "@/pages/books/the-alchemy-of-air/BulletsStrikeSand";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -10,14 +12,23 @@ export default function TheAlchemyOfAir() {
     return (
         <>
             <div className="mt-20" />
-            {/*<AlchemyOfAirTitle />*/}
-            {/*TODO: uncomment after fixing collision*/}
-            <Boiler />
-            {/*<BulletsStrikeSand />*/}
-            {/*</div>*/}
-            <p className="fade-in-on-scroll text-xl">
+            <AlchemyOfAirTitle />
+            <p className="fade-in-on-scroll animation-delay-2000 text-md mt-20">
+                Credit for this animation goes to{" "}
+                <a
+                    href="https://github.com/matthias-research/pages/blob/master/tenMinutePhysics/17-fluidSim.html"
+                    target="_blank"
+                    className="underline-on-scroll animation-delay-4200 after:bg-sleepover-secondary"
+                >
+                    Matthias Müller
+                </a>
+            </p>
+            <p className="fade-in-on-scroll mt-20 text-xl">
                 It's 1890 when Crookes pulled the fire alarm.
             </p>
+            <Boiler />
+            <BulletsStrikeSand />
+            {/*</div>*/}
             <br />
             <p className="fade-in-on-scroll text-xl">
                 "England and all civilized nations, stand in peril."
