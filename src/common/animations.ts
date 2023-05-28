@@ -1,7 +1,3 @@
-import { useSelectedLayoutSegment } from "next/navigation";
-import { Simulate } from "react-dom/test-utils";
-import mouseLeave = Simulate.mouseLeave;
-
 type Animation = {
     initialClass: string;
     inQueueClass: string; // has same style as initialClass, but is used to indicate that the element is in the queue, so we don't put it into another queue
@@ -49,7 +45,7 @@ const setupAnimationHandler = (animation: Animation) => {
             window.removeEventListener("scroll", triggerAnimations);
         }
     };
-    // delay the iniital animation by 100ms so the user first sees a blank page
+    // delay the initial animation by 100ms so the user first sees a blank page
     setTimeout(() => {
         triggerAnimations();
     }, 100);
@@ -117,8 +113,8 @@ const tryStartAnimation = (animation: Animation): boolean => {
     const animateElement = () => {
         const res = animateQueue.shift(); // pop off the first element
         if (res) {
-            console.log(res[0].innerText);
             const [element, animationDelay] = res;
+            console.log(element.innerText, animationDelay);
             setTimeout(() => {
                 element.classList.remove(animation.inQueueClass);
                 element.classList.add(animation.finalClass);
