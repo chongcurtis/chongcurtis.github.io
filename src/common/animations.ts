@@ -19,7 +19,7 @@ interface AnimationDescription {
 }
 
 const getAnimationDescriptions = (): AnimationDescription[] => {
-    const animationDefinitionList = Object.values(animationDefinitions);
+    const animationDefinitionList: Animation[] = Array.from(Object.values(animationDefinitions));
 
     // 1) get all elements
     const animationDescriptions: AnimationDescription[] = [];
@@ -109,6 +109,12 @@ const tryStartAnimation = (
             animationQueue.push(animationDescription);
         }
     }
+    // the user's scrolling may have also made elements in the animationQueue to be above the viewport
+    // so animate those elements immediately as well
+    while (animationQueue.length > 0 && animationQueue[0].elementTop <= window.scrollY) {
+        animateElement(animationQueue.shift()!); // shift pops off the first element and returns it
+    }
+
     if (isQueueOriginallyEmpty) {
         // it means that we pushed new elements to the queue, and the handler will animate the element
         animateFirstItemInQueue(animationQueue);
@@ -122,8 +128,10 @@ const isFirstElementInAnimationRange = (animationDescriptions: AnimationDescript
 const animateFirstItemInQueue = (animationQueue: AnimationDescription[]) => {
     if (animationQueue.length > 0) {
         setTimeout(() => {
-            animateElement(animationQueue.shift()!); // shift pops off the first element and returns is
-            animateFirstItemInQueue(animationQueue);
+            if (animationQueue.length > 0) {
+                animateElement(animationQueue.shift()!); // shift pops off the first element and returns it
+                animateFirstItemInQueue(animationQueue);
+            }
         }, animationQueue[0].animationDelay);
     }
 };
