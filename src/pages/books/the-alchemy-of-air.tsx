@@ -18,12 +18,12 @@ export default function TheAlchemyOfAir() {
                 <a
                     href="https://github.com/matthias-research/pages/blob/master/tenMinutePhysics/17-fluidSim.html"
                     target="_blank"
-                    className="underline-on-scroll animation-delay-4200 after:bg-sleepover-secondary"
+                    className="underline-on-scroll animation-delay-200 after:bg-sleepover-secondary"
                 >
                     Matthias Müller
                 </a>
             </p>
-            <p className="fade-in-on-scroll mt-20 text-xl">
+            <p className="fade-in-on-scroll animation-delay-1500 mt-20 text-xl">
                 It's 1890 when Crookes pulled the fire alarm.
             </p>
             <Boiler />
