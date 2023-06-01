@@ -3,6 +3,7 @@ import { initAnimations } from "@/common/animations";
 import Boiler from "@/pages/books/the-alchemy-of-air/Boiler";
 import AlchemyOfAirTitle from "@/pages/books/the-alchemy-of-air/AlchemyOfAirTitle";
 import BulletsStrikeSand from "@/pages/books/the-alchemy-of-air/BulletsStrikeSand";
+import sirWilliamCrookes from "public/books/the-alchemy-of-air/Sir_William_Crookes_1906.jpg";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -23,16 +24,26 @@ export default function TheAlchemyOfAir() {
                     Matthias Müller
                 </a>
             </p>
-            <p className="fade-in-on-scroll animation-delay-1500 mt-20 text-xl">
-                It's 1890 when Crookes pulled the fire alarm.
-            </p>
+            <div className="mt-20 flex flex-row">
+                <div className="fade-in-on-scroll animation-delay-1500 flex flex-col justify-center align-middle">
+                    <p className="fade-in-on-scroll text-md">
+                        It's 1890 when Crookes pulled the fire alarm.
+                    </p>
+                    <p className="fade-in-on-scroll text-md mt-8">
+                        "England and all civilized nations, stand in deadly peril of not having
+                        enough to eat."
+                    </p>
+                </div>
+                <img
+                    className="fade-in-on-scroll m-5 max-w-sm p-20"
+                    src={sirWilliamCrookes.src}
+                    alt="Sir William Crookes"
+                />
+            </div>
             <Boiler />
             <BulletsStrikeSand />
             {/*</div>*/}
             <br />
-            <p className="fade-in-on-scroll text-xl">
-                "England and all civilized nations, stand in peril."
-            </p>
             <br />
             <p className="fade-in-on-scroll text-xl">"As mouths multiply, food sources dwindle"</p>
             <p>"There was only one answer: The creation of vast amount of fertilizer"</p>
