@@ -43,12 +43,12 @@ export default function TheAlchemyOfAir() {
                 {/*/>*/}
             </div>
             {/*https://www.jstor.org/stable/1627238?seq=2*/}
-            <p className="fade-in-on-scroll mt-10 text-xl">
-                "Our wheat-producing soil is totally unequal to the strain put upon it."
-            </p>
-            <p className="fade-in-on-scroll mt-10 text-xl">
-                "As mouths multiply, food sources dwindle"
-            </p>
+            {/*<p className="fade-in-on-scroll mt-10 text-xl">*/}
+            {/*    "Our wheat-producing soil is totally unequal to the strain put upon it."*/}
+            {/*</p>*/}
+            {/*<p className="fade-in-on-scroll mt-10 text-xl">*/}
+            {/*    "As mouths multiply, food sources dwindle"*/}
+            {/*</p>*/}
             <p className="fade-in-on-scroll mt-10 text-xl">
                 Even if all arable land is cultivated, there will not be enough wheat for everyone
                 by 1931.
@@ -74,9 +74,19 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mt-10 text-xl">
                 Because "the fixation of nitrogen is vital to the progress of civilized humanity".
             </p>
+            {/*<p className="fade-in-on-scroll mt-10 text-xl">*/}
+            {/*    Many didn't believe him, stating that the Chilian desert has an unlimitted amount of*/}
+            {/*    fertilizer.*/}
+            {/*</p>*/}
+            {/*<p className="fade-in-on-scroll mt-10 text-xl">*/}
+            {/*    But they were wrong. Because our population doubled, and doubled, and doubled.*/}
+            {/*</p>*/}
             <p className="fade-in-on-scroll mt-10 text-xl">
-                With that, the race to fix nitrogen began.
+                This address was sensational. Newspapers around the world spread his prophecy.
             </p>
+            <p className="fade-in-on-scroll mt-40 text-2xl">The race to fix nitrogen had begun.</p>
+            <p className="fade-in-on-scroll mt-40 text-xl">31 years until famine</p>
+            <p className="fade-in-on-scroll mt-40 text-xl">20 years until famine</p>
             <p className="fade-in-on-scroll mt-40 text-xl">Enter Fritz Haber</p>
             {/*<Boiler />*/}
             {/*<BulletsStrikeSand />*/}
