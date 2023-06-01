@@ -1,30 +1,4 @@
-type Animation = {
-    initialClass: string;
-    inQueueClass: string; // has same style as initialClass, but is used to indicate that the element is in the queue, so we don't put it into another queue
-    finalClass: string;
-};
-
-// these classes are defined in globals.css
-const fadeInAnimation: Animation = {
-    initialClass: "fade-in-on-scroll",
-    inQueueClass: "in-fade-in-on-scroll-queue",
-    finalClass: "faded-in",
-};
-const fadeInSlowAnimation: Animation = {
-    initialClass: "fade-in-on-scroll-slow",
-    inQueueClass: "in-fade-in-on-scroll-slow-queue",
-    finalClass: "faded-in-slow",
-};
-const expandAnimation: Animation = {
-    initialClass: "expand-on-scroll",
-    inQueueClass: "in-expand-on-scroll-queue",
-    finalClass: "expanded",
-};
-const underlineAnimation: Animation = {
-    initialClass: "underline-on-scroll",
-    inQueueClass: "in-underline-on-scroll-queue",
-    finalClass: "underlined",
-};
+import { Animation, animationDefinitions } from "@/common/animationClassDefinitions";
 
 // used to trigger the start animation event on the canvas when it's in view
 export const startAnimationEventName = "start-animation-event";
@@ -36,34 +10,73 @@ const newStartAnimationEvent = () => {
     });
 };
 
-const setupAnimationHandler = (animation: Animation) => {
-    const triggerAnimations = () => {
-        const noMoreAnimations = tryStartAnimation(animation);
-        if (noMoreAnimations) {
-            // console.log("removed" + animation.initialClass);
-            // All elements have faded in. So remove handler to save computation
-            window.removeEventListener("scroll", triggerAnimations);
+interface AnimationDescription {
+    element: HTMLElement;
+    elementTop: number;
+    animationDefinition: Animation;
+    animationDelay: number;
+    text: string; // for debugging purposes
+}
+
+const getAnimationDescriptions = (): AnimationDescription[] => {
+    const animationDefinitionList = Object.values(animationDefinitions);
+
+    // 1) get all elements
+    const animationDescriptions: AnimationDescription[] = [];
+    for (const animationDefinition of animationDefinitionList) {
+        // I am using querySelectorAll since getElementsByClassName doesn't return all elements
+        // Why? it's cause getElementsByClassName returns a live collection: https://stackoverflow.com/a/31311967/4647924
+        const elements = document.querySelectorAll(`.${animationDefinition.initialClass}`);
+        for (let i = 0; i < elements.length; i++) {
+            const element = elements[i] as HTMLElement;
+            animationDescriptions.push({
+                text: element.innerText,
+                element,
+                elementTop: element.getBoundingClientRect().top,
+                animationDefinition,
+                animationDelay: getAnimationDelay(element),
+            });
         }
-    };
-    // delay the initial animation by 100ms so the user first sees a blank page
-    setTimeout(() => {
-        triggerAnimations();
-    }, 100);
-    window.addEventListener("scroll", triggerAnimations);
-    return () => {
-        window.removeEventListener("scroll", triggerAnimations);
-    };
+    }
+
+    // 2) sort by y-position, then x-position
+    animationDescriptions.sort((animationDefinition1, animationDefinition2) => {
+        const y1 = animationDefinition1.elementTop;
+        const y2 = animationDefinition2.elementTop;
+
+        if (y1 !== y2) {
+            return y1 - y2;
+        }
+
+        const x1 = animationDefinition1.element.getBoundingClientRect().left;
+        const x2 = animationDefinition2.element.getBoundingClientRect().left;
+        return x1 - x2;
+    });
+    return animationDescriptions;
 };
 
 export const initAnimations = () => {
-    const cleanupFunctions = [
-        setupAnimationHandler(fadeInAnimation),
-        setupAnimationHandler(fadeInSlowAnimation),
-        setupAnimationHandler(expandAnimation),
-        setupAnimationHandler(underlineAnimation),
-    ];
+    // 1) build the animation descriptions array, which orders all elements by their y-position, then x-position on the page
+    // This array contains the description ALL animations (since we don't want some types of animations to start later than others
+    const animationDescriptions = getAnimationDescriptions();
+
+    const animationQueue: AnimationDescription[] = [];
+    const triggerAnimations = () => {
+        tryStartAnimation(animationDescriptions, animationQueue);
+        if (animationDescriptions.length == 0) {
+            // All elements have been put into the animation queue. So remove handler to save computation
+            window.removeEventListener("scroll", triggerAnimations);
+        }
+    };
+
+    // 2) register the scroll listener to determine if animations should render
+    setTimeout(() => {
+        triggerAnimations();
+    }, 100); // delay the initial animation by 100ms so the user first sees a blank page
+    window.addEventListener("scroll", triggerAnimations);
+
     return () => {
-        cleanupFunctions.forEach((cleanup) => cleanup());
+        window.removeEventListener("scroll", triggerAnimations);
     };
 };
 
@@ -78,53 +91,46 @@ const getAnimationDelay = (element: HTMLElement): number => {
     return DEFAULT_ANIMATION_DELAY_MS;
 };
 
-// const inAnimationQueue = "in-animation-queue";
-// returns a boolean, indicating that we are done starting all animations
-const tryStartAnimation = (animation: Animation): boolean => {
-    // I am using querySelectorAll since getElementsByClassName doesn't return all elements
-    // Why? it's cause getElementsByClassName returns a live collection: https://stackoverflow.com/a/31311967/4647924
-    const elements = document.querySelectorAll(`.${animation.initialClass}`);
-    if (elements.length === 0) {
-        return true;
-    }
-
-    const animateQueue: [HTMLElement, number][] = [];
-    for (let i = 0; i < elements.length; i++) {
-        const element = elements[i] as HTMLElement;
-        // const elementTop = element.offsetTop;
-        const elementTop = element.getBoundingClientRect().top;
-        if (elementTop <= window.scrollY) {
-            console.log(element.innerText);
-            console.log(elementTop, window.scrollY);
-            // The element is off the screen, so fade them in immediately (don't put into queue)
-            element.classList.add(animation.finalClass);
-            element.classList.remove(animation.initialClass);
-            element.dispatchEvent(newStartAnimationEvent());
-        } else if (elementTop <= window.scrollY + (window.innerHeight * 6.5) / 8) {
-            // These elements are on the viewport. So push them into the queue to do fancy animations
-            const animationDelayMs = getAnimationDelay(element);
-            animateQueue.push([element, animationDelayMs]);
-            element.classList.add(animation.inQueueClass);
-            element.classList.remove(animation.initialClass);
+const tryStartAnimation = (
+    animationDescriptions: AnimationDescription[],
+    animationQueue: AnimationDescription[]
+) => {
+    let isQueueOriginallyEmpty = animationQueue.length === 0;
+    while (
+        animationDescriptions.length > 0 &&
+        isFirstElementInAnimationRange(animationDescriptions)
+    ) {
+        const animationDescription = animationDescriptions.shift()!; // pops off the first element and returns it
+        if (animationDescription.elementTop <= window.scrollY) {
+            // animate immediately since the viewport is below this element's visibility
+            animateElement(animationDescription);
+        } else {
+            // The user scrolled down enough for this element to "centered enough" on the user's screen.
+            animationQueue.push(animationDescription);
         }
     }
+    if (isQueueOriginallyEmpty) {
+        // it means that we pushed new elements to the queue, and the handler will animate the element
+        animateFirstItemInQueue(animationQueue);
+    }
+};
 
-    // pop off elements from the queue and add the final class every x seconds
-    const animateElement = () => {
-        const res = animateQueue.shift(); // pop off the first element
-        if (res) {
-            const [element, animationDelay] = res;
-            console.log(element.innerText, animationDelay);
-            setTimeout(() => {
-                element.classList.remove(animation.inQueueClass);
-                element.classList.add(animation.finalClass);
-                element.dispatchEvent(newStartAnimationEvent());
-                animateElement();
-            }, animationDelay);
-        }
-    };
+const isFirstElementInAnimationRange = (animationDescriptions: AnimationDescription[]): boolean => {
+    return animationDescriptions[0].elementTop <= window.scrollY + (window.innerHeight * 6.5) / 8;
+};
 
-    setTimeout(animateElement, DEFAULT_ANIMATION_DELAY_MS);
+const animateFirstItemInQueue = (animationQueue: AnimationDescription[]) => {
+    if (animationQueue.length > 0) {
+        setTimeout(() => {
+            animateElement(animationQueue.shift()!); // shift pops off the first element and returns is
+            animateFirstItemInQueue(animationQueue);
+        }, animationQueue[0].animationDelay);
+    }
+};
 
-    return false;
+// pop off elements from the queue and add the final class every x seconds
+const animateElement = (animationDescription: AnimationDescription) => {
+    const element = animationDescription.element;
+    element.classList.add(animationDescription.animationDefinition.finalClass);
+    element.dispatchEvent(newStartAnimationEvent());
 };

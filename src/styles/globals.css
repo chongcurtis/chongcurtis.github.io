@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.fade-in-on-scroll, .in-fade-in-on-scroll-queue {
+.fade-in-on-scroll {
     opacity: 0.0;
     transition: opacity 0.5s ease-in;
 }
@@ -12,7 +12,7 @@
     transition: opacity 0.5s ease-in;
 }
 
-.fade-in-on-scroll-slow, .in-fade-in-on-scroll-slow-queue {
+.fade-in-on-scroll-slow {
     opacity: 0.0;
     transition: opacity 2s ease-in;
 }
@@ -22,7 +22,7 @@
     transition: opacity 2s ease-in;
 }
 
-.expand-on-scroll, .in-expand-on-scroll-queue {
+.expand-on-scroll {
     width: 1px;
     transition: width 2s ease-in;
 }
@@ -33,12 +33,12 @@
     transition: width 2s ease-in;
 }
 
-.underline-on-scroll, .underlined, .in-underline-on-scroll-queue {
+.underline-on-scroll, .underlined {
     display: inline-block;
     position: relative;
 }
 
-.underline-on-scroll::after, .underlined::after, .in-underline-on-scroll-queue::after {
+.underline-on-scroll::after, .underlined::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -52,7 +52,7 @@
     border-radius: 10px;
 }
 
-.underlined::after, .in-underline-on-scroll-queue::after {
+.underlined::after {
     transform: scaleX(1);
     transform-origin: bottom left;
 }
