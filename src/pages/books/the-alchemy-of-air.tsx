@@ -1,9 +1,5 @@
 import React from "react";
 import { initAnimations } from "@/common/animations";
-import Boiler from "@/pages/books/the-alchemy-of-air/Boiler";
-import AlchemyOfAirTitle from "@/pages/books/the-alchemy-of-air/AlchemyOfAirTitle";
-import BulletsStrikeSand from "@/pages/books/the-alchemy-of-air/BulletsStrikeSand";
-import sirWilliamCrookes from "public/books/the-alchemy-of-air/Sir_William_Crookes_1906.jpg";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -13,7 +9,7 @@ export default function TheAlchemyOfAir() {
     return (
         <>
             <div className="mt-20" />
-            <AlchemyOfAirTitle />
+            {/*<AlchemyOfAirTitle />*/}
             <p className="fade-in-on-scroll animation-delay-2000 text-md mt-20">
                 Credit for this animation goes to{" "}
                 <a
@@ -24,31 +20,70 @@ export default function TheAlchemyOfAir() {
                     Matthias Müller
                 </a>
             </p>
+            <p className="fade-in-on-scroll mt-20 text-2xl">It's 1890</p>
+            <p className="fade-in-on-scroll mt-10 text-lg">
+                And Crookes, the discoverer of Thallium (the element), is about to be inaugurated as
+                president of the British Academy of Sciences.
+            </p>
+            <p className="fade-in-on-scroll mt-10 text-lg">
+                What a dreadfully boring ceremony. So to rouse the crowd, he pronounces a speech
+                that raises the fire alarms:
+            </p>
             <div className="mt-20 flex flex-row">
                 <div className="fade-in-on-scroll animation-delay-1500 flex flex-col justify-center align-middle">
-                    <p className="fade-in-on-scroll text-md">
-                        It's 1890 when Crookes pulled the fire alarm.
-                    </p>
-                    <p className="fade-in-on-scroll text-md mt-8">
+                    <p className="fade-in-on-scroll mt-8 text-lg">
                         "England and all civilized nations, stand in deadly peril of not having
                         enough to eat."
                     </p>
                 </div>
-                <img
-                    className="fade-in-on-scroll m-5 max-w-sm p-20"
-                    src={sirWilliamCrookes.src}
-                    alt="Sir William Crookes"
-                />
+                {/*<img*/}
+                {/*    className="fade-in-on-scroll m-5 max-w-sm p-20"*/}
+                {/*    src={sirWilliamCrookes.src}*/}
+                {/*    alt="Sir William Crookes"*/}
+                {/*/>*/}
             </div>
-            <Boiler />
-            <BulletsStrikeSand />
+            {/*https://www.jstor.org/stable/1627238?seq=2*/}
+            <p className="fade-in-on-scroll mt-10 text-xl">
+                "Our wheat-producing soil is totally unequal to the strain put upon it."
+            </p>
+            <p className="fade-in-on-scroll mt-10 text-xl">
+                "As mouths multiply, food sources dwindle"
+            </p>
+            <p className="fade-in-on-scroll mt-10 text-xl">
+                Even if all arable land is cultivated, there will not be enough wheat for everyone
+                by 1931.
+            </p>
+            <p className="fade-in-on-scroll mt-10 text-xl">
+                "We must then rely on nitrogenous manures to increase the fertility of land under
+                wheat, so as to raise the yield from the world's low average - 12.7 bushels per acre
+                - to a higher average".
+            </p>
+            <p className="fade-in-on-scroll mt-10 text-xl">
+                "For years we have been expending fixed nitrogen (a fertilizer) at a culpably
+                extravagant rate, heedless of the fact that it is fixed with extreme slowness and
+                difficulty".
+            </p>
+            <p className="fade-in-on-scroll mt-10 text-xl">
+                "There is a gleam of light out of this darkness of dispondency. In its free state,
+                nitrogen is one of the most abundant and pervading bodies on the face of the earth".
+            </p>
+            <p className="fade-in-on-scroll mt-10 text-xl">
+                So "before we are in the grip of actual dearth, the chemist will step in and
+                postpone the day of famine".
+            </p>
+            <p className="fade-in-on-scroll mt-10 text-xl">
+                Because "the fixation of nitrogen is vital to the progress of civilized humanity".
+            </p>
+            <p className="fade-in-on-scroll mt-10 text-xl">
+                With that, the race to fix nitrogen began.
+            </p>
+            <p className="fade-in-on-scroll mt-40 text-xl">Enter Fritz Haber</p>
+            {/*<Boiler />*/}
+            {/*<BulletsStrikeSand />*/}
             {/*</div>*/}
             <br />
             <br />
-            <p className="fade-in-on-scroll text-xl">"As mouths multiply, food sources dwindle"</p>
-            <p>"There was only one answer: The creation of vast amount of fertilizer"</p>
-            <p>"It is the chemist who must come to the rescue"</p>
-            <p>Enter fritz Haber. A German, and a chemist still looking for his Nobel prize.</p>
+            <p>Enter fritz Haber. A German, and a chemist still seeking for his Nobel prize.</p>
             <p>He labours </p>
             <p className="fade-in-on-scroll">
                 This book changed my life because it taught me that humanity has solved
