@@ -1,33 +1,49 @@
 import React from "react";
-import ParticleSimulationCanvas from "@/pages/books/the-alchemy-of-air/ParticleSimulationCanvas";
-import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
-import { Block } from "@/pages/books/the-alchemy-of-air/Block";
-import cloneDeep from "lodash.clonedeep";
 import { startAnimationEventName } from "@/common/animations";
+import {useStatefulRef} from "@/common/utils";
 
-export default function ExponentialCount() {
+export default function ExponentialCount({startingNumber, endingNumber}: {startingNumber: number, endingNumber: number}) {
+    const containerRef = React.useRef<HTMLDivElement>(null);
+    const displayNumber = useStatefulRef(startingNumber);
+
+    // write a function that takes a starting number, and an ending number, and exponentially counts up to the ending number within 3 seconds
+    function exponentialCount(exponentialAmount:number): void {
+        const startTime = Date.now();
+        while (displayNumber.current <= endingNumber) {
+          const elapsedMilliseconds = Date.now() - startTime;
+          if (elapsedMilliseconds >= 3000) {
+            break;
+          }
+
+          displayNumber.current *= exponentialAmount;
+          sleep(100); // Adjust sleep duration for desired count speed
+        }
+      }
+      
+      function sleep(milliseconds: number): Promise<void> {
+        return new Promise((resolve) => setTimeout(resolve, milliseconds));
+      }
+      
     React.useEffect(() => {
-        const startAnimation = () => {
-            setObstacles(cloneDeep(initialObstacles));
+        if (!containerRef.current) {
+            return;
+        }
+        const container = containerRef.current;
 
-            // the simulation canvas should already be running. so all we need to do is set the particles
-            // 2s for the "Air" to appear
-            setTimeout(() => {
-                setStartAnimation(true);
-            }, 2000);
+        const startAnimation = () => {
+            exponentialCount(1.1);
         };
 
-        title.addEventListener(startAnimationEventName, startAnimation);
+        container.addEventListener(startAnimationEventName, startAnimation);
         return () => {
             // cleanup
-            title.removeEventListener(startAnimationEventName, startAnimation);
-            clearTimeout(timeoutId.current);
+            container.removeEventListener(startAnimationEventName, startAnimation);
         };
-    }, []);
+    }, [containerRef]);
 
     return (
-        <div className="h-[350px] w-[350px] md:h-[500px] md:w-[500px]">
-            0
+        <div className="fade-in-on-scroll h-[350px] w-[350px] md:h-[500px] md:w-[500px]" ref={containerRef}>
+            {displayNumber.current}
         </div>
     );
 }

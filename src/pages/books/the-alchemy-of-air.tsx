@@ -1,5 +1,6 @@
 import React from "react";
 import { initAnimations } from "@/common/animations";
+import ExponentialCount from "@/pages/books/the-alchemy-of-air/ExponentialCount";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -85,7 +86,11 @@ export default function TheAlchemyOfAir() {
                 This address was sensational. Newspapers around the world spread his prophecy.
             </p>
             <p className="fade-in-on-scroll mt-40 text-2xl">The race to fix nitrogen had begun.</p>
-            <p className="fade-in-on-scroll mt-40 text-xl">31 years until famine</p>
+            {/* <p className="fade-in-on-scroll mt-40 text-xl">31 years until famine</p> */}
+            <div className="fade-in-on-scroll mt-40 text-xl">
+            <ExponentialCount className="fade-in-on-scroll mt-40 text-xl"/>
+                 <p>years until famine</p>
+                 </div>
             <p className="fade-in-on-scroll mt-40 text-xl">20 years until famine</p>
             <p className="fade-in-on-scroll mt-40 text-xl">Enter Fritz Haber</p>
             {/*<Boiler />*/}
