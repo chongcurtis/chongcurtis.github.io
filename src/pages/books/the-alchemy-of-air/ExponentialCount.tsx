@@ -18,19 +18,21 @@ export default function ExponentialCount({
     const comparator =
         startingNumber >= endingNumber
             ? (a: number, b: number) => {
-                  return a >= b;
+                  return a > b;
               }
             : (a: number, b: number) => {
-                  return a <= b;
+                  return a < b;
               };
 
     // write a function that takes a starting number, and an ending number, and exponentially counts up to the ending number within 3 seconds
     async function startExponentialCount() {
         // const startTime = Date.now();
+        let waitDuration = 200;
         while (comparator(displayNumber.current, endingNumber)) {
             // const elapsedMilliseconds = Date.now() - startTime;
-            displayNumber.current *= exponentialAmount;
-            await sleep(100); // Adjust sleep duration for desired count speed
+            displayNumber.current -= 1;
+            await sleep(waitDuration); // Adjust sleep duration for desired count speed
+            waitDuration *= exponentialAmount;
         }
     }
 
@@ -52,7 +54,7 @@ export default function ExponentialCount({
     }, [containerRef]);
 
     return (
-        <div className="fade-in-on-scroll" ref={containerRef}>
+        <div className="fade-in-on-scroll w-8" ref={containerRef}>
             {Math.round(displayNumber.current)}
         </div>
     );

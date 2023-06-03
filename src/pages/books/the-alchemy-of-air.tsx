@@ -88,12 +88,8 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mt-40 text-2xl">The race to fix nitrogen had begun.</p>
             {/* <p className="fade-in-on-scroll mt-40 text-xl">31 years until famine</p> */}
             <div className="fade-in-on-scroll mt-40 flex flex-row justify-center text-xl">
-                <ExponentialCount
-                    startingNumber={10000}
-                    endingNumber={31}
-                    exponentialAmount={0.9}
-                />
-                <p className="ml-2">years until famine</p>
+                <p className="mr-2">Years left: </p>
+                <ExponentialCount startingNumber={100} endingNumber={31} exponentialAmount={0.95} />
             </div>
             <p className="fade-in-on-scroll mt-40 text-xl">20 years until famine</p>
             <p className="fade-in-on-scroll mt-40 text-xl">Enter Fritz Haber</p>
