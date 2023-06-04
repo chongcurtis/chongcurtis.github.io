@@ -5,15 +5,13 @@ import { Block } from "@/pages/books/the-alchemy-of-air/Block";
 import useAnimationEventListener from "@/common/useAnimationEventListener";
 import { Queue } from "@/common/queue";
 
-// make a box around the particles
-// const boxColor = "#dedede";
-const boxColor = "white";
-
+const BOX_COLOR = "white";
+// const BOX_COLOR = "#dedede";
 const blocks = [
-    new Block(250, 50, 200, 20, boxColor, 0),
-    new Block(250, 150, 200, 20, boxColor, 0),
-    new Block(200, 100, 20, 200, boxColor, 0),
-    new Block(300, 100, 20, 200, boxColor, 0),
+    new Block(250, 50, 200, 20, BOX_COLOR, 0),
+    new Block(250, 150, 200, 20, BOX_COLOR, 0),
+    new Block(200, 100, 20, 200, BOX_COLOR, 0),
+    new Block(300, 100, 20, 200, BOX_COLOR, 0),
 ];
 
 // this animation works by spawning two particles close to each other (but not touching) and sending them to the right

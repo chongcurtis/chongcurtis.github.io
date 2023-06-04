@@ -9,9 +9,9 @@ export class Queue<T> {
         this.items.push(element);
     }
 
-    dequeue(): T | null {
+    dequeue(): T | undefined {
         if (this.isEmpty()) {
-            return null;
+            return undefined;
         }
         return this.items.shift();
     }

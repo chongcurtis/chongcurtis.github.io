@@ -5,6 +5,7 @@ import AlchemyOfAirTitle from "@/pages/books/the-alchemy-of-air/AlchemyOfAirTitl
 import sirWilliamCrookes from "public/books/the-alchemy-of-air/Sir_William_Crookes_1906.jpg";
 import FixNitrogen from "@/pages/books/the-alchemy-of-air/FixNitrogen";
 import IncreaseHeat from "@/pages/books/the-alchemy-of-air/IncreaseHeat";
+import IncreasePressure from "@/pages/books/the-alchemy-of-air/IncreasePressure";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -135,6 +136,7 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll text-lg">
                 And crammed Nitrogen into a density no lighter than a Neutron star
             </p>
+            <IncreasePressure />
             {/*<p className="fade-in-on-scroll text-lg">*/}
             {/*    All he needed was some funding. So he turned to BASF.*/}
             {/*</p>*/}

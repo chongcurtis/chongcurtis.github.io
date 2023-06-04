@@ -21,4 +21,12 @@ export class Block {
         this.color = color;
         this.rotationDegrees = rotationDegrees;
     }
+
+    setPosition(x: number, y: number) {
+        this.position = new Vector2(x, y);
+    }
+
+    changePosition(dx: number, dy: number) {
+        this.setPosition(this.position.x + dx, this.position.y + dy);
+    }
 }
