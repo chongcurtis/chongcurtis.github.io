@@ -67,7 +67,7 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mb-10 text-lg"> Canada will not have surplus wheat</p>
             <p className="fade-in-on-scroll mb-10 text-lg"> Russia will not have surplus wheat</p>
             <p className="fade-in-on-scroll mb-10 text-lg"> America will not have surplus wheat</p>
-            <p className="fade-in-on-scroll mb-10 text-lg">And if there's a war, imports will...</p>
+            {/*<p className="fade-in-on-scroll mb-10 text-lg">And if there's a war, imports will...</p>*/}
             <p className="fade-in-on-scroll mb-20 mt-20 text-lg">
                 England will{" "}
                 <span className="underline-on-scroll animation-delay-200 after:bg-red-400">
