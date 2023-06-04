@@ -1,42 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import cloneDeep from "lodash.clonedeep";
 import FluidSimulationCanvas from "@/pages/books/the-alchemy-of-air/fluid-simulator/FluidSimulationCanvas";
 import { Obstacle } from "@/pages/books/the-alchemy-of-air/fluid-simulator/Obstacle";
 import { createZeroToOne } from "@/common/types/ZeroToOne";
-import { startAnimationEventName } from "@/common/animations";
+import useAnimationEventListener from "@/common/useAnimationEventListener";
 
 const initialObstacles = [
     new Obstacle(createZeroToOne(0.5), createZeroToOne(0.5), createZeroToOne(0.1)),
 ];
 export default function AlchemyOfAirTitle() {
-    const timeoutId = React.useRef<NodeJS.Timeout>();
     const [obstacles, setObstacles] = React.useState<Obstacle[]>([]);
-    const [startAnimation, setStartAnimation] = React.useState<boolean>(false);
-    const canvasContainerRef = React.useRef<HTMLDivElement>(null);
-    // ref to the ParticleSimulationCanvas
-    React.useEffect(() => {
-        if (!canvasContainerRef.current) {
-            return;
-        }
-        const title = canvasContainerRef.current;
+    const [elementRef, startAnimationEventFired] = useAnimationEventListener();
+    const [startFluidFlow, setStartFluidFlow] = useState(false);
 
-        const startAnimation = () => {
+    useEffect(() => {
+        if (startAnimationEventFired) {
             setObstacles(cloneDeep(initialObstacles));
 
             // the simulation canvas should already be running. so all we need to do is set the particles
             // 2s for the "Air" to appear
             setTimeout(() => {
-                setStartAnimation(true);
+                setStartFluidFlow(true);
             }, 2000);
-        };
-
-        title.addEventListener(startAnimationEventName, startAnimation);
-        return () => {
-            // cleanup
-            title.removeEventListener(startAnimationEventName, startAnimation);
-            clearTimeout(timeoutId.current);
-        };
-    }, [canvasContainerRef]);
+        }
+    }, [startAnimationEventFired]);
 
     // TODO: consider drawing an image of sir william crookes using a bezier curve (and increasing time t for the polynomials decribing the x/y points)
     // maybe use this to draw the path https://stackoverflow.com/questions/13612942/how-to-animate-an-image-along-a-path-with-bezier-curves
@@ -53,7 +40,7 @@ export default function AlchemyOfAirTitle() {
                 <span className="fade-in-on-scroll animation-delay-200">of</span>
             </p>
             <div
-                ref={canvasContainerRef}
+                ref={elementRef}
                 className="relative h-[300px] w-[350px] md:h-[400px] md:w-[500px]"
             >
                 <p className="fade-in-on-scroll-slow absolute left-1/2 top-1/2 -translate-x-[90%] -translate-y-[20%] transform text-4xl font-thin italic md:text-6xl">
@@ -61,7 +48,7 @@ export default function AlchemyOfAirTitle() {
                     Air
                 </p>
                 <FluidSimulationCanvas
-                    startAnimation={startAnimation}
+                    startAnimation={startFluidFlow}
                     obstacles={obstacles}
                     canvasWidth={1000}
                     canvasHeight={1000}

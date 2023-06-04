@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ParticleSimulationCanvas from "@/pages/books/the-alchemy-of-air/ParticleSimulationCanvas";
 import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
 import { Block } from "@/pages/books/the-alchemy-of-air/Block";
+import useAnimationEventListener from "@/common/useAnimationEventListener";
 
 export default function BulletsStrikeSand() {
+    const [elementRef, startAnimationEventFired] = useAnimationEventListener();
     const particles = React.useRef<Particle[]>([]);
     const createStrike = (x: number, y: number) => {
         const numDustParticles = 10;
@@ -31,9 +33,19 @@ export default function BulletsStrikeSand() {
         setTimeout(() => createStrike(300, 350), 1500);
     }, []);
 
+    useEffect(() => {
+        if (startAnimationEventFired) {
+            // spawnNitrogenPair();
+        }
+        return () => {
+            // clearTimeout(timeoutId.current);
+        };
+    }, [startAnimationEventFired]);
+
     return (
-        <div className="h-[350px] w-[350px] md:h-[500px] md:w-[500px]">
+        <div className="h-[350px] w-[350px] md:h-[500px] md:w-[500px]" ref={elementRef}>
             <ParticleSimulationCanvas
+                startAnimation={startAnimationEventFired}
                 blocks={[new Block(0, 350, 400, 5, "#000000", 0)]}
                 particles={particles}
                 canvasWidth={1000}

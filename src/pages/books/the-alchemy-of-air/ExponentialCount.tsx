@@ -1,6 +1,6 @@
-import React from "react";
-import { startAnimationEventName } from "@/common/animations";
+import React, { useEffect } from "react";
 import { useStatefulRef } from "@/common/useStatefulRef";
+import useAnimationEventListener from "@/common/useAnimationEventListener";
 
 interface Props {
     startingNumber: number;
@@ -13,7 +13,7 @@ export default function ExponentialCount({
     endingNumber,
     exponentialAmount,
 }: Props) {
-    const containerRef = React.useRef<HTMLDivElement>(null);
+    const [elementRef, startAnimationEventFired] = useAnimationEventListener();
     const displayNumber = useStatefulRef(startingNumber);
     const comparator =
         startingNumber >= endingNumber
@@ -40,21 +40,14 @@ export default function ExponentialCount({
         return new Promise((resolve) => setTimeout(resolve, milliseconds));
     }
 
-    React.useEffect(() => {
-        if (!containerRef.current) {
-            return;
+    useEffect(() => {
+        if (startAnimationEventFired) {
+            startExponentialCount();
         }
-        const container = containerRef.current;
-
-        container.addEventListener(startAnimationEventName, startExponentialCount);
-        return () => {
-            // cleanup
-            container.removeEventListener(startAnimationEventName, startExponentialCount);
-        };
-    }, [containerRef]);
+    }, [startAnimationEventFired]);
 
     return (
-        <div className="fade-in-on-scroll w-8" ref={containerRef}>
+        <div className="fade-in-on-scroll w-8" ref={elementRef}>
             {Math.round(displayNumber.current)}
         </div>
     );

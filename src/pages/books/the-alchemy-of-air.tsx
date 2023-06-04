@@ -14,7 +14,7 @@ export default function TheAlchemyOfAir() {
         <>
             <div className="mt-20" />
             <AlchemyOfAirTitle />
-            <p className="fade-in-on-scroll animation-delay-2000 text-md mt-20">
+            <p className="fade-in-on-scroll animation-delay-2000 text-md mb-32 mt-10">
                 Credit for this animation goes to{" "}
                 <a
                     href="https://github.com/matthias-research/pages/blob/master/tenMinutePhysics/17-fluidSim.html"
@@ -48,16 +48,17 @@ export default function TheAlchemyOfAir() {
             </p>
             {/*https://www.jstor.org/stable/1627238?seq=2*/}
             <p className="fade-in-on-scroll mt-10 text-lg">
-                Even if all arable land is cultivated, and crops are optimally rotated, and everyone
-                becomes vegetarian...
+                Even if all arable land is cultivated, and crops are optimally rotated, and meat
+                withdraws from our diet...
             </p>
             <p className="fade-in-on-scroll mt-10 text-lg">
                 "Our wheat-producing soil is totally unequal to the strain put upon it."
             </p>
             <p className="fade-in-on-scroll mb-20 mt-10 text-lg">
                 {" "}
-                So England will have to import. However...
+                To meet this deficit, England will have to import grain
             </p>
+            <p className="fade-in-on-scroll mb-40 mt-10 text-lg">However...</p>
             <p className="fade-in-on-scroll mb-10 text-lg">
                 Austro-Hungary will not have surplus wheat{" "}
             </p>
@@ -93,15 +94,15 @@ export default function TheAlchemyOfAir() {
                 Fortunately, "nitrogen is one of the most abundant and pervading bodies on the face
                 of the earth".
             </p>
-            <p className="fade-in-on-scroll mt-10 text-lg">
+            <p className="fade-in-on-scroll mb-10 mt-10 text-lg">
                 But to turn N&#8322; into fertilizer, you must break nature's strongest molecular
                 bond.
             </p>
             <FixNitrogen />
-            <p className="fade-in-on-scroll mb-20 mt-10 text-lg">
-                And it has never been accomplished.
+            <p className="fade-in-on-scroll animation-delay-3000 mb-40 text-lg">
+                But this has never been accomplished.
             </p>
-            <p className="fade-in-on-scroll mt-10 text-lg">
+            <p className="fade-in-on-scroll animation-delay-1000 mt-10 text-lg">
                 "There is a gleam of light out of this darkness of despondency. [...] Before we are
                 in the grip of actual dearth, the chemist will step in and postpone the day of
                 famine".
@@ -109,11 +110,11 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mt-10 text-lg">
                 This was Brook's challenge: To fix nitrogen, and save mankind.
             </p>
-            <p className="fade-in-on-scroll mt-10 text-lg">
+            <p className="fade-in-on-scroll mb-40 mt-10 text-lg">
                 His address was sensational. Newspapers printed it around the world.
             </p>
-            <p className="fade-in-on-scroll mt-40 text-2xl">The race to fix nitrogen had begun.</p>
-            <div className="fade-in-on-scroll mb-60 mt-40 flex flex-row justify-center text-lg">
+            <p className="fade-in-on-scroll mb-60 text-2xl">The race to fix nitrogen had begun.</p>
+            <div className="fade-in-on-scroll mb-60 flex flex-row justify-center text-lg">
                 <ExponentialCount startingNumber={100} endingNumber={31} exponentialAmount={0.95} />
                 <p>Years until Famine </p>
             </div>
