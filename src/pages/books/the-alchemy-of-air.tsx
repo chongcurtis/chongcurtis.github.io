@@ -118,9 +118,21 @@ export default function TheAlchemyOfAir() {
                 <ExponentialCount startingNumber={100} endingNumber={31} exponentialAmount={0.95} />
                 <p>Years until Famine </p>
             </div>
-            <p className="fade-in-on-scroll text-2xl">1895 Germany</p>
-            <p className="fade-in-on-scroll mt-40 text-lg">Enter Fritz Haber</p>
-            <p className="fade-in-on-scroll mt-40 text-lg">20 years until famine</p>
+            <p className="fade-in-on-scroll mb-40 text-2xl">1895 Germany</p>
+            <p className="fade-in-on-scroll text-lg">
+                Enter Fritz Haber. A German, and a chemist still hunting for his Nobel prize
+            </p>
+            <p className="fade-in-on-scroll mt-40 text-lg">
+                Unlike most scientists who fixed nitrogen by replicating nature's approach{" "}
+            </p>
+            <p className="fade-in-on-scroll text-lg">
+                Haber manufactured it in a vessel. By increasing the temperature, and pressure of
+                air, he calculated that it's possible to break the N&#8322; bond.
+            </p>
+            <p className="fade-in-on-scroll text-lg">
+                All he needed was some funding. So he turned to BASF.
+            </p>
+            <p className="fade-in-on-scroll mt-40 text-lg">23 years until famine - 1908</p>
             {/*<Boiler />*/}
             {/*<BulletsStrikeSand />*/}
             {/*</div>*/}
