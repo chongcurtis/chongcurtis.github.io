@@ -4,6 +4,7 @@ import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
 import Vector2 from "@/pages/books/the-alchemy-of-air/Vector2";
 
 type Props = {
+    startAnimation: boolean;
     particles: React.MutableRefObject<Particle[]>;
     blocks: Block[];
     canvasWidth: number;
@@ -11,6 +12,7 @@ type Props = {
     isCollisionEnabled: boolean;
 };
 export default function ParticleSimulationCanvas({
+    startAnimation,
     particles,
     blocks,
     canvasWidth,
@@ -23,7 +25,7 @@ export default function ParticleSimulationCanvas({
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
     React.useEffect(() => {
-        if (!canvasRef.current) {
+        if (!canvasRef.current || !startAnimation) {
             return;
         }
         // console.log("useEffect canvas");
@@ -35,17 +37,17 @@ export default function ParticleSimulationCanvas({
         const ctx = setupCanvas(canvas);
         ctx.font = "30px Arial";
 
+        // I opted for a setInterval solution since requestAnimationFrame was causing the simulation to run too fast
         // const update = () => {
         //     run(canvas, ctx);
         //     requestAnimationFrame(update); // Schedule next frame
         // };
         // requestAnimationFrame(update);
 
-        // I opted for a setInterval solution sine requestAnimationFrame was causing the simulation to run too fast
         setInterval(function () {
             run(canvas, ctx);
         }, SIMULATION_SPEED); //this is the cycle
-    }, [canvasRef]);
+    }, [startAnimation]);
 
     function setupCanvas(canvas: HTMLCanvasElement) {
         // Fixes the DPI of the canvas
@@ -88,7 +90,7 @@ export default function ParticleSimulationCanvas({
 
             ctx.translate(block.position.x, block.position.y);
             ctx.rotate(rotationInRads); // rotate the canvas by 45 degrees
-            ctx.fillStyle = "red"; // set the fill color
+            ctx.fillStyle = block.color; // set the fill color
 
             // ctx.strokeStyle = block.color;
             // ctx.lineWidth = 2;

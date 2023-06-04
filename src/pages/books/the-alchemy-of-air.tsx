@@ -75,6 +75,7 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mt-10 text-xl">
                 Because "the fixation of nitrogen is vital to the progress of civilized humanity".
             </p>
+            {/*<FixNitrogen />*/}
             {/*<p className="fade-in-on-scroll mt-10 text-xl">*/}
             {/*    Many didn't believe him, stating that the Chilian desert has an unlimitted amount of*/}
             {/*    fertilizer.*/}
@@ -83,13 +84,13 @@ export default function TheAlchemyOfAir() {
             {/*    But they were wrong. Because our population doubled, and doubled, and doubled.*/}
             {/*</p>*/}
             <p className="fade-in-on-scroll mt-10 text-xl">
-                This address was sensational. Newspapers around the world spread his prophecy.
+                This address was so sensational Newspapers printed it around the world.
             </p>
             <p className="fade-in-on-scroll mt-40 text-2xl">The race to fix nitrogen had begun.</p>
             {/* <p className="fade-in-on-scroll mt-40 text-xl">31 years until famine</p> */}
             <div className="fade-in-on-scroll mt-40 flex flex-row justify-center text-xl">
-                <p className="mr-2">Years left: </p>
                 <ExponentialCount startingNumber={100} endingNumber={31} exponentialAmount={0.95} />
+                <p>Years until Famine </p>
             </div>
             <p className="fade-in-on-scroll mt-40 text-xl">20 years until famine</p>
             <p className="fade-in-on-scroll mt-40 text-xl">Enter Fritz Haber</p>
