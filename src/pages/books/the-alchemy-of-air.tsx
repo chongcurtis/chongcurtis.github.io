@@ -4,6 +4,7 @@ import ExponentialCount from "@/pages/books/the-alchemy-of-air/ExponentialCount"
 import AlchemyOfAirTitle from "@/pages/books/the-alchemy-of-air/AlchemyOfAirTitle";
 import sirWilliamCrookes from "public/books/the-alchemy-of-air/Sir_William_Crookes_1906.jpg";
 import FixNitrogen from "@/pages/books/the-alchemy-of-air/FixNitrogen";
+import IncreaseHeat from "@/pages/books/the-alchemy-of-air/IncreaseHeat";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -129,10 +130,15 @@ export default function TheAlchemyOfAir() {
                 Haber manufactured it in a vessel. By increasing the temperature, and pressure of
                 air, he calculated that it's possible to break the N&#8322; bond.
             </p>
+            <p className="fade-in-on-scroll text-lg">So he turned up the heat.</p>
+            <IncreaseHeat />
             <p className="fade-in-on-scroll text-lg">
-                All he needed was some funding. So he turned to BASF.
+                And crammed Nitrogen into a density no lighter than a Neutron star
             </p>
-            <p className="fade-in-on-scroll mt-40 text-lg">23 years until famine - 1908</p>
+            {/*<p className="fade-in-on-scroll text-lg">*/}
+            {/*    All he needed was some funding. So he turned to BASF.*/}
+            {/*</p>*/}
+            {/*<p className="fade-in-on-scroll mt-40 text-lg">23 years until famine - 1908</p>*/}
             {/*<Boiler />*/}
             {/*<BulletsStrikeSand />*/}
             {/*</div>*/}
