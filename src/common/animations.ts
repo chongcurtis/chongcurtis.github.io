@@ -122,7 +122,7 @@ const tryStartAnimation = (
 };
 
 const isFirstElementInAnimationRange = (animationDescriptions: AnimationDescription[]): boolean => {
-    return animationDescriptions[0].elementTop <= window.scrollY + (window.innerHeight * 6.5) / 8;
+    return animationDescriptions[0].elementTop <= window.scrollY + (window.innerHeight * 6) / 8;
 };
 
 const animateFirstItemInQueue = (animationQueue: AnimationDescription[]) => {
