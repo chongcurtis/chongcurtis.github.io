@@ -1,9 +1,9 @@
 import React from "react";
 import cloneDeep from "lodash.clonedeep";
-import { startAnimationEventName } from "@/common/animations";
 import FluidSimulationCanvas from "@/pages/books/the-alchemy-of-air/fluid-simulator/FluidSimulationCanvas";
 import { Obstacle } from "@/pages/books/the-alchemy-of-air/fluid-simulator/Obstacle";
 import { createZeroToOne } from "@/common/types/ZeroToOne";
+import { startAnimationEventName } from "@/common/animations";
 
 const initialObstacles = [
     new Obstacle(createZeroToOne(0.5), createZeroToOne(0.5), createZeroToOne(0.1)),

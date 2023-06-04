@@ -1,6 +1,6 @@
 import React from "react";
 import { startAnimationEventName } from "@/common/animations";
-import { useStatefulRef } from "@/common/utils";
+import { useStatefulRef } from "@/common/useStatefulRef";
 
 interface Props {
     startingNumber: number;
