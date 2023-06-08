@@ -82,9 +82,11 @@ export default function TheAlchemyOfAir() {
             </p>
             <p className="fade-in-on-scroll mt-10 text-lg">
                 "We must then rely on nitrogenous manures to increase the fertility of land under
-                wheat, so as to raise the yield from the world's low average - 12.7 bushels per acre
-                - to a higher average".
+                wheat"
             </p>
+            {/*"We must then rely on nitrogenous manures to increase the fertility of land under*/}
+            {/*wheat, so as to raise the yield from the world's low average - 12.7 bushels per acre*/}
+            {/*- to a higher average".*/}
             <p className="fade-in-on-scroll mt-10 text-lg">
                 Yet "for years we have been expending fixed nitrogen at a culpably extravagant
                 rate".
