@@ -1,5 +1,5 @@
 import React from "react";
-import { initAnimations } from "@/common/animations";
+import { initAnimations, NARRATIVE_ANIMATION_TRIGGER_DECIMAL } from "@/common/animations";
 import ExponentialCount from "@/pages/books/the-alchemy-of-air/ExponentialCount";
 import AlchemyOfAirTitle from "@/pages/books/the-alchemy-of-air/AlchemyOfAirTitle";
 import sirWilliamCrookes from "public/books/the-alchemy-of-air/Sir_William_Crookes_1906.jpg";
@@ -9,14 +9,15 @@ import IncreasePressure from "@/pages/books/the-alchemy-of-air/IncreasePressure"
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
-        return initAnimations();
+        return initAnimations(NARRATIVE_ANIMATION_TRIGGER_DECIMAL);
     }, []);
 
     return (
         <>
             <div className="mt-20" />
             <AlchemyOfAirTitle />
-            <p className="fade-in-on-scroll animation-delay-2000 text-md mb-32 mt-10">
+            {/* rational for the delay: 2000 ms for fluid to appear, 300ms for buffer*/}
+            <p className="fade-in-on-scroll animation-delay-2300 text-md mb-32 mt-10">
                 Credit for this animation goes to{" "}
                 <a
                     href="https://github.com/matthias-research/pages/blob/master/tenMinutePhysics/17-fluidSim.html"
@@ -101,10 +102,8 @@ export default function TheAlchemyOfAir() {
                 bond.
             </p>
             <FixNitrogen />
-            <p className="fade-in-on-scroll animation-delay-3000 mb-40 text-lg">
-                But this has never been accomplished.
-            </p>
-            <p className="fade-in-on-scroll animation-delay-1000 mt-10 text-lg">
+            <p className="fade-in-on-scroll mb-40 text-lg">But this has never been accomplished.</p>
+            <p className="fade-in-on-scroll mt-10 text-lg">
                 "There is a gleam of light out of this darkness of despondency. [...] Before we are
                 in the grip of actual dearth, the chemist will step in and postpone the day of
                 famine".

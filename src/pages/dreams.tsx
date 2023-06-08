@@ -1,10 +1,9 @@
-import Link from "next/link";
 import React from "react";
-import { initAnimations } from "@/common/animations";
+import { initAnimations, NORMAL_ANIMATION_TRIGGER_DECIMAL } from "@/common/animations";
 
 export default function Dreams() {
     React.useEffect(() => {
-        return initAnimations();
+        return initAnimations(NORMAL_ANIMATION_TRIGGER_DECIMAL);
     }, []);
 
     return (

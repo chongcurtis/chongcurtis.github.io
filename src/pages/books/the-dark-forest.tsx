@@ -1,11 +1,11 @@
 import React from "react";
-import { initAnimations } from "@/common/animations";
+import { initAnimations, NARRATIVE_ANIMATION_TRIGGER_DECIMAL } from "@/common/animations";
 import NBodySimulationCanvas from "@/pages/books/the-dark-forest/NBodySimulationCanvas";
 import { BinaryStarSystem, ManyBodySystem } from "@/pages/books/the-dark-forest/NBodySystems";
 
 export default function TheDarkForest() {
     React.useEffect(() => {
-        return initAnimations();
+        return initAnimations(NARRATIVE_ANIMATION_TRIGGER_DECIMAL);
     }, []);
 
     return (
