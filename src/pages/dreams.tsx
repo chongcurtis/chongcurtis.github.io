@@ -43,7 +43,7 @@ export default function Dreams() {
                         </li>
                     </ul>
                     <li className="fade-in-on-scroll">
-                        Owning a theater so I can code on the big screen
+                        Live in a place with 2 dishwashers: One for clean dishes and one for dirty
                     </li>
                     <li className="fade-in-on-scroll">Diverting a hurricane</li>
                 </ul>

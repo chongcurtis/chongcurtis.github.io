@@ -99,9 +99,10 @@ export default function TheAlchemyOfAir() {
                 Fortunately, "nitrogen is one of the most abundant and pervading bodies on the face
                 of the earth".
             </p>
+            {/*I'm not sure if heres the catch is better than "But"*/}
             <p className="fade-in-on-scroll mb-10 mt-10 text-lg">
-                But to turn N&#8322; into fertilizer, you must break nature's strongest molecular
-                bond.
+                Here's the catch: To turn N&#8322; into fertilizer, you must break nature's
+                strongest molecular bond.
             </p>
             <FixNitrogen />
             <p className="fade-in-on-scroll mb-40 text-lg">But this has never been accomplished.</p>
