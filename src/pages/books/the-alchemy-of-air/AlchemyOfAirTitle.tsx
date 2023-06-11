@@ -18,10 +18,10 @@ export default function AlchemyOfAirTitle() {
             setObstacles(cloneDeep(initialObstacles));
 
             // the simulation canvas should already be running. so all we need to do is set the particles
-            // 2s for the "Air" to appear
+            // 0.8s for the "Air" to appear
             setTimeout(() => {
                 setStartFluidFlow(true);
-            }, 2000);
+            }, 500);
         }
     }, [startAnimationEventFired]);
 

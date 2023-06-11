@@ -6,6 +6,7 @@ import sirWilliamCrookes from "public/books/the-alchemy-of-air/Sir_William_Crook
 import FixNitrogen from "@/pages/books/the-alchemy-of-air/FixNitrogen";
 import IncreaseHeat from "@/pages/books/the-alchemy-of-air/IncreaseHeat";
 import IncreasePressure from "@/pages/books/the-alchemy-of-air/IncreasePressure";
+import CultivateAllArableLand from "@/pages/books/the-alchemy-of-air/CultivateAllArableLand";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -52,7 +53,8 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mt-10 ">"As mouths multiply, food sources dwindle"</p>
             {/*https://www.jstor.org/stable/1627238?seq=2*/}
             <p className="fade-in-on-scroll mt-10 ">Even if we:</p>
-            <p className="fade-in-on-scroll mt-10 ">cultivate all arable land</p>
+            <p className="fade-in-on-scroll mb-10 mt-10">cultivate all arable land</p>
+            <CultivateAllArableLand />
             <p className="fade-in-on-scroll mt-10 ">optimally rotate crops</p>
             <p className="fade-in-on-scroll mt-10 ">and stop eating meat</p>
             <p className="fade-in-on-scroll mt-10 ">
