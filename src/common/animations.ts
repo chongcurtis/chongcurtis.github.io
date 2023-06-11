@@ -34,7 +34,8 @@ const getAnimationDescriptions = (): AnimationDescription[] => {
             animationDescriptions.push({
                 text: element.innerText,
                 element,
-                elementTop: element.getBoundingClientRect().top,
+                elementTop:
+                    element.getBoundingClientRect().top + document.documentElement.scrollTop,
                 animationDefinition,
                 animationDelay: getAnimationDelay(element),
             });
