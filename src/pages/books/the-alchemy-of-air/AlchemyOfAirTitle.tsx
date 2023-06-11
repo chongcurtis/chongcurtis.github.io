@@ -30,7 +30,7 @@ export default function AlchemyOfAirTitle() {
     // I used this to convert to svg https://express.adobe.com/tools/convert-to-svg/#, but it doesn't have the lines
     // I need to use an image contour finding tool
     return (
-        <>
+        <div className="flex flex-col items-center justify-center">
             {/*<div className="align-center flex flex-col justify-center">*/}
             {/*<p className="translate-y-[100px] px-5 text-center text-4xl font-thin md:text-6xl">*/}
             {/*This parent div MUST be relative so the p tag holding "Air" will e properly centered within it*/}
@@ -54,6 +54,6 @@ export default function AlchemyOfAirTitle() {
                     canvasHeight={1000}
                 />
             </div>
-        </>
+        </div>
     );
 }

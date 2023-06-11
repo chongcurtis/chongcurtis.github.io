@@ -12,6 +12,10 @@ export default function Dreams() {
             <div className="pl-10 pr-5">
                 <p className="fade-in-on-scroll mt-10 text-4xl">Dreams That Came True</p>
                 <ul className="list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
+                    <li className="fade-in-on-scroll">
+                        Making a Lego Death Star (with my own pieces cause the real set was too
+                        pricy)
+                    </li>
                     <li className="fade-in-on-scroll">Building a calculator in Minecraft</li>
                     <li className="fade-in-on-scroll">Getting into Soft Eng at Waterloo</li>
                     <li className="fade-in-on-scroll">Winning Hack The North</li>
