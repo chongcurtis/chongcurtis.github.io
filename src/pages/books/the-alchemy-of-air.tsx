@@ -7,6 +7,7 @@ import FixNitrogen from "@/pages/books/the-alchemy-of-air/FixNitrogen";
 import IncreaseHeat from "@/pages/books/the-alchemy-of-air/IncreaseHeat";
 import IncreasePressure from "@/pages/books/the-alchemy-of-air/IncreasePressure";
 import CultivateAllArableLand from "@/pages/books/the-alchemy-of-air/CultivateAllArableLand";
+import OptimallyRotateCrops from "@/pages/books/the-alchemy-of-air/OptimallyRotateCrops";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -55,8 +56,8 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mt-10 ">Even if we:</p>
             <p className="fade-in-on-scroll mb-10 mt-10">cultivate all arable land</p>
             <CultivateAllArableLand />
-            <p className="fade-in-on-scroll mt-10 ">optimally rotate crops</p>
-            <p className="fade-in-on-scroll mt-10 ">and stop eating meat</p>
+            <p className="fade-in-on-scroll mt-10 ">and optimally rotate crops</p>
+            <OptimallyRotateCrops />
             <p className="fade-in-on-scroll mt-10 ">
                 "Our wheat-producing soil is totally unequal to the strain put upon it."
             </p>
