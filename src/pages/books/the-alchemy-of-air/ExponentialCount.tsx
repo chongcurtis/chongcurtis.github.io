@@ -15,6 +15,7 @@ export default function ExponentialCount({
 }: Props) {
     const [elementRef, startAnimationEventFired] = useAnimationEventListener();
     const displayNumber = useStatefulRef(startingNumber);
+    const redness = useStatefulRef(0);
     const comparator =
         startingNumber >= endingNumber
             ? (a: number, b: number) => {
@@ -31,6 +32,9 @@ export default function ExponentialCount({
         while (comparator(displayNumber.current, endingNumber)) {
             // const elapsedMilliseconds = Date.now() - startTime;
             displayNumber.current -= 1;
+            if (redness.current < 200) {
+                redness.current += 4;
+            }
             await sleep(waitDuration); // Adjust sleep duration for desired count speed
             waitDuration *= exponentialAmount;
         }
@@ -47,7 +51,13 @@ export default function ExponentialCount({
     }, [startAnimationEventFired]);
 
     return (
-        <div className="fade-in-on-scroll w-8" ref={elementRef}>
+        <div
+            className="fade-in-on-scroll text-9xl"
+            ref={elementRef}
+            style={{
+                color: `rgb(${redness.current},0,0)`,
+            }}
+        >
             {Math.round(displayNumber.current)}
         </div>
     );

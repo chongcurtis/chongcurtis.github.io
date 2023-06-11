@@ -56,21 +56,21 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mt-10 ">Even if we:</p>
             <p className="fade-in-on-scroll mb-10 mt-10">cultivate all arable land</p>
             <CultivateAllArableLand />
-            <p className="fade-in-on-scroll mt-10 ">and optimally rotate crops</p>
+            <p className="fade-in-on-scroll mb-20 mt-10">and optimally rotate crops</p>
             <OptimallyRotateCrops />
             <p className="fade-in-on-scroll mt-10 ">
                 "Our wheat-producing soil is totally unequal to the strain put upon it."
             </p>
-            <p className="fade-in-on-scroll mb-20 mt-10 ">
+            <p className="fade-in-on-scroll mt-50 mb-50 ">
                 To meet this deficit, England will have to import grain from abroad
             </p>
             <p className="fade-in-on-scroll mb-40 mt-10 ">However...</p>
             <p className="fade-in-on-scroll mb-10 ">Austro-Hungary population will also increase</p>
             <p className="fade-in-on-scroll mb-10 "> Canada as well</p>
             <p className="fade-in-on-scroll mb-10 "> Russia as well</p>
-            <p className="fade-in-on-scroll mb-10 "> America as well</p>
+            <p className="fade-in-on-scroll mb-32 "> America as well</p>
             {/*<p className="fade-in-on-scroll mb-10 ">And if there's a war, imports will...</p>*/}
-            <p className="fade-in-on-scroll mb-20 mt-20 ">
+            <p className="fade-in-on-scroll mb-32 mt-20">
                 England will{" "}
                 <span className="underline-on-scroll animation-delay-200 after:bg-red-400">
                     starve
@@ -119,9 +119,15 @@ export default function TheAlchemyOfAir() {
                 His address was sensational. Newspapers printed it around the world.
             </p>
             <p className="fade-in-on-scroll mb-60 text-2xl">The race to fix nitrogen had begun.</p>
-            <div className="fade-in-on-scroll mb-60 flex flex-row justify-center ">
-                <ExponentialCount startingNumber={100} endingNumber={31} exponentialAmount={0.95} />
-                <p>Years until Famine </p>
+            <div className="fade-in-on-scroll mb-60 flex flex-row justify-center text-2xl">
+                <div className="flex-row">
+                    <ExponentialCount
+                        startingNumber={100}
+                        endingNumber={31}
+                        exponentialAmount={0.95}
+                    />
+                    <p className="mt-1">Years until Famine </p>
+                </div>
             </div>
             <p className="fade-in-on-scroll mb-40 text-2xl">1895 Germany</p>
             <p className="fade-in-on-scroll ">

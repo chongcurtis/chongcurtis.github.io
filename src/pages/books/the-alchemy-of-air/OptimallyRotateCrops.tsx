@@ -30,7 +30,7 @@ export default function OptimallyRotateCrops() {
                     0,
                     1,
                     fieldTypeColors[ithFieldType],
-                    50
+                    30
                 )
             );
         }
@@ -39,7 +39,7 @@ export default function OptimallyRotateCrops() {
     const increaseParticleRadius = () => {
         for (let i = 0; i < particles.current.length; i++) {
             if (particles.current[i].radius < 5) {
-                particles.current[i].radius += 0.2;
+                particles.current[i].radius += 0.4;
             }
         }
         timeoutId.current = setTimeout(increaseParticleRadius, 100);
@@ -52,7 +52,7 @@ export default function OptimallyRotateCrops() {
         spawnFieldRow(ithRow, ithFieldType);
         spawnFieldRowTimeoutId.current = setTimeout(
             () => spawnFieldRows(ithRow + 1, ithFieldType),
-            300
+            150
         );
     };
 
@@ -61,7 +61,7 @@ export default function OptimallyRotateCrops() {
         spawnFieldRows(0, ithFieldType);
         spawnFieldTypesTimeoutId.current = setTimeout(
             () => spawnFieldTypes(ithFieldType + 1),
-            2000
+            1100
         );
     };
 

@@ -2,7 +2,7 @@ import { Animation, animationDefinitions } from "@/common/animationClassDefiniti
 
 // used to trigger the start animation event on the canvas when it's in view
 export const startAnimationEventName = "start-animation-event";
-export const NARRATIVE_ANIMATION_TRIGGER_DECIMAL = 0.5; // at around 0.5 of the screen height, the animation should start
+export const NARRATIVE_ANIMATION_TRIGGER_DECIMAL = 0.7; // at around 0.5 of the screen height, the animation should start
 export const NORMAL_ANIMATION_TRIGGER_DECIMAL = 0.8;
 const newStartAnimationEvent = () => {
     return new Event(startAnimationEventName, {
