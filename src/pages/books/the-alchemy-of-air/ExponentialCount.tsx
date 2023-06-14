@@ -32,8 +32,9 @@ export default function ExponentialCount({
         while (comparator(displayNumber.current, endingNumber)) {
             // const elapsedMilliseconds = Date.now() - startTime;
             displayNumber.current -= 1;
-            if (redness.current < 200) {
-                redness.current += 4;
+            if (redness.current < 210) {
+                console.log(redness.current);
+                redness.current += 3;
             }
             await sleep(waitDuration); // Adjust sleep duration for desired count speed
             waitDuration *= exponentialAmount;
