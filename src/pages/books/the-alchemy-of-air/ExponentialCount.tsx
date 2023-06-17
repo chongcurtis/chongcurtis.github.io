@@ -28,7 +28,7 @@ export default function ExponentialCount({
     // write a function that takes a starting number, and an ending number, and exponentially counts up to the ending number within 3 seconds
     async function startExponentialCount() {
         // const startTime = Date.now();
-        let waitDuration = 200;
+        let waitDuration = 150;
         while (comparator(displayNumber.current, endingNumber)) {
             // const elapsedMilliseconds = Date.now() - startTime;
             displayNumber.current -= 1;

@@ -8,6 +8,7 @@ import IncreaseHeat from "@/pages/books/the-alchemy-of-air/IncreaseHeat";
 import IncreasePressure from "@/pages/books/the-alchemy-of-air/IncreasePressure";
 import CultivateAllArableLand from "@/pages/books/the-alchemy-of-air/CultivateAllArableLand";
 import OptimallyRotateCrops from "@/pages/books/the-alchemy-of-air/OptimallyRotateCrops";
+import IncreaseFertilityOfLand from "@/pages/books/the-alchemy-of-air/IncreaseFertilityOfLand";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -85,6 +86,7 @@ export default function TheAlchemyOfAir() {
                 "We must then rely on nitrogenous manures to increase the fertility of land under
                 wheat"
             </p>
+            <IncreaseFertilityOfLand />
             {/*"We must then rely on nitrogenous manures to increase the fertility of land under*/}
             {/*wheat, so as to raise the yield from the world's low average - 12.7 bushels per acre*/}
             {/*- to a higher average".*/}
@@ -106,19 +108,23 @@ export default function TheAlchemyOfAir() {
                 strongest molecular bond.
             </p>
             <FixNitrogen />
-            <p className="fade-in-on-scroll mb-40 ">But this has never been accomplished.</p>
+            <p className="fade-in-on-scroll mb-40 ">But this has never been done.</p>
             <p className="fade-in-on-scroll mt-10 ">
                 "There is a gleam of light out of this darkness of despondency. [...] Before we are
                 in the grip of actual dearth, the chemist will step in and postpone the day of
                 famine".
             </p>
-            <p className="fade-in-on-scroll mt-10 ">
-                This was Brook's challenge: To fix nitrogen, and save mankind.
+            <p className="fade-in-on-scroll mb-32 mt-20">This was Brook's challenge:</p>
+            <p className="fade-in-on-scroll mb-20 mt-10 text-2xl ">
+                To fix nitrogen, and save mankind.
             </p>
-            <p className="fade-in-on-scroll mb-40 mt-10 ">
-                His address was sensational. Newspapers printed it around the world.
+            {/*<p className="fade-in-on-scroll mt-10 ">*/}
+            {/*    His address was sensational. Newspapers printed it around the world.*/}
+            {/*</p>*/}
+            <p className="fade-in-on-scroll mb-20 text-xl">
+                Newspapers printed his address around the world
             </p>
-            <p className="fade-in-on-scroll mb-60 text-2xl">The race to fix nitrogen had begun.</p>
+            <p className="fade-in-on-scroll mb-40 text-xl">The race was on.</p>
             <div className="fade-in-on-scroll mb-60 flex flex-row justify-center text-2xl">
                 <div className="flex-row">
                     <ExponentialCount
