@@ -6,16 +6,20 @@ interface Props {
     startingNumber: number;
     endingNumber: number;
     exponentialAmount: number;
+    startingWaitDuration: number;
+    startingRedness: number;
 }
 
 export default function ExponentialCount({
     startingNumber,
     endingNumber,
     exponentialAmount,
+    startingWaitDuration,
+    startingRedness,
 }: Props) {
     const [elementRef, startAnimationEventFired] = useAnimationEventListener();
     const displayNumber = useStatefulRef(startingNumber);
-    const redness = useStatefulRef(0);
+    const redness = useStatefulRef(startingRedness);
     const comparator =
         startingNumber >= endingNumber
             ? (a: number, b: number) => {
@@ -28,12 +32,11 @@ export default function ExponentialCount({
     // write a function that takes a starting number, and an ending number, and exponentially counts up to the ending number within 3 seconds
     async function startExponentialCount() {
         // const startTime = Date.now();
-        let waitDuration = 150;
+        let waitDuration = startingWaitDuration;
         while (comparator(displayNumber.current, endingNumber)) {
             // const elapsedMilliseconds = Date.now() - startTime;
             displayNumber.current -= 1;
             if (redness.current < 210) {
-                console.log(redness.current);
                 redness.current += 3;
             }
             await sleep(waitDuration); // Adjust sleep duration for desired count speed

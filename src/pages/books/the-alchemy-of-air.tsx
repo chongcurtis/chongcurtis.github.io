@@ -124,18 +124,48 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mb-20 text-xl">
                 Newspapers printed his address around the world
             </p>
-            <p className="fade-in-on-scroll mb-40 text-xl">The race was on.</p>
-            <div className="fade-in-on-scroll mb-60 flex flex-row justify-center text-2xl">
+            <p className="fade-in-on-scroll text-xl">The race was on.</p>
+            {/* The address says that the world should run out of food by 1931*/}
+            {/*https://en.wikipedia.org/wiki/Birkeland%E2%80%93Eyde_process*/}
+            {/*This process was made in 1903: 28 years left*/}
+            <div className="fade-in-on-scroll mb-60 mt-40 flex flex-row justify-center text-2xl">
                 <div className="flex-row">
                     <ExponentialCount
                         startingNumber={100}
-                        endingNumber={31}
+                        endingNumber={28}
                         exponentialAmount={0.95}
+                        startingWaitDuration={150}
+                        startingRedness={0}
                     />
                     <p className="mt-1">Years until Famine </p>
                 </div>
             </div>
-            <p className="fade-in-on-scroll mb-40 text-2xl">1895 Germany</p>
+            <p className="fade-in-on-scroll mb-10 mt-10 ">
+                Birkeland and Eyde creates artificial lightning, splitting N&#8322; for the first
+                time.
+            </p>
+            <p className="fade-in-on-scroll mb-10 mt-10 ">
+                It takes 15 MWh To produce a ton of fixed nitrogen (nitric acid).
+            </p>
+            {/*https://www.bing.com/search?q=10*1000+kwh+to+mwh&qs=n&form=QBRE&sp=-1&ghc=2&lq=0&pq=10*1000+kwh+to+mwh&sc=7-18&sk=&cvid=A25F9A80B2A448D98B96FAB5EDD5E887&ghsh=0&ghacc=0&ghpl=*/}
+            {/*https://arena.gov.au/projects/hydrogen-to-ammonia/*/}
+            <p className="fade-in-on-scroll mb-10 mt-10 ">But the process was:</p>
+            <p className="fade-in-on-scroll mb-10 mt-10 ">Prohibitively expensive</p>
+            <p className="fade-in-on-scroll mb-10 mt-10 ">Corrosive</p>
+            <p className="fade-in-on-scroll mb-10 mt-10 ">So hot it fried the machine</p>
+            <div className="fade-in-on-scroll mb-40 mt-40 flex flex-row justify-center text-2xl">
+                <div className="flex-row">
+                    <ExponentialCount
+                        startingNumber={58}
+                        endingNumber={26}
+                        exponentialAmount={0.95}
+                        startingWaitDuration={150}
+                        startingRedness={100}
+                    />
+                    <p className="mt-1">Years until Famine </p>
+                </div>
+            </div>
+            <p className="fade-in-on-scroll mb-40 text-2xl">1905 Germany</p>
             <p className="fade-in-on-scroll ">
                 Enter Fritz Haber. A German, and a chemist still hunting for his Nobel prize
             </p>
