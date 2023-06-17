@@ -38,6 +38,7 @@ export default function Dreams() {
 
                 <p className="fade-in-on-scroll mt-10 text-4xl">Dreams for the Future</p>
                 <ul className="list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
+                    <li className="fade-in-on-scroll">Go to a Taylor Swift dance party</li>
                     <li className="fade-in-on-scroll">
                         Creating an automated system to write jokes with minimal human supervision
                     </li>

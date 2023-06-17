@@ -137,7 +137,7 @@ export default function TheAlchemyOfAir() {
                         startingWaitDuration={150}
                         startingRedness={0}
                     />
-                    <p className="mt-1">Years until Famine </p>
+                    <p className="mt-1">Years until famine </p>
                 </div>
             </div>
             <p className="fade-in-on-scroll mb-40 mt-20 text-2xl">1903 Norway</p>
@@ -154,17 +154,17 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mb-10 mt-10 ">Prohibitively expensive</p>
             <p className="fade-in-on-scroll mb-10 mt-10 ">Corrosive</p>
             <p className="fade-in-on-scroll mb-10 mt-10 ">So hot it fried the machine</p>
-            <div className="fade-in-on-scroll">
-                <div
-                    className="mt-20 text-9xl"
-                    style={{
-                        color: `rgb(220, 0, 0)`,
-                    }}
-                >
-                    27
-                </div>
-                <p className=" mt-1">Years until Famine </p>
-            </div>
+            {/*<div className="fade-in-on-scroll">*/}
+            {/*    <div*/}
+            {/*        className="mt-20 text-9xl"*/}
+            {/*        style={{*/}
+            {/*            color: `rgb(220, 0, 0)`,*/}
+            {/*        }}*/}
+            {/*    >*/}
+            {/*        27*/}
+            {/*    </div>*/}
+            {/*    <p className=" mt-1">Years until Famine </p>*/}
+            {/*</div>*/}
             <div className="fade-in-on-scroll">
                 <div
                     className="mt-20 text-9xl "
@@ -174,40 +174,108 @@ export default function TheAlchemyOfAir() {
                 >
                     26
                 </div>
-                <p className="mt-1">Years until Famine </p>
+                <p className="mt-1 text-2xl">Years until famine</p>
             </div>
-            <p className="fade-in-on-scroll mb-40 mt-20 text-2xl">1905 Germany</p>
-            <p className="fade-in-on-scroll ">
-                Enter Fritz Haber. A German, and a chemist still hunting for his Nobel prize
+            <p className="fade-in-on-scroll mb-10 mt-20 text-2xl">1905 Germany</p>
+            <p className="fade-in-on-scroll mb-10 mt-10">
+                Enter fritz Haber. A German jew, and a chemist still seeking for his Nobel prize.
             </p>
-            <p className="fade-in-on-scroll mt-40 ">
-                Unlike most scientists who fixed nitrogen by replicating nature's approach{" "}
+            <p className="fade-in-on-scroll mb-10 mt-10">
+                Unlike Birkeland and Eyde's approach, he put his Nitrogen in a "pressure cooker".
             </p>
-            <p className="fade-in-on-scroll ">
-                Haber manufactured it in a vessel. By increasing the temperature, and pressure of
-                air, he calculated that it's possible to break the N&#8322; bond.
+            <p className="fade-in-on-scroll mb-10 mt-10">
+                He fails, but he publishes his data anyway.
             </p>
-            <p className="fade-in-on-scroll ">So he turned up the heat.</p>
+            <div className="fade-in-on-scroll">
+                <div
+                    className="mt-20 text-9xl "
+                    style={{
+                        color: `rgb(130, 0, 0)`,
+                    }}
+                >
+                    24
+                </div>
+                <p className="mt-1 text-2xl">Years until famine</p>
+            </div>
+            <p className="fade-in-on-scroll mb-40 mt-20 text-2xl">1907 Germany</p>
+            <p className="fade-in-on-scroll mb-10">
+                "I would like to suggest that Professor Haber now employ a method that is certain to
+                produce truly precise values."
+            </p>
+            <p className="fade-in-on-scroll mt-10">Your numbers are "highly erroneous"</p>
+            <p className="fade-in-on-scroll mt-10 ">
+                Haber would not let Nernst, a soon-to-be nobel laureate corrode his reputation as a
+                precise experimentalist.
+            </p>
+            {/*<p className="fade-in-on-scroll ">*/}
+            {/*    Haber manufactured it in a vessel. By increasing the temperature, and pressure of*/}
+            {/*    air, he calculated that it's possible to break the N&#8322; bond.*/}
+            {/*</p>*/}
+            <p className="fade-in-on-scroll mt-20">So he turns up the heat.</p>
             <IncreaseHeat />
             <p className="fade-in-on-scroll ">
-                And crammed Nitrogen into a density no lighter than a Neutron star
+                Crams Nitrogen into a density no lighter than a Neutron star
             </p>
             <IncreasePressure />
-            {/*<p className="fade-in-on-scroll ">*/}
-            {/*    All he needed was some funding. So he turned to BASF.*/}
-            {/*</p>*/}
-            {/*<p className="fade-in-on-scroll mt-40 ">23 years until famine - 1908</p>*/}
-            {/*<Boiler />*/}
-            {/*<BulletsStrikeSand />*/}
-            {/*</div>*/}
-            <br />
-            <br />
-            <p>Enter fritz Haber. A German, and a chemist still seeking for his Nobel prize.</p>
-            <p>He labours </p>
+            <p className="fade-in-on-scroll ">
+                Preheats the reagents with the hot exhaust ammonia.
+            </p>
+            <p className="fade-in-on-scroll ">And tries hundreds of catalysts</p>
+            <p className="fade-in-on-scroll ">Until finally, in 1909: </p>
+            {/* animation of one cubic drop from his machine*/}
+            <p className="fade-in-on-scroll ">
+                His machine produces one cubic centimeter of ammonia.
+            </p>
+            <p className="fade-in-on-scroll ">Once scaled, his process would feed the world. </p>
+            <p className="fade-in-on-scroll ">The problem? It required</p>
+            <p className="fade-in-on-scroll ">600 degrees C of temperature</p>
+            <p className="fade-in-on-scroll ">
+                Immense amounts of Osmium, one of the world's most expensive metals.
+            </p>
+            <p className="fade-in-on-scroll ">
+                Vessels that can hold back one hundred atmospheres of pressure
+            </p>
+            <p className="fade-in-on-scroll ">
+                Gigantic science-fiction compressors. Indestructable valves, guages, pipes
+            </p>
+            <p className="fade-in-on-scroll ">
+                And finally, the hope that it would be profitable at scale.
+            </p>
+            <p className="fade-in-on-scroll ">
+                BASF began hording all the Osmium in the world. And sent Carl Bosche to solve the
+                rest.
+            </p>
+            <div className="fade-in-on-scroll">
+                <div
+                    className="mt-20 text-9xl "
+                    style={{
+                        color: `rgb(130, 0, 0)`,
+                    }}
+                >
+                    25
+                </div>
+                <p className="mt-1 text-2xl">Years until famine</p>
+            </div>
+            <p className="fade-in-on-scroll ">
+                It turns out Uranium also works as a catalyst. And it's much more abundant.
+            </p>
+            <p className="fade-in-on-scroll">This book changed my life because it taught me:</p>
             <p className="fade-in-on-scroll">
-                This book changed my life because it taught me that humanity has solved
-                calamity-scale problems before. It make me much more optimistic in technology that
-                can save the world. We've done it before.
+                humanity has solved calamity-scale problems before. I used to be worried of climate
+                change, but this perspective gives me hope of a supernatural technological leap
+                around the corner.
+            </p>
+            <p className="fade-in-on-scroll">
+                The best solutions to problems isn't always to use nature or biomimicry.
+            </p>
+            <p className="fade-in-on-scroll">
+                True technological advances, requires years of grit.
+            </p>
+            <p className="fade-in-on-scroll">
+                I think a a modern version of crooke's challenge is the quest for economical nuclear
+                fusion. Laboratories slam plasma together at millions of degrees, with magnetic
+                forces probably stronger than rail-guns. Little by little, these labs try to improve
+                their yields, because they believe that nuclera fusion is economically possible
             </p>
             <p>
                 What else did these Nobel laureates do? More alchemy of course. You can feel it in
