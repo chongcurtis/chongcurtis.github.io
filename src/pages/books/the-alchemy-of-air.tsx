@@ -140,6 +140,7 @@ export default function TheAlchemyOfAir() {
                     <p className="mt-1">Years until Famine </p>
                 </div>
             </div>
+            <p className="fade-in-on-scroll mb-40 mt-20 text-2xl">1903 Norway</p>
             <p className="fade-in-on-scroll mb-10 mt-10 ">
                 Birkeland and Eyde creates artificial lightning, splitting N&#8322; for the first
                 time.
@@ -153,19 +154,29 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mb-10 mt-10 ">Prohibitively expensive</p>
             <p className="fade-in-on-scroll mb-10 mt-10 ">Corrosive</p>
             <p className="fade-in-on-scroll mb-10 mt-10 ">So hot it fried the machine</p>
-            <div className="fade-in-on-scroll mb-40 mt-40 flex flex-row justify-center text-2xl">
-                <div className="flex-row">
-                    <ExponentialCount
-                        startingNumber={58}
-                        endingNumber={26}
-                        exponentialAmount={0.95}
-                        startingWaitDuration={150}
-                        startingRedness={100}
-                    />
-                    <p className="mt-1">Years until Famine </p>
+            <div className="fade-in-on-scroll">
+                <div
+                    className="mt-20 text-9xl"
+                    style={{
+                        color: `rgb(220, 0, 0)`,
+                    }}
+                >
+                    27
                 </div>
+                <p className=" mt-1">Years until Famine </p>
             </div>
-            <p className="fade-in-on-scroll mb-40 text-2xl">1905 Germany</p>
+            <div className="fade-in-on-scroll">
+                <div
+                    className="mt-20 text-9xl "
+                    style={{
+                        color: `rgb(130, 0, 0)`,
+                    }}
+                >
+                    26
+                </div>
+                <p className="mt-1">Years until Famine </p>
+            </div>
+            <p className="fade-in-on-scroll mb-40 mt-20 text-2xl">1905 Germany</p>
             <p className="fade-in-on-scroll ">
                 Enter Fritz Haber. A German, and a chemist still hunting for his Nobel prize
             </p>
