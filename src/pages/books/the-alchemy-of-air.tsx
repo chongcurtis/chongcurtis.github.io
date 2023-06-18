@@ -145,15 +145,15 @@ export default function TheAlchemyOfAir() {
                 Birkeland and Eyde creates artificial lightning, splitting N&#8322; for the first
                 time.
             </p>
-            <p className="fade-in-on-scroll mb-10 mt-10 ">
-                It takes 15 MWh To produce a ton of fixed nitrogen (nitric acid).
-            </p>
+            {/*<p className="fade-in-on-scroll mb-10 mt-10 ">*/}
+            {/*    It takes 15 MWh To produce a ton of fixed nitrogen (nitric acid).*/}
+            {/*</p>*/}
             {/*https://www.bing.com/search?q=10*1000+kwh+to+mwh&qs=n&form=QBRE&sp=-1&ghc=2&lq=0&pq=10*1000+kwh+to+mwh&sc=7-18&sk=&cvid=A25F9A80B2A448D98B96FAB5EDD5E887&ghsh=0&ghacc=0&ghpl=*/}
             {/*https://arena.gov.au/projects/hydrogen-to-ammonia/*/}
-            <p className="fade-in-on-scroll mb-10 mt-10 ">But the process was:</p>
+            <p className="fade-in-on-scroll mb-10 mt-10 ">But the process is:</p>
             <p className="fade-in-on-scroll mb-10 mt-10 ">Prohibitively expensive</p>
             <p className="fade-in-on-scroll mb-10 mt-10 ">Corrosive</p>
-            <p className="fade-in-on-scroll mb-10 mt-10 ">So hot it fried the machine</p>
+            <p className="fade-in-on-scroll mb-10 mt-10 ">So hot it fries the machine</p>
             {/*<div className="fade-in-on-scroll">*/}
             {/*    <div*/}
             {/*        className="mt-20 text-9xl"*/}
@@ -178,7 +178,7 @@ export default function TheAlchemyOfAir() {
             </div>
             <p className="fade-in-on-scroll mb-10 mt-20 text-2xl">1905 Germany</p>
             <p className="fade-in-on-scroll mb-10 mt-10">
-                Enter fritz Haber. A German jew, and a chemist still seeking for his Nobel prize.
+                Enter fritz Haber. A chemist still seeking for his Nobel prize.
             </p>
             <p className="fade-in-on-scroll mb-10 mt-10">
                 Unlike Birkeland and Eyde's approach, he put his Nitrogen in a "pressure cooker".
@@ -224,27 +224,25 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll ">Until finally, in 1909: </p>
             {/* animation of one cubic drop from his machine*/}
             <p className="fade-in-on-scroll ">
-                His machine produces one cubic centimeter of ammonia.
+                His quartz-based apparatus produces one cubic centimeter of ammonia.
             </p>
             <p className="fade-in-on-scroll ">Once scaled, his process would feed the world. </p>
-            <p className="fade-in-on-scroll ">The problem? It required</p>
-            <p className="fade-in-on-scroll ">600 degrees C of temperature</p>
+            <p className="fade-in-on-scroll ">The problem? Scale requires</p>
+            {/*<p className="fade-in-on-scroll ">600 &deg;C of temperature</p>*/}
             <p className="fade-in-on-scroll ">
                 Immense amounts of Osmium, one of the world's most expensive metals.
             </p>
             <p className="fade-in-on-scroll ">
-                Vessels that can hold back one hundred atmospheres of pressure
+                Vessels that can withstand one hundred atmospheres of pressure
             </p>
             <p className="fade-in-on-scroll ">
-                Gigantic science-fiction compressors. Indestructable valves, guages, pipes
+                And the political will to sink collosial sums of capital.
             </p>
             <p className="fade-in-on-scroll ">
-                And finally, the hope that it would be profitable at scale.
+                BASF gave Haber a royalty, an enourmous salary, and began hording all the Osmium in
+                the world.
             </p>
-            <p className="fade-in-on-scroll ">
-                BASF began hording all the Osmium in the world. And sent Carl Bosche to solve the
-                rest.
-            </p>
+            <p className="fade-in-on-scroll ">They sent Carl Bosche to figure out the rest.</p>
             <div className="fade-in-on-scroll">
                 <div
                     className="mt-20 text-9xl "
@@ -257,31 +255,84 @@ export default function TheAlchemyOfAir() {
                 <p className="mt-1 text-2xl">Years until famine</p>
             </div>
             <p className="fade-in-on-scroll ">
-                It turns out Uranium also works as a catalyst. And it's much more abundant.
+                Bosche assembled hundreds of researchers. He quickly found that Uranium also worked
+                as a catalyst.
             </p>
-            <p className="fade-in-on-scroll">This book changed my life because it taught me:</p>
-            <p className="fade-in-on-scroll">
-                humanity has solved calamity-scale problems before. I used to be worried of climate
-                change, but this perspective gives me hope of a supernatural technological leap
-                around the corner.
+            <p className="fade-in-on-scroll ">
+                But it's reactivity weaked quickly. He needed a better catalyst.
             </p>
-            <p className="fade-in-on-scroll">
-                The best solutions to problems isn't always to use nature or biomimicry.
+            <p className="fade-in-on-scroll ">
+                So he built 20 furnaces, A/B testing hundreds of catalysists each week.
             </p>
-            <p className="fade-in-on-scroll">
-                True technological advances, requires years of grit.
+            <p className="fade-in-on-scroll ">
+                Ironed seemed promising, but it needed to be doped with a promoter to work.
             </p>
-            <p className="fade-in-on-scroll">
-                I think a a modern version of crooke's challenge is the quest for economical nuclear
-                fusion. Laboratories slam plasma together at millions of degrees, with magnetic
-                forces probably stronger than rail-guns. Little by little, these labs try to improve
-                their yields, because they believe that nuclera fusion is economically possible
+            <p className="fade-in-on-scroll ">
+                It took months, but iron mixed with calcium was the best
+            </p>
+            <p className="fade-in-on-scroll ">Year by year, engineering challenges were solved.</p>
+            <p className="fade-in-on-scroll ">
+                He assembled the world's largest furnaces to heat the nitrogen.
+            </p>
+            <p className="fade-in-on-scroll ">And colossal compressors, valves, gauges, etc.</p>
+            {/*explosion animation?*/}
+            <p className="fade-in-on-scroll ">But they kept exploding.</p>
+            <p className="fade-in-on-scroll ">
+                His metallurgists analyzed the broken pieces, and found hydrogen mixed in.
+            </p>
+            <p className="fade-in-on-scroll ">
+                The high pressure caused the walls of his furnace to absorb hydrogen, making them
+                brittle.
             </p>
             <p>
-                What else did these Nobel laureates do? More alchemy of course. You can feel it in
-                the air.
+                He's defeated. So on his only night off, he heads to the bowling alley and
+                socializes with his team.
             </p>
-            <div className="mb-40" />;
+            <p>Eureka.</p>
+            <p>
+                The following day, Carl drills holes into the walls of his furnace. Small enough to
+                keep the pressure but large enough for hydrogen to leak out.
+            </p>
+            <p>It works. </p>
+            <p>Just in time for: World War I </p>
+            <br />
+            <p className="fade-in-on-scroll">
+                Nitrogen has the very special property of propelling bullets. And it extends
+                Germany's work by two years.
+            </p>
+            <p className="fade-in-on-scroll">
+                This book changed my life because it showed me that humanity has solved
+                calamity-scale problems before. Climate change used to scare me, but this epochal
+                moment gives me hope.
+            </p>
+            <p className="fade-in-on-scroll">
+                It showed me that the best solutions to problems may not mimic nature.
+            </p>
+            <p className="fade-in-on-scroll">
+                And that when reading papers, the first author gets 95% of the recognition.
+            </p>
+            {/*<p className="fade-in-on-scroll">*/}
+            {/*    I think a a modern version of crooke's challenge is the quest for economical nuclear*/}
+            {/*    fusion. Laboratories slam plasma together at millions of degrees, with magnetic*/}
+            {/*    forces probably stronger than rail-guns. Little by little, these labs try to improve*/}
+            {/*    their yields, because they believe that nuclera fusion is economically possible*/}
+            {/*</p>*/}
+            <p className="fade-in-on-scroll">
+                In this story, Carl had the harder job. Not only did he make fertilizer economical,
+                but he invents an entire new field:
+            </p>
+            <p className="fade-in-on-scroll ">High pressure chemistry.</p>
+            {/*<p>*/}
+            {/*    What else did these Nobel laureates do?
+            {/*</p>*/}
+            <p className="fade-in-on-scroll">
+                So what's next for Haber and Bosche? Do they win a nobel prize? Develop corporate
+                empires? Pledge to The Reich?
+            </p>
+            {/*it would be cool if all the other words in this phrase just disappeared, and all you saw was "the alchemy of air"*/}
+            <p className="fade-in-on-scroll">
+                They did more alchemy of course. You can feel it in the air.
+            </p>
         </div>
     );
 }
