@@ -55,7 +55,7 @@ export default function TheDarkForest() {
             <p className="fade-in-on-scroll mt-4">And stop your technological progress</p>
             <p className="fade-in-on-scroll mt-4">Entrusted with the future of humanity</p>
             <p className="fade-in-on-scroll mt-4">
-                Is a <span className="underline-on-scroll">hedonist</span>
+                Is <span className="underline-on-scroll"></span>
             </p>
             <div className="mb-[500px]" />
         </>

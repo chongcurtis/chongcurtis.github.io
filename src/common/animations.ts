@@ -14,7 +14,7 @@ const newStartAnimationEvent = () => {
 
 interface AnimationDescription {
     element: HTMLElement;
-    elementTop: () => number;
+    elementTop: () => number; // The reason why this is a function, rather than a number, is because the element's position can change after canvas elements are rendered
     animationDefinition: Animation;
     animationDelay: number;
     text: string; // for debugging purposes
@@ -133,8 +133,11 @@ const isFirstElementInAnimationRange = (
     animationDescriptions: AnimationDescription[],
     animationTriggerDecimal: number
 ): boolean => {
-    document.getElementById("mover")!.style.top =
-        animationDescriptions[0].elementTop().toString() + "px";
+    // this is used for debugging
+    const moverElement = document.getElementById("mover");
+    if (moverElement) {
+        moverElement.style.top = animationDescriptions[0].elementTop().toString() + "px";
+    }
     return (
         animationDescriptions[0].elementTop() <=
         window.scrollY + window.innerHeight * animationTriggerDecimal
