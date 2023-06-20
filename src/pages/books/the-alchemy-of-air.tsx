@@ -17,6 +17,8 @@ export default function TheAlchemyOfAir() {
 
     return (
         <div className="px-3 text-center text-lg">
+            <div id="mover" className="absolute h-3 w-3 bg-blue-400"></div>
+            <div className="fixed mt-[70vh] h-3 w-3 bg-red-400"></div>
             <div className="mt-20" />
             <div className="m-auto items-center">
                 <AlchemyOfAirTitle />

@@ -2,7 +2,7 @@ import { Animation, animationDefinitions } from "@/common/animationClassDefiniti
 
 // used to trigger the start animation event on the canvas when it's in view
 export const startAnimationEventName = "start-animation-event";
-export const NARRATIVE_ANIMATION_TRIGGER_DECIMAL = 0.9; // at around 0.5 of the screen height, the animation should start
+export const NARRATIVE_ANIMATION_TRIGGER_DECIMAL = 0.7; // at around 0.7 of the screen height, the animation should start
 export const NORMAL_ANIMATION_TRIGGER_DECIMAL = 0.9;
 const newStartAnimationEvent = () => {
     return new Event(startAnimationEventName, {
@@ -14,7 +14,7 @@ const newStartAnimationEvent = () => {
 
 interface AnimationDescription {
     element: HTMLElement;
-    elementTop: number;
+    elementTop: () => number;
     animationDefinition: Animation;
     animationDelay: number;
     text: string; // for debugging purposes
@@ -34,7 +34,7 @@ const getAnimationDescriptions = (): AnimationDescription[] => {
             animationDescriptions.push({
                 text: element.innerText,
                 element,
-                elementTop:
+                elementTop: () =>
                     element.getBoundingClientRect().top + document.documentElement.scrollTop,
                 animationDefinition,
                 animationDelay: getAnimationDelay(element),
@@ -44,8 +44,8 @@ const getAnimationDescriptions = (): AnimationDescription[] => {
 
     // 2) sort by y-position, then x-position
     animationDescriptions.sort((animationDefinition1, animationDefinition2) => {
-        const y1 = animationDefinition1.elementTop;
-        const y2 = animationDefinition2.elementTop;
+        const y1 = animationDefinition1.elementTop();
+        const y2 = animationDefinition2.elementTop();
 
         if (y1 !== y2) {
             return y1 - y2;
@@ -105,7 +105,7 @@ const tryStartAnimation = (
         isFirstElementInAnimationRange(animationDescriptions, animationTriggerDecimal)
     ) {
         const animationDescription = animationDescriptions.shift()!; // pops off the first element and returns it
-        if (animationDescription.elementTop <= window.scrollY) {
+        if (animationDescription.elementTop() <= window.scrollY) {
             // animate immediately since the viewport is below this element's visibility
             animateElement(animationDescription);
         } else {
@@ -117,7 +117,7 @@ const tryStartAnimation = (
     // so animate those elements immediately as well
     while (
         animationQueue.length > 0 &&
-        animationQueue[0].elementTop <=
+        animationQueue[0].elementTop() <=
             window.scrollY + window.innerHeight * animationTriggerDecimal
     ) {
         animateElement(animationQueue.shift()!); // shift pops off the first element and returns it
@@ -133,8 +133,10 @@ const isFirstElementInAnimationRange = (
     animationDescriptions: AnimationDescription[],
     animationTriggerDecimal: number
 ): boolean => {
+    document.getElementById("mover")!.style.top =
+        animationDescriptions[0].elementTop().toString() + "px";
     return (
-        animationDescriptions[0].elementTop <=
+        animationDescriptions[0].elementTop() <=
         window.scrollY + window.innerHeight * animationTriggerDecimal
     );
 };
