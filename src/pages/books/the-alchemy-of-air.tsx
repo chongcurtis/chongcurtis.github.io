@@ -273,7 +273,10 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll ">
                 It took months, but iron mixed with calcium was the best
             </p>
-            <p className="fade-in-on-scroll ">Year by year, engineering challenges were solved.</p>
+            <p className="fade-in-on-scroll ">
+                With the catalyst found Bosch focused on the machinery to handle the enormous
+                pressures involved
+            </p>
             <p className="fade-in-on-scroll ">
                 He assembled the world's largest furnaces to heat the nitrogen.
             </p>
@@ -281,50 +284,60 @@ export default function TheAlchemyOfAir() {
             {/*explosion animation?*/}
             <p className="fade-in-on-scroll ">But they kept exploding.</p>
             <p className="fade-in-on-scroll ">
-                His metallurgists analyzed the broken pieces, and found hydrogen mixed in.
+                After every failure, he would send dozens of metallurgists to analyze the broken
+                pieces.
+            </p>
+            <p className="fade-in-on-scroll ">
+                His team knew more about metals than anyone else in the world. And explosion after
+                explosion, they found hydrogen mixed in with the steel.
             </p>
             <p className="fade-in-on-scroll ">
                 The high pressure caused the walls of his furnace to absorb hydrogen, making them
                 brittle.
             </p>
-            <p>
+            <p className="fade-in-on-scroll ">
                 He's defeated. So on his only night off, he heads to the bowling alley and
                 socializes with his team.
             </p>
-            <p>Eureka.</p>
-            <p>
-                The following day, Carl drills holes into the walls of his furnace. Small enough to
+            <p className="fade-in-on-scroll ">Eureka.</p>
+            <p className="fade-in-on-scroll ">
+                The following day, Bosch drills holes into the walls of his furnace. Small enough to
                 keep the pressure but large enough for hydrogen to leak out.
             </p>
-            <p>It works. </p>
+            <p className="fade-in-on-scroll ">
+                It works. Ammonia spills from his furnace. Haber and Bosch have just averted global
+                famine.
+            </p>
             <p>Just in time for: World War I </p>
             <br />
             <p className="fade-in-on-scroll">
-                Nitrogen has the very special property of propelling bullets. And it extends
-                Germany's work by two years.
+                Because Nitrogen has a darker side. It has the very special property of propelling
+                projectiles. And it extends Germany's war by two years.
             </p>
             <p className="fade-in-on-scroll">
-                This book changed my life because it showed me that humanity has solved
-                calamity-scale problems before. Climate change used to scare me, but this epochal
-                moment gives me hope.
+                These scientists weren't perfect. But their story changed my life because it showed
+                me that humanity has solved calamity-scale problems before.
+            </p>
+            <p className="fade-in-on-scroll">
+                Climate change used to scare me, but this epochal moment gives me hope.
             </p>
             <p className="fade-in-on-scroll">
                 It showed me that the best solutions to problems may not mimic nature.
             </p>
             <p className="fade-in-on-scroll">
-                And that when reading papers, the first author gets 95% of the recognition.
+                And that diligent experimental processes compound to to incredible results.
             </p>
+            <p className="fade-in-on-scroll ">
+                Bosch didn't know it at the time, but his years of work pioneered an entire new
+                field:
+            </p>
+            <p className="fade-in-on-scroll ">High pressure chemistry.</p>
             {/*<p className="fade-in-on-scroll">*/}
             {/*    I think a a modern version of crooke's challenge is the quest for economical nuclear*/}
             {/*    fusion. Laboratories slam plasma together at millions of degrees, with magnetic*/}
             {/*    forces probably stronger than rail-guns. Little by little, these labs try to improve*/}
             {/*    their yields, because they believe that nuclera fusion is economically possible*/}
             {/*</p>*/}
-            <p className="fade-in-on-scroll">
-                In this story, Carl had the harder job. Not only did he make fertilizer economical,
-                but he invents an entire new field:
-            </p>
-            <p className="fade-in-on-scroll ">High pressure chemistry.</p>
             {/*<p>*/}
             {/*    What else did these Nobel laureates do?
             {/*</p>*/}
@@ -334,7 +347,7 @@ export default function TheAlchemyOfAir() {
             </p>
             {/*it would be cool if all the other words in this phrase just disappeared, and all you saw was "the alchemy of air"*/}
             <p className="fade-in-on-scroll">
-                They did more alchemy of course. You can feel it in the air.
+                You'll have to read the book. But they did more alchemy of course. You can feel it in the air.
             </p>
             <p className="fade-in-on-scroll mt-10 text-2xl">Sources</p>
             <>
