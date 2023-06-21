@@ -117,15 +117,15 @@ export default function TheAlchemyOfAir() {
                 in the grip of actual dearth, the chemist will step in and postpone the day of
                 famine".
             </p>
-            <p className="fade-in-on-scroll mb-32 mt-20">This was Brook's challenge:</p>
+            <p className="fade-in-on-scroll mb-20 mt-20">This was Brook's challenge:</p>
             <p className="fade-in-on-scroll mb-20 mt-10 text-2xl ">
                 To fix nitrogen, and save mankind.
             </p>
             {/*<p className="fade-in-on-scroll mt-10 ">*/}
             {/*    His address was sensational. Newspapers printed it around the world.*/}
             {/*</p>*/}
-            <p className="fade-in-on-scroll mb-20 text-xl">
-                Newspapers printed his address around the world
+            <p className="fade-in-on-scroll mb-10 text-xl">
+                Newspapers printed his address around the world.
             </p>
             <p className="fade-in-on-scroll text-xl">The race was on.</p>
             {/* The address says that the world should run out of food by 1931*/}
@@ -336,6 +336,38 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll">
                 They did more alchemy of course. You can feel it in the air.
             </p>
+            <p className="fade-in-on-scroll mt-10 text-2xl">Sources</p>
+            <>
+                {[
+                    {
+                        title: "The Alchemy of Air: A Jewish Genius, a Doomed Tycoon, and the Scientific Discovery That Fed the World but Fueled the Rise of Hitler",
+                        link: "www.goodreads.com/en/book/show/3269091",
+                    },
+                    {
+                        title: "Address of the President Before the British Association for the Advancement of Science, Bristol, 1898",
+                        link: "www.jstor.org/stable/1627238?seq=2",
+                    },
+                    {
+                        title: "Birkeland–Eyde process",
+                        link: "en.wikipedia.org/wiki/Birkeland%E2%80%93Eyde_process",
+                    },
+                ].map((source, idx) => {
+                    return (
+                        <p className="fade-in-on-scroll text-md mt-10 text-left" key={idx}>
+                            {source.title}:{` `}
+                            <a
+                                className="text-sleepover-secondary"
+                                href={`https://${source.link}`}
+                                target="_blank"
+                            >
+                                {source.link}
+                            </a>
+                        </p>
+                    );
+                })}
+            </>
+            {/* This footer is needed so the bottom elements will fade into view*/}
+            <div className="h-96" />
         </div>
     );
 }
