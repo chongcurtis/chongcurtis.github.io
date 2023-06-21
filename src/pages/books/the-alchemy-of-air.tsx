@@ -305,9 +305,20 @@ export default function TheAlchemyOfAir() {
                 keep the pressure but large enough for hydrogen to leak out.
             </p>
             <p className="fade-in-on-scroll ">
-                It works. Ammonia spills from his furnace. Haber and Bosch have just averted global
-                famine.
+                {/*It works. Ammonia spills from his furnace. Haber and Bosch have just averted global*/}
+                {/*famine.*/}
+                It works. Ammonia torrents from his furnace
             </p>
+            <div className="flex-row">
+                <ExponentialCount
+                    startingNumber={7}
+                    endingNumber={1000000}
+                    exponentialAmount={0.9}
+                    startingWaitDuration={500}
+                    startingRedness={200}
+                />
+                <p className="mt-1">Years until famine </p>
+            </div>
             <p>Just in time for: World War I </p>
             <br />
             <p className="fade-in-on-scroll">
@@ -347,7 +358,8 @@ export default function TheAlchemyOfAir() {
             </p>
             {/*it would be cool if all the other words in this phrase just disappeared, and all you saw was "the alchemy of air"*/}
             <p className="fade-in-on-scroll">
-                You'll have to read the book. But they did more alchemy of course. You can feel it in the air.
+                You'll have to read the book. But they did more alchemy of course. You can feel it
+                in the air.
             </p>
             <p className="fade-in-on-scroll mt-10 text-2xl">Sources</p>
             <>

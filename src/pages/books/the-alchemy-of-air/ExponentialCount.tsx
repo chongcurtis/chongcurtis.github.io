@@ -20,14 +20,14 @@ export default function ExponentialCount({
     const [elementRef, startAnimationEventFired] = useAnimationEventListener();
     const displayNumber = useStatefulRef(startingNumber);
     const redness = useStatefulRef(startingRedness);
-    const comparator =
-        startingNumber >= endingNumber
-            ? (a: number, b: number) => {
-                  return a > b;
-              }
-            : (a: number, b: number) => {
-                  return a < b;
-              };
+    const isCountingDown = startingNumber >= endingNumber;
+    const comparator = isCountingDown
+        ? (a: number, b: number) => {
+              return a > b;
+          }
+        : (a: number, b: number) => {
+              return a < b;
+          };
 
     // write a function that takes a starting number, and an ending number, and exponentially counts up to the ending number within 3 seconds
     async function startExponentialCount() {
@@ -35,10 +35,22 @@ export default function ExponentialCount({
         let waitDuration = startingWaitDuration;
         while (comparator(displayNumber.current, endingNumber)) {
             // const elapsedMilliseconds = Date.now() - startTime;
-            displayNumber.current -= 1;
-            if (redness.current < 210) {
-                redness.current += 3;
+            if (isCountingDown) {
+                displayNumber.current -= 1;
+                if (redness.current < 210) {
+                    redness.current += 3;
+                }
+            } else {
+                displayNumber.current += 1;
+                if (redness.current >= 3) {
+                    redness.current -= 3;
+                }
             }
+            if (waitDuration < 0.05) {
+                displayNumber.current = 9999;
+                break;
+            }
+
             await sleep(waitDuration); // Adjust sleep duration for desired count speed
             waitDuration *= exponentialAmount;
         }
@@ -62,7 +74,7 @@ export default function ExponentialCount({
                 color: `rgb(${redness.current},0,0)`,
             }}
         >
-            {Math.round(displayNumber.current)}
+            {displayNumber.current === 9999 ? <>&infin;</> : Math.round(displayNumber.current)}
         </div>
     );
 }
