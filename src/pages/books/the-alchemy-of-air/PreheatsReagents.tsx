@@ -11,12 +11,13 @@ const initialParticles = [
     // new Particle(100, 150, 200, -3, -3, 0, 0, 5, "red", 50),
     // new Particle(100, 300, 150, 3, -3, 0, 0, 5, "red", 200),
 ];
+const boilerColor = "#616161";
 const blocks = [
-    new Block(80, 50, 230, 10, "black", 45),
-    new Block(50, 130, 200, 10, "black", 45),
-    new Block(163, 200, 600, 10, "black", 0),
-    new Block(363, 100, 10, 200, "black", 0),
-    new Block(163, 51, 10, 167, "black", 0),
+    new Block(80, 50, 230, 10, boilerColor, 45),
+    new Block(50, 130, 200, 10, boilerColor, 45),
+    new Block(242, 200, 252, 10, boilerColor, 0), // bottom bar
+    new Block(363, 100, 10, 200, boilerColor, 0),
+    new Block(163, 51, 10, 167, boilerColor, 0),
 ];
 
 export default function PreheatsReagents() {

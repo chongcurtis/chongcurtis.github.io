@@ -10,6 +10,8 @@ import CultivateAllArableLand from "@/pages/books/the-alchemy-of-air/CultivateAl
 import OptimallyRotateCrops from "@/pages/books/the-alchemy-of-air/OptimallyRotateCrops";
 import IncreaseFertilityOfLand from "@/pages/books/the-alchemy-of-air/IncreaseFertilityOfLand";
 import PreheatsReagents from "./the-alchemy-of-air/PreheatsReagents";
+import ArcFurnace from "./the-alchemy-of-air/ArcFurnace";
+import Boiler from "./the-alchemy-of-air/Boiler";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -22,7 +24,6 @@ export default function TheAlchemyOfAir() {
             {/*<div id="mover" className="absolute h-3 w-3 bg-blue-400"></div>*/}
             {/*<div className="fixed mt-[70vh] h-3 w-3 bg-red-400"></div>*/}
             <div className="mt-20" />
-            <PreheatsReagents />
             <div className="m-auto items-center">
                 <AlchemyOfAirTitle />
             </div>
@@ -146,6 +147,7 @@ export default function TheAlchemyOfAir() {
                 </div>
             </div>
             <p className="fade-in-on-scroll mb-40 mt-20 text-2xl">1903 Norway</p>
+            <ArcFurnace/>
             <p className="fade-in-on-scroll mb-10 mt-10 ">
                 Birkeland and Eyde creates artificial lightning, splitting N&#8322; for the first
                 time.
@@ -158,7 +160,7 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mb-10 mt-10 ">But the process is:</p>
             <p className="fade-in-on-scroll mb-10 mt-10 ">Prohibitively expensive</p>
             <p className="fade-in-on-scroll mb-10 mt-10 ">Corrosive</p>
-            <p className="fade-in-on-scroll mb-10 mt-10 ">So hot it fries the machine</p>
+            <p className="fade-in-on-scroll mb-10 mt-10 ">And so hot it fries the machine</p>
             {/*<div className="fade-in-on-scroll">*/}
             {/*    <div*/}
             {/*        className="mt-20 text-9xl"*/}
@@ -225,6 +227,7 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll ">
                 Preheats the reagents with the hot exhaust ammonia.
             </p>
+            <PreheatsReagents />
             <p className="fade-in-on-scroll ">And tries hundreds of catalysts</p>
             <p className="fade-in-on-scroll ">Until finally, in 1909: </p>
             {/* animation of one cubic drop from his machine*/}
