@@ -39,7 +39,7 @@ export default function IncreaseHeat() {
 
     useEffect(() => {
         if (startAnimationEventFired) {
-            generateGradient(30);
+            generateGradient(10);
             spawnHotAtom();
         }
         return () => {

@@ -9,6 +9,7 @@ import IncreasePressure from "@/pages/books/the-alchemy-of-air/IncreasePressure"
 import CultivateAllArableLand from "@/pages/books/the-alchemy-of-air/CultivateAllArableLand";
 import OptimallyRotateCrops from "@/pages/books/the-alchemy-of-air/OptimallyRotateCrops";
 import IncreaseFertilityOfLand from "@/pages/books/the-alchemy-of-air/IncreaseFertilityOfLand";
+import PreheatsReagents from "./the-alchemy-of-air/PreheatsReagents";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -21,6 +22,7 @@ export default function TheAlchemyOfAir() {
             {/*<div id="mover" className="absolute h-3 w-3 bg-blue-400"></div>*/}
             {/*<div className="fixed mt-[70vh] h-3 w-3 bg-red-400"></div>*/}
             <div className="mt-20" />
+            <PreheatsReagents />
             <div className="m-auto items-center">
                 <AlchemyOfAirTitle />
             </div>
