@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { Block } from "@/pages/books/the-alchemy-of-air/Block";
 import useAnimationEventListener from "@/common/useAnimationEventListener";
 import { Queue } from "@/common/queue";
+import { generateGradient } from "@/utils/generateGradient";
 
 const BOX_COLOR = "white";
 // const BOX_COLOR = "#dedede";
@@ -20,7 +21,7 @@ export default function IncreaseHeat() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
     const [elementRef, startAnimationEventFired] = useAnimationEventListener();
-    const colorQueue = React.useRef<Queue<string>>(new Queue<string>());
+    const colorQueue = React.useRef<Queue<string>>(new Queue<string>([]));
 
     const spawnHotAtom = () => {
         const vx = Math.floor(Math.random() * 5) + 1;
@@ -39,7 +40,7 @@ export default function IncreaseHeat() {
 
     useEffect(() => {
         if (startAnimationEventFired) {
-            generateGradient(10);
+            colorQueue.current = new Queue(generateGradient(10));
             spawnHotAtom();
         }
         return () => {
@@ -47,33 +48,6 @@ export default function IncreaseHeat() {
         };
     }, [startAnimationEventFired]);
 
-    function generateGradient(steps: number) {
-        // The colors represented in RGB format
-        const colorStops = [
-            { r: 0, g: 0, b: 255 }, // Blue
-            { r: 173, g: 216, b: 230 }, // Light Blue
-            { r: 255, g: 165, b: 0 }, // Orange
-            { r: 255, g: 0, b: 0 }, // Red
-        ];
-
-        for (let i = 0; i < colorStops.length - 1; i++) {
-            let startColor = colorStops[i];
-            let endColor = colorStops[i + 1];
-
-            for (let j = 0; j < steps; j++) {
-                let r = startColor.r + ((endColor.r - startColor.r) * j) / steps;
-                let g = startColor.g + ((endColor.g - startColor.g) * j) / steps;
-                let b = startColor.b + ((endColor.b - startColor.b) * j) / steps;
-
-                // Ensuring the color values stay within the valid range (0-255)
-                r = Math.round(Math.max(Math.min(255, r), 0));
-                g = Math.round(Math.max(Math.min(255, g), 0));
-                b = Math.round(Math.max(Math.min(255, b), 0));
-
-                colorQueue.current.enqueue(`rgb(${r},${g},${b})`);
-            }
-        }
-    }
 
     return (
         <div ref={elementRef}>

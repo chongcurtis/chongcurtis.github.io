@@ -19,7 +19,7 @@ export default function IncreasePressure() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
     const [elementRef, startAnimationEventFired] = useAnimationEventListener();
-    const pressureAlpha = React.useRef<number>(1);
+    const pressureAlpha = React.useRef<number>(1); // affects the particle's radius
 
     const spawnHotAtom = () => {
         const vx = Math.floor(Math.random() * 5) + 1;
