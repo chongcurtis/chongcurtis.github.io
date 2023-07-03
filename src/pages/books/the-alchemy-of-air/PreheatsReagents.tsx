@@ -42,11 +42,11 @@ export default function PreheatsReagents() {
             const particleVy = Math.floor(Math.random() * 5) + 1;
             particles.current.push(new Particle(30, 30, 40, 3, particleVy, 0, 0, 5, "blue", 200));
 
-            // loop through the spawned particles, and set them to 
-            const numParticles =  particles.current.length
+            // loop through the spawned particles, and set them to
+            const numParticles = particles.current.length;
             const numColors = colorArray.current.length;
             // doing it this way makes it so the particles that are just spawned are blue, and the later ones are red
-            for(let i = 0; i <numParticles; i++) {
+            for (let i = 0; i < numParticles; i++) {
                 const ithColorToPick = Math.max(i - (numParticles - numColors), 0);
                 particles.current[i].color = colorArray.current[ithColorToPick];
             }
@@ -71,13 +71,13 @@ export default function PreheatsReagents() {
         };
     }, [boilerRef]);
     return (
-        <div ref={boilerRef}>
+        <div ref={boilerRef} className="mt-20">
             <ParticleSimulationCanvas
                 startAnimation={startAnimation}
                 particles={particles}
                 blocks={blocks}
                 canvasWidth={500}
-                canvasHeight={500}
+                canvasHeight={265}
                 isCollisionEnabled={true}
             />
         </div>

@@ -9,7 +9,11 @@ type Props = {
     canvasHeight: number;
 };
 
-export default function NBodySimulationCanvas({ bodies: initialBodies, canvasWidth, canvasHeight }: Props) {
+export default function NBodySimulationCanvas({
+    bodies: initialBodies,
+    canvasWidth,
+    canvasHeight,
+}: Props) {
     const bodies = React.useRef(cloneDeep(initialBodies));
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
     const SIMULATION_SPEED = 30; // 40ms between each frame = 25fps
@@ -61,6 +65,9 @@ export default function NBodySimulationCanvas({ bodies: initialBodies, canvasWid
             for (let j = i + 1; j < n; j++) {
                 const b1 = bodies.current[i];
                 const b2 = bodies.current[j];
+                if (b1.group != b2.group) {
+                    continue;
+                }
 
                 // f = ma, so f/m = a
                 const r2 = (b2.x - b1.x) ** 2 + (b2.y - b1.y) ** 2;

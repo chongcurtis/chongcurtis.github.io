@@ -12,6 +12,7 @@ import IncreaseFertilityOfLand from "@/pages/books/the-alchemy-of-air/IncreaseFe
 import PreheatsReagents from "./the-alchemy-of-air/PreheatsReagents";
 import ArcFurnace from "./the-alchemy-of-air/ArcFurnace";
 import Boiler from "./the-alchemy-of-air/Boiler";
+import { HundredsOfCatalysts } from "./the-alchemy-of-air/HundredsOfCatalysts";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -147,7 +148,7 @@ export default function TheAlchemyOfAir() {
                 </div>
             </div>
             <p className="fade-in-on-scroll mb-40 mt-20 text-2xl">1903 Norway</p>
-            <ArcFurnace/>
+            <ArcFurnace />
             <p className="fade-in-on-scroll mb-10 mt-10 ">
                 Birkeland and Eyde creates artificial lightning, splitting N&#8322; for the first
                 time.
@@ -229,11 +230,10 @@ export default function TheAlchemyOfAir() {
             </p>
             <PreheatsReagents />
             <p className="fade-in-on-scroll ">And tries hundreds of catalysts</p>
+            <HundredsOfCatalysts />
             <p className="fade-in-on-scroll ">Until finally, in 1909: </p>
             {/* animation of one cubic drop from his machine*/}
-            <p className="fade-in-on-scroll ">
-                His quartz-based apparatus produces one cubic centimeter of ammonia.
-            </p>
+            <p className="fade-in-on-scroll ">He creates one cubic centimeter of ammonia.</p>
             <p className="fade-in-on-scroll ">Once scaled, his process would feed the world. </p>
             <p className="fade-in-on-scroll ">The problem? Scale requires</p>
             {/*<p className="fade-in-on-scroll ">600 &deg;C of temperature</p>*/}
@@ -331,8 +331,9 @@ export default function TheAlchemyOfAir() {
                 projectiles. And it extends Germany's war by two years.
             </p>
             <p className="fade-in-on-scroll">
-                These scientists weren't perfect. But their story changed my life because it showed
-                me that humanity has solved calamity-scale problems before.
+                These scientists weren't perfect. They killed many people, Haber especially. But
+                their story changed my life because it showed me that humanity has solved
+                calamity-scale problems before.
             </p>
             <p className="fade-in-on-scroll">
                 Climate change used to scare me, but this epochal moment gives me hope.
