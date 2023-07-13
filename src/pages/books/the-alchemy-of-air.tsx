@@ -3,6 +3,7 @@ import { initAnimations, NARRATIVE_ANIMATION_TRIGGER_DECIMAL } from "@/common/an
 import ExponentialCount from "@/pages/books/the-alchemy-of-air/ExponentialCount";
 import AlchemyOfAirTitle from "@/pages/books/the-alchemy-of-air/AlchemyOfAirTitle";
 import sirWilliamCrookes from "public/books/the-alchemy-of-air/Sir_William_Crookes_1906.jpg";
+import carlBosche from "public/books/the-alchemy-of-air/Carl_Bosch.jpg";
 import FixNitrogen from "@/pages/books/the-alchemy-of-air/FixNitrogen";
 import IncreaseHeat from "@/pages/books/the-alchemy-of-air/IncreaseHeat";
 import IncreasePressure from "@/pages/books/the-alchemy-of-air/IncreasePressure";
@@ -13,6 +14,7 @@ import PreheatsReagents from "./the-alchemy-of-air/PreheatsReagents";
 import ArcFurnace from "./the-alchemy-of-air/ArcFurnace";
 import Boiler from "./the-alchemy-of-air/Boiler";
 import { HundredsOfCatalysts } from "./the-alchemy-of-air/HundredsOfCatalysts";
+import ThinLine from "@/components/ThinLine";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -233,24 +235,34 @@ export default function TheAlchemyOfAir() {
             <HundredsOfCatalysts />
             <p className="fade-in-on-scroll ">Until finally, in 1909: </p>
             {/* animation of one cubic drop from his machine*/}
-            <p className="fade-in-on-scroll ">He creates one cubic centimeter of ammonia.</p>
-            <p className="fade-in-on-scroll ">Once scaled, his process would feed the world. </p>
-            <p className="fade-in-on-scroll ">The problem? Scale requires</p>
+            <p className="fade-in-on-scroll mt-10 ">He creates one cubic centimeter of ammonia.</p>
+            <p className="fade-in-on-scroll mt-10 ">
+                Once scaled, his process would feed the world.
+            </p>
+            <p className="fade-in-on-scroll mt-20 ">The problem? Scale requires</p>
             {/*<p className="fade-in-on-scroll ">600 &deg;C of temperature</p>*/}
-            <p className="fade-in-on-scroll ">
+            <p className="fade-in-on-scroll mt-20 ">
                 Immense amounts of Osmium, one of the world's most expensive metals.
             </p>
-            <p className="fade-in-on-scroll ">
+            <p className="fade-in-on-scroll mt-20 ">
                 Vessels that can withstand one hundred atmospheres of pressure
             </p>
-            <p className="fade-in-on-scroll ">
+
+            <p className="fade-in-on-scroll mt-20 ">
                 And the political will to sink collosial sums of capital.
             </p>
-            <p className="fade-in-on-scroll ">
+            <p className="fade-in-on-scroll mt-20">
                 BASF gave Haber a royalty, an enourmous salary, and began hording all the Osmium in
                 the world.
             </p>
-            <p className="fade-in-on-scroll ">They sent Carl Bosche to figure out the rest.</p>
+            <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
+                <div className="fade-in-on-scroll animation-delay-1500">
+                    <p>They sent Carl Bosche to figure out the rest.</p>
+                </div>
+                <div className="fade-in-on-scroll max-w-sm p-20 md:m-5">
+                    <img src={carlBosche.src} alt="Sir William Crookes" />
+                </div>
+            </div>
             <div className="fade-in-on-scroll">
                 <div
                     className="mt-20 text-9xl "
@@ -258,61 +270,64 @@ export default function TheAlchemyOfAir() {
                         color: `rgb(130, 0, 0)`,
                     }}
                 >
-                    25
+                    23
                 </div>
                 <p className="mt-1 text-2xl">Years until famine</p>
             </div>
-            <p className="fade-in-on-scroll ">
-                Bosche assembled hundreds of researchers. He quickly found that Uranium also worked
-                as a catalyst.
+            <p className="fade-in-on-scroll mt-20">Bosche assembled hundreds of researchers.</p>
+            <p className="fade-in-on-scroll mt-10">
+                Alwin Mittasch was in charge of finding a good catalyst. He quickly found that
+                Uranium also worked, but it's reactivity weakened quickly
             </p>
-            <p className="fade-in-on-scroll ">
-                But it's reactivity weaked quickly. He needed a better catalyst.
+            <p className="fade-in-on-scroll mt-10">
+                So to find a better one, he set dozens of furnaces, A/B testing hundreds of
+                catalysists each week.
             </p>
-            <p className="fade-in-on-scroll ">
-                So he built 20 furnaces, A/B testing hundreds of catalysists each week.
+            <p className="fade-in-on-scroll mt-10">
+                It took months, but after 20,000 experiments, the best catalyst he found was iron
+                mixed with calcium. It was good, but he had more more time to be perfect.
             </p>
-            <p className="fade-in-on-scroll ">
-                Ironed seemed promising, but it needed to be doped with a promoter to work.
-            </p>
-            <p className="fade-in-on-scroll ">
-                It took months, but iron mixed with calcium was the best
-            </p>
-            <p className="fade-in-on-scroll ">
-                With the catalyst found Bosch focused on the machinery to handle the enormous
+            {/* <p className="fade-in-on-scroll ">
+                The next step was to purify hydrogen gas without creating CO and poisioning his
+                team.{" "}
+            </p> */}
+            <p className="fade-in-on-scroll mt-10">
+                With the catalyst found, Bosch focused on the machinery to handle the enormous
                 pressures involved
             </p>
-            <p className="fade-in-on-scroll ">
+            <p className="fade-in-on-scroll mt-10">
                 He assembled the world's largest furnaces to heat the nitrogen.
             </p>
-            <p className="fade-in-on-scroll ">And colossal compressors, valves, gauges, etc.</p>
+            <p className="fade-in-on-scroll mt-10">
+                And colossal compressors, valves, gauges, etc.
+            </p>
             {/*explosion animation?*/}
-            <p className="fade-in-on-scroll ">But they kept exploding.</p>
-            <p className="fade-in-on-scroll ">
+            <p className="fade-in-on-scroll mt-10">But they kept exploding.</p>
+            <p className="fade-in-on-scroll mt-10">
                 After every failure, he would send dozens of metallurgists to analyze the broken
                 pieces.
             </p>
-            <p className="fade-in-on-scroll ">
+            <p className="fade-in-on-scroll mt-10">
                 His team knew more about metals than anyone else in the world. And explosion after
                 explosion, they found hydrogen mixed in with the steel.
             </p>
-            <p className="fade-in-on-scroll ">
+            <p className="fade-in-on-scroll mt-10">
                 The high pressure caused the walls of his furnace to absorb hydrogen, making them
                 brittle.
             </p>
-            <p className="fade-in-on-scroll ">
+            <p className="fade-in-on-scroll mt-10">
                 He's defeated. So on his only night off, he heads to the bowling alley and
                 socializes with his team.
             </p>
-            <p className="fade-in-on-scroll ">Eureka.</p>
-            <p className="fade-in-on-scroll ">
+            <p className="fade-in-on-scroll mt-32">Eureka.</p>
+            <p className="fade-in-on-scroll mt-32">
                 The following day, Bosch drills holes into the walls of his furnace. Small enough to
                 keep the pressure but large enough for hydrogen to leak out.
             </p>
-            <p className="fade-in-on-scroll ">
+            <p className="fade-in-on-scroll mt-10">
                 {/*It works. Ammonia spills from his furnace. Haber and Bosch have just averted global*/}
                 {/*famine.*/}
-                It works. Ammonia torrents from his furnace
+                It works. And in 1911 ammonia torrents from his furnace.
             </p>
             <div className="flex-row">
                 <ExponentialCount

@@ -15,6 +15,10 @@ export default function Home() {
                     - this line is just so hopeful and makes me smile every time.
                 </div>
                 <div>Ours: Possibly my favourite taylor swift song. Ever. It's just so sweet</div>
+                <div>
+                    Fearless: My favourite song from the Fearless album. I loved it so much that I
+                    made it my morning alarm... I then promptly changed my alarm
+                </div>
             </div>
             <div>
                 <div>Favourite Clairo songs</div>
