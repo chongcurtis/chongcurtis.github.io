@@ -239,21 +239,23 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mt-10 ">
                 Once scaled, his process would feed the world.
             </p>
-            <p className="fade-in-on-scroll mt-20 ">The problem? Scale requires</p>
+            <p className="fade-in-on-scroll mb-40 mt-10 ">The problem? Scale requires...</p>
             {/*<p className="fade-in-on-scroll ">600 &deg;C of temperature</p>*/}
-            <p className="fade-in-on-scroll mt-20 ">
+            <p className="fade-in-on-scroll mt-10 ">
                 Immense amounts of Osmium, one of the world's most expensive metals.
             </p>
-            <p className="fade-in-on-scroll mt-20 ">
-                Vessels that can withstand one hundred atmospheres of pressure
+            <p className="fade-in-on-scroll mt-10 ">
+                Vessels that can withstand one hundred atmospheres of pressure. (When vessels
+                regularly exploded at 7 atmospheres)
             </p>
 
-            <p className="fade-in-on-scroll mt-20 ">
+            <p className="fade-in-on-scroll mt-10 ">
                 And the political will to sink collosial sums of capital.
             </p>
-            <p className="fade-in-on-scroll mt-20">
-                BASF gave Haber a royalty, an enourmous salary, and began hording all the Osmium in
-                the world.
+            <p className="fade-in-on-scroll mt-32">The German Dye company BASF:</p>
+            <p className="fade-in-on-scroll mt-10">Gave Haber a royalty and an enourmous salary</p>
+            <p className="fade-in-on-scroll mt-10">
+                Then began hording all the Osmium in the world.
             </p>
             <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
                 <div className="fade-in-on-scroll animation-delay-1500">
@@ -274,23 +276,19 @@ export default function TheAlchemyOfAir() {
                 </div>
                 <p className="mt-1 text-2xl">Years until famine</p>
             </div>
-            <p className="fade-in-on-scroll mt-20">Bosche assembled hundreds of researchers.</p>
-            <p className="fade-in-on-scroll mt-10">
-                Alwin Mittasch was in charge of finding a good catalyst. He quickly found that
-                Uranium also worked, but it's reactivity weakened quickly
+            <p className="fade-in-on-scroll mt-20">
+                Hundreds of researchers endeavor at Bosche's lab. The cradle of smarts.
             </p>
             <p className="fade-in-on-scroll mt-10">
-                So to find a better one, he set dozens of furnaces, A/B testing hundreds of
-                catalysists each week.
+                Alwin Mittasch discovered that Iron (II) Oxide was an economical alternative to
+                Osmium (the catalyst). But his pursuit for the best catalyst led him to 20,000
+                experiments and 11 years of A/B testing. He threw in the towel. There was no better
+                one.
             </p>
             <p className="fade-in-on-scroll mt-10">
-                It took months, but after 20,000 experiments, the best catalyst he found was iron
-                mixed with calcium. It was good, but he had more more time to be perfect.
+                Carl Krauch detoxed the poisionous CO byproduct by adding ammonia to a copper
+                solution.
             </p>
-            {/* <p className="fade-in-on-scroll ">
-                The next step was to purify hydrogen gas without creating CO and poisioning his
-                team.{" "}
-            </p> */}
             <p className="fade-in-on-scroll mt-10">
                 With the catalyst found, Bosch focused on the machinery to handle the enormous
                 pressures involved
