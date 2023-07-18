@@ -4,6 +4,8 @@ import ExponentialCount from "@/pages/books/the-alchemy-of-air/ExponentialCount"
 import AlchemyOfAirTitle from "@/pages/books/the-alchemy-of-air/AlchemyOfAirTitle";
 import sirWilliamCrookes from "public/books/the-alchemy-of-air/Sir_William_Crookes_1906.jpg";
 import fritzHaber from "public/books/the-alchemy-of-air/Fritz_Haber.png";
+import alwinMittasch from "public/books/the-alchemy-of-air/Alwin_Mittasch.jpg";
+import carlKrauch from "public/books/the-alchemy-of-air/Carl_Krauch.jpg";
 import carlBosche from "public/books/the-alchemy-of-air/Carl_Bosch.jpg";
 import FixNitrogen from "@/pages/books/the-alchemy-of-air/FixNitrogen";
 import IncreaseHeat from "@/pages/books/the-alchemy-of-air/IncreaseHeat";
@@ -197,9 +199,8 @@ export default function TheAlchemyOfAir() {
                 </div>
             </div>
             <p className="fade-in-on-scroll mb-10 mt-10">
-                Unlike Birkeland and Eyde's approach, he put his Nitrogen in a "pressure cooker".
-                The intense heat and pressure forces the Nitrogen to give up it's tripple molecular
-                bond and replace it with three single covalent bonds.
+                Unlike Birkeland and Eyde's approach, he squeezes his Nitrogen with enough heat and
+                pressure to force Nitrogen to give up it's tripple molecular bond.
             </p>
             <p className="fade-in-on-scroll mb-10 mt-10">
                 N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub>
@@ -263,10 +264,9 @@ export default function TheAlchemyOfAir() {
                 And the political will to sink collosial sums of capital.
             </p>
             <p className="fade-in-on-scroll mt-32">The German Dye company BASF:</p>
-            <p className="fade-in-on-scroll mt-10">Gave Haber a royalty and an enourmous salary</p>
-            <p className="fade-in-on-scroll mt-10">
-                Then began hording all the Osmium in the world.
-            </p>
+            <p className="fade-in-on-scroll mt-10">1. Gave Haber a royalty</p>
+            <p className="fade-in-on-scroll mt-10">2. Gave Haber an enourmous salary</p>
+            <p className="fade-in-on-scroll mt-10">3. Began hording the world's Osmium.</p>
             <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
                 <div className="fade-in-on-scroll animation-delay-1500">
                     <p>They sent Carl Bosche to figure out the rest.</p>
@@ -289,16 +289,36 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mt-20">
                 Hundreds of researchers endeavor at Bosche's lab. The cradle of smarts.
             </p>
-            <p className="fade-in-on-scroll mt-10">
-                Alwin Mittasch discovered that Iron (II) Oxide was an economical alternative to
-                Osmium (the catalyst). But his pursuit for the best catalyst led him to 20,000
-                experiments and 11 years of A/B testing. He threw in the towel. There was no better
-                one.
-            </p>
-            <p className="fade-in-on-scroll mt-10">
-                Carl Krauch detoxed the poisionous CO byproduct by adding ammonia to a copper
-                solution.
-            </p>
+            <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
+                <div className="fade-in-on-scroll animation-delay-1500 text-left">
+                    <p className="fade-in-on-scroll mt-10 text-center text-3xl">Alwin Mittasch</p>
+                    <p className="fade-in-on-scroll mt-10">
+                        Discovered that Iron (II) Oxide was an economical alternative to Osmium (the
+                        catalyst).
+                    </p>
+                    <p className="fade-in-on-scroll mt-10">
+                        A/B tested 20,000 experiments over 11 years to find a better catalyst.
+                    </p>
+                    <p className="fade-in-on-scroll mt-10">There was no better one.</p>
+                </div>
+                <div className="fade-in-on-scroll max-w-sm p-20 md:m-5">
+                    <img src={alwinMittasch.src} alt="Alwin Mittasch" />
+                </div>
+            </div>
+            <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
+                <div className="fade-in-on-scroll animation-delay-1500 text-left">
+                    <p className="fade-in-on-scroll text-center text-3xl">Carl Krauch</p>
+                    <p className="fade-in-on-scroll mt-10">
+                        Detoxed the poisionous CO byproduct by adding ammonia to a copper solution.
+                    </p>
+                    <p className="fade-in-on-scroll mt-10">
+                        Let's just say he knew a bit too much about toxic gases in WW2...
+                    </p>
+                </div>
+                <div className="fade-in-on-scroll max-w-sm p-20 md:m-5">
+                    <img src={carlKrauch.src} alt="Carl Krauch" />
+                </div>
+            </div>
             <p className="fade-in-on-scroll mt-10">
                 With the catalyst found, Bosch focused on the machinery to handle the enormous
                 pressures involved
@@ -335,11 +355,12 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mt-10">
                 {/*It works. Ammonia spills from his furnace. Haber and Bosch have just averted global*/}
                 {/*famine.*/}
-                It works. And in 1911 ammonia torrents from his furnace.
+                It works. And in 1911 ammonia torrents from his furnace. They did it with 20 years
+                to spare.
             </p>
             <div className="flex-row">
                 <ExponentialCount
-                    startingNumber={7}
+                    startingNumber={20}
                     endingNumber={1000000}
                     exponentialAmount={0.9}
                     startingWaitDuration={500}
