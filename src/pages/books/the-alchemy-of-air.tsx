@@ -3,6 +3,7 @@ import { initAnimations, NARRATIVE_ANIMATION_TRIGGER_DECIMAL } from "@/common/an
 import ExponentialCount from "@/pages/books/the-alchemy-of-air/ExponentialCount";
 import AlchemyOfAirTitle from "@/pages/books/the-alchemy-of-air/AlchemyOfAirTitle";
 import sirWilliamCrookes from "public/books/the-alchemy-of-air/Sir_William_Crookes_1906.jpg";
+import fritzHaber from "public/books/the-alchemy-of-air/Fritz_Haber.png";
 import carlBosche from "public/books/the-alchemy-of-air/Carl_Bosch.jpg";
 import FixNitrogen from "@/pages/books/the-alchemy-of-air/FixNitrogen";
 import IncreaseHeat from "@/pages/books/the-alchemy-of-air/IncreaseHeat";
@@ -187,15 +188,24 @@ export default function TheAlchemyOfAir() {
                 <p className="mt-1 text-2xl">Years until famine</p>
             </div>
             <p className="fade-in-on-scroll mb-10 mt-20 text-2xl">1905 Germany</p>
-            <p className="fade-in-on-scroll mb-10 mt-10">
-                Enter fritz Haber. A chemist still seeking for his Nobel prize.
-            </p>
+            <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
+                <div className="fade-in-on-scroll max-w-sm p-20 md:m-5">
+                    <img src={fritzHaber.src} alt="Sir William Crookes" />
+                </div>
+                <div className="fade-in-on-scroll animation-delay-1500">
+                    <p>Enter fritz Haber. A chemist still seeking for his Nobel prize.</p>
+                </div>
+            </div>
             <p className="fade-in-on-scroll mb-10 mt-10">
                 Unlike Birkeland and Eyde's approach, he put his Nitrogen in a "pressure cooker".
+                The intense heat and pressure forces the Nitrogen to give up it's tripple molecular
+                bond and replace it with three single covalent bonds.
             </p>
             <p className="fade-in-on-scroll mb-10 mt-10">
-                He fails, but he publishes his data anyway.
+                N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub>
             </p>
+            <p className="fade-in-on-scroll mb-10 mt-10">He fails.</p>
+            <p className="fade-in-on-scroll mb-10 mt-10">But he publishes his data anyway.</p>
             <div className="fade-in-on-scroll">
                 <div
                     className="mt-20 text-9xl "
