@@ -317,6 +317,9 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mt-20">
                 Hundreds of researchers endeavor at Bosche's lab. The cradle of smarts.
             </p>
+            <p className="fade-in-on-scroll mt-16">
+                It was the most modern and sophisticated materials testing lab in the world.
+            </p>
             <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
                 <div className="fade-in-on-scroll animation-delay-1500 text-left">
                     <p className="fade-in-on-scroll mt-10 text-center text-3xl">Alwin Mittasch</p>
@@ -351,25 +354,22 @@ export default function TheAlchemyOfAir() {
                     <img src={carlKrauch.src} alt="Carl Krauch" />
                 </div>
             </div>
-            <p className="fade-in-on-scroll mt-10">
+            <p className="fade-in-on-scroll mt-20">
                 With these problems solved, Bosch focused on the machinery to handle the enormous
                 pressures involved
             </p>
-            <p className="fade-in-on-scroll mt-10">
+            <p className="fade-in-on-scroll mt-20">
                 To make ammonia, one has to precisely control the concentration of reagents in an
                 environment 20 times hotter than boilers in steam locomotives.
             </p>
-            <p className="fade-in-on-scroll mt-10">
-                To prevent hydrogen from leaking and Hindenburging his lab, Bosche reinvented...
+            <p className="fade-in-on-scroll mb-32 mt-20">
+                To prevent hydrogen from leaking and Hindenburging his lab...
             </p>
+            <p className="fade-in-on-scroll mb-16 mt-20">Bosche reinvents</p>
             <div className="fade-in-on-scroll ">
                 <img src={newInventions.src} alt="BASF New Inventions" />
             </div>
-            <p className="fade-in-on-scroll mt-10">
-                Working for him were the world's best chemists and engineers, equipt with years of
-                experience and the most sophisticated materials testing equipment.
-            </p>
-            <p className="fade-in-on-scroll mt-10">
+            <p className="fade-in-on-scroll mt-20">
                 At the heart of it all were the world's largest ovens.
             </p>
             {/*explosion animation?*/}
