@@ -5,6 +5,7 @@ import AlchemyOfAirTitle from "@/pages/books/the-alchemy-of-air/AlchemyOfAirTitl
 import sirWilliamCrookes from "public/books/the-alchemy-of-air/Sir_William_Crookes_1906.jpg";
 import fritzHaber from "public/books/the-alchemy-of-air/Fritz_Haber.png";
 import alwinMittasch from "public/books/the-alchemy-of-air/Alwin_Mittasch.jpg";
+import newInventions from "public/books/the-alchemy-of-air/new_inventions.png";
 import carlKrauch from "public/books/the-alchemy-of-air/Carl_Krauch.jpg";
 import carlBosche from "public/books/the-alchemy-of-air/Carl_Bosch.jpg";
 import FixNitrogen from "@/pages/books/the-alchemy-of-air/FixNitrogen";
@@ -359,22 +360,23 @@ export default function TheAlchemyOfAir() {
                 environment 20 times hotter than boilers in steam locomotives.
             </p>
             <p className="fade-in-on-scroll mt-10">
-                Bosche reinvented all of this to keep hydrogen from leaking and Hindenburging his
-                facility.
+                To prevent hydrogen from leaking and Hindenburging his lab, Bosche reinvented...
             </p>
-            {/* word cloud */}
+            <div className="fade-in-on-scroll ">
+                <img src={newInventions.src} alt="BASF New Inventions" />
+            </div>
             <p className="fade-in-on-scroll mt-10">
-                He assembled the world's largest furnaces to heat the nitrogen.
+                Working for him were the world's best chemists and engineers, equipt with years of
+                experience and the most sophisticated materials testing equipment.
+            </p>
+            <p className="fade-in-on-scroll mt-10">
+                At the heart of it all were the world's largest ovens.
             </p>
             {/*explosion animation?*/}
             <p className="fade-in-on-scroll mt-10">But they kept exploding.</p>
             <p className="fade-in-on-scroll mt-10">
                 After every failure, he would send dozens of metallurgists to analyze the broken
                 pieces.
-            </p>
-            <p className="fade-in-on-scroll mt-10">
-                They were the best in the world, equipt with years of knowledge and the most
-                sophisticated materials testing equipment.
             </p>
             <p className="fade-in-on-scroll mt-10">
                 And explosion after explosion, they found hydrogen mixed in with the steel.
@@ -415,11 +417,6 @@ export default function TheAlchemyOfAir() {
                 projectiles. And it extends Germany's war by two years.
             </p>
             <p className="fade-in-on-scroll">
-                These scientists weren't perfect. They killed many people, Haber especially. But
-                their story changed my life because it showed me that humanity has solved
-                calamity-scale problems before.
-            </p>
-            <p className="fade-in-on-scroll">
                 Climate change used to scare me, but this epochal moment gives me hope.
             </p>
             <p className="fade-in-on-scroll">
@@ -427,6 +424,15 @@ export default function TheAlchemyOfAir() {
             </p>
             <p className="fade-in-on-scroll">
                 And that diligent experimental processes compound to to incredible results.
+            </p>
+            <p className="fade-in-on-scroll">
+                Of course these scientists weren't perfect. They killed many people, Haber
+                especially. But their story changed my life because it showed me that humanity has
+                solved calamity-scale problems before.
+            </p>
+            <p className="fade-in-on-scroll mt-10">
+                I find it incredible how the world forgot about "the biggest scientific effort in
+                history, comparable to the Manhattan Project in World War II".
             </p>
             <p className="fade-in-on-scroll ">
                 Bosch didn't know it at the time, but his years of work pioneered an entire new
@@ -481,6 +487,7 @@ export default function TheAlchemyOfAir() {
                     );
                 })}
             </>
+            <p className="fade-in-on-scroll mt-10 text-left">Images from Wikipedia</p>
             {/* This footer is needed so the bottom elements will fade into view*/}
             <div className="h-96" />
         </div>
