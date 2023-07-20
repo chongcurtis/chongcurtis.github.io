@@ -194,7 +194,7 @@ export default function TheAlchemyOfAir() {
                 <div className="fade-in-on-scroll max-w-sm p-20 md:m-5">
                     <img src={fritzHaber.src} alt="Sir William Crookes" />
                 </div>
-                <div className="fade-in-on-scroll animation-delay-1500">
+                <div className="fade-in-on-scroll animation-delay-1500 text-center">
                     <p>Enter fritz Haber. A chemist still seeking for his Nobel prize.</p>
                 </div>
             </div>
@@ -202,7 +202,7 @@ export default function TheAlchemyOfAir() {
                 Unlike Birkeland and Eyde's approach, he squeezes his Nitrogen with enough heat and
                 pressure to force Nitrogen to give up it's tripple molecular bond.
             </p>
-            <p className="fade-in-on-scroll mb-10 mt-10">
+            <p className="fade-in-on-scroll underline-on-scroll mb-10 mt-10 font-bold after:bg-red-400">
                 N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub>
             </p>
             <p className="fade-in-on-scroll mb-10 mt-10">He fails.</p>
@@ -252,21 +252,48 @@ export default function TheAlchemyOfAir() {
             </p>
             <p className="fade-in-on-scroll mb-40 mt-10 ">The problem? Scale requires...</p>
             {/*<p className="fade-in-on-scroll ">600 &deg;C of temperature</p>*/}
-            <p className="fade-in-on-scroll mt-10 ">
-                Immense amounts of Osmium, one of the world's most expensive metals.
-            </p>
-            <p className="fade-in-on-scroll mt-10 ">
-                Vessels that can withstand one hundred atmospheres of pressure. (When vessels
-                regularly exploded at 7 atmospheres)
-            </p>
+            <div className="mt-10 flex items-center">
+                <div className="fade-in-on-scroll w-1/3 text-8xl text-[#750000]">1.</div>
+                <p className="fade-in-on-scroll w-2/3 pl-4">
+                    Immense amounts of Osmium, one of the world's{" "}
+                    <span className="font-bold text-[#750000]"> most expensive</span> metals.
+                </p>
+            </div>
+            <div className="mt-32 flex items-center">
+                <div className="fade-in-on-scroll w-1/3 text-8xl text-[#bb0000]">2.</div>
+                <div className="fade-in-on-scroll w-2/3 pl-4">
+                    <p>
+                        Vessels to withstand{" "}
+                        <span className="font-bold text-[#bb0000]">one hundred atmospheres </span>{" "}
+                        of pressure.
+                    </p>
+                    {/* <p className="mt-2 text-sm"> • Vessels regularly exploded at 7 atmospheres</p> */}
+                    <p className="mt-4 text-base">Vessels regularly exploded at 7 atmospheres*</p>
+                </div>
+            </div>
+            <div className="mt-32 flex items-center">
+                <div className="fade-in-on-scroll w-1/3 text-8xl text-[#ff0000]">3.</div>
+                <p className="fade-in-on-scroll w-2/3 pl-4">
+                    And the political will to sink{" "}
+                    <span className="font-bold text-[#ff0000]">collosial</span> sums of capital.
+                </p>
+            </div>
 
-            <p className="fade-in-on-scroll mt-10 ">
-                And the political will to sink collosial sums of capital.
-            </p>
             <p className="fade-in-on-scroll mt-32">The German Dye company BASF:</p>
-            <p className="fade-in-on-scroll mt-10">1. Gave Haber a royalty</p>
-            <p className="fade-in-on-scroll mt-10">2. Gave Haber an enourmous salary</p>
-            <p className="fade-in-on-scroll mt-10">3. Began hording the world's Osmium.</p>
+            <div className="flex items-center justify-center">
+                <div className="max-w-2xl">
+                    <ul className="fade-in-on-scroll mt-10 list-disc text-left">
+                        <li className="fade-in-on-scroll mb-2 pl-2">Gave Haber a royalty</li>
+                        <li className="fade-in-on-scroll mb-2 pl-2">
+                            Gave Haber an enormous salary
+                        </li>
+                        <li className="fade-in-on-scroll mb-2 pl-2">
+                            And began hoarding the world's Osmium.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
                 <div className="fade-in-on-scroll animation-delay-1500">
                     <p>They sent Carl Bosche to figure out the rest.</p>
@@ -292,14 +319,15 @@ export default function TheAlchemyOfAir() {
             <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
                 <div className="fade-in-on-scroll animation-delay-1500 text-left">
                     <p className="fade-in-on-scroll mt-10 text-center text-3xl">Alwin Mittasch</p>
-                    <p className="fade-in-on-scroll mt-10">
-                        Discovered that Iron (II) Oxide was an economical alternative to Osmium (the
-                        catalyst).
-                    </p>
-                    <p className="fade-in-on-scroll mt-10">
-                        A/B tested 20,000 experiments over 11 years to find a better catalyst.
-                    </p>
-                    <p className="fade-in-on-scroll mt-10">There was no better one.</p>
+                    <ul className="fade-in-on-scroll ml-6 mt-10 list-disc text-left">
+                        <li className="fade-in-on-scroll mb-2 pl-2">
+                            Replaced the Osmium catalyst with Iron (II) Oxide.
+                        </li>
+                        <li className="fade-in-on-scroll mb-2 mt-10 pl-2">
+                            Ran 20,000 experiments over 11 years to find a better catalyst.
+                        </li>
+                    </ul>
+                    <p className="fade-in-on-scroll mt-10 text-center">There was no better one.</p>
                 </div>
                 <div className="fade-in-on-scroll max-w-sm p-20 md:m-5">
                     <img src={alwinMittasch.src} alt="Alwin Mittasch" />
@@ -308,11 +336,14 @@ export default function TheAlchemyOfAir() {
             <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
                 <div className="fade-in-on-scroll animation-delay-1500 text-left">
                     <p className="fade-in-on-scroll text-center text-3xl">Carl Krauch</p>
-                    <p className="fade-in-on-scroll mt-10">
-                        Detoxed the poisionous CO byproduct by adding ammonia to a copper solution.
-                    </p>
-                    <p className="fade-in-on-scroll mt-10">
-                        Let's just say he knew a bit too much about toxic gases in WW2...
+                    <ul className="fade-in-on-scroll ml-6 mt-10 list-disc text-left">
+                        <li className="fade-in-on-scroll mb-2 pl-2">
+                            Detoxed the poisionous CO byproduct by cleaning exhaust gases with
+                            ammonia and copper.
+                        </li>
+                    </ul>
+                    <p className="fade-in-on-scroll ml-6 mt-10 text-base">
+                        Sidenote: Hitler loved toxic gas experts.
                     </p>
                 </div>
                 <div className="fade-in-on-scroll max-w-sm p-20 md:m-5">
