@@ -351,14 +351,20 @@ export default function TheAlchemyOfAir() {
                 </div>
             </div>
             <p className="fade-in-on-scroll mt-10">
-                With the catalyst found, Bosch focused on the machinery to handle the enormous
+                With these problems solved, Bosch focused on the machinery to handle the enormous
                 pressures involved
             </p>
             <p className="fade-in-on-scroll mt-10">
-                He assembled the world's largest furnaces to heat the nitrogen.
+                To make ammonia, one has to precisely control the concentration of reagents in an
+                environment 20 times hotter than boilers in steam locomotives.
             </p>
             <p className="fade-in-on-scroll mt-10">
-                And colossal compressors, valves, gauges, etc.
+                Bosche reinvented all of this to keep hydrogen from leaking and Hindenburging his
+                facility.
+            </p>
+            {/* word cloud */}
+            <p className="fade-in-on-scroll mt-10">
+                He assembled the world's largest furnaces to heat the nitrogen.
             </p>
             {/*explosion animation?*/}
             <p className="fade-in-on-scroll mt-10">But they kept exploding.</p>
@@ -367,8 +373,11 @@ export default function TheAlchemyOfAir() {
                 pieces.
             </p>
             <p className="fade-in-on-scroll mt-10">
-                His team knew more about metals than anyone else in the world. And explosion after
-                explosion, they found hydrogen mixed in with the steel.
+                They were the best in the world, equipt with years of knowledge and the most
+                sophisticated materials testing equipment.
+            </p>
+            <p className="fade-in-on-scroll mt-10">
+                And explosion after explosion, they found hydrogen mixed in with the steel.
             </p>
             <p className="fade-in-on-scroll mt-10">
                 The high pressure caused the walls of his furnace to absorb hydrogen, making them
