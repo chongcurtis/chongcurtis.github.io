@@ -45,7 +45,7 @@ export default function Boiler() {
         boiler.addEventListener(startAnimationEventName, startAnimation);
         return () => {
             // cleanup
-            boiler.removeEventListener(startAnimationEventName, startAnimation);
+e           boiler.removeEventListener(startAnimationEventName, startAnimation);
             clearTimeout(timeoutId.current);
         };
     }, [boilerRef]);

@@ -19,6 +19,7 @@ import ArcFurnace from "./the-alchemy-of-air/ArcFurnace";
 import Boiler from "./the-alchemy-of-air/Boiler";
 import { HundredsOfCatalysts } from "./the-alchemy-of-air/HundredsOfCatalysts";
 import ThinLine from "@/components/ThinLine";
+import BulletsStrikeSand from "./the-alchemy-of-air/BulletsStrikeSand";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -410,8 +411,9 @@ export default function TheAlchemyOfAir() {
                 />
                 <p className="mt-1">Years until famine </p>
             </div>
-            <p>Just in time for: World War I </p>
+            <p>Just in time for...</p>
             <br />
+            <BulletsStrikeSand />
             <p className="fade-in-on-scroll">
                 Because Nitrogen has a darker side. It has the very special property of propelling
                 projectiles. And it extends Germany's war by two years.
