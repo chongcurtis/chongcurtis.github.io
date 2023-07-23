@@ -20,6 +20,7 @@ import { HundredsOfCatalysts } from "./the-alchemy-of-air/HundredsOfCatalysts";
 import ThinLine from "@/components/ThinLine";
 import BulletsStrikeSand from "./the-alchemy-of-air/BulletsStrikeSand";
 import Explosion from "./the-alchemy-of-air/Explosion";
+import Bowling from "./the-alchemy-of-air/Bowling";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -35,6 +36,7 @@ export default function TheAlchemyOfAir() {
             <div className="m-auto items-center">
                 <AlchemyOfAirTitle />
             </div>
+            <Bowling />
             {/* rational for the delay: 2000 ms for fluid to appear, 300ms for buffer*/}
             <p className="fade-in-on-scroll animation-delay-2300 text-md mb-32 mt-10">
                 Credit for this animation goes to{" "}
@@ -389,7 +391,7 @@ export default function TheAlchemyOfAir() {
                 He's defeated. So on his only night off, he heads to the bowling alley and
                 socializes with his team.
             </p>
-            <p className="fade-in-on-scroll mt-32">Eureka.</p>
+            <Bowling />
             <p className="fade-in-on-scroll mt-32">
                 The following day, Bosch drills holes into the walls of his furnace. Small enough to
                 keep the pressure but large enough for hydrogen to leak out.

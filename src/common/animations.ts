@@ -88,7 +88,9 @@ const animationDelayStr = "animation-delay-";
 const getAnimationDelay = (element: HTMLElement): number => {
     for (const elementClass of element.classList) {
         if (elementClass.startsWith(animationDelayStr)) {
-            return parseInt(elementClass.substring(animationDelayStr.length));
+            const animationDelay = parseInt(elementClass.substring(animationDelayStr.length));
+            console.log("ANHIMATION DELAY", animationDelay);
+            return animationDelay;
         }
     }
     return DEFAULT_ANIMATION_DELAY_MS;
