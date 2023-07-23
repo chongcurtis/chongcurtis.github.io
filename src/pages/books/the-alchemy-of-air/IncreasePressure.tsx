@@ -19,7 +19,7 @@ export default function IncreasePressure() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
     const [elementRef, startAnimationEventFired] = useAnimationEventListener();
-    const pressureAlpha = React.useRef<number>(1); // affects the particle's radius
+    const pressureAlpha = React.useRef<number>(2); // affects the particle's radius
 
     const spawnHotAtom = () => {
         const vx = Math.floor(Math.random() * 5) + 1;
@@ -34,16 +34,16 @@ export default function IncreasePressure() {
                 vy,
                 0,
                 0,
-                1 / pressureAlpha.current + 1,
+                2 / pressureAlpha.current + 0.2,
                 "red",
                 30 * pressureAlpha.current
             )
         );
         if (pressureAlpha.current > 0.5) {
-            pressureAlpha.current -= 0.01;
+            pressureAlpha.current -= 0.05;
         }
 
-        const spawnDelay = 100 * Math.pow(pressureAlpha.current, 2);
+        const spawnDelay = 50 * Math.pow(pressureAlpha.current, 2);
         timeoutId.current = setTimeout(spawnHotAtom, spawnDelay);
     };
 

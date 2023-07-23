@@ -109,9 +109,9 @@ export default function TheAlchemyOfAir() {
                 rate".
             </p>
             <p className="fade-in-on-scroll mt-10 ">
-                At present, England's fertilizer is imported from the Chilean desert. But it will
-                soon empty.
+                At present, England's fertilizer is imported from the Chilean desert.
             </p>
+            <p className="fade-in-on-scroll mb-32 mt-32 ">But it will soon empty.</p>
             <p className="fade-in-on-scroll mt-10 ">
                 Fortunately, "nitrogen is one of the most abundant and pervading bodies on the face
                 of the earth".
@@ -197,7 +197,7 @@ export default function TheAlchemyOfAir() {
                     <img src={fritzHaber.src} alt="Sir William Crookes" />
                 </div>
                 <div className="fade-in-on-scroll animation-delay-1500 text-center">
-                    <p>Enter fritz Haber. A chemist still seeking for his Nobel prize.</p>
+                    <p>Enter fritz Haber. A chemist still vying for his Nobel prize.</p>
                 </div>
             </div>
             <p className="fade-in-on-scroll mb-10 mt-10">
@@ -450,8 +450,8 @@ export default function TheAlchemyOfAir() {
             {/*    What else did these Nobel laureates do?
             {/*</p>*/}
             <p className="fade-in-on-scroll">
-                So what's next for Haber and Bosche? Do they win a nobel prize? Develop corporate
-                empires? Pledge to The Reich?
+                So what's next for Haber and Bosche? Do they inheri Nobel's fortune? Establish their
+                own fortunes? Pledge to The Reich?
             </p>
             {/*it would be cool if all the other words in this phrase just disappeared, and all you saw was "the alchemy of air"*/}
             <p className="fade-in-on-scroll">
