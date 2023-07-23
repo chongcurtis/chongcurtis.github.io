@@ -1,17 +1,10 @@
 import ParticleSimulationCanvas from "@/pages/books/the-alchemy-of-air/ParticleSimulationCanvas";
 import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
 import React from "react";
-import { startAnimationEventName } from "@/common/animations";
 import { Block } from "@/pages/books/the-alchemy-of-air/Block";
-import { Queue } from "@/common/queue";
 import { generateGradient } from "@/utils/generateGradient";
 import useAnimationEventListener from "@/common/useAnimationEventListener";
 
-const initialParticles = [
-    // new Particle(100, 100, 140, 3, 3, 0, 0, 5, "red", 50),
-    // new Particle(100, 150, 200, -3, -3, 0, 0, 5, "red", 50),
-    // new Particle(100, 300, 150, 3, -3, 0, 0, 5, "red", 200),
-];
 const boilerColor = "#616161";
 const blocks = [
     new Block(80, 50, 230, 10, boilerColor, 45),

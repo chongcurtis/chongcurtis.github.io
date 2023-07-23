@@ -3,7 +3,6 @@ import ParticleSimulationCanvas from "@/pages/books/the-alchemy-of-air/ParticleS
 import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
 import { Block } from "@/pages/books/the-alchemy-of-air/Block";
 import useAnimationEventListener from "@/common/useAnimationEventListener";
-import { startAnimationEventName } from "@/common/animations";
 
 export default function BulletsStrikeSand() {
     const timeoutId = React.useRef<NodeJS.Timeout>();

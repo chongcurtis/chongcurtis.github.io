@@ -10,6 +10,7 @@ type Props = {
     canvasWidth: number;
     canvasHeight: number;
     isCollisionEnabled: boolean;
+    extraClassNames?: string;
 };
 export default function ParticleSimulationCanvas({
     startAnimation,
@@ -18,6 +19,7 @@ export default function ParticleSimulationCanvas({
     canvasWidth,
     canvasHeight,
     isCollisionEnabled,
+    extraClassNames,
 }: Props) {
     const SIMULATION_SPEED = 35; // 40ms between each frame = 25fps
 
@@ -323,12 +325,16 @@ export default function ParticleSimulationCanvas({
         circle.velocity = reflection;
     }
 
+    const defaultClassNames = "fade-in-on-scroll relative z-10 h-full w-full bg-white";
+    const classNames = extraClassNames
+        ? `${defaultClassNames} ${extraClassNames}`
+        : defaultClassNames;
     return (
         <canvas
             id="canvas"
             ref={canvasRef}
             // NOTE: the fade-in-on-scroll is really important because without it the startAnimationEvent won't be called for this canvas
-            className="fade-in-on-scroll relative z-10 h-full w-full bg-white"
+            className={classNames}
         />
     );
 }

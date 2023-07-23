@@ -16,10 +16,10 @@ import OptimallyRotateCrops from "@/pages/books/the-alchemy-of-air/OptimallyRota
 import IncreaseFertilityOfLand from "@/pages/books/the-alchemy-of-air/IncreaseFertilityOfLand";
 import PreheatsReagents from "./the-alchemy-of-air/PreheatsReagents";
 import ArcFurnace from "./the-alchemy-of-air/ArcFurnace";
-import Boiler from "./the-alchemy-of-air/Boiler";
 import { HundredsOfCatalysts } from "./the-alchemy-of-air/HundredsOfCatalysts";
 import ThinLine from "@/components/ThinLine";
 import BulletsStrikeSand from "./the-alchemy-of-air/BulletsStrikeSand";
+import Explosion from "./the-alchemy-of-air/Explosion";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -366,15 +366,14 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mb-32 mt-20">
                 To prevent hydrogen from leaking and Hindenburging his lab...
             </p>
-            <p className="fade-in-on-scroll mb-16 mt-20">Bosche reinvents</p>
+            <p className="fade-in-on-scroll mb-32 mt-20">Bosche reinvents</p>
             <div className="fade-in-on-scroll ">
                 <img src={newInventions.src} alt="BASF New Inventions" />
             </div>
             <p className="fade-in-on-scroll mt-20">
                 At the heart of it all were the world's largest ovens.
             </p>
-            {/*explosion animation?*/}
-            <p className="fade-in-on-scroll mt-10">But they kept exploding.</p>
+            <Explosion />
             <p className="fade-in-on-scroll mt-10">
                 After every failure, he would send dozens of metallurgists to analyze the broken
                 pieces.
