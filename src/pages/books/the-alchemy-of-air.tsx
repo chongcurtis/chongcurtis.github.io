@@ -375,7 +375,7 @@ export default function TheAlchemyOfAir() {
                 At the heart of it all were the world's largest ovens.
             </p>
             <Explosion />
-            <p className="fade-in-on-scroll mt-10">
+            <p className="fade-in-on-scroll animation-delay-800 mt-10">
                 After every failure, he would send dozens of metallurgists to analyze the broken
                 pieces.
             </p>
@@ -386,11 +386,11 @@ export default function TheAlchemyOfAir() {
                 The high pressure caused the walls of his furnace to absorb hydrogen, making them
                 brittle.
             </p>
-            <p className="fade-in-on-scroll mt-10">
+            <p className="fade-in-on-scroll mb-32 mt-10">
                 He's defeated. So he spends his only night off bowling with his team.
             </p>
             <Bowling />
-            <p className="fade-in-on-scroll mt-10">
+            <p className="fade-in-on-scroll animation-delay-800 mt-20">
                 The following day, Bosch drills holes into the walls of his furnace. Small enough to
                 keep the pressure but large enough for hydrogen to leak out.
             </p>
