@@ -49,10 +49,11 @@ export default function IncreaseFertilityOfLand() {
     };
 
     useEffect(() => {
-        if (startAnimationEventFired) {
-            spawnCrops(30);
-            timeoutId.current = setTimeout(increaseParticleRadius, 100);
+        if (!startAnimationEventFired) {
+            return;
         }
+        spawnCrops(30);
+        timeoutId.current = setTimeout(increaseParticleRadius, 100);
         return () => {
             clearTimeout(timeoutId.current);
             clearTimeout(SpawnCropsTimeoutId.current);

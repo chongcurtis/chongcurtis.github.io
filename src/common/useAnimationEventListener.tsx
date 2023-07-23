@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { startAnimationEventName } from "@/common/animations";
 
 function useAnimationEventListener(): [React.RefObject<HTMLDivElement>, boolean] {
+    // TODO: this state is SET inside of a callback. do we need to use a stateful ref? not sure
     const [hasEventFired, setHasEventFired] = useState<boolean>(false);
     const elementRef = useRef<HTMLDivElement>(null);
 
