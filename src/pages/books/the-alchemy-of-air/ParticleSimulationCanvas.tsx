@@ -328,7 +328,7 @@ export default function ParticleSimulationCanvas({
             id="canvas"
             ref={canvasRef}
             // NOTE: the fade-in-on-scroll is really important because without it the startAnimationEvent won't be called for this canvas
-            className="fade-in-on-scroll h-full w-full bg-white"
+            className="fade-in-on-scroll relative z-10 h-full w-full bg-white"
         />
     );
 }

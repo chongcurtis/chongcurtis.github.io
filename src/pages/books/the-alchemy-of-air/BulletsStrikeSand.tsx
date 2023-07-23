@@ -8,8 +8,7 @@ import { startAnimationEventName } from "@/common/animations";
 export default function BulletsStrikeSand() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
-    const elementRef = React.useRef<HTMLDivElement>(null);
-    const [startAnimation, setStartAnimation] = React.useState<boolean>(false);
+    const [elementRef, startAnimationEventFired] = useAnimationEventListener();
 
     const blocks = [new Block(250, 175, 500, 50, "#b87f54", 0)];
     const createStrike = (x: number, y: number) => {
@@ -38,14 +37,14 @@ export default function BulletsStrikeSand() {
         setTimeout(() => createStrike(middleX + 70, 150), 300);
         setTimeout(() => createStrike(middleX + 120, 150), 900);
         setTimeout(() => createStrike(middleX + 300, 150), 1500);
-        setTimeout(createStrikes, 1800);
+        setTimeout(createStrikes, 2000);
     };
     const lineStrike = () => {
         const middleX = Math.random() * 200 + 50;
         for (let i = 0; i < 10; i++) {
             setTimeout(() => createStrike(middleX + i * 30, 150), i * 100);
         }
-        setTimeout(createStrikes, 1000);
+        setTimeout(createStrikes, 1500);
     };
     const oneSpotStrike = () => {
         const middleX = Math.random() * 400 + 50;
@@ -53,35 +52,32 @@ export default function BulletsStrikeSand() {
             const x = middleX + (Math.random() - 0.5) * 30;
             setTimeout(() => createStrike(x, 150), i * 80);
         }
-        setTimeout(createStrikes, 1000);
+        setTimeout(createStrikes, 1500);
     };
     const strikes = [slowStrike, lineStrike, oneSpotStrike];
     const createStrikes = () => {
         const strike = strikes[Math.floor(Math.random() * strikes.length)];
         strike();
     };
-    const startStrikes = () => {
-        slowStrike();
-        setStartAnimation(true);
-    };
 
     useEffect(() => {
-        if (!elementRef.current) {
+        if (!startAnimationEventFired) {
             return;
         }
-        const element = elementRef.current;
-        element.addEventListener(startAnimationEventName, startStrikes);
+        slowStrike();
         return () => {
             // cleanup
-            element.removeEventListener(startAnimationEventName, startStrikes);
             clearTimeout(timeoutId.current);
         };
-    }, [elementRef]);
+    }, [startAnimationEventFired]);
 
     return (
-        <div ref={elementRef}>
+        <div ref={elementRef} className="relative">
+            <p className="fade-in-on-scroll-slow absolute left-1/2 top-1/2 z-20 -translate-x-[50%] -translate-y-[20%] transform text-2xl font-thin italic md:text-6xl">
+                World War 1
+            </p>
             <ParticleSimulationCanvas
-                startAnimation={startAnimation}
+                startAnimation={startAnimationEventFired}
                 particles={particles}
                 blocks={blocks}
                 canvasWidth={500}

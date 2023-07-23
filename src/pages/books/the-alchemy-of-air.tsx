@@ -411,7 +411,7 @@ export default function TheAlchemyOfAir() {
                 />
                 <p className="mt-1">Years until famine </p>
             </div>
-            <p>Just in time for...</p>
+            <p>Hauntingly punctual for...</p>
             <br />
             <BulletsStrikeSand />
             <p className="fade-in-on-scroll">
