@@ -197,7 +197,7 @@ export default function TheAlchemyOfAir() {
                 <div className="fade-in-on-scroll max-w-sm p-20 md:m-5">
                     <img src={fritzHaber.src} alt="Sir William Crookes" />
                 </div>
-                <div className="fade-in-on-scroll animation-delay-1500 text-center">
+                <div className="fade-in-on-scroll text-center">
                     <p>Enter fritz Haber. A chemist still vying for his Nobel prize.</p>
                 </div>
             </div>
@@ -298,7 +298,7 @@ export default function TheAlchemyOfAir() {
             </div>
 
             <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
-                <div className="fade-in-on-scroll animation-delay-1500">
+                <div className="fade-in-on-scroll">
                     <p>They sent Carl Bosche to figure out the rest.</p>
                 </div>
                 <div className="fade-in-on-scroll max-w-sm p-20 md:m-5">
@@ -323,7 +323,7 @@ export default function TheAlchemyOfAir() {
                 It was the most modern and sophisticated materials testing lab in the world.
             </p>
             <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
-                <div className="fade-in-on-scroll animation-delay-1500 text-left">
+                <div className="fade-in-on-scroll text-left">
                     <p className="fade-in-on-scroll mt-10 text-center text-3xl">Alwin Mittasch</p>
                     <ul className="fade-in-on-scroll ml-6 mt-10 list-disc text-left">
                         <li className="fade-in-on-scroll mb-2 pl-2">
@@ -340,7 +340,7 @@ export default function TheAlchemyOfAir() {
                 </div>
             </div>
             <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
-                <div className="fade-in-on-scroll animation-delay-1500 text-left">
+                <div className="fade-in-on-scroll text-left">
                     <p className="fade-in-on-scroll text-center text-3xl">Carl Krauch</p>
                     <ul className="fade-in-on-scroll ml-6 mt-10 list-disc text-left">
                         <li className="fade-in-on-scroll mb-2 pl-2">
@@ -387,11 +387,10 @@ export default function TheAlchemyOfAir() {
                 brittle.
             </p>
             <p className="fade-in-on-scroll mt-10">
-                He's defeated. So on his only night off, he heads to the bowling alley and
-                socializes with his team.
+                He's defeated. So he spends his only night off bowling with his team.
             </p>
             <Bowling />
-            <p className="fade-in-on-scroll mt-32">
+            <p className="fade-in-on-scroll mt-10">
                 The following day, Bosch drills holes into the walls of his furnace. Small enough to
                 keep the pressure but large enough for hydrogen to leak out.
             </p>
@@ -409,15 +408,17 @@ export default function TheAlchemyOfAir() {
                     startingWaitDuration={500}
                     startingRedness={200}
                 />
-                <p className="mt-1">Years until famine </p>
+                <p className="fade-in-on-scroll mt-1">Years until famine </p>
             </div>
-            <p>Hauntingly punctual for...</p>
+            <p className="fade-in-on-scroll">Hauntingly punctual for...</p>
             <br />
             <BulletsStrikeSand />
             <p className="fade-in-on-scroll">
                 Because Nitrogen has a darker side. It has the very special property of propelling
-                projectiles. And it extends Germany's war by two years.
+                projectiles.
             </p>
+            <p className="fade-in-on-scroll">And it extends Germany's war by two years.</p>
+            {/* this sentence is too much of a departure. make it smoother */}
             <p className="fade-in-on-scroll">
                 Climate change used to scare me, but this epochal moment gives me hope.
             </p>
