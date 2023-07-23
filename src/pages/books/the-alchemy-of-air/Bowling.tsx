@@ -3,6 +3,7 @@ import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
 import React, { useEffect } from "react";
 import { Block } from "@/pages/books/the-alchemy-of-air/Block";
 import useAnimationEventListener from "@/common/useAnimationEventListener";
+import cloneDeep from "lodash.clonedeep";
 
 const PIN_COLOR = "#8ff2c3";
 // setup bowling pins
@@ -22,7 +23,7 @@ const pins = [
 ];
 
 export default function Bowling() {
-    const particles = React.useRef<Particle[]>(pins);
+    const particles = React.useRef<Particle[]>(cloneDeep(pins));
     const [elementRef, startAnimationEventFired] = useAnimationEventListener();
 
     const shootBowlingBall = () => {
@@ -43,7 +44,7 @@ export default function Bowling() {
 
     return (
         <div ref={elementRef} className="relative">
-            <p className="fade-in-on-scroll-slow animation-delay-2002 absolute left-1/2 top-1/2 z-20 -translate-x-[50%] -translate-y-[20%] transform md:text-2xl">
+            <p className="fade-in-on-scroll-slow animation-delay-1100 absolute left-1/2 top-1/2 z-20 -translate-x-[50%] -translate-y-[20%] transform md:text-2xl">
                 Eureka
             </p>
             <ParticleSimulationCanvas

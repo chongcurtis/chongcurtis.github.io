@@ -88,9 +88,7 @@ const animationDelayStr = "animation-delay-";
 const getAnimationDelay = (element: HTMLElement): number => {
     for (const elementClass of element.classList) {
         if (elementClass.startsWith(animationDelayStr)) {
-            const animationDelay = parseInt(elementClass.substring(animationDelayStr.length));
-            console.log("ANHIMATION DELAY", animationDelay);
-            return animationDelay;
+            return parseInt(elementClass.substring(animationDelayStr.length));
         }
     }
     return DEFAULT_ANIMATION_DELAY_MS;
@@ -117,11 +115,7 @@ const tryStartAnimation = (
     }
     // the user's scrolling may have also made elements in the animationQueue to be above the viewport
     // so animate those elements immediately as well
-    while (
-        animationQueue.length > 0 &&
-        animationQueue[0].elementTop() <=
-            window.scrollY + window.innerHeight * animationTriggerDecimal
-    ) {
+    while (animationQueue.length > 0 && animationQueue[0].elementTop() <= window.scrollY) {
         animateElement(animationQueue.shift()!); // shift pops off the first element and returns it
     }
 

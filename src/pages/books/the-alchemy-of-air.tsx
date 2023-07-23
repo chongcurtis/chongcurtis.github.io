@@ -36,7 +36,6 @@ export default function TheAlchemyOfAir() {
             <div className="m-auto items-center">
                 <AlchemyOfAirTitle />
             </div>
-            <Bowling />
             {/* rational for the delay: 2000 ms for fluid to appear, 300ms for buffer*/}
             <p className="fade-in-on-scroll animation-delay-2300 text-md mb-32 mt-10">
                 Credit for this animation goes to{" "}
