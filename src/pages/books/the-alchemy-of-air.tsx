@@ -14,7 +14,6 @@ import IncreasePressure from "@/pages/books/the-alchemy-of-air/IncreasePressure"
 import CultivateAllArableLand from "@/pages/books/the-alchemy-of-air/CultivateAllArableLand";
 import OptimallyRotateCrops from "@/pages/books/the-alchemy-of-air/OptimallyRotateCrops";
 import IncreaseFertilityOfLand from "@/pages/books/the-alchemy-of-air/IncreaseFertilityOfLand";
-import PreheatsReagents from "./the-alchemy-of-air/PreheatsReagents";
 import ArcFurnace from "./the-alchemy-of-air/ArcFurnace";
 import { HundredsOfCatalysts } from "./the-alchemy-of-air/HundredsOfCatalysts";
 import ThinLine from "@/components/ThinLine";
@@ -22,7 +21,6 @@ import BulletsStrikeSand from "./the-alchemy-of-air/BulletsStrikeSand";
 import Explosion from "./the-alchemy-of-air/Explosion";
 import Bowling from "./the-alchemy-of-air/Bowling";
 import CubicDrop from "./the-alchemy-of-air/CubicDrop";
-import { NITROGEN_COLOR } from "./the-alchemy-of-air/constants";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -253,10 +251,6 @@ export default function TheAlchemyOfAir() {
                 Crams Nitrogen into a density no lighter than a Neutron star
             </p>
             <IncreasePressure />
-            {/* <p className="fade-in-on-scroll ">
-                Preheats the reagents with the hot exhaust ammonia.
-            </p>
-            <PreheatsReagents /> */}
             <p className="fade-in-on-scroll ">And tries hundreds of catalysts</p>
             <HundredsOfCatalysts />
             <p className="fade-in-on-scroll mb-32">Until finally, in 1909: </p>
