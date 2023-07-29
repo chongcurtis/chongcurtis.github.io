@@ -1,0 +1,7 @@
+repos:
+    - repo: local
+      hooks:
+          - id: rm-img-metadata
+            name: rm-img-metadata
+            entry: rm-img-metadata.sh
+            language: script

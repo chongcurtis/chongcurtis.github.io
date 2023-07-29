@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "install-mac": "brew install exiv2",
+        "brew-install": "brew install exiv2 pre-commit",
         "rm-img-metadata": "sh rm-img-metadata.sh",
         "dev": "next dev",
         "build": "next build",
