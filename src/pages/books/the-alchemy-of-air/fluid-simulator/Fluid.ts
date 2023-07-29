@@ -17,7 +17,7 @@ export default class Fluid {
     m: Float32Array;
     newM: Float32Array;
 
-    constructor(density, numX, numY, h) {
+    constructor(density: number, numX: number, numY: number, h: number) {
         this.density = density;
         this.numX = numX + 2;
         this.numY = numY + 2;
