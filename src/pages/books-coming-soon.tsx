@@ -4,7 +4,7 @@ export default function BooksComingSoon() {
     return (
         // NOTE: <> must be used since styles are applied in a parent div
         <>
-            <p className="mt-10">
+            <p className="mt-32">
                 These books curtsied their way into my thoughts for months on end. I loved them so
                 much I made a series of "trailers" to make their stories more accessible. I hope you
                 enjoy them!
