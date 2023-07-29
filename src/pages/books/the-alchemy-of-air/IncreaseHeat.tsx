@@ -48,7 +48,6 @@ export default function IncreaseHeat() {
         };
     }, [startAnimationEventFired]);
 
-
     return (
         <div ref={elementRef}>
             <ParticleSimulationCanvas
