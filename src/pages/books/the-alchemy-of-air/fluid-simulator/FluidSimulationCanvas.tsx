@@ -1,7 +1,4 @@
 import React from "react";
-import { Block } from "@/pages/books/the-alchemy-of-air/Block";
-import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
-import Vector2 from "@/pages/books/the-alchemy-of-air/Vector2";
 import Fluid, { U_FIELD, V_FIELD } from "@/pages/books/the-alchemy-of-air/fluid-simulator/Fluid";
 import { Obstacle } from "@/pages/books/the-alchemy-of-air/fluid-simulator/Obstacle";
 
@@ -492,7 +489,7 @@ export default function FluidSimulationCanvas({
         <canvas
             id="canvas"
             ref={canvasRef}
-            className="fade-in-on-scroll animation-delay-200 h-full w-full"
+            className="fade-in-on-scroll h-full w-full"
             // NOTE: the fade-in-on-scroll is really important because without it the startAnimationEvent won't be called for this canvas
         />
     );

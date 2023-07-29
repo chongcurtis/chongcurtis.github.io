@@ -4,11 +4,11 @@ import ThinLine from "@/components/ThinLine";
 import MailchimpSignup from "@/components/MailchimpSignup";
 import sleepoversBanner from "public/sleepovers/sleepovers-banner.jpg";
 import React from "react";
-import { initAnimations } from "@/common/animations";
+import { initAnimations, NORMAL_ANIMATION_TRIGGER_DECIMAL } from "@/common/animations";
 
 export default function Sleepovers() {
     React.useEffect(() => {
-        return initAnimations();
+        return initAnimations(NORMAL_ANIMATION_TRIGGER_DECIMAL);
     }, []);
 
     return (

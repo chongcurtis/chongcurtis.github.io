@@ -9,7 +9,11 @@ type Props = {
     canvasHeight: number;
 };
 
-export default function NBodySimulationCanvas({ bodies: initialBodies, canvasWidth, canvasHeight }: Props) {
+export default function NBodySimulationCanvas({
+    bodies: initialBodies,
+    canvasWidth,
+    canvasHeight,
+}: Props) {
     const bodies = React.useRef(cloneDeep(initialBodies));
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
     const SIMULATION_SPEED = 30; // 40ms between each frame = 25fps
@@ -44,37 +48,42 @@ export default function NBodySimulationCanvas({ bodies: initialBodies, canvasWid
     }
 
     function run(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
-        //console.log(bodies);
         let canvasW = canvas.width;
         let canvasH = canvas.height;
         let n = bodies.current.length;
+
+        const bodiesForEachGroup = new Map<number, Body[]>();
         // reset acceleration
         for (let i = 0; i < n; i++) {
             const b = bodies.current[i];
             b.ax = 0;
             b.ay = 0;
-            bodies.current[i] = b;
+            const newBodies = bodiesForEachGroup.get(b.group) ?? [];
+            newBodies.push(b);
+            bodiesForEachGroup.set(b.group, newBodies);
         }
 
         // figure out new accelerations between each pair of bodies
-        for (let i = 0; i < n; i++) {
-            for (let j = i + 1; j < n; j++) {
-                const b1 = bodies.current[i];
-                const b2 = bodies.current[j];
+        for (const [bodyGroup, bodyArr] of bodiesForEachGroup.entries()) {
+            for (let i = 0; i < bodyArr.length; i++) {
+                for (let j = i + 1; j < bodyArr.length; j++) {
+                    const b1 = bodyArr[i];
+                    const b2 = bodyArr[j];
 
-                // f = ma, so f/m = a
-                const r2 = (b2.x - b1.x) ** 2 + (b2.y - b1.y) ** 2;
-                const dist = Math.sqrt(r2);
-                const f = Math.min((G * b1.m * b2.m) / r2, 0.1);
-                // console.log(f);
-                const fx = (f * (b2.x - b1.x)) / dist;
-                const fy = (f * (b2.y - b1.y)) / dist;
+                    // f = ma, so f/m = a
+                    const r2 = (b2.x - b1.x) ** 2 + (b2.y - b1.y) ** 2;
+                    const dist = Math.sqrt(r2);
+                    const f = Math.min((G * b1.m * b2.m) / r2, 0.1);
+                    // console.log(f);
+                    const fx = (f * (b2.x - b1.x)) / dist;
+                    const fy = (f * (b2.y - b1.y)) / dist;
 
-                b1.ax += fx / b1.m;
-                b2.ax -= fx / b2.m;
-                b1.ay += fy / b1.m;
-                b2.ay -= fy / b2.m;
-                //console.log(fx, fy);
+                    b1.ax += fx / b1.m;
+                    b2.ax -= fx / b2.m;
+                    b1.ay += fy / b1.m;
+                    b2.ay -= fy / b2.m;
+                    //console.log(fx, fy);
+                }
             }
         }
 
@@ -86,7 +95,6 @@ export default function NBodySimulationCanvas({ bodies: initialBodies, canvasWid
 
             b.x += b.vx;
             b.y += b.vy;
-            bodies.current[i] = b;
         }
 
         ctx.clearRect(0, 0, canvasW, canvasH);

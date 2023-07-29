@@ -17,8 +17,8 @@ export const NavLinks: NavLink[] = [
                 href: "/books/the-alchemy-of-air",
             },
             {
-                label: "The Dark Forest",
-                href: "/books/the-dark-forest",
+                label: "Coming Soon",
+                href: "/books-coming-soon",
             },
         ],
     },
