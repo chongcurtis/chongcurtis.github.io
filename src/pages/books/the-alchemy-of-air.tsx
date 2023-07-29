@@ -131,13 +131,14 @@ export default function TheAlchemyOfAir() {
             </p>
             <p className="fade-in-on-scroll mb-20 mt-20">This was Brook's challenge:</p>
             <p className="fade-in-on-scroll mb-20 mt-10 text-2xl ">
-                To fix nitrogen, and save mankind.
+                Convert N<sub>2</sub> &rarr; NH<sub>3</sub>
             </p>
+            <p className="fade-in-on-scroll mb-20 mt-10 text-2xl ">And save the world</p>
             {/*<p className="fade-in-on-scroll mt-10 ">*/}
             {/*    His address was sensational. Newspapers printed it around the world.*/}
             {/*</p>*/}
             <p className="fade-in-on-scroll mb-10 text-xl">
-                Newspapers printed his address around the world.
+                Newspapers printed his address around the globe.
             </p>
             <p className="fade-in-on-scroll text-xl">The race was on.</p>
             {/* The address says that the world should run out of food by 1931*/}
@@ -157,7 +158,7 @@ export default function TheAlchemyOfAir() {
             </div>
             <p className="fade-in-on-scroll mb-40 mt-20 text-2xl">1903 Norway</p>
             <ArcFurnace />
-            <p className="fade-in-on-scroll mb-10 mt-10 ">
+            <p className="fade-in-on-scroll mb-32 mt-10 ">
                 Birkeland and Eyde creates artificial lightning, splitting N&#8322; for the first
                 time.
             </p>
@@ -166,10 +167,19 @@ export default function TheAlchemyOfAir() {
             {/*</p>*/}
             {/*https://www.bing.com/search?q=10*1000+kwh+to+mwh&qs=n&form=QBRE&sp=-1&ghc=2&lq=0&pq=10*1000+kwh+to+mwh&sc=7-18&sk=&cvid=A25F9A80B2A448D98B96FAB5EDD5E887&ghsh=0&ghacc=0&ghpl=*/}
             {/*https://arena.gov.au/projects/hydrogen-to-ammonia/*/}
-            <p className="fade-in-on-scroll mb-10 mt-10 ">But the process is:</p>
-            <p className="fade-in-on-scroll mb-10 mt-10 ">Prohibitively expensive</p>
-            <p className="fade-in-on-scroll mb-10 mt-10 ">Corrosive</p>
-            <p className="fade-in-on-scroll mb-10 mt-10 ">And so hot it fries the machine</p>
+            <p className="fade-in-on-scroll mb-32 mt-10 ">But the process is:</p>
+            <div className="mb-32 mt-10 flex items-center">
+                <div className="fade-in-on-scroll mr-4 text-3xl font-bold text-[#750000]">1.</div>
+                <p className="fade-in-on-scroll text-left">Prohibitively expensive</p>
+            </div>
+            <div className="mb-32 mt-10 flex flex-row justify-center">
+                <div className="fade-in-on-scroll mr-4 text-3xl font-bold text-[#bb0000]">2.</div>
+                <p className="fade-in-on-scroll mt-1">Corrosive</p>
+            </div>
+            <div className="mb-32 mt-10 flex justify-end">
+                <div className="fade-in-on-scroll mr-4 text-3xl font-bold text-[#ff0000]">3.</div>
+                <p className="fade-in-on-scroll mt-1 text-right">And so hot it fries the machine</p>
+            </div>
             {/*<div className="fade-in-on-scroll">*/}
             {/*    <div*/}
             {/*        className="mt-20 text-9xl"*/}
@@ -205,10 +215,10 @@ export default function TheAlchemyOfAir() {
                 Unlike Birkeland and Eyde's approach, he squeezes his Nitrogen with enough heat and
                 pressure to force Nitrogen to give up it's tripple molecular bond.
             </p>
-            <p className="fade-in-on-scroll underline-on-scroll mb-10 mt-10 font-bold after:bg-red-400">
+            <p className="fade-in-on-scroll underline-on-scroll mb-32 mt-10 font-bold after:bg-red-400">
                 N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub>
             </p>
-            <p className="fade-in-on-scroll mb-10 mt-10">He fails.</p>
+            <p className="fade-in-on-scroll mb-32 mt-10">He fails.</p>
             <p className="fade-in-on-scroll mb-10 mt-10">But he publishes his data anyway.</p>
             <div className="fade-in-on-scroll">
                 <div
@@ -228,7 +238,7 @@ export default function TheAlchemyOfAir() {
             </p>
             <p className="fade-in-on-scroll mt-10">Your numbers are "highly erroneous"</p>
             <p className="fade-in-on-scroll mt-10 ">
-                Haber would not let Nernst, a soon-to-be nobel laureate corrode his reputation as a
+                Haber would not let Nernst, a soon-to-be Nobel laureate corrode his reputation as a
                 precise experimentalist.
             </p>
             {/*<p className="fade-in-on-scroll ">*/}
@@ -241,10 +251,10 @@ export default function TheAlchemyOfAir() {
                 Crams Nitrogen into a density no lighter than a Neutron star
             </p>
             <IncreasePressure />
-            <p className="fade-in-on-scroll ">
+            {/* <p className="fade-in-on-scroll ">
                 Preheats the reagents with the hot exhaust ammonia.
             </p>
-            <PreheatsReagents />
+            <PreheatsReagents /> */}
             <p className="fade-in-on-scroll ">And tries hundreds of catalysts</p>
             <HundredsOfCatalysts />
             <p className="fade-in-on-scroll ">Until finally, in 1909: </p>
@@ -452,8 +462,8 @@ export default function TheAlchemyOfAir() {
             {/*    What else did these Nobel laureates do?
             {/*</p>*/}
             <p className="fade-in-on-scroll">
-                So what's next for Haber and Bosche? Do they inheri Nobel's fortune? Establish their
-                own fortunes? Pledge to The Reich?
+                So what's next for Haber and Bosche? Do they inherit a million of Nobel's fortune?
+                Establish their own wealth? Pledge to The Reich?
             </p>
             {/*it would be cool if all the other words in this phrase just disappeared, and all you saw was "the alchemy of air"*/}
             <p className="fade-in-on-scroll">
