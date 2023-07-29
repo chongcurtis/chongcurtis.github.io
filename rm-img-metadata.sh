@@ -5,6 +5,7 @@ publicDir="./public"
 
 # Use find to get all the image and video file names in the directory
 # NOTE: I didn't test this with .mp4 yet
+# NOTE: this script doesn't work with HEIC files
 files=$(find "$publicDir" -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.mp4" \))
 
 for file in $files
