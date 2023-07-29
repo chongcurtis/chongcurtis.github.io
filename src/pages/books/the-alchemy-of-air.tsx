@@ -376,11 +376,11 @@ export default function TheAlchemyOfAir() {
                 pressures involved
             </p>
             <p className="fade-in-on-scroll mt-20">
-                To make ammonia, one has to precisely control the concentration of reagents in an
-                environment 20 times hotter than boilers in steam locomotives.
+                To make ammonia, Bosche perseveres to precisely control the concentration of
+                reagents in an environment 20 times hotter than boilers in steam locomotives.
             </p>
             <p className="fade-in-on-scroll mb-32 mt-20">
-                To prevent hydrogen from leaking and Hindenburging his lab...
+                And to prevent hydrogen from leaking and Hindenburging his lab...
             </p>
             <p className="fade-in-on-scroll mb-32 mt-20">Bosche reinvents</p>
             <div className="fade-in-on-scroll ">
@@ -391,33 +391,33 @@ export default function TheAlchemyOfAir() {
             </p>
             <Explosion />
             <p className="fade-in-on-scroll animation-delay-800 mt-10">
-                After every failure, he would send dozens of metallurgists to analyze the broken
-                pieces.
+                He sent dozens of metallurgists to analyze debris from every failure.
             </p>
             <p className="fade-in-on-scroll mt-10">
-                And explosion after explosion, they found hydrogen mixed in with the steel.
+                And every analysis revealed hydrogen mixed in with the steel.
             </p>
             <p className="fade-in-on-scroll mt-10">
-                The high pressure caused the walls of his furnace to absorb hydrogen, making them
-                brittle.
+                Why? Because the high pressure caused the walls of his furnace to absorb hydrogen,
+                making them brittle.
             </p>
             <p className="fade-in-on-scroll mb-32 mt-10">
                 He's defeated. So he spends his only night off bowling with his team.
             </p>
             <Bowling />
-            <p className="fade-in-on-scroll animation-delay-800 mt-20">
+            <p className="fade-in-on-scroll animation-delay-800 mb-32 mt-20">
                 The following day, Bosch drills holes into the walls of his furnace. Small enough to
                 keep the pressure but large enough for hydrogen to leak out.
             </p>
-            <p className="fade-in-on-scroll mt-10">
+            <p className="fade-in-on-scroll mb-32 mt-10">
                 {/*It works. Ammonia spills from his furnace. Haber and Bosch have just averted global*/}
                 {/*famine.*/}
-                It works. And in 1911 ammonia torrents from his furnace. They did it with 20 years
-                to spare.
+                It works.
             </p>
-            <div className="flex-row">
+            <p className="fade-in-on-scroll mb-32 mt-10">They did it with 20 years to spare.</p>
+            <p className="fade-in-on-scroll mb-32 mt-10">With 1911 technology</p>
+            <div className="mb-32 flex-row">
                 <ExponentialCount
-                    startingNumber={20}
+                    startingNumber={18}
                     endingNumber={1000000}
                     exponentialAmount={0.9}
                     startingWaitDuration={500}
@@ -425,15 +425,33 @@ export default function TheAlchemyOfAir() {
                 />
                 <p className="fade-in-on-scroll mt-1">Years until famine </p>
             </div>
-            <p className="fade-in-on-scroll">Hauntingly punctual for...</p>
+            <p className="fade-in-on-scroll mb-20">Hauntingly punctual for...</p>
             <br />
             <BulletsStrikeSand />
-            <p className="fade-in-on-scroll">
-                Because Nitrogen has a darker side. It has the very special property of propelling
-                projectiles.
+            <p className="fade-in-on-scroll mt-20">
+                Because Nitrogen has the very special property of propelling projectiles.
             </p>
-            <p className="fade-in-on-scroll">And it extends Germany's war by two years.</p>
+            <p className="fade-in-on-scroll mt-10">And it extends Germany's war by two years.</p>
             {/* this sentence is too much of a departure. make it smoother */}
+            <ThinLine />
+
+            <p className="fade-in-on-scroll">
+                This epochal moment is one of my favourites because:
+            </p>
+            <div className="flex items-center justify-center">
+                <div className="max-w-2xl">
+                    <ul className="fade-in-on-scroll mt-10 list-disc text-left">
+                        <li className="fade-in-on-scroll mb-2 pl-2">Gave Haber a royalty</li>
+                        <li className="fade-in-on-scroll mb-2 pl-2">
+                            Gave Haber an enormous salary
+                        </li>
+                        <li className="fade-in-on-scroll mb-2 pl-2">
+                            And began hoarding the world's Osmium.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             <p className="fade-in-on-scroll">
                 Climate change used to scare me, but this epochal moment gives me hope.
             </p>
