@@ -19,10 +19,13 @@ export default function Home() {
                 <div className="place-items-center">
                     <p>
                         Hello I&apos;m Curtis! I grew up in the GTA and moved to Waterloo for
-                        school. I&apos;m currently trying to build a zero-knowledge proofs company
-                        with some friends. Anyhow, I made this site to document my yellow brick road
-                        in progress. Wanna look around?
+                        school. I&apos;m currently trying to build a verifiable computation startup
+                        with some friends.
                     </p>
+                    <p className="mb-5 mt-5">
+                        Anyhow, I made this site to document my yellow brick road in progress.
+                    </p>
+                    <p className="mb-5 mt-5">Wanna look around?</p>
                     <div className="flex justify-center">
                         {NavLinks.map((navLink, idx) => {
                             return (
