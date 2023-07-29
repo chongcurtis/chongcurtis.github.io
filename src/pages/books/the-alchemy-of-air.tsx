@@ -21,6 +21,8 @@ import ThinLine from "@/components/ThinLine";
 import BulletsStrikeSand from "./the-alchemy-of-air/BulletsStrikeSand";
 import Explosion from "./the-alchemy-of-air/Explosion";
 import Bowling from "./the-alchemy-of-air/Bowling";
+import CubicDrop from "./the-alchemy-of-air/CubicDrop";
+import { NITROGEN_COLOR } from "./the-alchemy-of-air/constants";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -232,11 +234,11 @@ export default function TheAlchemyOfAir() {
                 <p className="mt-1 text-2xl">Years until famine</p>
             </div>
             <p className="fade-in-on-scroll mb-40 mt-20 text-2xl">1907 Germany</p>
-            <p className="fade-in-on-scroll mb-10">
+            <p className="fade-in-on-scroll mb-32">
                 "I would like to suggest that Professor Haber now employ a method that is certain to
                 produce truly precise values."
             </p>
-            <p className="fade-in-on-scroll mt-10">Your numbers are "highly erroneous"</p>
+            <p className="fade-in-on-scroll mb-32 mt-10">Your numbers are "highly erroneous"</p>
             <p className="fade-in-on-scroll mt-10 ">
                 Haber would not let Nernst, a soon-to-be Nobel laureate corrode his reputation as a
                 precise experimentalist.
@@ -257,9 +259,12 @@ export default function TheAlchemyOfAir() {
             <PreheatsReagents /> */}
             <p className="fade-in-on-scroll ">And tries hundreds of catalysts</p>
             <HundredsOfCatalysts />
-            <p className="fade-in-on-scroll ">Until finally, in 1909: </p>
+            <p className="fade-in-on-scroll mb-32">Until finally, in 1909: </p>
+            <CubicDrop />
             {/* animation of one cubic drop from his machine*/}
-            <p className="fade-in-on-scroll mt-10 ">He creates one cubic centimeter of ammonia.</p>
+            <p className="fade-in-on-scroll mb-32 mt-10 text-2xl">
+                Outpours one cubic centimeter of ammonia.
+            </p>
             <p className="fade-in-on-scroll mt-10 ">
                 Once scaled, his process would feed the world.
             </p>
@@ -268,8 +273,8 @@ export default function TheAlchemyOfAir() {
             <div className="mt-10 flex items-center">
                 <div className="fade-in-on-scroll w-1/3 text-8xl text-[#750000]">1.</div>
                 <p className="fade-in-on-scroll w-2/3 pl-4">
-                    Immense amounts of Osmium, one of the world's{" "}
-                    <span className="font-bold text-[#750000]"> most expensive</span> metals.
+                    Immense amounts of Osmium, which demands a
+                    <span className="font-bold text-[#750000]"> king's randsom</span> to purchase.
                 </p>
             </div>
             <div className="mt-32 flex items-center">
@@ -327,11 +332,11 @@ export default function TheAlchemyOfAir() {
                 <p className="mt-1 text-2xl">Years until famine</p>
             </div>
             <p className="fade-in-on-scroll mt-20">
-                Hundreds of researchers endeavor at Bosche's lab. The cradle of smarts.
+                Hundreds of researchers endeavor at Bosche's lab, harboring the most modern and
+                sophisticated materials testing equipment
             </p>
-            <p className="fade-in-on-scroll mt-16">
-                It was the most modern and sophisticated materials testing lab in the world.
-            </p>
+            <p className="fade-in-on-scroll mt-20">And</p>
+            <p className="fade-in-on-scroll mt-20">The cradle of smarts.</p>
             <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
                 <div className="fade-in-on-scroll text-left">
                     <p className="fade-in-on-scroll mt-10 text-center text-3xl">Alwin Mittasch</p>
