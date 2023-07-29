@@ -1,6 +1,8 @@
-export const U_FIELD = 0;
-export const V_FIELD = 1;
-export const S_FIELD = 2;
+export enum Field {
+    U_FIELD = 0,
+    V_FIELD = 1,
+    S_FIELD = 2,
+}
 
 export default class Fluid {
     density: number;
@@ -34,7 +36,7 @@ export default class Fluid {
         this.m.fill(1.0);
     }
 
-    integrate(dt, gravity) {
+    integrate(dt: number, gravity: number) {
         let n = this.numY;
         for (let i = 1; i < this.numX; i++) {
             for (let j = 1; j < this.numY - 1; j++) {
@@ -44,7 +46,7 @@ export default class Fluid {
         }
     }
 
-    solveIncompressibility(numIters, dt) {
+    solveIncompressibility(numIters: number, dt: number) {
         let n = this.numY;
         let cp = (this.density * this.h) / dt;
 
@@ -93,7 +95,7 @@ export default class Fluid {
         }
     }
 
-    sampleField(x, y, field) {
+    sampleField(x: number, y: number, field: Field) {
         let n = this.numY;
         let h = this.h;
         let h1 = 1.0 / h;
@@ -105,18 +107,18 @@ export default class Fluid {
         let dx = 0.0;
         let dy = 0.0;
 
-        let f;
+        let f: Float32Array;
 
         switch (field) {
-            case U_FIELD:
+            case Field.U_FIELD:
                 f = this.u;
                 dy = h2;
                 break;
-            case V_FIELD:
+            case Field.V_FIELD:
                 f = this.v;
                 dx = h2;
                 break;
-            case S_FIELD:
+            case Field.S_FIELD:
                 f = this.m;
                 dx = h2;
                 dy = h2;
@@ -143,7 +145,7 @@ export default class Fluid {
         return val;
     }
 
-    avgU(i, j) {
+    avgU(i: number, j: number) {
         let n = this.numY;
         let u =
             (this.u[i * n + j - 1] +
@@ -154,7 +156,7 @@ export default class Fluid {
         return u;
     }
 
-    avgV(i, j) {
+    avgV(i: number, j: number) {
         let n = this.numY;
         let v =
             (this.v[(i - 1) * n + j] +
@@ -165,7 +167,7 @@ export default class Fluid {
         return v;
     }
 
-    advectVel(dt) {
+    advectVel(dt: number) {
         this.newU.set(this.u);
         this.newV.set(this.v);
 
@@ -188,7 +190,7 @@ export default class Fluid {
                     //						let v = this.sampleField(x,y, V_FIELD);
                     x = x - dt * u;
                     y = y - dt * v;
-                    u = this.sampleField(x, y, U_FIELD);
+                    u = this.sampleField(x, y, Field.U_FIELD);
                     this.newU[i * n + j] = u;
                 }
                 // v component
@@ -200,7 +202,7 @@ export default class Fluid {
                     let v = this.v[i * n + j];
                     x = x - dt * u;
                     y = y - dt * v;
-                    v = this.sampleField(x, y, V_FIELD);
+                    v = this.sampleField(x, y, Field.V_FIELD);
                     this.newV[i * n + j] = v;
                 }
             }
@@ -210,7 +212,7 @@ export default class Fluid {
         this.v.set(this.newV);
     }
 
-    advectSmoke(dt) {
+    advectSmoke(dt: number) {
         this.newM.set(this.m);
 
         let n = this.numY;
@@ -225,7 +227,7 @@ export default class Fluid {
                     let x = i * h + h2 - dt * u;
                     let y = j * h + h2 - dt * v;
 
-                    this.newM[i * n + j] = this.sampleField(x, y, S_FIELD);
+                    this.newM[i * n + j] = this.sampleField(x, y, Field.S_FIELD);
                 }
             }
         }
@@ -234,7 +236,7 @@ export default class Fluid {
 
     // ----------------- end of simulator ------------------------------
 
-    simulate(dt, gravity, numIters) {
+    simulate(dt: number, gravity: number, numIters: number) {
         this.integrate(dt, gravity);
 
         this.p.fill(0.0);

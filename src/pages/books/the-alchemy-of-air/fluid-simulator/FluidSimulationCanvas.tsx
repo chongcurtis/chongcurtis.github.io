@@ -1,5 +1,5 @@
 import React from "react";
-import Fluid, { U_FIELD, V_FIELD } from "@/pages/books/the-alchemy-of-air/fluid-simulator/Fluid";
+import Fluid, { Field } from "@/pages/books/the-alchemy-of-air/fluid-simulator/Fluid";
 import { Obstacle } from "@/pages/books/the-alchemy-of-air/fluid-simulator/Obstacle";
 
 type Props = {
@@ -42,11 +42,11 @@ export default function FluidSimulationCanvas({
     const cScale = canvasHeight / simHeight;
     const simWidth = canvasWidth / cScale;
 
-    function cX(x) {
+    function cX(x: number) {
         return x * cScale;
     }
 
-    function cY(y) {
+    function cY(y: number) {
         return canvasHeight - y * cScale;
     }
 
@@ -221,14 +221,14 @@ export default function FluidSimulationCanvas({
     // 		${Math.floor(255 * b)})`;
     // }
 
-    function getSciColor(val, minVal, maxVal) {
+    function getSciColor(val: number, minVal: number, maxVal: number) {
         val = Math.min(Math.max(val, minVal), maxVal - 0.0001);
         var d = maxVal - minVal;
         val = d == 0.0 ? 0.5 : (val - minVal) / d;
         var m = 0.25;
         var num = Math.floor(val / m);
         var s = (val - num * m) / m;
-        var r, g, b;
+        var [r, g, b] = [0, 0, 0]; // init default values to avoid type issues
 
         switch (num) {
             case 0:
@@ -263,7 +263,7 @@ export default function FluidSimulationCanvas({
         const scene = sceneRef.current;
 
         const canvas = canvasRef.current;
-        var c = canvas.getContext("2d");
+        var c = canvas.getContext("2d")!;
 
         c.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -330,13 +330,13 @@ export default function FluidSimulationCanvas({
                 const b = color[2];
 
                 for (var yi = y; yi < y + cy; yi++) {
-                    var p = 4 * (yi * canvas.width + x);
+                    var pp = 4 * (yi * canvas.width + x);
 
                     for (var xi = 0; xi < cx; xi++) {
-                        id.data[p++] = r;
-                        id.data[p++] = g;
-                        id.data[p++] = b;
-                        id.data[p++] = 255;
+                        id.data[pp++] = r;
+                        id.data[pp++] = g;
+                        id.data[pp++] = b;
+                        id.data[pp++] = 255;
                     }
                 }
             }
@@ -390,8 +390,8 @@ export default function FluidSimulationCanvas({
                     c.moveTo(cX(x), cY(y));
 
                     for (var n = 0; n < numSegs; n++) {
-                        var u = f.sampleField(x, y, U_FIELD);
-                        var v = f.sampleField(x, y, V_FIELD);
+                        var u = f.sampleField(x, y, Field.U_FIELD);
+                        var v = f.sampleField(x, y, Field.V_FIELD);
                         const l = Math.sqrt(u * u + v * v);
                         // x += u/l * segLen;
                         // y += v/l * segLen;
@@ -430,14 +430,14 @@ export default function FluidSimulationCanvas({
         }
 
         if (scene.showPressure) {
-            var s = "pressure: " + minP.toFixed(0) + " - " + maxP.toFixed(0) + " N/m";
+            var ss = "pressure: " + minP.toFixed(0) + " - " + maxP.toFixed(0) + " N/m";
             c.fillStyle = "#000000";
             c.font = "16px Arial";
-            c.fillText(s, 10, 35);
+            c.fillText(ss, 10, 35);
         }
     }
 
-    function setObstacle(obstacle: Obstacle, reset) {
+    function setObstacle(obstacle: Obstacle, reset: boolean) {
         const x = obstacle.x;
         const y = obstacle.y;
         const r = obstacle.radius;
