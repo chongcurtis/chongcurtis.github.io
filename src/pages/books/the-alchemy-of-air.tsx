@@ -74,10 +74,10 @@ export default function TheAlchemyOfAir() {
             <CultivateAllArableLand />
             <p className="fade-in-on-scroll mb-20 mt-10">and optimally rotate crops</p>
             <OptimallyRotateCrops />
-            <p className="fade-in-on-scroll mt-10 ">
+            <p className="fade-in-on-scroll mb-20 mt-10">
                 "Our wheat-producing soil is totally unequal to the strain put upon it."
             </p>
-            <p className="fade-in-on-scroll mt-50 mb-50 ">
+            <p className="fade-in-on-scroll mb-20">
                 To meet this deficit, England will have to import grain from abroad
             </p>
             <p className="fade-in-on-scroll mb-40 mt-10 ">However...</p>
@@ -85,6 +85,8 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mb-10 "> Canada as well</p>
             <p className="fade-in-on-scroll mb-10 "> Russia as well</p>
             <p className="fade-in-on-scroll mb-32 "> America as well</p>
+
+            <p className="fade-in-on-scroll mb-32 "> Wheat will be a global covet</p>
             {/*<p className="fade-in-on-scroll mb-10 ">And if there's a war, imports will...</p>*/}
             <p className="fade-in-on-scroll mb-40 mt-40 text-2xl">
                 England will{" "}
@@ -93,11 +95,11 @@ export default function TheAlchemyOfAir() {
                 </span>{" "}
                 in 33 years.
             </p>
-            <p className="fade-in-on-scroll mt-10 ">Tense silence suffocates the room</p>
-            <p className="fade-in-on-scroll mt-10 ">
+            <p className="fade-in-on-scroll mb-32 mt-10">Tense silence suffocates the room</p>
+            <p className="fade-in-on-scroll mb-20 mt-10">
                 "Wheat preeminently demands nitrogen, fixed in the form of ammonia"
             </p>
-            <p className="fade-in-on-scroll mt-10 ">
+            <p className="fade-in-on-scroll mb-20 mt-10 ">
                 "We must then rely on nitrogenous manures to increase the fertility of land under
                 wheat"
             </p>
@@ -105,7 +107,7 @@ export default function TheAlchemyOfAir() {
             {/*"We must then rely on nitrogenous manures to increase the fertility of land under*/}
             {/*wheat, so as to raise the yield from the world's low average - 12.7 bushels per acre*/}
             {/*- to a higher average".*/}
-            <p className="fade-in-on-scroll mt-10 ">
+            <p className="fade-in-on-scroll mb-10 mt-10 ">
                 Yet "for years we have been expending fixed nitrogen at a culpably extravagant
                 rate".
             </p>
@@ -129,7 +131,7 @@ export default function TheAlchemyOfAir() {
                 in the grip of actual dearth, the chemist will step in and postpone the day of
                 famine".
             </p>
-            <p className="fade-in-on-scroll mb-20 mt-20">This was Brook's challenge:</p>
+            <p className="fade-in-on-scroll mb-20 mt-32">This was Brook's challenge:</p>
             <p className="fade-in-on-scroll mb-20 mt-10 text-2xl ">
                 Convert N<sub>2</sub> &rarr; NH<sub>3</sub>
             </p>

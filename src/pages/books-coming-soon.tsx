@@ -6,8 +6,8 @@ export default function BooksComingSoon() {
         <>
             <p className="mt-10">
                 These books curtsied their way into my thoughts for months on end. I loved them so
-                much I made a series of "trailers"/analysis of my favourite moments. These pages are
-                interactive, so I hope you enjoy them!
+                much I made a series of "trailers" to make their stories more accessible. I hope you
+                enjoy them!
             </p>
             {/*<p>Here are my favourite books:</p>*/}
             <div className="mt-10 flex flex-col space-y-5">
