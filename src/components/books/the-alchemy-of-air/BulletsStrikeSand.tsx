@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import ParticleSimulationCanvas from "@/pages/books/the-alchemy-of-air/ParticleSimulationCanvas";
-import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
-import { Block } from "@/pages/books/the-alchemy-of-air/Block";
+import ParticleSimulationCanvas from "@/components/books/the-alchemy-of-air/ParticleSimulationCanvas";
+import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
+import { Block } from "@/components/books/the-alchemy-of-air/Block";
 import useAnimationEventListener from "@/common/useAnimationEventListener";
 
 export default function BulletsStrikeSand() {

@@ -1,5 +1,5 @@
-import ParticleSimulationCanvas from "@/pages/books/the-alchemy-of-air/ParticleSimulationCanvas";
-import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
+import ParticleSimulationCanvas from "@/components/books/the-alchemy-of-air/ParticleSimulationCanvas";
+import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import React, { useEffect } from "react";
 import useAnimationEventListener from "@/common/useAnimationEventListener";
 

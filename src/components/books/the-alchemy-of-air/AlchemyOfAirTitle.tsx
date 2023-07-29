@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import cloneDeep from "lodash.clonedeep";
-import FluidSimulationCanvas from "@/pages/books/the-alchemy-of-air/fluid-simulator/FluidSimulationCanvas";
-import { Obstacle } from "@/pages/books/the-alchemy-of-air/fluid-simulator/Obstacle";
+import FluidSimulationCanvas from "@/components/books/the-alchemy-of-air/fluid-simulator/FluidSimulationCanvas";
+import { Obstacle } from "@/components/books/the-alchemy-of-air/fluid-simulator/Obstacle";
 import { createZeroToOne } from "@/common/types/ZeroToOne";
 import useAnimationEventListener from "@/common/useAnimationEventListener";
 

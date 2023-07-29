@@ -1,5 +1,5 @@
 //particle class with position, velocity, acceleration, and lifespan
-import Vector2 from "@/pages/books/the-alchemy-of-air/Vector2";
+import Vector2 from "@/components/books/the-alchemy-of-air/Vector2";
 
 export class Particle {
     mass: number;

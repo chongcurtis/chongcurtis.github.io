@@ -1,26 +1,26 @@
 import React from "react";
 import { initAnimations, NARRATIVE_ANIMATION_TRIGGER_DECIMAL } from "@/common/animations";
-import ExponentialCount from "@/pages/books/the-alchemy-of-air/ExponentialCount";
-import AlchemyOfAirTitle from "@/pages/books/the-alchemy-of-air/AlchemyOfAirTitle";
+import ExponentialCount from "@/components/books/the-alchemy-of-air/ExponentialCount";
+import AlchemyOfAirTitle from "@/components/books/the-alchemy-of-air/AlchemyOfAirTitle";
 import sirWilliamCrookes from "public/books/the-alchemy-of-air/Sir_William_Crookes_1906.jpg";
 import fritzHaber from "public/books/the-alchemy-of-air/Fritz_Haber.png";
 import alwinMittasch from "public/books/the-alchemy-of-air/Alwin_Mittasch.jpg";
 import newInventions from "public/books/the-alchemy-of-air/new_inventions.png";
 import carlKrauch from "public/books/the-alchemy-of-air/Carl_Krauch.jpg";
 import carlBosche from "public/books/the-alchemy-of-air/Carl_Bosch.jpg";
-import FixNitrogen from "@/pages/books/the-alchemy-of-air/FixNitrogen";
-import IncreaseHeat from "@/pages/books/the-alchemy-of-air/IncreaseHeat";
-import IncreasePressure from "@/pages/books/the-alchemy-of-air/IncreasePressure";
-import CultivateAllArableLand from "@/pages/books/the-alchemy-of-air/CultivateAllArableLand";
-import OptimallyRotateCrops from "@/pages/books/the-alchemy-of-air/OptimallyRotateCrops";
-import IncreaseFertilityOfLand from "@/pages/books/the-alchemy-of-air/IncreaseFertilityOfLand";
-import ArcFurnace from "./the-alchemy-of-air/ArcFurnace";
-import { HundredsOfCatalysts } from "./the-alchemy-of-air/HundredsOfCatalysts";
+import FixNitrogen from "@/components/books/the-alchemy-of-air/FixNitrogen";
+import IncreaseHeat from "@/components/books/the-alchemy-of-air/IncreaseHeat";
+import IncreasePressure from "@/components/books/the-alchemy-of-air/IncreasePressure";
+import CultivateAllArableLand from "@/components/books/the-alchemy-of-air/CultivateAllArableLand";
+import OptimallyRotateCrops from "@/components/books/the-alchemy-of-air/OptimallyRotateCrops";
+import IncreaseFertilityOfLand from "@/components/books/the-alchemy-of-air/IncreaseFertilityOfLand";
+import ArcFurnace from "../../components/books/the-alchemy-of-air/ArcFurnace";
+import { HundredsOfCatalysts } from "../../components/books/the-alchemy-of-air/HundredsOfCatalysts";
 import ThinLine from "@/components/ThinLine";
-import BulletsStrikeSand from "./the-alchemy-of-air/BulletsStrikeSand";
-import Explosion from "./the-alchemy-of-air/Explosion";
-import Bowling from "./the-alchemy-of-air/Bowling";
-import CubicDrop from "./the-alchemy-of-air/CubicDrop";
+import BulletsStrikeSand from "../../components/books/the-alchemy-of-air/BulletsStrikeSand";
+import Explosion from "../../components/books/the-alchemy-of-air/Explosion";
+import Bowling from "../../components/books/the-alchemy-of-air/Bowling";
+import CubicDrop from "../../components/books/the-alchemy-of-air/CubicDrop";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {

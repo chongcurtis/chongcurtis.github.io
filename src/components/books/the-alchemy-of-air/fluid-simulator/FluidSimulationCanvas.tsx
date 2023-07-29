@@ -1,6 +1,6 @@
 import React from "react";
-import Fluid, { Field } from "@/pages/books/the-alchemy-of-air/fluid-simulator/Fluid";
-import { Obstacle } from "@/pages/books/the-alchemy-of-air/fluid-simulator/Obstacle";
+import Fluid, { Field } from "@/components/books/the-alchemy-of-air/fluid-simulator/Fluid";
+import { Obstacle } from "@/components/books/the-alchemy-of-air/fluid-simulator/Obstacle";
 
 type Props = {
     obstacles: Obstacle[];

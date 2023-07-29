@@ -1,5 +1,5 @@
-import Vector from "@/pages/books/the-alchemy-of-air/collision-simulator/Vector";
-import Circle from "@/pages/books/the-alchemy-of-air/collision-simulator/Circle";
+import Vector from "@/components/books/the-alchemy-of-air/collision-simulator/Vector";
+import Circle from "@/components/books/the-alchemy-of-air/collision-simulator/Circle";
 
 export default class Rectangle {
     constructor(

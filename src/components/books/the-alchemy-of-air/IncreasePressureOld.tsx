@@ -1,7 +1,7 @@
-import ParticleSimulationCanvas from "@/pages/books/the-alchemy-of-air/ParticleSimulationCanvas";
-import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
+import ParticleSimulationCanvas from "@/components/books/the-alchemy-of-air/ParticleSimulationCanvas";
+import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import React, { useEffect } from "react";
-import { Block } from "@/pages/books/the-alchemy-of-air/Block";
+import { Block } from "@/components/books/the-alchemy-of-air/Block";
 import useAnimationEventListener from "@/common/useAnimationEventListener";
 import cloneDeep from "lodash.clonedeep";
 import { useStatefulRef } from "@/common/useStatefulRef";

@@ -1,7 +1,7 @@
 import React from "react";
-import { Block } from "@/pages/books/the-alchemy-of-air/Block";
-import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
-import Vector2 from "@/pages/books/the-alchemy-of-air/Vector2";
+import { Block } from "@/components/books/the-alchemy-of-air/Block";
+import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
+import Vector2 from "@/components/books/the-alchemy-of-air/Vector2";
 
 type Props = {
     startAnimation: boolean;

@@ -1,4 +1,4 @@
-import Vector2 from "@/pages/books/the-alchemy-of-air/Vector2";
+import Vector2 from "@/components/books/the-alchemy-of-air/Vector2";
 
 export class Block {
     position: Vector2; // the (x,y) coord is the center of the block

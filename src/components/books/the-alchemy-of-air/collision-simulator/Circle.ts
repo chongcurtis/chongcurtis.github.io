@@ -1,4 +1,4 @@
-import Vector from "@/pages/books/the-alchemy-of-air/collision-simulator/Vector";
+import Vector from "@/components/books/the-alchemy-of-air/collision-simulator/Vector";
 
 export default class Circle {
     constructor(public center: Vector, public radius: number, public velocity: Vector) {}

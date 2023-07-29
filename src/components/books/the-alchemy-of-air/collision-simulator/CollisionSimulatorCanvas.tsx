@@ -1,8 +1,8 @@
 import React from "react";
-import Circle from "@/pages/books/the-alchemy-of-air/collision-simulator/Circle";
-import Rectangle from "@/pages/books/the-alchemy-of-air/collision-simulator/Rectangle";
+import Circle from "@/components/books/the-alchemy-of-air/collision-simulator/Circle";
+import Rectangle from "@/components/books/the-alchemy-of-air/collision-simulator/Rectangle";
 import cloneDeep from "lodash.clonedeep";
-import Vector from "@/pages/books/the-alchemy-of-air/collision-simulator/Vector";
+import Vector from "@/components/books/the-alchemy-of-air/collision-simulator/Vector";
 
 type Props = {
     circles: Circle[];

@@ -1,8 +1,8 @@
-import ParticleSimulationCanvas from "@/pages/books/the-alchemy-of-air/ParticleSimulationCanvas";
-import { Particle } from "@/pages/books/the-alchemy-of-air/Particle";
+import ParticleSimulationCanvas from "@/components/books/the-alchemy-of-air/ParticleSimulationCanvas";
+import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import React, { useEffect } from "react";
-import { Block } from "@/pages/books/the-alchemy-of-air/Block";
-import { NITROGEN_COLOR } from "@/pages/books/the-alchemy-of-air/constants";
+import { Block } from "@/components/books/the-alchemy-of-air/Block";
+import { NITROGEN_COLOR } from "@/components/books/the-alchemy-of-air/constants";
 import useAnimationEventListener from "@/common/useAnimationEventListener";
 
 const blocks = [new Block(250, 100, 10, 10, "white", 45)];
