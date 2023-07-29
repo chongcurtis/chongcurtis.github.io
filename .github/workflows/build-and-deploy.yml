@@ -25,6 +25,7 @@ jobs:
               run: |
                   yarn install
                   yarn run build
+                  yarn run export
                   touch out/.nojekyll
 
             - name: Deploy

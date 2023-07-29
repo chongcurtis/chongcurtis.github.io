@@ -12,9 +12,9 @@ export default function Songs() {
                 <div>
                     Begin Again: This music video was what got me into her music. It's just so
                     elegant and aesthetic. "But on a Wednesday in a Cafe, I watched it begin again"
-                    - this line is just so hopeful and makes me smile every time.
+                    - This line is just so hopeful and makes me smile every time.
                 </div>
-                <div>Ours: Possibly my favourite taylor swift song. Ever. It's just so sweet</div>
+                <div>Ours: Possibly my favourite Taylor Swift song. Ever. It's just so sweet</div>
                 <div>
                     Fearless: My favourite song from the Fearless album. I loved it so much that I
                     made it my morning alarm... I then promptly changed my alarm
