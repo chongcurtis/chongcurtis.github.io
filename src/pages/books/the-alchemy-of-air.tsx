@@ -431,50 +431,46 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mt-20">
                 Because Nitrogen has the very special property of propelling projectiles.
             </p>
-            <p className="fade-in-on-scroll mt-10">And it extends Germany's war by two years.</p>
+            <p className="fade-in-on-scroll mb-20 mt-10">
+                And it extends Germany's war by two years.
+            </p>
             {/* this sentence is too much of a departure. make it smoother */}
             <ThinLine />
 
-            <p className="fade-in-on-scroll">
-                This epochal moment is one of my favourites because:
+            <p className="fade-in-on-scroll mt-20">
+                This epochal moment is one of my favourites because it taught me:
             </p>
             <div className="flex items-center justify-center">
                 <div className="max-w-2xl">
                     <ul className="fade-in-on-scroll mt-10 list-disc text-left">
-                        <li className="fade-in-on-scroll mb-2 pl-2">Gave Haber a royalty</li>
                         <li className="fade-in-on-scroll mb-2 pl-2">
-                            Gave Haber an enormous salary
+                            One of "the biggest scientific effort in history, comparable to the
+                            Manhattan Project in World War II".{" "}
+                            <span className="font-bold">And the world forgot it!</span>
                         </li>
-                        <li className="fade-in-on-scroll mb-2 pl-2">
-                            And began hoarding the world's Osmium.
+                        <li className="fade-in-on-scroll mb-2 mt-5 pl-2">
+                            How humanity surmounted a calamity-scale problem. It wained my fear of
+                            Climate change.
                         </li>
+                        <li className="fade-in-on-scroll mb-2 mt-5 pl-2 ">
+                            And that the best solutions may not mimic nature.
+                        </li>
+                        {/* <li className="fade-in-on-scroll">
+                            And that diligent experimental processes compound to incredible results.
+                        </li> */}
                     </ul>
                 </div>
             </div>
 
-            <p className="fade-in-on-scroll">
-                Climate change used to scare me, but this epochal moment gives me hope.
-            </p>
-            <p className="fade-in-on-scroll">
-                It showed me that the best solutions to problems may not mimic nature.
-            </p>
-            <p className="fade-in-on-scroll">
-                And that diligent experimental processes compound to to incredible results.
-            </p>
-            <p className="fade-in-on-scroll">
+            <p className="fade-in-on-scroll mt-20 ">
                 Of course these scientists weren't perfect. They killed many people, Haber
-                especially. But their story changed my life because it showed me that humanity has
-                solved calamity-scale problems before.
+                especially.
             </p>
             <p className="fade-in-on-scroll mt-10">
-                I find it incredible how the world forgot about "the biggest scientific effort in
-                history, comparable to the Manhattan Project in World War II".
-            </p>
-            <p className="fade-in-on-scroll ">
-                Bosch didn't know it at the time, but his years of work pioneered an entire new
+                And Bosch didn't know it at the time, but his years of work pioneered an entire new
                 field:
             </p>
-            <p className="fade-in-on-scroll ">High pressure chemistry.</p>
+            <p className="fade-in-on-scroll mb-20 mt-20 text-2xl">High pressure chemistry.</p>
             {/*<p className="fade-in-on-scroll">*/}
             {/*    I think a a modern version of crooke's challenge is the quest for economical nuclear*/}
             {/*    fusion. Laboratories slam plasma together at millions of degrees, with magnetic*/}
@@ -489,11 +485,10 @@ export default function TheAlchemyOfAir() {
                 Establish their own wealth? Pledge to The Reich?
             </p>
             {/*it would be cool if all the other words in this phrase just disappeared, and all you saw was "the alchemy of air"*/}
-            <p className="fade-in-on-scroll">
-                You'll have to read the book. But they did more alchemy of course. You can feel it
-                in the air.
-            </p>
-            <p className="fade-in-on-scroll mt-10 text-2xl">Sources</p>
+            <p className="fade-in-on-scroll mt-20">You'll have to read the book.</p>
+            <p className="fade-in-on-scroll mt-20">But they did more alchemy of course.</p>
+            <p className="fade-in-on-scroll mt-20">You can feel it in the air.</p>
+            <p className="fade-in-on-scroll mt-40 text-2xl">Sources</p>
             <>
                 {[
                     {
@@ -525,7 +520,7 @@ export default function TheAlchemyOfAir() {
             </>
             <p className="fade-in-on-scroll mt-10 text-left">Images from Wikipedia</p>
             {/* This footer is needed so the bottom elements will fade into view*/}
-            <div className="h-96" />
+            <div className="h-[30rem]" />
         </div>
     );
 }
