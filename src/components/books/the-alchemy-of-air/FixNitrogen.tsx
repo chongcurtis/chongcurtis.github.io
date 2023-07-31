@@ -2,10 +2,10 @@ import ParticleSimulationCanvas from "@/components/books/the-alchemy-of-air/Part
 import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import React, { useEffect } from "react";
 import { Block } from "@/components/books/the-alchemy-of-air/Block";
-import { NITROGEN_COLOR } from "@/components/books/the-alchemy-of-air/constants";
+import { BACKGROUND_COLOR, NITROGEN_COLOR } from "@/components/books/the-alchemy-of-air/constants";
 import useAnimationEventListener from "@/common/useAnimationEventListener";
 
-const blocks = [new Block(250, 100, 10, 10, "white", 45)];
+const blocks = [new Block(250, 100, 10, 10, BACKGROUND_COLOR, 45)];
 
 // this animation works by spawning two particles close to each other (but not touching) and sending them to the right
 // in the middle of the canvas, there is a rotated square (at a 45 degree angle) that the particles will collide with, splitting them apart

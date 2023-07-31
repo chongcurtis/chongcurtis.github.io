@@ -3,9 +3,9 @@ import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import React, { useEffect } from "react";
 import { Block } from "@/components/books/the-alchemy-of-air/Block";
 import useAnimationEventListener from "@/common/useAnimationEventListener";
-import { NITROGEN_COLOR } from "./constants";
+import { BACKGROUND_COLOR, NITROGEN_COLOR } from "./constants";
 
-const BOX_COLOR = "white";
+const BOX_COLOR = BACKGROUND_COLOR;
 // const BOX_COLOR = "#dedede";
 const blocks = [
     new Block(250, 0, 400, 70, BOX_COLOR, 0),

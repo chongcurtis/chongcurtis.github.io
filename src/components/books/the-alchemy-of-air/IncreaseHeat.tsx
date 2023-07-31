@@ -5,8 +5,9 @@ import { Block } from "@/components/books/the-alchemy-of-air/Block";
 import useAnimationEventListener from "@/common/useAnimationEventListener";
 import { Queue } from "@/common/queue";
 import { generateGradient } from "@/utils/generateGradient";
+import { BACKGROUND_COLOR } from "./constants";
 
-const BOX_COLOR = "white";
+const BOX_COLOR = BACKGROUND_COLOR;
 // const BOX_COLOR = "#dedede";
 const blocks = [
     new Block(250, 50, 200, 20, BOX_COLOR, 0),

@@ -1,0 +1,16 @@
+compressors:1
+quick-acting valves:1
+self-closing valves:1
+pumps:1
+temperature monitors:1
+pressure balances:1
+density recorders:1
+trip alarms:1
+colorimeters:1
+high-pressure pipe fittings:1
+guages:1
+ovens:1
+high-temperature solders:1
+hydrogen diffusion liners:1
+heat exchangers:1
+heat dissipators:1
