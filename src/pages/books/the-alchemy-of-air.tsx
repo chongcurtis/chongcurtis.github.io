@@ -174,11 +174,11 @@ export default function TheAlchemyOfAir() {
                 <div className="fade-in-on-scroll mr-4 text-3xl font-bold text-[#750000]">1.</div>
                 <p className="fade-in-on-scroll text-left">Prohibitively expensive</p>
             </div>
-            <div className="mb-32 mt-10 flex flex-row justify-center">
+            <div className="mb-32 mt-10 flex flex-row sm:justify-start md:justify-center">
                 <div className="fade-in-on-scroll mr-4 text-3xl font-bold text-[#bb0000]">2.</div>
                 <p className="fade-in-on-scroll mt-1">Corrosive</p>
             </div>
-            <div className="mb-32 mt-10 flex justify-end">
+            <div className="mb-32 mt-10 flex sm:justify-start md:justify-end">
                 <div className="fade-in-on-scroll mr-4 text-3xl font-bold text-[#ff0000]">3.</div>
                 <p className="fade-in-on-scroll mt-1 text-right">And so hot it fries the machine</p>
             </div>
@@ -503,8 +503,9 @@ export default function TheAlchemyOfAir() {
                     return (
                         <p className="fade-in-on-scroll text-md mt-10 text-left" key={idx}>
                             {source.title}:{` `}
+                            {/* break-all is really important, or else the link are too wide and the page is unreadable on mobile */}
                             <a
-                                className="text-sleepover-secondary"
+                                className="break-all text-sleepover-secondary"
                                 href={`https://${source.link}`}
                                 target="_blank"
                             >
