@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { NavLinks } from "@/components/sidebar/NavLinks";
-import headshot from "public/curtis-chong-headshot.jpg";
+import headshot from "public/curtis-chong-headshot.png";
 
 {
     /*
@@ -15,15 +15,15 @@ import headshot from "public/curtis-chong-headshot.jpg";
 export default function Home() {
     return (
         <main className="flex min-h-screen flex-row flex-wrap items-center justify-center md:flex-nowrap">
-            <div className="max-w-sm p-20 md:m-5">
-                <img src={headshot.src} alt="Me!" />
+            <div className="w-full ">
+                <img src={headshot.src} alt="Me!" className="object-left" />
             </div>
-            <div className="flex justify-end">
+            <div className="flex justify-end md:m-5">
                 <div className="place-items-center px-5">
                     <p>
                         Hello I&apos;m Curtis! I grew up in the GTA and moved to Waterloo for
-                        school. I&apos;m currently trying to build a verifiable computation startup
-                        with some friends.
+                        school. I&apos;m currently researching verifiable computation with some
+                        friends.
                     </p>
                     <p className="mb-5 mt-5">
                         Anyhow, I made this site to document my yellow brick road in progress. Wanna

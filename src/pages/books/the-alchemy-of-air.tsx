@@ -52,7 +52,7 @@ export default function TheAlchemyOfAir() {
                 <div className="fade-in-on-scroll max-w-sm p-20 md:m-5">
                     <img src={sirWilliamCrookes.src} alt="Sir William Crookes" />
                 </div>
-                <div className="fade-in-on-scroll animation-delay-1500">
+                <div className="fade-in-on-scroll animation-delay-500">
                     <p>
                         "England and all civilized nations stand in deadly peril of not having
                         enough to eat."
