@@ -2,7 +2,7 @@
 
 import ThinLine from "@/components/ThinLine";
 import MailchimpSignup from "@/components/MailchimpSignup";
-import sleepoversBanner from "public/sleepovers/sleepovers-banner.jpg";
+import sleepoversBanner from "public/sleepovers/sleepovers-banner.png";
 import React from "react";
 import { initAnimations, NORMAL_ANIMATION_TRIGGER_DECIMAL } from "@/common/animations";
 
