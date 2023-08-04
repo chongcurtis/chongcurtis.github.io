@@ -15,7 +15,8 @@ import headshot from "public/curtis-chong-headshot.png";
 export default function Home() {
     return (
         <main className="flex min-h-screen flex-row flex-wrap items-center justify-center md:flex-nowrap">
-            <div className="w-full ">
+            {/*This was made using https://www.remove.bg It's really nice since you can "restore" parts that were removelee*/}
+            <div className="w-full">
                 <img src={headshot.src} alt="Me!" className="object-left" />
             </div>
             <div className="flex justify-end md:m-5">
