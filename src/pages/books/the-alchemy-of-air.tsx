@@ -21,6 +21,7 @@ import BulletsStrikeSand from "../../components/books/the-alchemy-of-air/Bullets
 import Explosion from "../../components/books/the-alchemy-of-air/Explosion";
 import Bowling from "../../components/books/the-alchemy-of-air/Bowling";
 import CubicDrop from "../../components/books/the-alchemy-of-air/CubicDrop";
+import Link from "next/link";
 
 export default function TheAlchemyOfAir() {
     React.useEffect(() => {
@@ -485,7 +486,7 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mt-20">But they did more alchemy of course.</p>
             <p className="fade-in-on-scroll mt-20">You can feel it in the air.</p>
             <p className="fade-in-on-scroll mt-40 text-2xl">Sources</p>
-            <>
+            <div className="flex flex-col items-center justify-center px-5">
                 {[
                     {
                         title: "The Alchemy of Air: A Jewish Genius, a Doomed Tycoon, and the Scientific Discovery That Fed the World but Fueled the Rise of Hitler",
@@ -501,21 +502,27 @@ export default function TheAlchemyOfAir() {
                     },
                 ].map((source, idx) => {
                     return (
-                        <p className="fade-in-on-scroll text-md mt-10 text-left" key={idx}>
-                            {source.title}:{` `}
-                            {/* break-all is really important, or else the link are too wide and the page is unreadable on mobile */}
-                            <a
-                                className="break-all text-sleepover-secondary"
-                                href={`https://${source.link}`}
-                                target="_blank"
-                            >
-                                {source.link}
-                            </a>
-                        </p>
+                        <div className="fade-in-on-scroll text-md mt-5 p-5">
+                            <p key={`sources-${idx}`} className="text-left">
+                                {source.title}
+                                {` `}
+                                {/* break-all is really important, or else the link are too wide and the page is unreadable on mobile */}
+                                <Link
+                                    // style={{ boxSizing: "border-box" }}
+                                    className={`inline-block w-[200px] break-all text-left text-sleepover-secondary md:w-full`}
+                                    href={`https://${source.link}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer" // It's a good practice to include this when using target="_blank"
+                                >
+                                    {source.link}
+                                </Link>
+                            </p>
+                        </div>
                     );
                 })}
-            </>
-            <p className="fade-in-on-scroll mt-10 text-left">Images from Wikipedia</p>
+            </div>
+
+            <p className="fade-in-on-scroll mt-10 pl-10 text-left">Images from Wikipedia</p>
             {/* This footer is needed so the bottom elements will fade into view*/}
             <div className="h-[30rem]" />
         </div>
