@@ -16,10 +16,10 @@ export default function Home() {
     return (
         <main className="flex min-h-screen flex-row flex-wrap items-center justify-center md:flex-nowrap">
             {/*This was made using https://www.remove.bg It's really nice since you can "restore" parts that were removelee*/}
-            <div className="w-full">
+            <div className="w-full p-3 md:p-0">
                 <img src={headshot.src} alt="Me!" className="object-left" />
             </div>
-            <div className="flex justify-end md:m-5">
+            <div className="mt-10 flex justify-end md:m-5">
                 <div className="place-items-center px-5">
                     <p>
                         Hello I&apos;m Curtis! I grew up in the GTA and moved to Waterloo for
