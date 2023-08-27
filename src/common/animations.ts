@@ -25,6 +25,7 @@ interface AnimationDescription {
     animationDefinition: Animation;
     animationDelay: number;
     text: string; // for debugging purposes
+    isPersistentAnimation: boolean; // these are typically canvas elements that run forever. We should pause them when they scroll off-screen
 }
 
 const getAnimationDescriptions = (): AnimationDescription[] => {
@@ -45,6 +46,7 @@ const getAnimationDescriptions = (): AnimationDescription[] => {
                     element.getBoundingClientRect().top + document.documentElement.scrollTop,
                 animationDefinition,
                 animationDelay: getAnimationDelay(element),
+                isPersistentAnimation: isPersistentAnimation(element),
             });
         }
     }
@@ -65,14 +67,30 @@ const getAnimationDescriptions = (): AnimationDescription[] => {
     return animationDescriptions;
 };
 
+const isPersistentAnimationStr = "is-persistent-nimation";
+const isPersistentAnimation = (element: HTMLElement) => {
+    for (const elementClass of element.classList) {
+        if (elementClass === isPersistentAnimationStr) {
+            return true;
+        }
+    }
+    return false;
+};
+
 export const initAnimations = (animationTriggerDecimal: number) => {
     // 1) build the animation descriptions array, which orders all elements by their y-position, then x-position on the page
     // This array contains the description ALL animations (since we don't want some types of animations to start later than others
     const animationDescriptions = getAnimationDescriptions();
 
     const animationQueue: AnimationDescription[] = [];
+    const persistentAnimations = new Set<AnimationDescription>(); // TODO: process persistentAnimations on scroll.
     const triggerAnimations = () => {
-        tryStartAnimation(animationDescriptions, animationQueue, animationTriggerDecimal);
+        tryStartAnimation(
+            animationDescriptions,
+            animationQueue,
+            persistentAnimations,
+            animationTriggerDecimal
+        );
         if (animationDescriptions.length == 0) {
             // All elements have been put into the animation queue. So remove handler to save computation
             window.removeEventListener("scroll", triggerAnimations);
@@ -104,6 +122,7 @@ const getAnimationDelay = (element: HTMLElement): number => {
 const tryStartAnimation = (
     animationDescriptions: AnimationDescription[],
     animationQueue: AnimationDescription[],
+    persistentAnimations: Set<AnimationDescription>,
     animationTriggerDecimal: number
 ) => {
     let isQueueOriginallyEmpty = animationQueue.length === 0;
@@ -111,7 +130,10 @@ const tryStartAnimation = (
         animationDescriptions.length > 0 &&
         isFirstElementInAnimationRange(animationDescriptions, animationTriggerDecimal)
     ) {
-        const animationDescription = animationDescriptions.shift()!; // pops off the first element and returns it
+        const animationDescription = getNextAnimationDescription(
+            animationDescriptions,
+            persistentAnimations
+        );
         if (animationDescription.elementTop() <= window.scrollY) {
             // animate immediately since the viewport is below this element's visibility
             animateElement(animationDescription);
@@ -123,13 +145,26 @@ const tryStartAnimation = (
     // the user's scrolling may have also made elements in the animationQueue to be above the viewport
     // so animate those elements immediately as well
     while (animationQueue.length > 0 && animationQueue[0].elementTop() <= window.scrollY) {
-        animateElement(animationQueue.shift()!); // shift pops off the first element and returns it
+        animateElement(getNextAnimationDescription(animationQueue, persistentAnimations));
     }
 
     if (isQueueOriginallyEmpty) {
         // it means that we pushed new elements to the queue, and the handler will animate the element
         animateFirstItemInQueue(animationQueue);
     }
+};
+
+const getNextAnimationDescription = (
+    animationDescriptions: AnimationDescription[],
+    persistentAnimations: Set<AnimationDescription>
+) => {
+    const poppedAnimationDescription = animationDescriptions.shift()!; // shift pops off the first element and returns it
+    if (poppedAnimationDescription.isPersistentAnimation) {
+        // Add the element to the persistentAnimations set so
+        // we can send the right animation state when the user scrolls
+        persistentAnimations.add(poppedAnimationDescription);
+    }
+    return poppedAnimationDescription;
 };
 
 const isFirstElementInAnimationRange = (
