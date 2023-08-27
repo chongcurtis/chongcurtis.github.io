@@ -52,7 +52,7 @@ export default function Explosion() {
                 But they kept exploding
             </p>
             <ParticleSimulationCanvas
-                startAnimation={startAnimationEventFired}
+                animationState={startAnimationEventFired}
                 particles={particles}
                 blocks={[]}
                 canvasWidth={500}

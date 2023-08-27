@@ -48,7 +48,7 @@ export default function Bowling() {
                 Eureka
             </p>
             <ParticleSimulationCanvas
-                startAnimation={startAnimationEventFired}
+                animationState={startAnimationEventFired}
                 particles={particles}
                 blocks={[]}
                 canvasWidth={500}

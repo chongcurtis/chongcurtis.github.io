@@ -34,7 +34,7 @@ export default function FixNitrogen() {
     return (
         <div className="flex flex-col items-center justify-center" ref={elementRef}>
             <ParticleSimulationCanvas
-                startAnimation={startAnimationEventFired}
+                animationState={startAnimationEventFired}
                 particles={particles}
                 blocks={blocks}
                 canvasWidth={500}

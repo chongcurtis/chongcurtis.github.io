@@ -1,11 +1,18 @@
 import { Animation, animationDefinitions } from "@/common/animationClassDefinitions";
 
 // used to trigger the start animation event on the canvas when it's in view
-export const startAnimationEventName = "start-animation-event";
+export const ANIMATION_STATE_EVENT_NAME = "animation-state-event";
 export const NARRATIVE_ANIMATION_TRIGGER_DECIMAL = 0.7; // at around 0.7 of the screen height, the animation should start
 export const NORMAL_ANIMATION_TRIGGER_DECIMAL = 0.9;
-const newStartAnimationEvent = () => {
-    return new Event(startAnimationEventName, {
+
+export const enum AnimationState {
+    BEFORE_START,
+    RUNNING,
+    PAUSED,
+}
+const newStartAnimationEvent = (animationState: AnimationState) => {
+    return new CustomEvent<AnimationState>(ANIMATION_STATE_EVENT_NAME, {
+        detail: animationState,
         bubbles: true, // the event can bubble up through the DOM tree
         cancelable: true, // the event can be cancelled using preventDefault()
         composed: false, // the event does not propagate outside of the shadow DOM
@@ -155,5 +162,5 @@ const animateFirstItemInQueue = (animationQueue: AnimationDescription[]) => {
 const animateElement = (animationDescription: AnimationDescription) => {
     const element = animationDescription.element;
     element.classList.add(animationDescription.animationDefinition.finalClass);
-    element.dispatchEvent(newStartAnimationEvent());
+    element.dispatchEvent(newStartAnimationEvent(AnimationState.RUNNING));
 };

@@ -42,7 +42,7 @@ export default function ArcFurnace() {
     return (
         <div ref={elementRef}>
             <ParticleSimulationCanvas
-                startAnimation={startAnimationEventFired}
+                animationState={startAnimationEventFired}
                 particles={particles}
                 blocks={blocks}
                 canvasWidth={500}

@@ -63,7 +63,7 @@ export default function IncreaseFertilityOfLand() {
     return (
         <div className="flex flex-col items-center justify-center" ref={elementRef}>
             <ParticleSimulationCanvas
-                startAnimation={startAnimationEventFired}
+                animationState={startAnimationEventFired}
                 particles={particles}
                 blocks={[]}
                 canvasWidth={500}

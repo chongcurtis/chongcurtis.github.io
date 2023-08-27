@@ -64,7 +64,7 @@ export default function IncreasePressureOld() {
     return (
         <div ref={elementRef}>
             <ParticleSimulationCanvas
-                startAnimation={startAnimationEventFired}
+                animationState={startAnimationEventFired}
                 particles={particles}
                 blocks={blocks.current}
                 canvasWidth={500}

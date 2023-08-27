@@ -2,9 +2,10 @@ import React from "react";
 import { Block } from "@/components/books/the-alchemy-of-air/Block";
 import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import Vector2 from "@/components/books/the-alchemy-of-air/Vector2";
+import { AnimationState } from "@/common/animations";
 
 type Props = {
-    startAnimation: boolean;
+    animationState: AnimationState;
     particles: React.MutableRefObject<Particle[]>;
     blocks: Block[];
     canvasWidth: number;
@@ -13,7 +14,7 @@ type Props = {
     extraClassNames?: string;
 };
 export default function ParticleSimulationCanvas({
-    startAnimation,
+    animationState,
     particles,
     blocks,
     canvasWidth,
@@ -25,9 +26,14 @@ export default function ParticleSimulationCanvas({
 
     const COEFFICIENT_OF_RESTITUTION = 1; // the ratio of the final to initial relative speed between two objects after they collide.
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
+    const timeoutId = React.useRef<NodeJS.Timeout>(); // controls the setInterval that runs the canvas animation
 
     React.useEffect(() => {
-        if (!canvasRef.current || !startAnimation) {
+        if (!canvasRef.current || animationState === AnimationState.BEFORE_START) {
+            return;
+        }
+        if (animationState === AnimationState.PAUSED) {
+            clearInterval(timeoutId.current!);
             return;
         }
         // console.log("useEffect canvas");
@@ -46,10 +52,10 @@ export default function ParticleSimulationCanvas({
         // };
         // requestAnimationFrame(update);
 
-        setInterval(function () {
+        timeoutId.current = setInterval(function () {
             run(canvas, ctx);
         }, SIMULATION_SPEED); //this is the cycle
-    }, [startAnimation]);
+    }, [animationState, canvasHeight, canvasWidth]);
 
     function setupCanvas(canvas: HTMLCanvasElement) {
         // Fixes the DPI of the canvas

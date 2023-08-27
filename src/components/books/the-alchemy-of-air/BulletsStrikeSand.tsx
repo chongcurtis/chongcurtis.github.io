@@ -76,7 +76,7 @@ export default function BulletsStrikeSand() {
                 World War 1
             </p>
             <ParticleSimulationCanvas
-                startAnimation={startAnimationEventFired}
+                animationState={startAnimationEventFired}
                 particles={particles}
                 blocks={blocks}
                 canvasWidth={500}

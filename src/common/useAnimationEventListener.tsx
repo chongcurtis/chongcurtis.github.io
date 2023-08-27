@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { startAnimationEventName } from "@/common/animations";
+import { ANIMATION_STATE_EVENT_NAME } from "@/common/animations";
 
 function useAnimationEventListener(): [React.RefObject<HTMLDivElement>, boolean] {
     // TODO: this state is SET inside of a callback. do we need to use a stateful ref? not sure
@@ -15,11 +15,14 @@ function useAnimationEventListener(): [React.RefObject<HTMLDivElement>, boolean]
         const currentElement = elementRef.current;
 
         if (currentElement) {
-            currentElement.addEventListener(startAnimationEventName, handleAnimationEvent);
+            currentElement.addEventListener(ANIMATION_STATE_EVENT_NAME, handleAnimationEvent);
 
             // Clean up the event listener when the component unmounts
             return () => {
-                currentElement.removeEventListener(startAnimationEventName, handleAnimationEvent);
+                currentElement.removeEventListener(
+                    ANIMATION_STATE_EVENT_NAME,
+                    handleAnimationEvent
+                );
             };
         }
     }, []);
