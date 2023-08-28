@@ -6,11 +6,11 @@ export const NARRATIVE_ANIMATION_TRIGGER_DECIMAL = 0.7; // at around 0.7 of the 
 export const NORMAL_ANIMATION_TRIGGER_DECIMAL = 0.9;
 
 export const enum AnimationState {
-    BEFORE_START,
-    RUNNING,
-    PAUSED,
+    BEFORE_START = "BEFORE START",
+    RUNNING = "RUNNING",
+    PAUSED = "PAUSED",
 }
-const newStartAnimationEvent = (animationState: AnimationState) => {
+const newAnimationStateEvent = (animationState: AnimationState) => {
     return new CustomEvent<AnimationState>(ANIMATION_STATE_EVENT_NAME, {
         detail: animationState,
         bubbles: true, // the event can bubble up through the DOM tree
@@ -67,7 +67,7 @@ const getAnimationDescriptions = (): AnimationDescription[] => {
     return animationDescriptions;
 };
 
-const isPersistentAnimationStr = "is-persistent-nimation";
+const isPersistentAnimationStr = "is-persistent-animation";
 const isPersistentAnimation = (element: HTMLElement) => {
     for (const elementClass of element.classList) {
         if (elementClass === isPersistentAnimationStr) {
@@ -83,7 +83,7 @@ export const initAnimations = (animationTriggerDecimal: number) => {
     const animationDescriptions = getAnimationDescriptions();
 
     const animationQueue: AnimationDescription[] = [];
-    const persistentAnimations = new Set<AnimationDescription>(); // TODO: process persistentAnimations on scroll.
+    const persistentAnimations = new Set<AnimationDescription>();
     const triggerAnimations = () => {
         tryStartAnimation(
             animationDescriptions,
@@ -91,7 +91,8 @@ export const initAnimations = (animationTriggerDecimal: number) => {
             persistentAnimations,
             animationTriggerDecimal
         );
-        if (animationDescriptions.length == 0) {
+        sendAnimationStateUpdateEvents(persistentAnimations);
+        if (animationDescriptions.length === 0 && persistentAnimations.size === 0) {
             // All elements have been put into the animation queue. So remove handler to save computation
             window.removeEventListener("scroll", triggerAnimations);
         }
@@ -197,5 +198,19 @@ const animateFirstItemInQueue = (animationQueue: AnimationDescription[]) => {
 const animateElement = (animationDescription: AnimationDescription) => {
     const element = animationDescription.element;
     element.classList.add(animationDescription.animationDefinition.finalClass);
-    element.dispatchEvent(newStartAnimationEvent(AnimationState.RUNNING));
+    element.dispatchEvent(newAnimationStateEvent(AnimationState.RUNNING));
+};
+
+const sendAnimationStateUpdateEvents = (persistentAnimations: Set<AnimationDescription>) => {
+    const SCROLL_BUFFER = 10;
+    for (const animationDescription of persistentAnimations) {
+        const animationState =
+            window.scrollY - SCROLL_BUFFER <=
+                animationDescription.elementTop() + animationDescription.element.offsetHeight &&
+            animationDescription.elementTop() <= window.scrollY + window.innerHeight + SCROLL_BUFFER
+                ? AnimationState.RUNNING
+                : AnimationState.PAUSED;
+        // console.log("sent animation state", animationState);
+        animationDescription.element.dispatchEvent(newAnimationStateEvent(animationState));
+    }
 };

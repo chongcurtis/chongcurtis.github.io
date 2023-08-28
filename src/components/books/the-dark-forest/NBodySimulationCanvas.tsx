@@ -17,6 +17,7 @@ export default function NBodySimulationCanvas({
     const bodies = React.useRef(cloneDeep(initialBodies));
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
     const timeoutId = React.useRef<NodeJS.Timeout>(); // controls the setInterval that runs the canvas animation
+    const animationState = React.useRef<AnimationState>(AnimationState.BEFORE_START); // controls the setInterval that runs the canvas animation
     const SIMULATION_SPEED = 30; // 40ms between each frame = 25fps
     const VELOCITY_STEP_SIZE = 10; // in terms of seconds
     let G = 100;
@@ -116,32 +117,37 @@ export default function NBodySimulationCanvas({
         const ctx = setupCanvas(canvas);
         ctx.font = "30px Arial";
 
-        const onAnimationStateChange = (event: CustomEvent<AnimationState>) => {
-            if (event.detail === AnimationState.BEFORE_START) {
+        const onAnimationStateEvent = (event: CustomEvent<AnimationState>) => {
+            if (animationState.current === event.detail) {
+                // we are transitioning to the same state, no need to do anything
                 return;
             }
+            animationState.current = event.detail;
 
+            console.log(event.detail);
+            if (
+                event.detail === AnimationState.RUNNING &&
+                animationState.current === AnimationState.BEFORE_START
+            ) {
+                bodies.current = cloneDeep(initialBodies);
+            }
+
+            clearInterval(timeoutId.current);
             if (event.detail === AnimationState.PAUSED) {
-                clearInterval(timeoutId.current!);
                 return;
             }
-
-            bodies.current = cloneDeep(initialBodies);
             // only start the animation once we have the startAnimationEvent
             timeoutId.current = setInterval(function () {
                 run(canvas, ctx);
             }, SIMULATION_SPEED); //this is the cycle
         };
 
-        canvas.addEventListener(
-            ANIMATION_STATE_EVENT_NAME,
-            onAnimationStateChange as EventListener
-        );
+        canvas.addEventListener(ANIMATION_STATE_EVENT_NAME, onAnimationStateEvent as EventListener);
         return () => {
             // cleanup
             canvas.removeEventListener(
                 ANIMATION_STATE_EVENT_NAME,
-                onAnimationStateChange as EventListener
+                onAnimationStateEvent as EventListener
             );
         };
     }, [canvasHeight, canvasWidth, initialBodies]);
