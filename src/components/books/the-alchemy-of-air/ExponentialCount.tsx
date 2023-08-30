@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useStatefulRef } from "@/common/useStatefulRef";
-import useAnimationEventListener from "@/common/useAnimationEventListener";
+import useAnimationStateEventListener from "@/common/useAnimationEventListener";
 
 interface Props {
     startingNumber: number;
@@ -17,7 +17,7 @@ export default function ExponentialCount({
     startingWaitDuration,
     startingRedness,
 }: Props) {
-    const [elementRef, startAnimationEventFired] = useAnimationEventListener();
+    const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
     const displayNumber = useStatefulRef(startingNumber);
     const redness = useStatefulRef(startingRedness);
     const isCountingDown = startingNumber >= endingNumber;
@@ -61,10 +61,10 @@ export default function ExponentialCount({
     }
 
     useEffect(() => {
-        if (startAnimationEventFired) {
+        if (hasStartEventFired) {
             startExponentialCount();
         }
-    }, [startAnimationEventFired]);
+    }, [hasStartEventFired]);
 
     return (
         <div

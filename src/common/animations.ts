@@ -210,7 +210,7 @@ const sendAnimationStateUpdateEvents = (persistentAnimations: Set<AnimationDescr
             animationDescription.elementTop() <= window.scrollY + window.innerHeight + SCROLL_BUFFER
                 ? AnimationState.RUNNING
                 : AnimationState.PAUSED;
-        // console.log("sent animation state", animationState);
+        console.log("sent animation state", animationState);
         animationDescription.element.dispatchEvent(newAnimationStateEvent(animationState));
     }
 };

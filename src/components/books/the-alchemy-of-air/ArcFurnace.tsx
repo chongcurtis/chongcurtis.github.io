@@ -2,7 +2,7 @@ import ParticleSimulationCanvas from "@/components/books/the-alchemy-of-air/Part
 import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import React, { useEffect } from "react";
 import { Block } from "@/components/books/the-alchemy-of-air/Block";
-import useAnimationEventListener from "@/common/useAnimationEventListener";
+import useAnimationStateEventListener from "@/common/useAnimationEventListener";
 
 const BOX_COLOR = "#616161";
 // const BOX_COLOR = "#dedede";
@@ -18,7 +18,7 @@ const blocks = [
 export default function ArcFurnace() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
-    const [elementRef, startAnimationEventFired] = useAnimationEventListener();
+    const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
 
     const spawnHotAtom = (x: number, y: number, vxDirection: number) => {
         const vx = vxDirection * (Math.random() * 5 + 1);
@@ -30,19 +30,19 @@ export default function ArcFurnace() {
     };
 
     useEffect(() => {
-        if (startAnimationEventFired) {
+        if (hasStartEventFired) {
             spawnHotAtom(160, 100, 1);
             spawnHotAtom(340, 100, -1);
         }
         return () => {
             clearTimeout(timeoutId.current);
         };
-    }, [startAnimationEventFired]);
+    }, [hasStartEventFired]);
 
     return (
         <div ref={elementRef}>
             <ParticleSimulationCanvas
-                animationState={startAnimationEventFired}
+                animationState={animationState}
                 particles={particles}
                 blocks={blocks}
                 canvasWidth={500}

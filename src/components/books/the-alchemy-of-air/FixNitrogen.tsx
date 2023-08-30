@@ -3,7 +3,7 @@ import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import React, { useEffect } from "react";
 import { Block } from "@/components/books/the-alchemy-of-air/Block";
 import { BACKGROUND_COLOR, NITROGEN_COLOR } from "@/components/books/the-alchemy-of-air/constants";
-import useAnimationEventListener from "@/common/useAnimationEventListener";
+import useAnimationStateEventListener from "@/common/useAnimationEventListener";
 
 const blocks = [new Block(250, 100, 10, 10, BACKGROUND_COLOR, 45)];
 
@@ -12,7 +12,7 @@ const blocks = [new Block(250, 100, 10, 10, BACKGROUND_COLOR, 45)];
 export default function FixNitrogen() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
-    const [elementRef, startAnimationEventFired] = useAnimationEventListener();
+    const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
 
     const spawnNitrogenPair = () => {
         particles.current.push(new Particle(100, 0, 95, 9, 0, 0, 0, 5, NITROGEN_COLOR, 200));
@@ -23,18 +23,18 @@ export default function FixNitrogen() {
     };
 
     useEffect(() => {
-        if (startAnimationEventFired) {
+        if (hasStartEventFired) {
             spawnNitrogenPair();
         }
         return () => {
             clearTimeout(timeoutId.current);
         };
-    }, [startAnimationEventFired]);
+    }, [hasStartEventFired]);
 
     return (
         <div className="flex flex-col items-center justify-center" ref={elementRef}>
             <ParticleSimulationCanvas
-                animationState={startAnimationEventFired}
+                animationState={animationState}
                 particles={particles}
                 blocks={blocks}
                 canvasWidth={500}

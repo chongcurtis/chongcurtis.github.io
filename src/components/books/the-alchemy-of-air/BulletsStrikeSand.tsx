@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import ParticleSimulationCanvas from "@/components/books/the-alchemy-of-air/ParticleSimulationCanvas";
 import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import { Block } from "@/components/books/the-alchemy-of-air/Block";
-import useAnimationEventListener from "@/common/useAnimationEventListener";
+import useAnimationStateEventListener from "@/common/useAnimationEventListener";
 
 export default function BulletsStrikeSand() {
-    const timeoutId = React.useRef<NodeJS.Timeout>();
+    // const timeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
-    const [elementRef, startAnimationEventFired] = useAnimationEventListener();
+    const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
 
     const blocks = [new Block(250, 175, 500, 50, "#b87f54", 0)];
     const createStrike = (x: number, y: number) => {
@@ -30,6 +30,7 @@ export default function BulletsStrikeSand() {
         }
     };
 
+    // TODO: store the timeoutIds so we can clear them on unmount
     const slowStrike = () => {
         const middleX = Math.random() * 100 + 50;
         createStrike(middleX + 50, 150);
@@ -60,15 +61,16 @@ export default function BulletsStrikeSand() {
     };
 
     useEffect(() => {
-        if (!startAnimationEventFired) {
+        if (!hasStartEventFired) {
             return;
         }
         slowStrike();
         return () => {
             // cleanup
-            clearTimeout(timeoutId.current);
+            // TODO: add clearTimeout
+            // clearTimeout(timeoutId.current);
         };
-    }, [startAnimationEventFired]);
+    }, [hasStartEventFired]);
 
     return (
         <div ref={elementRef} className="relative">
@@ -76,7 +78,7 @@ export default function BulletsStrikeSand() {
                 World War 1
             </p>
             <ParticleSimulationCanvas
-                animationState={startAnimationEventFired}
+                animationState={animationState}
                 particles={particles}
                 blocks={blocks}
                 canvasWidth={500}

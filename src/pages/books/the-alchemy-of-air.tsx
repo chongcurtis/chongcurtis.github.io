@@ -502,8 +502,8 @@ export default function TheAlchemyOfAir() {
                     },
                 ].map((source, idx) => {
                     return (
-                        <div className="fade-in-on-scroll text-md mt-5 p-5">
-                            <p key={`sources-${idx}`} className="text-left">
+                        <div className="fade-in-on-scroll text-md mt-5 p-5" key={`sources-${idx}`}>
+                            <p className="text-left">
                                 {source.title}
                                 {` `}
                                 {/* break-all is really important, or else the link are too wide and the page is unreadable on mobile */}

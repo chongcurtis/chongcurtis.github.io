@@ -3,18 +3,21 @@ import cloneDeep from "lodash.clonedeep";
 import FluidSimulationCanvas from "@/components/books/the-alchemy-of-air/fluid-simulator/FluidSimulationCanvas";
 import { Obstacle } from "@/components/books/the-alchemy-of-air/fluid-simulator/Obstacle";
 import { createZeroToOne } from "@/common/types/ZeroToOne";
-import useAnimationEventListener from "@/common/useAnimationEventListener";
+import useAnimationStateEventListener from "@/common/useAnimationEventListener";
 
 const initialObstacles = [
     new Obstacle(createZeroToOne(0.5), createZeroToOne(0.5), createZeroToOne(0.1)),
 ];
 export default function AlchemyOfAirTitle() {
     const [obstacles, setObstacles] = React.useState<Obstacle[]>([]);
-    const [elementRef, startAnimationEventFired] = useAnimationEventListener();
+    const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
     const [startFluidFlow, setStartFluidFlow] = useState(false);
 
+    // useEffect(() => {
+    //     console.log("new animation state", animationState);
+    // }, [animationState]);
     useEffect(() => {
-        if (startAnimationEventFired) {
+        if (hasStartEventFired) {
             setObstacles(cloneDeep(initialObstacles));
 
             // the simulation canvas should already be running. so all we need to do is set the particles
@@ -23,7 +26,7 @@ export default function AlchemyOfAirTitle() {
                 setStartFluidFlow(true);
             }, 500);
         }
-    }, [startAnimationEventFired]);
+    }, [hasStartEventFired]);
 
     // TODO: consider drawing an image of sir william crookes using a bezier curve (and increasing time t for the polynomials decribing the x/y points)
     // maybe use this to draw the path https://stackoverflow.com/questions/13612942/how-to-animate-an-image-along-a-path-with-bezier-curves
@@ -40,14 +43,19 @@ export default function AlchemyOfAirTitle() {
                 <span className="fade-in-on-scroll animation-delay-200">of</span>
             </p>
             <div
-                ref={elementRef}
+                // I need fade-in-on-scroll-slow to register this div for is-persistent-animation events
                 className="relative h-[300px] w-[350px] md:h-[400px] md:w-[500px]"
             >
-                <p className="fade-in-on-scroll-slow absolute left-1/2 top-1/2 -translate-x-[90%] -translate-y-[20%] transform text-4xl font-thin italic md:text-6xl">
+                <p
+                    ref={elementRef}
+                    className="is-persistent-animation fade-in-on-scroll-slow absolute left-1/2 top-1/2 -translate-x-[90%] -translate-y-[20%] transform text-4xl font-thin italic md:text-6xl"
+                >
                     {/*<p className="fade-in-on-scroll absolute left-0 right-0 m-auto text-4xl font-thin italic md:text-6xl">*/}
                     Air
                 </p>
                 <FluidSimulationCanvas
+                    animationState={animationState}
+                    hasStartEventFired={hasStartEventFired}
                     startAnimation={startFluidFlow}
                     obstacles={obstacles}
                     canvasWidth={1000}

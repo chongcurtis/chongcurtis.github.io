@@ -50,7 +50,6 @@ export default function NBodySimulationCanvas({
     }
 
     function run(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
-        console.log("running");
         let canvasW = canvas.width;
         let canvasH = canvas.height;
         let n = bodies.current.length;
@@ -108,7 +107,6 @@ export default function NBodySimulationCanvas({
         if (!canvasRef.current) {
             return;
         }
-        // console.log("useEffect canvas");
 
         const canvas = canvasRef.current;
         canvas.width = canvasWidth;
@@ -124,7 +122,6 @@ export default function NBodySimulationCanvas({
             }
             animationState.current = event.detail;
 
-            console.log(event.detail);
             if (
                 event.detail === AnimationState.RUNNING &&
                 animationState.current === AnimationState.BEFORE_START

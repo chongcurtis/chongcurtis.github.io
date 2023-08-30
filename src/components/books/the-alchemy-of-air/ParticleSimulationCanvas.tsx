@@ -27,23 +27,16 @@ export default function ParticleSimulationCanvas({
     const COEFFICIENT_OF_RESTITUTION = 1; // the ratio of the final to initial relative speed between two objects after they collide.
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
     const timeoutId = React.useRef<NodeJS.Timeout>(); // controls the setInterval that runs the canvas animation
+    const canvasCtx = React.useRef<CanvasRenderingContext2D>();
 
     React.useEffect(() => {
-        if (!canvasRef.current || animationState === AnimationState.BEFORE_START) {
-            return;
-        }
-        if (animationState === AnimationState.PAUSED) {
-            clearInterval(timeoutId.current!);
-            return;
-        }
-        // console.log("useEffect canvas");
-
-        const canvas = canvasRef.current;
+        const canvas = canvasRef.current!;
         canvas.width = canvasWidth;
         canvas.height = canvasHeight;
 
         const ctx = setupCanvas(canvas);
         ctx.font = "30px Arial";
+        canvasCtx.current = ctx;
 
         // I opted for a setInterval solution since requestAnimationFrame was causing the simulation to run too fast
         // const update = () => {
@@ -51,6 +44,22 @@ export default function ParticleSimulationCanvas({
         //     requestAnimationFrame(update); // Schedule next frame
         // };
         // requestAnimationFrame(update);
+    }, [canvasWidth, canvasHeight]);
+
+    React.useEffect(() => {
+        if (
+            !canvasRef.current ||
+            !canvasCtx.current ||
+            animationState === AnimationState.BEFORE_START
+        ) {
+            return;
+        }
+        if (animationState === AnimationState.PAUSED) {
+            clearInterval(timeoutId.current!);
+            return;
+        }
+        const canvas = canvasRef.current!;
+        const ctx = canvasCtx.current!;
 
         timeoutId.current = setInterval(function () {
             run(canvas, ctx);
@@ -122,10 +131,11 @@ export default function ParticleSimulationCanvas({
     }
 
     function run(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
+        // console.log("canvas running");
         if (!particles.current) {
             return;
         }
-        //console.log(bodies);
+
         let canvasW = canvas.width;
         let canvasH = canvas.height;
 

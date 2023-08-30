@@ -2,7 +2,7 @@ import ParticleSimulationCanvas from "@/components/books/the-alchemy-of-air/Part
 import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import React, { useEffect } from "react";
 import { Block } from "@/components/books/the-alchemy-of-air/Block";
-import useAnimationEventListener from "@/common/useAnimationEventListener";
+import useAnimationStateEventListener from "@/common/useAnimationEventListener";
 import cloneDeep from "lodash.clonedeep";
 
 const PIN_COLOR = "#8ff2c3";
@@ -24,7 +24,7 @@ const pins = [
 
 export default function Bowling() {
     const particles = React.useRef<Particle[]>(cloneDeep(pins));
-    const [elementRef, startAnimationEventFired] = useAnimationEventListener();
+    const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
 
     const shootBowlingBall = () => {
         const vx = 9;
@@ -33,14 +33,11 @@ export default function Bowling() {
         particles.current.push(new Particle(100, 0, 103, vx, vy, 0, 0, 10, "#fcb1f9", 200));
     };
     useEffect(() => {
-        if (!startAnimationEventFired) {
+        if (!hasStartEventFired) {
             return;
         }
         shootBowlingBall();
-        return () => {
-            // clearTimeout(timeoutId.current);
-        };
-    }, [startAnimationEventFired]);
+    }, [hasStartEventFired]);
 
     return (
         <div ref={elementRef} className="relative">
@@ -48,7 +45,7 @@ export default function Bowling() {
                 Eureka
             </p>
             <ParticleSimulationCanvas
-                animationState={startAnimationEventFired}
+                animationState={animationState}
                 particles={particles}
                 blocks={[]}
                 canvasWidth={500}
