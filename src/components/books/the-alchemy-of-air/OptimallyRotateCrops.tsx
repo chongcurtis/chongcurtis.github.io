@@ -2,6 +2,7 @@ import ParticleSimulationCanvas from "@/components/books/the-alchemy-of-air/Part
 import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import React, { useEffect } from "react";
 import useAnimationStateEventListener from "@/common/useAnimationEventListener";
+import { AnimationState } from "@/common/animations";
 
 export default function OptimallyRotateCrops() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
@@ -9,6 +10,7 @@ export default function OptimallyRotateCrops() {
     const spawnFieldTypesTimeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
     const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
+    const animationStateRef = React.useRef(AnimationState.BEFORE_START);
 
     const fieldTypeColors = ["#7ac8ff", "#fc9144", "#a8ffba"];
 
@@ -37,6 +39,10 @@ export default function OptimallyRotateCrops() {
     };
 
     const increaseParticleRadius = () => {
+        if (animationStateRef.current === AnimationState.PAUSED) {
+            clearTimeout(timeoutId.current);
+            return;
+        }
         for (let i = 0; i < particles.current.length; i++) {
             if (particles.current[i].radius < 5) {
                 particles.current[i].radius += 0.4;
@@ -46,6 +52,10 @@ export default function OptimallyRotateCrops() {
     };
 
     const spawnFieldRows = (ithRow: number, ithFieldType: number) => {
+        if (animationStateRef.current === AnimationState.PAUSED) {
+            clearTimeout(timeoutId.current);
+            return;
+        }
         if (ithRow >= 6) {
             return;
         }
@@ -57,6 +67,10 @@ export default function OptimallyRotateCrops() {
     };
 
     const spawnFieldTypes = (ithFieldType: number) => {
+        if (animationStateRef.current === AnimationState.PAUSED) {
+            clearTimeout(timeoutId.current);
+            return;
+        }
         ithFieldType = ithFieldType % fieldTypeColors.length;
         spawnFieldRows(0, ithFieldType);
         spawnFieldTypesTimeoutId.current = setTimeout(
@@ -65,10 +79,21 @@ export default function OptimallyRotateCrops() {
         );
     };
 
+    const start = () => {
+        spawnFieldTypes(fieldTypeColors.length);
+        timeoutId.current = setTimeout(increaseParticleRadius, 100);
+    };
+
+    useEffect(() => {
+        animationStateRef.current = animationState;
+        if (animationState === AnimationState.RUNNING) {
+            clearTimeout(timeoutId.current);
+            start();
+        }
+    }, [animationState]);
+
     useEffect(() => {
         if (hasStartEventFired) {
-            spawnFieldTypes(fieldTypeColors.length);
-            timeoutId.current = setTimeout(increaseParticleRadius, 100);
         }
         return () => {
             clearTimeout(timeoutId.current);
