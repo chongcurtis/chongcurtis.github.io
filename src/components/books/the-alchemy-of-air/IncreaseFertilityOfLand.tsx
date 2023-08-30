@@ -1,13 +1,13 @@
 import ParticleSimulationCanvas from "@/components/books/the-alchemy-of-air/ParticleSimulationCanvas";
 import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import React, { useEffect } from "react";
-import useAnimationEventListener from "@/common/useAnimationEventListener";
+import useAnimationStateEventListener from "@/common/useAnimationEventListener";
 
 export default function IncreaseFertilityOfLand() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const SpawnCropsTimeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
-    const [elementRef, startAnimationEventFired] = useAnimationEventListener();
+    const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
 
     const offsetY = 10;
     const offsetX = 30;
@@ -49,7 +49,7 @@ export default function IncreaseFertilityOfLand() {
     };
 
     useEffect(() => {
-        if (!startAnimationEventFired) {
+        if (!hasStartEventFired) {
             return;
         }
         spawnCrops(30);
@@ -58,12 +58,15 @@ export default function IncreaseFertilityOfLand() {
             clearTimeout(timeoutId.current);
             clearTimeout(SpawnCropsTimeoutId.current);
         };
-    }, [startAnimationEventFired]);
+    }, [hasStartEventFired]);
 
     return (
-        <div className="flex flex-col items-center justify-center" ref={elementRef}>
+        <div
+            className="dummy-animation is-persistent-animation flex flex-col items-center justify-center"
+            ref={elementRef}
+        >
             <ParticleSimulationCanvas
-                startAnimation={startAnimationEventFired}
+                animationState={animationState}
                 particles={particles}
                 blocks={[]}
                 canvasWidth={500}

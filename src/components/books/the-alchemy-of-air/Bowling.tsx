@@ -2,7 +2,7 @@ import ParticleSimulationCanvas from "@/components/books/the-alchemy-of-air/Part
 import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import React, { useEffect } from "react";
 import { Block } from "@/components/books/the-alchemy-of-air/Block";
-import useAnimationEventListener from "@/common/useAnimationEventListener";
+import useAnimationStateEventListener from "@/common/useAnimationEventListener";
 import cloneDeep from "lodash.clonedeep";
 
 const PIN_COLOR = "#8ff2c3";
@@ -24,7 +24,7 @@ const pins = [
 
 export default function Bowling() {
     const particles = React.useRef<Particle[]>(cloneDeep(pins));
-    const [elementRef, startAnimationEventFired] = useAnimationEventListener();
+    const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
 
     const shootBowlingBall = () => {
         const vx = 9;
@@ -33,22 +33,19 @@ export default function Bowling() {
         particles.current.push(new Particle(100, 0, 103, vx, vy, 0, 0, 10, "#fcb1f9", 200));
     };
     useEffect(() => {
-        if (!startAnimationEventFired) {
+        if (!hasStartEventFired) {
             return;
         }
         shootBowlingBall();
-        return () => {
-            // clearTimeout(timeoutId.current);
-        };
-    }, [startAnimationEventFired]);
+    }, [hasStartEventFired]);
 
     return (
-        <div ref={elementRef} className="relative">
+        <div ref={elementRef} className="dummy-animation is-persistent-animation relative">
             <p className="fade-in-on-scroll-slow animation-delay-1100 absolute left-1/2 top-1/2 z-20 -translate-x-[50%] -translate-y-[20%] transform md:text-2xl">
                 Eureka
             </p>
             <ParticleSimulationCanvas
-                startAnimation={startAnimationEventFired}
+                animationState={animationState}
                 particles={particles}
                 blocks={[]}
                 canvasWidth={500}

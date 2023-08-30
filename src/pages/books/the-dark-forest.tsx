@@ -7,9 +7,11 @@ export default function TheDarkForest() {
     React.useEffect(() => {
         return initAnimations(NARRATIVE_ANIMATION_TRIGGER_DECIMAL);
     }, []);
+    // const [elementRef, startAnimationEventFired] = useAnimationEventListener();
 
     return (
         <>
+            <div className="px-5 pt-[500px] text-center"></div>
             <div className="px-5 text-center">
                 <p className="fade-in-on-scroll relative mt-60 text-4xl">Spoiler Alert!</p>
                 <p className="fade-in-on-scroll relative mt-4 text-center text-xl">
@@ -57,7 +59,7 @@ export default function TheDarkForest() {
             <p className="fade-in-on-scroll mt-4">
                 Is <span className="underline-on-scroll"></span>
             </p>
-            <div className="mb-[500px]" />
+            <div className="mb-[5000px]" />
         </>
     );
 }

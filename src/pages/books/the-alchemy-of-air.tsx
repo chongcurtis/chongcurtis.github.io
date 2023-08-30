@@ -37,8 +37,7 @@ export default function TheAlchemyOfAir() {
             <div className="m-auto items-center">
                 <AlchemyOfAirTitle />
             </div>
-            {/* rational for the delay: 2000 ms for fluid to appear, 300ms for buffer*/}
-            <p className="fade-in-on-scroll animation-delay-2300 text-md mb-32 mt-10">
+            <p className="fade-in-on-scroll text-md mb-32 mt-10">
                 Credit for this animation goes to{" "}
                 <a
                     href="https://github.com/matthias-research/pages/blob/master/tenMinutePhysics/17-fluidSim.html"
@@ -502,13 +501,13 @@ export default function TheAlchemyOfAir() {
                     },
                 ].map((source, idx) => {
                     return (
-                        <div className="fade-in-on-scroll text-md mt-5 p-5">
-                            <p key={`sources-${idx}`} className="text-left">
+                        <div className="fade-in-on-scroll text-md mt-5 p-5" key={`sources-${idx}`}>
+                            <p className="text-left">
                                 {source.title}
                                 {` `}
                                 {/* break-all is really important, or else the link are too wide and the page is unreadable on mobile */}
+                                {/* we have the w-[200px] property, so when the user is on a mobile screen, the long links don't push the edges of the screen too much and mess up the formatting for the entire page */}
                                 <Link
-                                    // style={{ boxSizing: "border-box" }}
                                     className={`inline-block w-[200px] break-all text-left text-sleepover-secondary md:w-full`}
                                     href={`https://${source.link}`}
                                     target="_blank"

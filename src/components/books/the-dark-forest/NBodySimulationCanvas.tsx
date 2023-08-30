@@ -1,6 +1,6 @@
 import React from "react";
 import { Body } from "./Body";
-import { startAnimationEventName } from "@/common/animations";
+import { AnimationState, ANIMATION_STATE_EVENT_NAME } from "@/common/animations";
 import cloneDeep from "lodash.clonedeep";
 
 type Props = {
@@ -16,6 +16,8 @@ export default function NBodySimulationCanvas({
 }: Props) {
     const bodies = React.useRef(cloneDeep(initialBodies));
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
+    const timeoutId = React.useRef<NodeJS.Timeout>(); // controls the setInterval that runs the canvas animation
+    const animationState = React.useRef<AnimationState>(AnimationState.BEFORE_START); // controls the setInterval that runs the canvas animation
     const SIMULATION_SPEED = 30; // 40ms between each frame = 25fps
     const VELOCITY_STEP_SIZE = 10; // in terms of seconds
     let G = 100;
@@ -105,7 +107,6 @@ export default function NBodySimulationCanvas({
         if (!canvasRef.current) {
             return;
         }
-        // console.log("useEffect canvas");
 
         const canvas = canvasRef.current;
         canvas.width = canvasWidth;
@@ -114,27 +115,47 @@ export default function NBodySimulationCanvas({
         const ctx = setupCanvas(canvas);
         ctx.font = "30px Arial";
 
-        const startAnimation = () => {
-            bodies.current = cloneDeep(initialBodies);
+        const onAnimationStateEvent = (event: CustomEvent<AnimationState>) => {
+            if (animationState.current === event.detail) {
+                // we are transitioning to the same state, no need to do anything
+                return;
+            }
+            animationState.current = event.detail;
+
+            if (
+                animationState.current === AnimationState.BEFORE_START &&
+                event.detail === AnimationState.RUNNING
+            ) {
+                // do setup since this is the first time running the animation!
+                bodies.current = cloneDeep(initialBodies);
+            }
+
+            clearInterval(timeoutId.current);
+            if (event.detail === AnimationState.PAUSED) {
+                return;
+            }
             // only start the animation once we have the startAnimationEvent
-            setInterval(function () {
+            timeoutId.current = setInterval(function () {
                 run(canvas, ctx);
             }, SIMULATION_SPEED); //this is the cycle
         };
 
-        canvas.addEventListener(startAnimationEventName, startAnimation);
+        canvas.addEventListener(ANIMATION_STATE_EVENT_NAME, onAnimationStateEvent as EventListener);
         return () => {
             // cleanup
-            canvas.removeEventListener(startAnimationEventName, startAnimation);
+            canvas.removeEventListener(
+                ANIMATION_STATE_EVENT_NAME,
+                onAnimationStateEvent as EventListener
+            );
         };
-    }, [canvasRef]);
+    }, [canvasHeight, canvasWidth, initialBodies]);
 
     return (
         <canvas
             id="canvas"
             ref={canvasRef}
             // NOTE: the fade-in-on-scroll is really important because without it the startAnimationEvent won't be called for this canvas
-            className="fade-in-on-scroll h-full w-full bg-background-color"
+            className="fade-in-on-scroll is-persistent-animation h-full w-full bg-background-color"
         />
     );
 }

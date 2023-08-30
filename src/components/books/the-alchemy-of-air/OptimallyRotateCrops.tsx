@@ -1,14 +1,14 @@
 import ParticleSimulationCanvas from "@/components/books/the-alchemy-of-air/ParticleSimulationCanvas";
 import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import React, { useEffect } from "react";
-import useAnimationEventListener from "@/common/useAnimationEventListener";
+import useAnimationStateEventListener from "@/common/useAnimationEventListener";
 
 export default function OptimallyRotateCrops() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const spawnFieldRowTimeoutId = React.useRef<NodeJS.Timeout>();
     const spawnFieldTypesTimeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
-    const [elementRef, startAnimationEventFired] = useAnimationEventListener();
+    const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
 
     const fieldTypeColors = ["#7ac8ff", "#fc9144", "#a8ffba"];
 
@@ -66,7 +66,7 @@ export default function OptimallyRotateCrops() {
     };
 
     useEffect(() => {
-        if (startAnimationEventFired) {
+        if (hasStartEventFired) {
             spawnFieldTypes(fieldTypeColors.length);
             timeoutId.current = setTimeout(increaseParticleRadius, 100);
         }
@@ -75,12 +75,15 @@ export default function OptimallyRotateCrops() {
             clearTimeout(spawnFieldRowTimeoutId.current);
             clearTimeout(spawnFieldTypesTimeoutId.current);
         };
-    }, [startAnimationEventFired]);
+    }, [hasStartEventFired]);
 
     return (
-        <div className="flex flex-col items-center justify-center" ref={elementRef}>
+        <div
+            className="dummy-animation is-persistent-animation flex flex-col items-center justify-center"
+            ref={elementRef}
+        >
             <ParticleSimulationCanvas
-                startAnimation={startAnimationEventFired}
+                animationState={animationState}
                 particles={particles}
                 blocks={[]}
                 canvasWidth={500}

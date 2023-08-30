@@ -2,7 +2,7 @@ import ParticleSimulationCanvas from "@/components/books/the-alchemy-of-air/Part
 import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import React, { useEffect } from "react";
 import { Block } from "@/components/books/the-alchemy-of-air/Block";
-import useAnimationEventListener from "@/common/useAnimationEventListener";
+import useAnimationStateEventListener from "@/common/useAnimationEventListener";
 import { BACKGROUND_COLOR } from "./constants";
 
 const BOX_COLOR = BACKGROUND_COLOR;
@@ -19,7 +19,7 @@ const blocks = [
 export default function IncreasePressure() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
-    const [elementRef, startAnimationEventFired] = useAnimationEventListener();
+    const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
     const pressureAlpha = React.useRef<number>(2); // affects the particle's radius
 
     const spawnHotAtom = () => {
@@ -49,18 +49,18 @@ export default function IncreasePressure() {
     };
 
     useEffect(() => {
-        if (startAnimationEventFired) {
+        if (hasStartEventFired) {
             spawnHotAtom();
         }
         return () => {
             clearTimeout(timeoutId.current);
         };
-    }, [startAnimationEventFired]);
+    }, [hasStartEventFired]);
 
     return (
-        <div ref={elementRef}>
+        <div className="dummy-animation is-persistent-animation " ref={elementRef}>
             <ParticleSimulationCanvas
-                startAnimation={startAnimationEventFired}
+                animationState={animationState}
                 particles={particles}
                 blocks={blocks}
                 canvasWidth={500}

@@ -25,4 +25,9 @@ export const animationDefinitions: Animations = {
         initialClass: "underline-on-scroll",
         finalClass: "underlined",
     },
+    dummyAnimation: {
+        // needed so this element is put into the animation queue (useful for is-persistent-animation)
+        initialClass: "dummy-animation",
+        finalClass: "dummy-animation-fin",
+    },
 };

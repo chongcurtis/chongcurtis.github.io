@@ -2,7 +2,7 @@ import ParticleSimulationCanvas from "@/components/books/the-alchemy-of-air/Part
 import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import React, { useEffect } from "react";
 import { Block } from "@/components/books/the-alchemy-of-air/Block";
-import useAnimationEventListener from "@/common/useAnimationEventListener";
+import useAnimationStateEventListener from "@/common/useAnimationEventListener";
 import { BACKGROUND_COLOR, NITROGEN_COLOR } from "./constants";
 
 const BOX_COLOR = BACKGROUND_COLOR;
@@ -20,7 +20,7 @@ export default function CubicDrop() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const dripTimeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
-    const [elementRef, startAnimationEventFired] = useAnimationEventListener();
+    const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
 
     const spawnHotAtom = () => {
         const vx = Math.floor(Math.random() * 5) + 1;
@@ -38,19 +38,20 @@ export default function CubicDrop() {
     };
 
     useEffect(() => {
-        if (startAnimationEventFired) {
+        if (hasStartEventFired) {
             spawnHotAtom();
             spawnDrip();
         }
         return () => {
             clearTimeout(timeoutId.current);
+            clearTimeout(dripTimeoutId.current);
         };
-    }, [startAnimationEventFired]);
+    }, [hasStartEventFired]);
 
     return (
-        <div ref={elementRef}>
+        <div className="dummy-animation is-persistent-animation " ref={elementRef}>
             <ParticleSimulationCanvas
-                startAnimation={startAnimationEventFired}
+                animationState={animationState}
                 particles={particles}
                 blocks={blocks}
                 canvasWidth={500}

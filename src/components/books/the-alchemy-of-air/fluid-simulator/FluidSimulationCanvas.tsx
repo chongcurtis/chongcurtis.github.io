@@ -1,17 +1,22 @@
 import React from "react";
 import Fluid, { Field } from "@/components/books/the-alchemy-of-air/fluid-simulator/Fluid";
 import { Obstacle } from "@/components/books/the-alchemy-of-air/fluid-simulator/Obstacle";
+import { AnimationState } from "@/common/animations";
 
 type Props = {
     obstacles: Obstacle[];
     canvasWidth: number;
     canvasHeight: number;
+    animationState: AnimationState;
+    hasStartEventFired: boolean;
     startAnimation: boolean;
 };
 export default function FluidSimulationCanvas({
     obstacles,
     canvasWidth,
     canvasHeight,
+    animationState,
+    hasStartEventFired,
     startAnimation,
 }: Props) {
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
@@ -33,6 +38,8 @@ export default function FluidSimulationCanvas({
         showSmoke: true,
         fluid: null,
     });
+    const requestAnimationFrameId = React.useRef<number>();
+    const INITIAL_DELAY = 1500;
 
     // If the pixel is greater than this threshold, do not draw it (to save computation)a
     // 1 means: do draw every pixel regardless of color
@@ -56,12 +63,43 @@ export default function FluidSimulationCanvas({
         }
     }, [obstacles]);
 
+    function simulate() {
+        const scene = sceneRef.current;
+        if (!scene.paused) {
+            scene.fluid.simulate(scene.dt, scene.gravity, scene.numIters);
+        }
+        scene.frameNr++;
+    }
+
     React.useEffect(() => {
         if (!canvasRef.current || !startAnimation) {
             return;
         }
+        if (animationState === AnimationState.PAUSED && requestAnimationFrameId.current) {
+            window.cancelAnimationFrame(requestAnimationFrameId.current);
+        }
         // console.log("useEffect canvas");
+        if (animationState === AnimationState.RUNNING) {
+            if (!requestAnimationFrameId.current) {
+                // if it's the first time running the animation, delay a bit
+                setTimeout(update, INITIAL_DELAY);
+            } else {
+                update();
+            }
+        }
+    }, [animationState]);
 
+    function update() {
+        simulate();
+        draw();
+        requestAnimationFrameId.current = requestAnimationFrame(update);
+    }
+
+    React.useEffect(() => {
+        if (!canvasRef.current) {
+            console.error("cannot start fluid simulation canvas because canvasRef is null");
+            return;
+        }
         const canvas = canvasRef.current;
         // canvas.width = canvasWidth * 0.5;
         // canvas.height = canvasHeight * 0.5;
@@ -72,26 +110,12 @@ export default function FluidSimulationCanvas({
         // setInterval(function () {
         //     run(canvas, ctx);
         // }, SIMULATION_SPEED); //this is the cyclea
-        const scene = sceneRef.current;
-
-        function simulate() {
-            if (!scene.paused) {
-                scene.fluid.simulate(scene.dt, scene.gravity, scene.numIters);
-            }
-            scene.frameNr++;
-        }
-
-        function update() {
-            simulate();
-            draw();
-            requestAnimationFrame(update);
-        }
-
-        setupScene(1);
-        update();
-
         ctx.font = "30px Arial";
-    }, [startAnimation]);
+        setupScene(1);
+        if (hasStartEventFired) {
+            setTimeout(update, INITIAL_DELAY);
+        }
+    }, [hasStartEventFired]);
 
     function setupScene(sceneNr = 0) {
         const scene = sceneRef.current;
@@ -489,7 +513,7 @@ export default function FluidSimulationCanvas({
         <canvas
             id="canvas"
             ref={canvasRef}
-            className="fade-in-on-scroll h-full w-full"
+            className="fade-in-on-scroll h-full w-full "
             // NOTE: the fade-in-on-scroll is really important because without it the startAnimationEvent won't be called for this canvas
         />
     );
