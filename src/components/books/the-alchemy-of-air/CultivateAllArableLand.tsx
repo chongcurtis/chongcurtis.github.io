@@ -62,7 +62,10 @@ export default function CultivateAllArableLand() {
     }, [hasStartEventFired]);
 
     return (
-        <div className="flex flex-col items-center justify-center" ref={elementRef}>
+        <div
+            className="is-persistent-animation dummy-animation flex flex-col items-center justify-center"
+            ref={elementRef}
+        >
             <ParticleSimulationCanvas
                 animationState={animationState}
                 particles={particles}

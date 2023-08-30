@@ -50,7 +50,7 @@ export default function IncreaseHeat() {
     }, [hasStartEventFired]);
 
     return (
-        <div ref={elementRef}>
+        <div className="dummy-animation is-persistent-animation" ref={elementRef}>
             <ParticleSimulationCanvas
                 animationState={animationState}
                 particles={particles}

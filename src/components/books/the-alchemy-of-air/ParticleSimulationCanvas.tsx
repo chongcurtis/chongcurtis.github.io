@@ -131,7 +131,7 @@ export default function ParticleSimulationCanvas({
     }
 
     function run(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
-        // console.log("canvas running");
+        console.log("canvas running");
         if (!particles.current) {
             return;
         }

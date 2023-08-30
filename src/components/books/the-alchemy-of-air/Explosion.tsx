@@ -47,7 +47,7 @@ export default function Explosion() {
     }, [hasStartEventFired]);
 
     return (
-        <div ref={elementRef} className="relative">
+        <div ref={elementRef} className="dummy-animation is-persistent-animation relative">
             <p className="fade-in-on-scroll-slow animation-delay-200 absolute left-1/2 top-1/2 z-20 -translate-x-[50%] -translate-y-[20%] transform font-bold md:text-2xl">
                 But they kept exploding
             </p>

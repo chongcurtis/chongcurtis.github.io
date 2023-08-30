@@ -281,7 +281,6 @@ export default function FluidSimulationCanvas({
     }
 
     function draw() {
-        console.log("draw fluid simulation canvas");
         if (!canvasRef.current) {
             return;
         }

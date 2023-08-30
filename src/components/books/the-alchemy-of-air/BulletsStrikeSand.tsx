@@ -73,7 +73,7 @@ export default function BulletsStrikeSand() {
     }, [hasStartEventFired]);
 
     return (
-        <div ref={elementRef} className="relative">
+        <div ref={elementRef} className="dummy-animation is-persistent-animation relative">
             <p className="fade-in-on-scroll-slow absolute left-1/2 top-1/2 z-20 -translate-x-[50%] -translate-y-[20%] transform text-2xl font-thin italic md:text-6xl">
                 World War 1
             </p>
