@@ -123,9 +123,10 @@ export default function NBodySimulationCanvas({
             animationState.current = event.detail;
 
             if (
-                event.detail === AnimationState.RUNNING &&
-                animationState.current === AnimationState.BEFORE_START
+                animationState.current === AnimationState.BEFORE_START &&
+                event.detail === AnimationState.RUNNING
             ) {
+                // do setup since this is the first time running the animation!
                 bodies.current = cloneDeep(initialBodies);
             }
 
