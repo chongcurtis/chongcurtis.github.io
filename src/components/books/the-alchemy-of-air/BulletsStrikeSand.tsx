@@ -3,11 +3,13 @@ import ParticleSimulationCanvas from "@/components/books/the-alchemy-of-air/Part
 import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import { Block } from "@/components/books/the-alchemy-of-air/Block";
 import useAnimationStateEventListener from "@/common/useAnimationEventListener";
+import { AnimationState } from "@/common/animations";
 
 export default function BulletsStrikeSand() {
     // const timeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
     const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
+    const animationStateRef = React.useRef(AnimationState.BEFORE_START);
 
     const blocks = [new Block(250, 175, 500, 50, "#b87f54", 0)];
     const createStrike = (x: number, y: number) => {
@@ -56,21 +58,21 @@ export default function BulletsStrikeSand() {
     };
     const strikes = [slowStrike, lineStrike, oneSpotStrike];
     const createStrikes = () => {
+        if (animationStateRef.current === AnimationState.PAUSED) {
+            // TODO: add cleartimeout
+            // clearTimeout(timeoutId.current);
+            return;
+        }
         const strike = strikes[Math.floor(Math.random() * strikes.length)];
         strike();
     };
 
     useEffect(() => {
-        if (!hasStartEventFired) {
-            return;
+        animationStateRef.current = animationState;
+        if (animationState === AnimationState.RUNNING) {
+            createStrikes();
         }
-        slowStrike();
-        return () => {
-            // cleanup
-            // TODO: add clearTimeout
-            // clearTimeout(timeoutId.current);
-        };
-    }, [hasStartEventFired]);
+    }, [animationState]);
 
     return (
         <div ref={elementRef} className="dummy-animation is-persistent-animation relative">

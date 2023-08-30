@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { Block } from "@/components/books/the-alchemy-of-air/Block";
 import useAnimationStateEventListener from "@/common/useAnimationEventListener";
 import { BACKGROUND_COLOR } from "./constants";
+import { AnimationState } from "@/common/animations";
 
 const BOX_COLOR = BACKGROUND_COLOR;
 // const BOX_COLOR = "#dedede";
@@ -20,9 +21,14 @@ export default function IncreasePressure() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
     const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
+    const animationStateRef = React.useRef(AnimationState.BEFORE_START);
     const pressureAlpha = React.useRef<number>(2); // affects the particle's radius
 
     const spawnHotAtom = () => {
+        if (animationStateRef.current === AnimationState.PAUSED) {
+            clearTimeout(timeoutId.current);
+            return;
+        }
         const vx = Math.floor(Math.random() * 5) + 1;
         const vy = Math.floor(Math.random() * 5) + 1;
 
@@ -49,9 +55,14 @@ export default function IncreasePressure() {
     };
 
     useEffect(() => {
-        if (hasStartEventFired) {
+        animationStateRef.current = animationState;
+        if (animationState === AnimationState.RUNNING) {
+            clearTimeout(timeoutId.current);
             spawnHotAtom();
         }
+    }, [animationState]);
+
+    useEffect(() => {
         return () => {
             clearTimeout(timeoutId.current);
         };

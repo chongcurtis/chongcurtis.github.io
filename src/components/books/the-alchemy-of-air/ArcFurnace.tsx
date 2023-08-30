@@ -3,6 +3,7 @@ import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import React, { useEffect } from "react";
 import { Block } from "@/components/books/the-alchemy-of-air/Block";
 import useAnimationStateEventListener from "@/common/useAnimationEventListener";
+import { AnimationState } from "@/common/animations";
 
 const BOX_COLOR = "#616161";
 // const BOX_COLOR = "#dedede";
@@ -19,8 +20,13 @@ export default function ArcFurnace() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
     const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
+    const animationStateRef = React.useRef(AnimationState.BEFORE_START);
 
     const spawnHotAtom = (x: number, y: number, vxDirection: number) => {
+        if (animationStateRef.current === AnimationState.PAUSED) {
+            clearTimeout(timeoutId.current);
+            return;
+        }
         const vx = vxDirection * (Math.random() * 5 + 1);
         const vy = Math.random() - 0.5;
 
@@ -30,10 +36,15 @@ export default function ArcFurnace() {
     };
 
     useEffect(() => {
-        if (hasStartEventFired) {
+        animationStateRef.current = animationState;
+        if (animationState === AnimationState.RUNNING) {
+            clearTimeout(timeoutId.current);
             spawnHotAtom(160, 100, 1);
             spawnHotAtom(340, 100, -1);
         }
+    }, [animationState]);
+
+    useEffect(() => {
         return () => {
             clearTimeout(timeoutId.current);
         };

@@ -22,7 +22,7 @@ export default function Explosion() {
             0.25,
             Math.random(),
             color,
-            50
+            500
         );
     };
 
@@ -39,7 +39,7 @@ export default function Explosion() {
         if (!hasStartEventFired) {
             return;
         }
-        explosion();
+        timeoutId.current = setTimeout(explosion, 750);
         return () => {
             // cleanup
             clearTimeout(timeoutId.current);

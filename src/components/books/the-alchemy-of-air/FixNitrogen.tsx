@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { Block } from "@/components/books/the-alchemy-of-air/Block";
 import { BACKGROUND_COLOR, NITROGEN_COLOR } from "@/components/books/the-alchemy-of-air/constants";
 import useAnimationStateEventListener from "@/common/useAnimationEventListener";
+import { AnimationState } from "@/common/animations";
 
 const blocks = [new Block(250, 100, 10, 10, BACKGROUND_COLOR, 45)];
 
@@ -13,19 +14,28 @@ export default function FixNitrogen() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
     const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
+    const animationStateRef = React.useRef(AnimationState.BEFORE_START);
 
     const spawnNitrogenPair = () => {
+        if (animationStateRef.current === AnimationState.PAUSED) {
+            clearTimeout(timeoutId.current);
+            return;
+        }
         particles.current.push(new Particle(100, 0, 95, 9, 0, 0, 0, 5, NITROGEN_COLOR, 200));
         particles.current.push(new Particle(100, 0, 105, 9, 0, 0, 0, 5, NITROGEN_COLOR, 200));
 
         const spawnDelay = 1000;
         timeoutId.current = setTimeout(spawnNitrogenPair, spawnDelay);
     };
-
     useEffect(() => {
-        if (hasStartEventFired) {
+        animationStateRef.current = animationState;
+        if (animationState === AnimationState.RUNNING) {
+            clearTimeout(timeoutId.current);
             spawnNitrogenPair();
         }
+    }, [animationState]);
+
+    useEffect(() => {
         return () => {
             clearTimeout(timeoutId.current);
         };

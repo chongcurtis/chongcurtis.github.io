@@ -23,6 +23,7 @@ const pins = [
 ];
 
 export default function Bowling() {
+    const timeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>(cloneDeep(pins));
     const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
 
@@ -36,7 +37,10 @@ export default function Bowling() {
         if (!hasStartEventFired) {
             return;
         }
-        shootBowlingBall();
+        timeoutId.current = setTimeout(shootBowlingBall, 1200);
+        return () => {
+            clearTimeout(timeoutId.current);
+        };
     }, [hasStartEventFired]);
 
     return (
