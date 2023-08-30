@@ -1,4 +1,5 @@
 import { Animation, animationDefinitions } from "@/common/animationClassDefinitions";
+import _ from "lodash";
 
 // used to trigger the start animation event on the canvas when it's in view
 export const ANIMATION_STATE_EVENT_NAME = "animation-state-event";
@@ -77,6 +78,9 @@ const isPersistentAnimation = (element: HTMLElement) => {
     return false;
 };
 
+let lastAnimationTime = 0;
+const minTimeBetweenTriggerAnimationsMs = 200;
+
 export const initAnimations = (animationTriggerDecimal: number) => {
     // 1) build the animation descriptions array, which orders all elements by their y-position, then x-position on the page
     // This array contains the description ALL animations (since we don't want some types of animations to start later than others
@@ -84,6 +88,14 @@ export const initAnimations = (animationTriggerDecimal: number) => {
 
     const animationQueue: AnimationDescription[] = [];
     const persistentAnimations = new Set<AnimationDescription>();
+    const tryTriggerAnimations = () => {
+        const currentTime = Date.now();
+        if (currentTime - lastAnimationTime < minTimeBetweenTriggerAnimationsMs) {
+            return;
+        }
+        lastAnimationTime = currentTime;
+        triggerAnimations();
+    };
     const triggerAnimations = () => {
         tryStartAnimation(
             animationDescriptions,
@@ -94,18 +106,18 @@ export const initAnimations = (animationTriggerDecimal: number) => {
         sendAnimationStateUpdateEvents(persistentAnimations);
         if (animationDescriptions.length === 0 && persistentAnimations.size === 0) {
             // All elements have been put into the animation queue. So remove handler to save computation
-            window.removeEventListener("scroll", triggerAnimations);
+            window.removeEventListener("scroll", tryTriggerAnimations);
         }
     };
 
     // 2) register the scroll listener to determine if animations should render
     setTimeout(() => {
-        triggerAnimations();
+        tryTriggerAnimations();
     }, 100); // delay the initial animation by 100ms so the user first sees a blank page
-    window.addEventListener("scroll", triggerAnimations);
+    window.addEventListener("scroll", tryTriggerAnimations);
 
     return () => {
-        window.removeEventListener("scroll", triggerAnimations);
+        window.removeEventListener("scroll", tryTriggerAnimations);
     };
 };
 
@@ -210,7 +222,6 @@ const sendAnimationStateUpdateEvents = (persistentAnimations: Set<AnimationDescr
             animationDescription.elementTop() <= window.scrollY + window.innerHeight + SCROLL_BUFFER
                 ? AnimationState.RUNNING
                 : AnimationState.PAUSED;
-        console.log("sent animation state", animationState);
         animationDescription.element.dispatchEvent(newAnimationStateEvent(animationState));
     }
 };
