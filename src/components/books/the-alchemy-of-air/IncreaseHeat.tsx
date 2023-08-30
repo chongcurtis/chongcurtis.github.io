@@ -47,6 +47,7 @@ export default function IncreaseHeat() {
     useEffect(() => {
         animationStateRef.current = animationState;
         if (animationState === AnimationState.RUNNING) {
+            clearTimeout(timeoutId.current);
             spawnHotAtom();
         }
     }, [animationState]);
