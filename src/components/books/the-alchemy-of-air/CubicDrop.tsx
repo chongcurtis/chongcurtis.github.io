@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { Block } from "@/components/books/the-alchemy-of-air/Block";
 import useAnimationStateEventListener from "@/common/useAnimationEventListener";
 import { BACKGROUND_COLOR, NITROGEN_COLOR } from "./constants";
+import { AnimationState } from "@/common/animations";
 
 const BOX_COLOR = BACKGROUND_COLOR;
 // const BOX_COLOR = "#dedede";
@@ -21,8 +22,13 @@ export default function CubicDrop() {
     const dripTimeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
     const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
+    const animationStateRef = React.useRef(AnimationState.BEFORE_START);
 
     const spawnHotAtom = () => {
+        if (animationStateRef.current === AnimationState.PAUSED) {
+            clearTimeout(timeoutId.current);
+            return;
+        }
         const vx = Math.floor(Math.random() * 5) + 1;
         const vy = Math.floor(Math.random() * 5) + 1;
 
@@ -33,15 +39,24 @@ export default function CubicDrop() {
     };
 
     const spawnDrip = () => {
+        if (animationStateRef.current === AnimationState.PAUSED) {
+            clearTimeout(dripTimeoutId.current);
+            return;
+        }
         particles.current.push(new Particle(100, 250, 100, 0, 0, 0, 0.5, 3, NITROGEN_COLOR, 30));
         dripTimeoutId.current = setTimeout(spawnDrip, 1000);
     };
-
     useEffect(() => {
-        if (hasStartEventFired) {
+        animationStateRef.current = animationState;
+        if (animationState === AnimationState.RUNNING) {
+            clearTimeout(timeoutId.current);
+            clearTimeout(dripTimeoutId.current);
             spawnHotAtom();
             spawnDrip();
         }
+    }, [animationState]);
+
+    useEffect(() => {
         return () => {
             clearTimeout(timeoutId.current);
             clearTimeout(dripTimeoutId.current);

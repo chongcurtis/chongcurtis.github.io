@@ -6,6 +6,7 @@ import useAnimationStateEventListener from "@/common/useAnimationEventListener";
 import { Queue } from "@/common/queue";
 import { generateGradient } from "@/utils/generateGradient";
 import { BACKGROUND_COLOR } from "./constants";
+import { AnimationState } from "@/common/animations";
 
 const BOX_COLOR = BACKGROUND_COLOR;
 // const BOX_COLOR = "#dedede";
@@ -22,9 +23,14 @@ export default function IncreaseHeat() {
     const timeoutId = React.useRef<NodeJS.Timeout>();
     const particles = React.useRef<Particle[]>([]);
     const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
-    const colorQueue = React.useRef<Queue<string>>(new Queue<string>([]));
+    const colorQueue = React.useRef<Queue<string>>(new Queue<string>(generateGradient(10)));
+    const animationStateRef = React.useRef(AnimationState.BEFORE_START);
 
     const spawnHotAtom = () => {
+        if (animationStateRef.current === AnimationState.PAUSED) {
+            clearTimeout(timeoutId.current);
+            return;
+        }
         const vx = Math.floor(Math.random() * 5) + 1;
         const vy = Math.floor(Math.random() * 5) + 1;
 
@@ -38,12 +44,14 @@ export default function IncreaseHeat() {
         const spawnDelay = 100;
         timeoutId.current = setTimeout(spawnHotAtom, spawnDelay);
     };
-
     useEffect(() => {
-        if (hasStartEventFired) {
-            colorQueue.current = new Queue(generateGradient(10));
+        animationStateRef.current = animationState;
+        if (animationState === AnimationState.RUNNING) {
             spawnHotAtom();
         }
+    }, [animationState]);
+
+    useEffect(() => {
         return () => {
             clearTimeout(timeoutId.current);
         };

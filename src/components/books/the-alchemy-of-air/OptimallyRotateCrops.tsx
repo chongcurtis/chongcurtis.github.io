@@ -53,7 +53,7 @@ export default function OptimallyRotateCrops() {
 
     const spawnFieldRows = (ithRow: number, ithFieldType: number) => {
         if (animationStateRef.current === AnimationState.PAUSED) {
-            clearTimeout(timeoutId.current);
+            clearTimeout(spawnFieldRowTimeoutId.current);
             return;
         }
         if (ithRow >= 6) {
@@ -68,7 +68,7 @@ export default function OptimallyRotateCrops() {
 
     const spawnFieldTypes = (ithFieldType: number) => {
         if (animationStateRef.current === AnimationState.PAUSED) {
-            clearTimeout(timeoutId.current);
+            clearTimeout(spawnFieldTypesTimeoutId.current);
             return;
         }
         ithFieldType = ithFieldType % fieldTypeColors.length;
@@ -88,6 +88,8 @@ export default function OptimallyRotateCrops() {
         animationStateRef.current = animationState;
         if (animationState === AnimationState.RUNNING) {
             clearTimeout(timeoutId.current);
+            clearTimeout(spawnFieldRowTimeoutId.current);
+            clearTimeout(spawnFieldTypesTimeoutId.current);
             start();
         }
     }, [animationState]);
