@@ -48,7 +48,7 @@ export default function TheAlchemyOfAir() {
                 </a>
             </p>
             <p className="fade-in-on-scroll mt-20 text-2xl">England 1898</p>
-            <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
+            <div className="mt-20 flex flex-row flex-wrap items-center justify-center md:flex-nowrap">
                 <div className="fade-in-on-scroll max-w-sm p-20 md:m-5">
                     <img src={sirWilliamCrookes.src} alt="Sir William Crookes" />
                 </div>

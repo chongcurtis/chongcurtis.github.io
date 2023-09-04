@@ -29,12 +29,12 @@ export default function CubicDrop() {
             clearTimeout(timeoutId.current);
             return;
         }
-        const vx = Math.floor(Math.random() * 5) + 1;
-        const vy = Math.floor(Math.random() * 5) + 1;
+        const vx = Math.floor(Math.random() * 3) + 1;
+        const vy = Math.floor(Math.random() * 3) + 1;
 
-        particles.current.push(new Particle(100, 250, 50, vx, vy, 0, 0, 3, "red", 30));
+        particles.current.push(new Particle(100, 250, 50, vx, vy, 0, 0, 3, "red", 40));
 
-        const spawnDelay = 50;
+        const spawnDelay = 100;
         timeoutId.current = setTimeout(spawnHotAtom, spawnDelay);
     };
 
