@@ -291,7 +291,7 @@ export default function TheAlchemyOfAir() {
                 <div className="fade-in-on-scroll w-1/3 text-8xl text-[#ff0000]">3.</div>
                 <p className="fade-in-on-scroll w-2/3 pl-4">
                     And the political will to sink{" "}
-                    <span className="font-bold text-[#ff0000]">collosial</span> sums of capital.
+                    <span className="font-bold text-[#ff0000]">colossal</span> sums of capital.
                 </p>
             </div>
 
@@ -330,7 +330,7 @@ export default function TheAlchemyOfAir() {
                 <p className="mt-1 text-2xl">Years until famine</p>
             </div>
             <p className="fade-in-on-scroll mt-20">
-                Hundreds of researchers endeavor at Bosche's lab. It harbored the most modern and
+                Hundreds of researchers endeavour at Bosche's lab. It harboured the most modern and
                 sophisticated materials testing equipment
             </p>
             <p className="fade-in-on-scroll mt-20">And</p>
@@ -357,8 +357,8 @@ export default function TheAlchemyOfAir() {
                     <p className="fade-in-on-scroll text-center text-3xl">Carl Krauch</p>
                     <ul className="fade-in-on-scroll ml-6 mt-10 list-disc text-left">
                         <li className="fade-in-on-scroll mb-2 pl-2">
-                            Detoxed the poisionous CO byproduct by cleaning exhaust gases with
-                            ammonia and copper.
+                            Detoxed the CO byproduct by cleaning exhaust gases with ammonia and
+                            copper.
                         </li>
                     </ul>
                     <p className="fade-in-on-scroll ml-6 mt-10 text-base">
@@ -430,7 +430,7 @@ export default function TheAlchemyOfAir() {
                 Because Nitrogen has the very special property of propelling projectiles.
             </p>
             <p className="fade-in-on-scroll mb-20 mt-10">
-                And it extends Germany's war by two years.
+                And it extended Germany's war by two years.
             </p>
             {/* this sentence is too much of a departure. make it smoother */}
             <ThinLine />
