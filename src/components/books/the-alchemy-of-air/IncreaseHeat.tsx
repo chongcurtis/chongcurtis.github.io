@@ -31,8 +31,8 @@ export default function IncreaseHeat() {
             clearTimeout(timeoutId.current);
             return;
         }
-        const vx = Math.floor(Math.random() * 5) + 1;
-        const vy = Math.floor(Math.random() * 5) + 1;
+        const vx = Math.floor(Math.random() * 4) + 1;
+        const vy = Math.floor(Math.random() * 4) + 1;
 
         particles.current.push(
             new Particle(100, 250, 100, vx, vy, 0, 0, 2, colorQueue.current.front()!, 100)

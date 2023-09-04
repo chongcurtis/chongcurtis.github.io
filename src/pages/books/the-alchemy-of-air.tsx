@@ -161,7 +161,7 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mb-40 mt-20 text-2xl">1903 Norway</p>
             <ArcFurnace />
             <p className="fade-in-on-scroll mb-32 mt-10 ">
-                Birkeland and Eyde creates artificial lightning, splitting N&#8322; for the first
+                Birkeland and Eyde create artificial lightning, splitting N&#8322; for the first
                 time.
             </p>
             {/*<p className="fade-in-on-scroll mb-10 mt-10 ">*/}
