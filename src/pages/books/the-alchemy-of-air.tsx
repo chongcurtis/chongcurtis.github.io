@@ -269,8 +269,8 @@ export default function TheAlchemyOfAir() {
             <div className="mt-10 flex items-center">
                 <div className="fade-in-on-scroll w-1/3 text-8xl text-[#750000]">1.</div>
                 <p className="fade-in-on-scroll w-2/3 pl-4">
-                    Immense amounts of Osmium, which demands a
-                    <span className="font-bold text-[#750000]"> king's randsom</span> to purchase.
+                    Immense amounts of Osmium, at a price larger than a
+                    <span className="font-bold text-[#750000]"> king's randsom</span>.
                 </p>
             </div>
             <div className="mt-32 flex items-center">
@@ -328,7 +328,7 @@ export default function TheAlchemyOfAir() {
                 <p className="mt-1 text-2xl">Years until famine</p>
             </div>
             <p className="fade-in-on-scroll mt-20">
-                Hundreds of researchers endeavor at Bosche's lab, harboring the most modern and
+                Hundreds of researchers endeavor at Bosche's lab. It harbored the most modern and
                 sophisticated materials testing equipment
             </p>
             <p className="fade-in-on-scroll mt-20">And</p>
@@ -372,8 +372,8 @@ export default function TheAlchemyOfAir() {
                 pressures involved
             </p>
             <p className="fade-in-on-scroll mt-20">
-                To make ammonia, Bosche perseveres to precisely control the concentration of
-                reagents in an environment 20 times hotter than boilers in steam locomotives.
+                To manufacture ammonia, Bosche precisely controls the concentration of reagents in
+                environments 20 times hotter than steam locomotive boilers.
             </p>
             <p className="fade-in-on-scroll mb-32 mt-20">
                 And to prevent hydrogen from leaking and Hindenburging his lab...
@@ -434,13 +434,13 @@ export default function TheAlchemyOfAir() {
             <ThinLine />
 
             <p className="fade-in-on-scroll mt-20">
-                This epochal moment is one of my favourites because it taught me:
+                This epochal moment is one of my favourites because I learned:
             </p>
             <div className="flex items-center justify-center">
                 <div className="max-w-2xl">
                     <ul className="fade-in-on-scroll mt-10 list-disc text-left">
                         <li className="fade-in-on-scroll mb-2 pl-2">
-                            One of "the biggest scientific effort in history, comparable to the
+                            Of "the biggest scientific effort in history, comparable to the
                             Manhattan Project in World War II".{" "}
                             <span className="font-bold">And the world forgot it!</span>
                         </li>
@@ -484,7 +484,10 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mt-20">You'll have to read the book.</p>
             <p className="fade-in-on-scroll mt-20">But they did more alchemy of course.</p>
             <p className="fade-in-on-scroll mt-20">You can feel it in the air.</p>
-            <p className="fade-in-on-scroll mt-40 text-2xl">Sources</p>
+            <p className="fade-in-on-scroll mt-40 ">
+                P.S. Bosch didn't come up with his idea during bowling, But the morning after.
+            </p>
+            <p className="fade-in-on-scroll mt-20 text-2xl">Sources</p>
             <div className="flex flex-col items-center justify-center px-5">
                 {[
                     {
