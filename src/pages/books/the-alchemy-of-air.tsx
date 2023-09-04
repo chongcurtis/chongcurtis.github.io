@@ -81,7 +81,9 @@ export default function TheAlchemyOfAir() {
                 To meet this deficit, England will have to import grain from abroad
             </p>
             <p className="fade-in-on-scroll mb-40 mt-10 ">However...</p>
-            <p className="fade-in-on-scroll mb-10 ">Austro-Hungary population will also increase</p>
+            <p className="fade-in-on-scroll mb-10 ">
+                Austro-Hungary's population will also increase
+            </p>
             <p className="fade-in-on-scroll mb-10 "> Canada as well</p>
             <p className="fade-in-on-scroll mb-10 "> Russia as well</p>
             <p className="fade-in-on-scroll mb-32 "> America as well</p>
@@ -117,7 +119,7 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mb-32 mt-32 ">But it will soon empty.</p>
             <p className="fade-in-on-scroll mt-10 ">
                 Fortunately, "nitrogen is one of the most abundant and pervading bodies on the face
-                of the earth".
+                of the earth."
             </p>
             {/*I'm not sure if heres the catch is better than "But"*/}
             <p className="fade-in-on-scroll mb-10 mt-10 ">
@@ -210,12 +212,12 @@ export default function TheAlchemyOfAir() {
                     <img src={fritzHaber.src} alt="Sir William Crookes" />
                 </div>
                 <div className="fade-in-on-scroll text-center">
-                    <p>Enter fritz Haber. A chemist still vying for his Nobel prize.</p>
+                    <p>Enter Fritz Haber. A chemist still vying for his Nobel prize.</p>
                 </div>
             </div>
             <p className="fade-in-on-scroll mb-10 mt-10">
                 Unlike Birkeland and Eyde's approach, he squeezes his Nitrogen with enough heat and
-                pressure to force Nitrogen to give up it's tripple molecular bond.
+                pressure to force Nitrogen to give up its triple molecular bond.
             </p>
             <p className="fade-in-on-scroll underline-on-scroll mb-32 mt-10 font-bold after:bg-red-400">
                 N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub>
@@ -270,7 +272,7 @@ export default function TheAlchemyOfAir() {
                 <div className="fade-in-on-scroll w-1/3 text-8xl text-[#750000]">1.</div>
                 <p className="fade-in-on-scroll w-2/3 pl-4">
                     Immense amounts of Osmium, at a price larger than a
-                    <span className="font-bold text-[#750000]"> king's randsom</span>.
+                    <span className="font-bold text-[#750000]"> king's ransom</span>.
                 </p>
             </div>
             <div className="mt-32 flex items-center">
@@ -369,7 +371,7 @@ export default function TheAlchemyOfAir() {
             </div>
             <p className="fade-in-on-scroll mt-20">
                 With these problems solved, Bosch focused on the machinery to handle the enormous
-                pressures involved
+                pressures involved.
             </p>
             <p className="fade-in-on-scroll mt-20">
                 To manufacture ammonia, Bosche precisely controls the concentration of reagents in
@@ -459,14 +461,14 @@ export default function TheAlchemyOfAir() {
             </div>
 
             <p className="fade-in-on-scroll mt-20 ">
-                Of course these scientists weren't perfect. They killed many people, Haber
+                Of course, these scientists weren't perfect. They killed many people, Haber
                 especially.
             </p>
             <p className="fade-in-on-scroll mt-10">
                 And Bosch didn't know it at the time, but his years of work pioneered an entire new
                 field:
             </p>
-            <p className="fade-in-on-scroll mb-20 mt-20 text-2xl">High pressure chemistry.</p>
+            <p className="fade-in-on-scroll mb-20 mt-20 text-2xl">High-pressure chemistry.</p>
             {/*<p className="fade-in-on-scroll">*/}
             {/*    I think a a modern version of crooke's challenge is the quest for economical nuclear*/}
             {/*    fusion. Laboratories slam plasma together at millions of degrees, with magnetic*/}
