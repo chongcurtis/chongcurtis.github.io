@@ -27,7 +27,7 @@ export default function ArcFurnace() {
             clearTimeout(timeoutId.current);
             return;
         }
-        const vx = vxDirection * (Math.random() * 5 + 1);
+        const vx = vxDirection * (Math.random() * 2 + 1);
         const vy = Math.random() - 0.5;
 
         particles.current.push(new Particle(100, x, y, vx, vy, 0, 0, 1, "#48e7f0", 30));

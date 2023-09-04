@@ -7,7 +7,7 @@ import fritzHaber from "public/books/the-alchemy-of-air/Fritz_Haber.png";
 import alwinMittasch from "public/books/the-alchemy-of-air/Alwin_Mittasch.jpg";
 import newInventions from "public/books/the-alchemy-of-air/new_inventions.png";
 import carlKrauch from "public/books/the-alchemy-of-air/Carl_Krauch.jpg";
-import carlBosche from "public/books/the-alchemy-of-air/Carl_Bosch.jpg";
+import carlBosch from "public/books/the-alchemy-of-air/Carl_Bosch.jpg";
 import FixNitrogen from "@/components/books/the-alchemy-of-air/FixNitrogen";
 import IncreaseHeat from "@/components/books/the-alchemy-of-air/IncreaseHeat";
 import IncreasePressure from "@/components/books/the-alchemy-of-air/IncreasePressure";
@@ -48,7 +48,7 @@ export default function TheAlchemyOfAir() {
                 </a>
             </p>
             <p className="fade-in-on-scroll mt-20 text-2xl">England 1898</p>
-            <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
+            <div className="mt-20 flex flex-row flex-wrap items-center justify-center md:flex-nowrap">
                 <div className="fade-in-on-scroll max-w-sm p-20 md:m-5">
                     <img src={sirWilliamCrookes.src} alt="Sir William Crookes" />
                 </div>
@@ -81,7 +81,9 @@ export default function TheAlchemyOfAir() {
                 To meet this deficit, England will have to import grain from abroad
             </p>
             <p className="fade-in-on-scroll mb-40 mt-10 ">However...</p>
-            <p className="fade-in-on-scroll mb-10 ">Austro-Hungary population will also increase</p>
+            <p className="fade-in-on-scroll mb-10 ">
+                Austro-Hungary's population will also increase
+            </p>
             <p className="fade-in-on-scroll mb-10 "> Canada as well</p>
             <p className="fade-in-on-scroll mb-10 "> Russia as well</p>
             <p className="fade-in-on-scroll mb-32 "> America as well</p>
@@ -117,7 +119,7 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mb-32 mt-32 ">But it will soon empty.</p>
             <p className="fade-in-on-scroll mt-10 ">
                 Fortunately, "nitrogen is one of the most abundant and pervading bodies on the face
-                of the earth".
+                of the earth."
             </p>
             {/*I'm not sure if heres the catch is better than "But"*/}
             <p className="fade-in-on-scroll mb-10 mt-10 ">
@@ -161,7 +163,7 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mb-40 mt-20 text-2xl">1903 Norway</p>
             <ArcFurnace />
             <p className="fade-in-on-scroll mb-32 mt-10 ">
-                Birkeland and Eyde creates artificial lightning, splitting N&#8322; for the first
+                Birkeland and Eyde create artificial lightning, splitting N&#8322; for the first
                 time.
             </p>
             {/*<p className="fade-in-on-scroll mb-10 mt-10 ">*/}
@@ -210,12 +212,12 @@ export default function TheAlchemyOfAir() {
                     <img src={fritzHaber.src} alt="Sir William Crookes" />
                 </div>
                 <div className="fade-in-on-scroll text-center">
-                    <p>Enter fritz Haber. A chemist still vying for his Nobel prize.</p>
+                    <p>Enter Fritz Haber. A chemist still vying for his Nobel prize.</p>
                 </div>
             </div>
             <p className="fade-in-on-scroll mb-10 mt-10">
                 Unlike Birkeland and Eyde's approach, he squeezes his Nitrogen with enough heat and
-                pressure to force Nitrogen to give up it's tripple molecular bond.
+                pressure to force Nitrogen to give up its triple molecular bond.
             </p>
             <p className="fade-in-on-scroll underline-on-scroll mb-32 mt-10 font-bold after:bg-red-400">
                 N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub>
@@ -270,7 +272,7 @@ export default function TheAlchemyOfAir() {
                 <div className="fade-in-on-scroll w-1/3 text-8xl text-[#750000]">1.</div>
                 <p className="fade-in-on-scroll w-2/3 pl-4">
                     Immense amounts of Osmium, at a price larger than a
-                    <span className="font-bold text-[#750000]"> king's randsom</span>.
+                    <span className="font-bold text-[#750000]"> king's ransom</span>.
                 </p>
             </div>
             <div className="mt-32 flex items-center">
@@ -289,7 +291,7 @@ export default function TheAlchemyOfAir() {
                 <div className="fade-in-on-scroll w-1/3 text-8xl text-[#ff0000]">3.</div>
                 <p className="fade-in-on-scroll w-2/3 pl-4">
                     And the political will to sink{" "}
-                    <span className="font-bold text-[#ff0000]">collosial</span> sums of capital.
+                    <span className="font-bold text-[#ff0000]">colossal</span> sums of capital.
                 </p>
             </div>
 
@@ -310,10 +312,10 @@ export default function TheAlchemyOfAir() {
 
             <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
                 <div className="fade-in-on-scroll">
-                    <p>They sent Carl Bosche to figure out the rest.</p>
+                    <p>They sent Carl Bosch to figure out the rest.</p>
                 </div>
                 <div className="fade-in-on-scroll max-w-sm p-20 md:m-5">
-                    <img src={carlBosche.src} alt="Sir William Crookes" />
+                    <img src={carlBosch.src} alt="Sir William Crookes" />
                 </div>
             </div>
             <div className="fade-in-on-scroll">
@@ -328,7 +330,7 @@ export default function TheAlchemyOfAir() {
                 <p className="mt-1 text-2xl">Years until famine</p>
             </div>
             <p className="fade-in-on-scroll mt-20">
-                Hundreds of researchers endeavor at Bosche's lab. It harbored the most modern and
+                Hundreds of researchers endeavour at Bosch's lab. It harboured the most modern and
                 sophisticated materials testing equipment
             </p>
             <p className="fade-in-on-scroll mt-20">And</p>
@@ -355,8 +357,8 @@ export default function TheAlchemyOfAir() {
                     <p className="fade-in-on-scroll text-center text-3xl">Carl Krauch</p>
                     <ul className="fade-in-on-scroll ml-6 mt-10 list-disc text-left">
                         <li className="fade-in-on-scroll mb-2 pl-2">
-                            Detoxed the poisionous CO byproduct by cleaning exhaust gases with
-                            ammonia and copper.
+                            Detoxed the CO byproduct by cleaning exhaust gases with ammonia and
+                            copper.
                         </li>
                     </ul>
                     <p className="fade-in-on-scroll ml-6 mt-10 text-base">
@@ -369,16 +371,16 @@ export default function TheAlchemyOfAir() {
             </div>
             <p className="fade-in-on-scroll mt-20">
                 With these problems solved, Bosch focused on the machinery to handle the enormous
-                pressures involved
+                pressures involved.
             </p>
             <p className="fade-in-on-scroll mt-20">
-                To manufacture ammonia, Bosche precisely controls the concentration of reagents in
+                To manufacture ammonia, Bosch precisely controls the concentration of reagents in
                 environments 20 times hotter than steam locomotive boilers.
             </p>
             <p className="fade-in-on-scroll mb-32 mt-20">
                 And to prevent hydrogen from leaking and Hindenburging his lab...
             </p>
-            <p className="fade-in-on-scroll mb-32 mt-20">Bosche reinvents</p>
+            <p className="fade-in-on-scroll mb-32 mt-20">Bosch reinvents</p>
             <div className="fade-in-on-scroll ">
                 <img src={newInventions.src} alt="BASF New Inventions" />
             </div>
@@ -428,7 +430,7 @@ export default function TheAlchemyOfAir() {
                 Because Nitrogen has the very special property of propelling projectiles.
             </p>
             <p className="fade-in-on-scroll mb-20 mt-10">
-                And it extends Germany's war by two years.
+                And it extended Germany's war by two years.
             </p>
             {/* this sentence is too much of a departure. make it smoother */}
             <ThinLine />
@@ -459,14 +461,14 @@ export default function TheAlchemyOfAir() {
             </div>
 
             <p className="fade-in-on-scroll mt-20 ">
-                Of course these scientists weren't perfect. They killed many people, Haber
+                Of course, these scientists weren't perfect. They killed many people, Haber
                 especially.
             </p>
             <p className="fade-in-on-scroll mt-10">
                 And Bosch didn't know it at the time, but his years of work pioneered an entire new
                 field:
             </p>
-            <p className="fade-in-on-scroll mb-20 mt-20 text-2xl">High pressure chemistry.</p>
+            <p className="fade-in-on-scroll mb-20 mt-20 text-2xl">High-pressure chemistry.</p>
             {/*<p className="fade-in-on-scroll">*/}
             {/*    I think a a modern version of crooke's challenge is the quest for economical nuclear*/}
             {/*    fusion. Laboratories slam plasma together at millions of degrees, with magnetic*/}
@@ -477,7 +479,7 @@ export default function TheAlchemyOfAir() {
             {/*    What else did these Nobel laureates do?
             {/*</p>*/}
             <p className="fade-in-on-scroll">
-                So what's next for Haber and Bosche? Do they inherit a million of Nobel's fortune?
+                So what's next for Haber and Bosch? Do they inherit a million of Nobel's fortune?
                 Establish their own wealth? Pledge to The Reich?
             </p>
             {/*it would be cool if all the other words in this phrase just disappeared, and all you saw was "the alchemy of air"*/}

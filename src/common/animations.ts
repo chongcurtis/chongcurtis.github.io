@@ -79,7 +79,7 @@ const isPersistentAnimation = (element: HTMLElement) => {
 };
 
 let lastAnimationTime = 0;
-const minTimeBetweenTriggerAnimationsMs = 100;
+const minTimeBetweenTriggerAnimationsMs = 400;
 
 export const initAnimations = (animationTriggerDecimal: number) => {
     // 1) build the animation descriptions array, which orders all elements by their y-position, then x-position on the page

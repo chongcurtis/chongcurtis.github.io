@@ -14,6 +14,7 @@ export default function OptimallyRotateCrops() {
 
     const fieldTypeColors = ["#7ac8ff", "#fc9144", "#a8ffba"];
 
+    const INCREASE_PARTICLE_RADIUS_DELAY = 20;
     const offsetY = 10;
     const offsetX = 30;
     const rowSpacing = 30;
@@ -32,7 +33,7 @@ export default function OptimallyRotateCrops() {
                     0,
                     1,
                     fieldTypeColors[ithFieldType],
-                    30
+                    40
                 )
             );
         }
@@ -45,10 +46,10 @@ export default function OptimallyRotateCrops() {
         }
         for (let i = 0; i < particles.current.length; i++) {
             if (particles.current[i].radius < 5) {
-                particles.current[i].radius += 0.4;
+                particles.current[i].radius += 0.3;
             }
         }
-        timeoutId.current = setTimeout(increaseParticleRadius, 100);
+        timeoutId.current = setTimeout(increaseParticleRadius, INCREASE_PARTICLE_RADIUS_DELAY);
     };
 
     const spawnFieldRows = (ithRow: number, ithFieldType: number) => {
@@ -81,7 +82,7 @@ export default function OptimallyRotateCrops() {
 
     const start = () => {
         spawnFieldTypes(fieldTypeColors.length);
-        timeoutId.current = setTimeout(increaseParticleRadius, 100);
+        timeoutId.current = setTimeout(increaseParticleRadius, INCREASE_PARTICLE_RADIUS_DELAY);
     };
 
     useEffect(() => {

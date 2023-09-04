@@ -9,6 +9,9 @@ export default function IncreaseFertilityOfLand() {
     const particles = React.useRef<Particle[]>([]);
     const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
 
+    const INCREASE_RADIUS_DELAY = 20;
+    const SPAWN_CROPS_DELAY = 100;
+
     const offsetY = 10;
     const offsetX = 30;
     const rowSpacing = 30;
@@ -34,10 +37,10 @@ export default function IncreaseFertilityOfLand() {
     const increaseParticleRadius = () => {
         for (let i = 0; i < particles.current.length; i++) {
             if (particles.current[i].radius < ((i % 5) + 1) * 15) {
-                particles.current[i].radius += 1;
+                particles.current[i].radius += 0.2;
             }
         }
-        timeoutId.current = setTimeout(increaseParticleRadius, 100);
+        timeoutId.current = setTimeout(increaseParticleRadius, INCREASE_RADIUS_DELAY);
     };
 
     const spawnCrops = (numCrops: number) => {
@@ -45,7 +48,7 @@ export default function IncreaseFertilityOfLand() {
             return;
         }
         spawnRandomCircle();
-        SpawnCropsTimeoutId.current = setTimeout(() => spawnCrops(numCrops - 1), 300);
+        SpawnCropsTimeoutId.current = setTimeout(() => spawnCrops(numCrops - 1), SPAWN_CROPS_DELAY);
     };
 
     useEffect(() => {
@@ -53,7 +56,7 @@ export default function IncreaseFertilityOfLand() {
             return;
         }
         spawnCrops(30);
-        timeoutId.current = setTimeout(increaseParticleRadius, 100);
+        timeoutId.current = setTimeout(increaseParticleRadius, INCREASE_RADIUS_DELAY);
         return () => {
             clearTimeout(timeoutId.current);
             clearTimeout(SpawnCropsTimeoutId.current);

@@ -16,7 +16,7 @@ export default function NBodySimulationCanvas({
 }: Props) {
     const bodies = React.useRef(cloneDeep(initialBodies));
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
-    const timeoutId = React.useRef<NodeJS.Timeout>(); // controls the setInterval that runs the canvas animation
+    const animationFrameId = React.useRef<number>(0); // controls the setInterval that runs the canvas animation
     const animationState = React.useRef<AnimationState>(AnimationState.BEFORE_START); // controls the setInterval that runs the canvas animation
     const SIMULATION_SPEED = 30; // 40ms between each frame = 25fps
     const VELOCITY_STEP_SIZE = 10; // in terms of seconds
@@ -130,14 +130,15 @@ export default function NBodySimulationCanvas({
                 bodies.current = cloneDeep(initialBodies);
             }
 
-            clearInterval(timeoutId.current);
             if (event.detail === AnimationState.PAUSED) {
+                cancelAnimationFrame(animationFrameId.current);
                 return;
             }
-            // only start the animation once we have the startAnimationEvent
-            timeoutId.current = setInterval(function () {
+            const update = () => {
                 run(canvas, ctx);
-            }, SIMULATION_SPEED); //this is the cycle
+                animationFrameId.current = requestAnimationFrame(update); // Schedule next frame
+            };
+            animationFrameId.current = requestAnimationFrame(update);
         };
 
         canvas.addEventListener(ANIMATION_STATE_EVENT_NAME, onAnimationStateEvent as EventListener);

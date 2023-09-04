@@ -22,11 +22,11 @@ export default function ParticleSimulationCanvas({
     isCollisionEnabled,
     extraClassNames,
 }: Props) {
-    const SIMULATION_SPEED = 35; // 40ms between each frame = 25fps
+    const SIMULATION_SPEED = 20; // 40ms between each frame = 25fps
 
     const COEFFICIENT_OF_RESTITUTION = 1; // the ratio of the final to initial relative speed between two objects after they collide.
     const canvasRef = React.useRef<HTMLCanvasElement>(null);
-    const timeoutId = React.useRef<NodeJS.Timeout>(); // controls the setInterval that runs the canvas animation
+    const animationFrameId = React.useRef<number>(0);
     const canvasCtx = React.useRef<CanvasRenderingContext2D>();
 
     React.useEffect(() => {
@@ -37,13 +37,6 @@ export default function ParticleSimulationCanvas({
         const ctx = setupCanvas(canvas);
         ctx.font = "30px Arial";
         canvasCtx.current = ctx;
-
-        // I opted for a setInterval solution since requestAnimationFrame was causing the simulation to run too fast
-        // const update = () => {
-        //     run(canvas, ctx);
-        //     requestAnimationFrame(update); // Schedule next frame
-        // };
-        // requestAnimationFrame(update);
     }, [canvasWidth, canvasHeight]);
 
     React.useEffect(() => {
@@ -55,15 +48,17 @@ export default function ParticleSimulationCanvas({
             return;
         }
         if (animationState === AnimationState.PAUSED) {
-            clearInterval(timeoutId.current!);
+            cancelAnimationFrame(animationFrameId.current);
             return;
         }
         const canvas = canvasRef.current!;
         const ctx = canvasCtx.current!;
 
-        timeoutId.current = setInterval(function () {
+        const update = () => {
             run(canvas, ctx);
-        }, SIMULATION_SPEED); //this is the cycle
+            animationFrameId.current = requestAnimationFrame(update); // Schedule next frame
+        };
+        animationFrameId.current = requestAnimationFrame(update);
     }, [animationState, canvasHeight, canvasWidth]);
 
     function setupCanvas(canvas: HTMLCanvasElement) {
