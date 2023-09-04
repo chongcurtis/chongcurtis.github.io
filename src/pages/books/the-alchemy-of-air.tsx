@@ -7,7 +7,7 @@ import fritzHaber from "public/books/the-alchemy-of-air/Fritz_Haber.png";
 import alwinMittasch from "public/books/the-alchemy-of-air/Alwin_Mittasch.jpg";
 import newInventions from "public/books/the-alchemy-of-air/new_inventions.png";
 import carlKrauch from "public/books/the-alchemy-of-air/Carl_Krauch.jpg";
-import carlBosche from "public/books/the-alchemy-of-air/Carl_Bosch.jpg";
+import carlBosch from "public/books/the-alchemy-of-air/Carl_Bosch.jpg";
 import FixNitrogen from "@/components/books/the-alchemy-of-air/FixNitrogen";
 import IncreaseHeat from "@/components/books/the-alchemy-of-air/IncreaseHeat";
 import IncreasePressure from "@/components/books/the-alchemy-of-air/IncreasePressure";
@@ -312,10 +312,10 @@ export default function TheAlchemyOfAir() {
 
             <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
                 <div className="fade-in-on-scroll">
-                    <p>They sent Carl Bosche to figure out the rest.</p>
+                    <p>They sent Carl Bosch to figure out the rest.</p>
                 </div>
                 <div className="fade-in-on-scroll max-w-sm p-20 md:m-5">
-                    <img src={carlBosche.src} alt="Sir William Crookes" />
+                    <img src={carlBosch.src} alt="Sir William Crookes" />
                 </div>
             </div>
             <div className="fade-in-on-scroll">
@@ -330,7 +330,7 @@ export default function TheAlchemyOfAir() {
                 <p className="mt-1 text-2xl">Years until famine</p>
             </div>
             <p className="fade-in-on-scroll mt-20">
-                Hundreds of researchers endeavour at Bosche's lab. It harboured the most modern and
+                Hundreds of researchers endeavour at Bosch's lab. It harboured the most modern and
                 sophisticated materials testing equipment
             </p>
             <p className="fade-in-on-scroll mt-20">And</p>
@@ -374,13 +374,13 @@ export default function TheAlchemyOfAir() {
                 pressures involved.
             </p>
             <p className="fade-in-on-scroll mt-20">
-                To manufacture ammonia, Bosche precisely controls the concentration of reagents in
+                To manufacture ammonia, Bosch precisely controls the concentration of reagents in
                 environments 20 times hotter than steam locomotive boilers.
             </p>
             <p className="fade-in-on-scroll mb-32 mt-20">
                 And to prevent hydrogen from leaking and Hindenburging his lab...
             </p>
-            <p className="fade-in-on-scroll mb-32 mt-20">Bosche reinvents</p>
+            <p className="fade-in-on-scroll mb-32 mt-20">Bosch reinvents</p>
             <div className="fade-in-on-scroll ">
                 <img src={newInventions.src} alt="BASF New Inventions" />
             </div>
@@ -479,7 +479,7 @@ export default function TheAlchemyOfAir() {
             {/*    What else did these Nobel laureates do?
             {/*</p>*/}
             <p className="fade-in-on-scroll">
-                So what's next for Haber and Bosche? Do they inherit a million of Nobel's fortune?
+                So what's next for Haber and Bosch? Do they inherit a million of Nobel's fortune?
                 Establish their own wealth? Pledge to The Reich?
             </p>
             {/*it would be cool if all the other words in this phrase just disappeared, and all you saw was "the alchemy of air"*/}

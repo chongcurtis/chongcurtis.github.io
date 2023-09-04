@@ -33,7 +33,7 @@ export default function OptimallyRotateCrops() {
                     0,
                     1,
                     fieldTypeColors[ithFieldType],
-                    30
+                    40
                 )
             );
         }

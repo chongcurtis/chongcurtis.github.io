@@ -21,8 +21,8 @@ export default function FixNitrogen() {
             clearTimeout(timeoutId.current);
             return;
         }
-        particles.current.push(new Particle(100, 0, 95, 3.7, 0, 0, 0, 5, NITROGEN_COLOR, 200));
-        particles.current.push(new Particle(100, 0, 105, 3.7, 0, 0, 0, 5, NITROGEN_COLOR, 200));
+        particles.current.push(new Particle(100, 0, 95, 3.4, 0, 0, 0, 5, NITROGEN_COLOR, 200));
+        particles.current.push(new Particle(100, 0, 105, 3.4, 0, 0, 0, 5, NITROGEN_COLOR, 200));
 
         const spawnDelay = 1000;
         timeoutId.current = setTimeout(spawnNitrogenPair, spawnDelay);
