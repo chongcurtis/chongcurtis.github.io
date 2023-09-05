@@ -1,5 +1,5 @@
 // components/sidebar/Layout.tsx
-import React, { PropsWithChildren, useState } from "react";
+import React, { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import Menu from "@/components/sidebar/Menu";
 import { NavLinks } from "@/components/sidebar/NavLinks";
@@ -12,6 +12,25 @@ const Sidebar = (props: PropsWithChildren) => {
 
     const router = useRouter();
     const isOnMainPage = router.pathname === "/";
+    useEffect(() => {
+        setIsMenuVisible(false);
+    }, [router.pathname]);
+
+    const menuRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        function handleClickOutsideMenu(event: MouseEvent) {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setIsMenuVisible(false);
+            }
+        }
+
+        // Bind the event listener
+        document.addEventListener("mousedown", handleClickOutsideMenu);
+        return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener("mousedown", handleClickOutsideMenu);
+        };
+    }, []);
 
     return (
         <div>
@@ -24,8 +43,11 @@ const Sidebar = (props: PropsWithChildren) => {
                         <Bars3Icon className="h-10 w-10 text-slate-500" />
                     </button>
                 </div>
+                <div className={classNames("md:grid-cols-sidebar grid ")} ref={menuRef}>
+                    <Menu navLinks={NavLinks} isOpen={isMenuVisible} />
+                </div>
                 <div className="md:grid-cols-sidebar grid ">
-                    <Menu open={isMenuVisible} setOpen={setIsMenuVisible} navLinks={NavLinks} />
+                    {/* <Menu open={isMenuVisible} setOpen={setIsMenuVisible} navLinks={NavLinks} /> */}
                 </div>
             </div>
             <div>

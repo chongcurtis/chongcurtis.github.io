@@ -30,7 +30,7 @@ export default function ArcFurnace() {
         const vx = vxDirection * (Math.random() * 2 + 1);
         const vy = Math.random() - 0.5;
 
-        particles.current.push(new Particle(100, x, y, vx, vy, 0, 0, 1, "#48e7f0", 30));
+        particles.current.push(new Particle(100, x, y, vx, vy, 0, 0, 1, "#48e7f0", 45));
         const spawnDelay = 200;
         timeoutId.current = setTimeout(() => spawnHotAtom(x, y, vxDirection), spawnDelay);
     };

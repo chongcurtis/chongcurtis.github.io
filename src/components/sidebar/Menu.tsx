@@ -11,34 +11,16 @@ export type NavLink = {
 };
 
 type Props = {
-    open: boolean;
-    setOpen(open: boolean): void;
+    isOpen: boolean;
     navLinks: NavLink[];
 };
 
-const Menu = ({ open, setOpen, navLinks }: Props) => {
-    const ref = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
-            if (ref.current && !ref.current.contains(event.target as Node)) {
-                setOpen(false);
-            }
-        }
-
-        // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            // Unbind the event listener on clean up
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
-
+const Menu = ({ navLinks, isOpen }: Props) => {
     const router = useRouter();
     const currentPage = router.asPath;
 
     return (
         <div
-            ref={ref}
             className={classNames({
                 "flex flex-col justify-between": true, // sidebar
                 "bg-background-color": true,
@@ -46,7 +28,7 @@ const Menu = ({ open, setOpen, navLinks }: Props) => {
                 // NOTE: to change the width, you need to modify tailwind.config.js
                 "h-full w-3/4 md:h-[100vh] 2xl:w-[25rem]": true, // for height and width
                 ".3s transition-transform ease-in-out xl:translate-x-0": true, //animations
-                "-translate-x-full": !open, // hide sidebar to the left when closed
+                "-translate-x-full": !isOpen, // hide sidebar to the left when closed
             })}
         >
             <nav className="pt-[8rem] md:sticky">
@@ -64,12 +46,7 @@ const Menu = ({ open, setOpen, navLinks }: Props) => {
                             {navLinks.map((navLink, index) => {
                                 return (
                                     <div key={`navlink-${index}`}>
-                                        <Link
-                                            href={navLink.href}
-                                            onClick={() => {
-                                                setOpen(false);
-                                            }}
-                                        >
+                                        <Link href={navLink.href}>
                                             <li
                                                 className={classNames({
                                                     "decoration-sleepover-secondary underline-offset-2 hover:underline hover:decoration-wavy":
@@ -85,6 +62,7 @@ const Menu = ({ open, setOpen, navLinks }: Props) => {
                                                 {navLink.icon} {navLink.label}
                                             </li>
                                         </Link>
+                                        {/* display child links */}
                                         {navLink.children && (
                                             <div className="ml-8">
                                                 {navLink.children.map((childLink, childIdx) => {
@@ -92,9 +70,6 @@ const Menu = ({ open, setOpen, navLinks }: Props) => {
                                                         <Link
                                                             href={childLink.href}
                                                             key={`navlink-${index}-${childIdx}`}
-                                                            onClick={() => {
-                                                                setOpen(false);
-                                                            }}
                                                             className={classNames({
                                                                 "decoration-sleepover-secondary underline-offset-2 hover:underline hover:decoration-wavy":
                                                                     true, // underline

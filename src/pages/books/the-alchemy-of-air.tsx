@@ -207,7 +207,7 @@ export default function TheAlchemyOfAir() {
                 <p className="mt-1 text-2xl">Years until famine</p>
             </div>
             <p className="fade-in-on-scroll mb-10 mt-20 text-2xl">1905 Germany</p>
-            <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
+            <div className="mt-20 flex flex-row flex-wrap items-center justify-center md:flex-nowrap">
                 <div className="fade-in-on-scroll max-w-sm p-20 md:m-5">
                     <img src={fritzHaber.src} alt="Sir William Crookes" />
                 </div>
@@ -310,7 +310,7 @@ export default function TheAlchemyOfAir() {
                 </div>
             </div>
 
-            <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
+            <div className="mt-20 flex flex-row flex-wrap items-center justify-center md:flex-nowrap">
                 <div className="fade-in-on-scroll">
                     <p>They sent Carl Bosch to figure out the rest.</p>
                 </div>
@@ -335,7 +335,7 @@ export default function TheAlchemyOfAir() {
             </p>
             <p className="fade-in-on-scroll mt-20">And</p>
             <p className="fade-in-on-scroll mt-20">The cradle of smarts.</p>
-            <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
+            <div className="mt-20 flex flex-row flex-wrap items-center justify-center md:flex-nowrap">
                 <div className="fade-in-on-scroll text-left">
                     <p className="fade-in-on-scroll mt-10 text-center text-3xl">Alwin Mittasch</p>
                     <ul className="fade-in-on-scroll ml-6 mt-10 list-disc text-left">
@@ -352,7 +352,7 @@ export default function TheAlchemyOfAir() {
                     <img src={alwinMittasch.src} alt="Alwin Mittasch" />
                 </div>
             </div>
-            <div className="mt-20 flex flex-row flex-wrap items-center md:flex-nowrap">
+            <div className="mt-20 flex flex-row flex-wrap items-center justify-center md:flex-nowrap">
                 <div className="fade-in-on-scroll text-left">
                     <p className="fade-in-on-scroll text-center text-3xl">Carl Krauch</p>
                     <ul className="fade-in-on-scroll ml-6 mt-10 list-disc text-left">
