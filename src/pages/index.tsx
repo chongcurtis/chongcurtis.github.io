@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { NavLinks } from "@/components/sidebar/NavLinks";
 import headshot from "public/curtis-chong-headshot.png";
+import { SocialLinks } from "@/components/sidebar/SocialLinks";
+import ThinLine from "@/components/ThinLine";
 
 {
     /*
@@ -43,6 +45,7 @@ export default function Home() {
                             );
                         })}
                     </div>
+                    <SocialLinks />
                 </div>
             </div>
             <div className="h-32" />
