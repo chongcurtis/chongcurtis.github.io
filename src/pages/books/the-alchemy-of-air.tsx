@@ -173,15 +173,21 @@ export default function TheAlchemyOfAir() {
             {/*https://arena.gov.au/projects/hydrogen-to-ammonia/*/}
             <p className="fade-in-on-scroll mb-32 mt-10 ">But the process is:</p>
             <div className="mb-32 mt-10 flex items-center">
-                <div className="fade-in-on-scroll mr-4 text-3xl font-bold text-[#750000]">1.</div>
+                <div className="fade-in-on-scroll ml-6 mr-4 text-3xl font-bold text-[#750000] md:ml-0">
+                    1.
+                </div>
                 <p className="fade-in-on-scroll text-left">Prohibitively expensive</p>
             </div>
             <div className="mb-32 mt-10 flex flex-row sm:justify-start md:justify-center">
-                <div className="fade-in-on-scroll mr-4 text-3xl font-bold text-[#bb0000]">2.</div>
+                <div className="fade-in-on-scroll ml-6 mr-4 text-3xl font-bold text-[#bb0000] md:ml-0">
+                    2.
+                </div>
                 <p className="fade-in-on-scroll mt-1">Corrosive</p>
             </div>
             <div className="mb-32 mt-10 flex sm:justify-start md:justify-end">
-                <div className="fade-in-on-scroll mr-4 text-3xl font-bold text-[#ff0000]">3.</div>
+                <div className="fade-in-on-scroll ml-6 mr-4 text-3xl font-bold text-[#ff0000] md:ml-0">
+                    3.
+                </div>
                 <p className="fade-in-on-scroll mt-1 text-right">And so hot it fries the machine</p>
             </div>
             {/*<div className="fade-in-on-scroll">*/}
