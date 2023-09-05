@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
 import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { SocialLinks } from "./SocialLinks";
+import ThinLine from "../ThinLine";
 
 export type NavLink = {
     label: string;
@@ -29,7 +29,7 @@ const Menu = ({ navLinks, isOpen }: Props) => {
                 "-translate-x-full": !isOpen, // hide sidebar to the left when closed
             })}
         >
-            <nav className="pt-[8rem] md:sticky">
+            <nav className="h-screen pt-[8rem] md:sticky">
                 <Link
                     className="ml-4 text-xl text-slate-800 decoration-sleepover-secondary underline-offset-2 hover:underline hover:decoration-wavy"
                     href="/"
@@ -37,6 +37,7 @@ const Menu = ({ navLinks, isOpen }: Props) => {
                     curtischong.me
                 </Link>
                 <PageLinks navLinks={navLinks} />
+                <ThinLine />
                 <SocialLinks />
             </nav>
         </div>

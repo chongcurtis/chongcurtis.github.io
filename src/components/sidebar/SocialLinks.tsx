@@ -8,7 +8,7 @@ const links = [
         href: "https://github.com/curtischong",
         icon: (
             <svg
-                className={classNames(fillTransitionClassnames, "hover:fill-black")}
+                className={classNames(fillTransitionClassnames, "h-7 w-7 hover:fill-black")}
                 aria-hidden="true"
                 data-prefix="fab"
                 data-icon="github"
@@ -25,7 +25,7 @@ const links = [
         href: "https://stackoverflow.com/users/4647924/curtis-chong",
         icon: (
             <svg
-                className={classNames(fillTransitionClassnames, "hover:fill-[#FF9900]")}
+                className={classNames(fillTransitionClassnames, "h-7 w-7 hover:fill-[#FF9900]")}
                 aria-hidden="true"
                 data-prefix="fab"
                 data-icon="stack-overflow"
@@ -42,7 +42,7 @@ const links = [
         href: "https://www.kaggle.com/splacorn",
         icon: (
             <svg
-                className={classNames(fillTransitionClassnames, "hover:fill-[#20beff]")}
+                className={classNames(fillTransitionClassnames, "h-7 w-12 hover:fill-[#20beff]")}
                 aria-hidden="true"
                 data-prefix="fab"
                 data-icon="kaggle"
@@ -61,10 +61,13 @@ const links = [
     {
         // from https://www.veryicon.com/icons/miscellaneous/general-icon-library/resume-7.html
         label: "Resume",
-        href: "https://curtischong.me/resume",
+        href: "/resume.pdf",
         icon: (
             <svg
-                className="inline-block h-4 w-4 overflow-hidden align-middle text-current"
+                className={classNames(
+                    fillTransitionClassnames,
+                    "ml-3 mt-1 inline-block h-8 w-8 overflow-hidden align-middle text-current hover:fill-red-500"
+                )}
                 viewBox="0 0 1024 1024"
                 version="1.1"
                 xmlns="http://www.w3.org/2000/svg"
@@ -79,12 +82,13 @@ const links = [
 
 export const SocialLinks = () => {
     return (
-        <div className="fixed relative z-10 flex w-full flex-grow cursor-default items-center justify-start no-underline">
+        <div className="fixed relative z-10 ml-6 mt-12 flex w-full cursor-default items-center justify-start no-underline">
             {links.map((socialLink, idx) => {
                 return (
                     <a
+                        title={socialLink.label}
                         href={socialLink.href}
-                        className="quickLinksLink relative mx-10 inline-block w-10 fill-slate-500 "
+                        className="quickLinksLink relative mx-1 inline-block w-10 fill-slate-500 "
                         target="_blank"
                     >
                         {socialLink.icon}
