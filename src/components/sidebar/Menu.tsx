@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { SocialLinks } from "./SocialLinks";
 
 export type NavLink = {
     label: string;
@@ -16,9 +17,6 @@ type Props = {
 };
 
 const Menu = ({ navLinks, isOpen }: Props) => {
-    const router = useRouter();
-    const currentPage = router.asPath;
-
     return (
         <div
             className={classNames({
@@ -38,64 +36,67 @@ const Menu = ({ navLinks, isOpen }: Props) => {
                 >
                     curtischong.me
                 </Link>
-                {/* nav items */}
-                <ul className="flex flex-col gap-2 py-2">
-                    <nav className="top-0 md:sticky md:top-16">
-                        {/* nav items */}
-                        <ul className="flex flex-col gap-2 py-2">
-                            {navLinks.map((navLink, index) => {
-                                return (
-                                    <div key={`navlink-${index}`}>
-                                        <Link href={navLink.href}>
-                                            <li
-                                                className={classNames({
-                                                    "decoration-sleepover-secondary underline-offset-2 hover:underline hover:decoration-wavy":
-                                                        true, // underline
-                                                    "flex items-center gap-4 ": true, //layout
-                                                    "transition-colors duration-300": true, //animation
-                                                    "mx-2 rounded-md p-2 text-slate-500": true, //self style
-                                                    "font-bold":
-                                                        currentPage === navLink.href &&
-                                                        !navLink.children, // don't bold if we have children cause the child page would be bold
-                                                })}
-                                            >
-                                                {navLink.icon} {navLink.label}
-                                            </li>
-                                        </Link>
-                                        {/* display child links */}
-                                        {navLink.children && (
-                                            <div className="ml-8">
-                                                {navLink.children.map((childLink, childIdx) => {
-                                                    return (
-                                                        <Link
-                                                            href={childLink.href}
-                                                            key={`navlink-${index}-${childIdx}`}
-                                                            className={classNames({
-                                                                "decoration-sleepover-secondary underline-offset-2 hover:underline hover:decoration-wavy":
-                                                                    true, // underline
-                                                                "flex items-center gap-4 ": true, //layout
-                                                                "transition-colors duration-300":
-                                                                    true, //animation
-                                                                "mx-2 rounded-md p-2 text-slate-500":
-                                                                    true, //self style
-                                                                "font-bold":
-                                                                    currentPage === childLink.href,
-                                                            })}
-                                                        >
-                                                            {childLink.label}
-                                                        </Link>
-                                                    );
-                                                })}
-                                            </div>
-                                        )}
-                                    </div>
-                                );
-                            })}
-                        </ul>
-                    </nav>
-                </ul>
+                <PageLinks navLinks={navLinks} />
+                <SocialLinks />
             </nav>
         </div>
     );
 };
+
+interface PageLinksProps {
+    navLinks: NavLink[];
+}
+
+const PageLinks = ({ navLinks }: PageLinksProps) => {
+    const router = useRouter();
+    const currentPage = router.asPath;
+    return (
+        <ul className="flex flex-col gap-2 py-2">
+            {navLinks.map((navLink, index) => {
+                return (
+                    <div key={`navlink-${index}`}>
+                        <Link href={navLink.href}>
+                            <li
+                                className={classNames({
+                                    "decoration-sleepover-secondary underline-offset-2 hover:underline hover:decoration-wavy":
+                                        true, // underline
+                                    "flex items-center gap-4 ": true, //layout
+                                    "transition-colors duration-300": true, //animation
+                                    "mx-2 rounded-md p-2 text-slate-500": true, //self style
+                                    "font-bold": currentPage === navLink.href && !navLink.children, // don't bold if we have children cause the child page would be bold
+                                })}
+                            >
+                                {navLink.icon} {navLink.label}
+                            </li>
+                        </Link>
+                        {/* display child links */}
+                        {navLink.children && (
+                            <div className="ml-8">
+                                {navLink.children.map((childLink, childIdx) => {
+                                    return (
+                                        <Link
+                                            href={childLink.href}
+                                            key={`navlink-${index}-${childIdx}`}
+                                            className={classNames({
+                                                "decoration-sleepover-secondary underline-offset-2 hover:underline hover:decoration-wavy":
+                                                    true, // underline
+                                                "flex items-center gap-4 ": true, //layout
+                                                "transition-colors duration-300": true, //animation
+                                                "mx-2 rounded-md p-2 text-slate-500": true, //self style
+                                                "font-bold": currentPage === childLink.href,
+                                            })}
+                                        >
+                                            {childLink.label}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
+                );
+            })}
+        </ul>
+    );
+};
+
 export default Menu;
