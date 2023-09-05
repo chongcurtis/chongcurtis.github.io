@@ -38,7 +38,9 @@ const Menu = ({ navLinks, isOpen }: Props) => {
                 </Link>
                 <PageLinks navLinks={navLinks} />
                 <ThinLine />
-                <SocialLinks />
+                <div className="ml-6">
+                    <SocialLinks />
+                </div>
             </nav>
         </div>
     );
