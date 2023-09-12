@@ -1,18 +1,16 @@
-import { textContent } from "@/utils/react";
 import classNames from "classnames";
 import { CSSProperties, useState } from "react";
 
 const fillTransitionClassnames = "transition duration-500 ease-in-out ";
 interface Link {
-    label: JSX.Element;
+    label: string;
     href: string;
     icon: JSX.Element;
     leftMargin: number;
-    translateY?: number;
 }
 const links: Link[] = [
     {
-        label: <p>Github</p>,
+        label: "Github",
         href: "https://github.com/curtischong",
         icon: (
             <svg
@@ -30,12 +28,7 @@ const links: Link[] = [
         leftMargin: 0,
     },
     {
-        label: (
-            <>
-                <p>Stack</p>
-                <p>Overflow</p>
-            </>
-        ),
+        label: "Stack Overflow",
         href: "https://stackoverflow.com/users/4647924/curtis-chong",
         icon: (
             <svg
@@ -50,11 +43,10 @@ const links: Link[] = [
                 <path d="M293.7 300l-181.2-84.5 16.7-36.5 181.3 84.7-16.8 36.3zm48-76L188.2 95.7l-25.5 30.8 153.5 128.3 25.5-30.8zm39.6-31.7L262 32l-32 24 119.3 160.3 32-24zM290.7 311L95 269.7 86.8 309l195.7 41 8.2-39zm31.6 129H42.7V320h-40v160h359.5V320h-40v120zm-39.8-80h-200v39.7h200V360z"></path>
             </svg>
         ),
-        leftMargin: -0.3,
-        translateY: 16,
+        leftMargin: -1.3,
     },
     {
-        label: <p>Kaggle</p>,
+        label: "Kaggle",
         href: "https://www.kaggle.com/splacorn",
         icon: (
             <svg
@@ -78,7 +70,7 @@ const links: Link[] = [
     },
     {
         // from https://www.veryicon.com/icons/miscellaneous/general-icon-library/resume-7.html
-        label: <p>Resume</p>,
+        label: "Resume",
         href: "/resume.pdf",
         icon: (
             <svg
@@ -115,37 +107,32 @@ export const SocialLinks = () => {
 
 const SocialLink = ({ link }: { link: Link }) => {
     const [isHovered, setIsHovered] = useState(false);
-    const translateY = link.translateY ? link.translateY / 2 + "px" : "2px";
-    const linkStyle = {
-        userSelect: "none",
-        marginLeft: link.leftMargin + "rem",
-    } as CSSProperties;
-    if (link.translateY) {
-        linkStyle.top = -link.translateY / 2 + "px";
-    }
     return (
         <div
             className="py-2"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <div
+            <p
                 className={classNames(
-                    `absolute top-[2px] text-center text-xs opacity-0 transition-opacity duration-300 ease-in-out`,
+                    `absolute top-[2px] text-center text-xs font-bold text-slate-500 opacity-0 transition-opacity duration-300 ease-in-out`,
                     {
                         "opacity-100": isHovered,
                     }
                 )}
-                style={linkStyle}
+                style={{
+                    userSelect: "none",
+                    marginLeft: link.leftMargin + "rem",
+                }}
             >
                 {link.label}
-            </div>
+            </p>
             <a
                 className="east-in-out quickLinksLink relative mx-1 inline-block w-10 fill-slate-500 transition-transform duration-300"
                 style={{
-                    transform: isHovered ? `translateY(${translateY})` : "translateY(0px)",
+                    transform: isHovered ? `translateY(4px)` : "translateY(0px)",
                 }}
-                title={textContent(link.label)}
+                title={link.label}
                 href={link.href}
                 target="_blank"
             >
