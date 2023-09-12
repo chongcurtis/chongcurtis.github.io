@@ -29,7 +29,7 @@ const Menu = ({ navLinks, isOpen }: Props) => {
                 "-translate-x-full": !isOpen, // hide sidebar to the left when closed
             })}
         >
-            <nav className="h-screen pt-[8rem] md:sticky">
+            <nav className="flex h-screen flex-col pt-[8rem] md:sticky">
                 <Link
                     className="ml-4 text-xl text-slate-800 decoration-sleepover-secondary underline-offset-2 hover:underline hover:decoration-wavy"
                     href="/"
@@ -37,11 +37,11 @@ const Menu = ({ navLinks, isOpen }: Props) => {
                     curtischong.me
                 </Link>
                 <PageLinks navLinks={navLinks} />
-                <div className="ml-6 mr-10">
-                    <ThinLine />
-                    <SocialLinks />
-                </div>
             </nav>
+            <div className="mb-10 ml-6 mr-10">
+                <ThinLine animateImmediatly={true} />
+                <SocialLinks />
+            </div>
         </div>
     );
 };

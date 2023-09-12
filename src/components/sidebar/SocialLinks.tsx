@@ -82,14 +82,14 @@ const links = [
 
 export const SocialLinks = () => {
     return (
-        <div className="fixed relative z-10 mt-12 flex w-full cursor-default items-center justify-start no-underline">
+        <div className="fixed relative z-10 mt-0 flex w-full cursor-default items-center justify-start no-underline">
             {links.map((socialLink, idx) => {
                 return (
                     <a
                         key={idx}
                         title={socialLink.label}
                         href={socialLink.href}
-                        className="quickLinksLink relative mx-1 inline-block w-10 fill-slate-500 "
+                        className="quickLinksLink relative mx-1 inline-block w-10 fill-slate-500"
                         target="_blank"
                     >
                         {socialLink.icon}
