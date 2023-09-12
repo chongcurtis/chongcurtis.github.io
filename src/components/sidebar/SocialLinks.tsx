@@ -76,7 +76,7 @@ const links: Link[] = [
             <svg
                 className={classNames(
                     fillTransitionClassnames,
-                    "ml-3 mt-1 inline-block h-10 w-10 overflow-hidden align-middle text-current hover:fill-red-500"
+                    "-mt-1 ml-3 inline-block h-10 w-10 overflow-hidden align-middle text-current hover:fill-red-500"
                 )}
                 viewBox="0 0 1024 1024"
                 version="1.1"
