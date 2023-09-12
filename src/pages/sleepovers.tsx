@@ -74,7 +74,7 @@ export default function Sleepovers() {
                     </p>
                     <br />
                     <ThinLine />
-                    <p className="fade-in-on-scroll mt-2">
+                    <p className="fade-in-on-scroll pt-8">
                         Here&apos;s what an email might look like:
                     </p>
                     <div className="fade-in flex">

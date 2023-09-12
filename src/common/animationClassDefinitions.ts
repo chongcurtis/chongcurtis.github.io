@@ -1,14 +1,14 @@
-export type Animation = {
+export type AnimationDef = {
     initialClass: string;
     finalClass: string;
 };
 
 // these classes are defined in globals.css
-interface Animations {
-    [animationName: string]: Animation;
+interface AnimationDefs {
+    [animationName: string]: AnimationDef;
 }
 
-export const animationDefinitions: Animations = {
+export const animationDefs: AnimationDefs = {
     fadeInAnimation: {
         initialClass: "fade-in-on-scroll",
         finalClass: "faded-in",

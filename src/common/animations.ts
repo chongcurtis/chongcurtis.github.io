@@ -1,4 +1,4 @@
-import { Animation, animationDefinitions } from "@/common/animationClassDefinitions";
+import { AnimationDef, animationDefs } from "@/common/animationClassDefinitions";
 import _ from "lodash";
 
 // used to trigger the start animation event on the canvas when it's in view
@@ -23,49 +23,55 @@ const newAnimationStateEvent = (animationState: AnimationState) => {
 interface AnimationDescription {
     element: HTMLElement;
     elementTop: () => number; // The reason why this is a function, rather than a number, is because the element's position can change after canvas elements are rendered
-    animationDefinition: Animation;
+    animationDef: AnimationDef;
     animationDelay: number;
     text: string; // for debugging purposes
     isPersistentAnimation: boolean; // these are typically canvas elements that run forever. We should pause them when they scroll off-screen
 }
 
 const getAnimationDescriptions = (): AnimationDescription[] => {
-    const animationDefinitionList: Animation[] = Array.from(Object.values(animationDefinitions));
+    const animationDefList: AnimationDef[] = Array.from(Object.values(animationDefs));
 
     // 1) get all elements
     const animationDescriptions: AnimationDescription[] = [];
-    for (const animationDefinition of animationDefinitionList) {
+    for (const animationDef of animationDefList) {
         // I am using querySelectorAll since getElementsByClassName doesn't return all elements
         // Why? it's cause getElementsByClassName returns a live collection: https://stackoverflow.com/a/31311967/4647924
-        const elements = document.querySelectorAll(`.${animationDefinition.initialClass}`);
+        const elements = document.querySelectorAll(`.${animationDef.initialClass}`);
         for (let i = 0; i < elements.length; i++) {
             const element = elements[i] as HTMLElement;
-            animationDescriptions.push({
-                text: element.innerText,
-                element,
-                elementTop: () =>
-                    element.getBoundingClientRect().top + document.documentElement.scrollTop,
-                animationDefinition,
-                animationDelay: getAnimationDelay(element),
-                isPersistentAnimation: isPersistentAnimation(element),
-            });
+            animationDescriptions.push(getAnimationDescription(element, animationDef));
         }
     }
 
     // 2) sort by y-position, then x-position
-    animationDescriptions.sort((animationDefinition1, animationDefinition2) => {
-        const y1 = animationDefinition1.elementTop();
-        const y2 = animationDefinition2.elementTop();
+    animationDescriptions.sort((animationDef1, animationDef2) => {
+        const y1 = animationDef1.elementTop();
+        const y2 = animationDef2.elementTop();
 
         if (y1 !== y2) {
             return y1 - y2;
         }
 
-        const x1 = animationDefinition1.element.getBoundingClientRect().left;
-        const x2 = animationDefinition2.element.getBoundingClientRect().left;
+        const x1 = animationDef1.element.getBoundingClientRect().left;
+        const x2 = animationDef2.element.getBoundingClientRect().left;
         return x1 - x2;
     });
     return animationDescriptions;
+};
+
+const getAnimationDescription = (
+    element: HTMLElement,
+    animationDef: AnimationDef
+): AnimationDescription => {
+    return {
+        text: element.innerText,
+        element,
+        elementTop: () => element.getBoundingClientRect().top + document.documentElement.scrollTop,
+        animationDef,
+        animationDelay: getAnimationDelay(element),
+        isPersistentAnimation: isPersistentAnimation(element),
+    };
 };
 
 const isPersistentAnimationStr = "is-persistent-animation";
@@ -195,6 +201,7 @@ const isFirstElementInAnimationRange = (
     );
 };
 
+// pop off elements from the queue and add the final class every x seconds
 const animateFirstItemInQueue = (animationQueue: AnimationDescription[]) => {
     if (animationQueue.length > 0) {
         setTimeout(() => {
@@ -206,10 +213,15 @@ const animateFirstItemInQueue = (animationQueue: AnimationDescription[]) => {
     }
 };
 
-// pop off elements from the queue and add the final class every x seconds
+export const triggerAnimationImmediately = (element: HTMLElement, animationDef: AnimationDef) => {
+    // we assume the element was never put into the animation queue
+    const animationDesc = getAnimationDescription(element, animationDef);
+    animateElement(animationDesc);
+};
+
 const animateElement = (animationDescription: AnimationDescription) => {
     const element = animationDescription.element;
-    element.classList.add(animationDescription.animationDefinition.finalClass);
+    element.classList.add(animationDescription.animationDef.finalClass);
     element.dispatchEvent(newAnimationStateEvent(AnimationState.RUNNING));
 };
 
