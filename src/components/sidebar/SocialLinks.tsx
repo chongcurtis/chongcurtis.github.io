@@ -115,7 +115,7 @@ export const SocialLinks = () => {
 
 const SocialLink = ({ link }: { link: Link }) => {
     const [isHovered, setIsHovered] = useState(false);
-    const translateY = link.translateY ? link.translateY / 2 + "px" : "5px";
+    const translateY = link.translateY ? link.translateY / 2 + "px" : "2px";
     const linkStyle = {
         userSelect: "none",
         marginLeft: link.leftMargin + "rem",
@@ -131,7 +131,7 @@ const SocialLink = ({ link }: { link: Link }) => {
         >
             <div
                 className={classNames(
-                    `absolute top-0 text-center text-xs opacity-0 transition-opacity duration-300 ease-in-out`,
+                    `absolute top-[2px] text-center text-xs opacity-0 transition-opacity duration-300 ease-in-out`,
                     {
                         "opacity-100": isHovered,
                     }
