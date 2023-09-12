@@ -25,7 +25,7 @@ const links = [
         href: "https://stackoverflow.com/users/4647924/curtis-chong",
         icon: (
             <svg
-                className={classNames(fillTransitionClassnames, "h-7 w-7 hover:fill-[#FF9900]")}
+                className={classNames(fillTransitionClassnames, "h-8 w-8 hover:fill-[#FF9900]")}
                 aria-hidden="true"
                 data-prefix="fab"
                 data-icon="stack-overflow"
@@ -42,7 +42,7 @@ const links = [
         href: "https://www.kaggle.com/splacorn",
         icon: (
             <svg
-                className={classNames(fillTransitionClassnames, "h-7 w-12 hover:fill-[#20beff]")}
+                className={classNames(fillTransitionClassnames, "h-12 w-12 hover:fill-[#20beff]")}
                 aria-hidden="true"
                 data-prefix="fab"
                 data-icon="kaggle"
@@ -66,7 +66,7 @@ const links = [
             <svg
                 className={classNames(
                     fillTransitionClassnames,
-                    "ml-3 mt-1 inline-block h-8 w-8 overflow-hidden align-middle text-current hover:fill-red-500"
+                    "ml-3 mt-1 inline-block h-10 w-10 overflow-hidden align-middle text-current hover:fill-red-500"
                 )}
                 viewBox="0 0 1024 1024"
                 version="1.1"
