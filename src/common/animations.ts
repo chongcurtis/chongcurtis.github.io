@@ -3,7 +3,7 @@ import _ from "lodash";
 
 // used to trigger the start animation event on the canvas when it's in view
 export const ANIMATION_STATE_EVENT_NAME = "animation-state-event";
-export const NARRATIVE_ANIMATION_TRIGGER_DECIMAL = 0.7; // at around 0.7 of the screen height, the animation should start
+export const NARRATIVE_ANIMATION_TRIGGER_DECIMAL = 0.85; // at around 0.7 of the screen height, the animation should start
 export const NORMAL_ANIMATION_TRIGGER_DECIMAL = 0.9;
 
 export const enum AnimationState {
@@ -85,7 +85,7 @@ const isPersistentAnimation = (element: HTMLElement) => {
 };
 
 let lastAnimationTime = 0;
-const minTimeBetweenTriggerAnimationsMs = 400;
+const MIN_TIME_BETWEEN_TRIGGER_ANIMATIONS_MS = 300;
 
 export const initAnimations = (animationTriggerDecimal: number) => {
     // 1) build the animation descriptions array, which orders all elements by their y-position, then x-position on the page
@@ -96,7 +96,7 @@ export const initAnimations = (animationTriggerDecimal: number) => {
     const persistentAnimations = new Set<AnimationDescription>();
     const tryTriggerAnimations = () => {
         const currentTime = Date.now();
-        if (currentTime - lastAnimationTime < minTimeBetweenTriggerAnimationsMs) {
+        if (currentTime - lastAnimationTime < MIN_TIME_BETWEEN_TRIGGER_ANIMATIONS_MS) {
             return;
         }
         lastAnimationTime = currentTime;
@@ -225,8 +225,8 @@ const animateElement = (animationDescription: AnimationDescription) => {
     element.dispatchEvent(newAnimationStateEvent(AnimationState.RUNNING));
 };
 
+const SCROLL_BUFFER = 10; // the number of pixels above and below the viewport to consider an animation as "running"
 const sendAnimationStateUpdateEvents = (persistentAnimations: Set<AnimationDescription>) => {
-    const SCROLL_BUFFER = 10;
     for (const animationDescription of persistentAnimations) {
         const animationState =
             window.scrollY - SCROLL_BUFFER <=

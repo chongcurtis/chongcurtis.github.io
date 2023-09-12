@@ -33,7 +33,7 @@ export default function OptimallyRotateCrops() {
                     0,
                     1,
                     fieldTypeColors[ithFieldType],
-                    40
+                    100
                 )
             );
         }
@@ -46,7 +46,7 @@ export default function OptimallyRotateCrops() {
         }
         for (let i = 0; i < particles.current.length; i++) {
             if (particles.current[i].radius < 5) {
-                particles.current[i].radius += 0.3;
+                particles.current[i].radius += 0.15;
             }
         }
         timeoutId.current = setTimeout(increaseParticleRadius, INCREASE_PARTICLE_RADIUS_DELAY);

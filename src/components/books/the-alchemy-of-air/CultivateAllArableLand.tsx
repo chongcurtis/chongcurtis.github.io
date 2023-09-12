@@ -47,7 +47,7 @@ export default function CultivateAllArableLand() {
             return;
         }
         spawnFieldRow(ithRow);
-        spawnFieldRowTimeoutId.current = setTimeout(() => spawnFieldRows(ithRow + 1), 300);
+        spawnFieldRowTimeoutId.current = setTimeout(() => spawnFieldRows(ithRow + 1), 400);
     };
 
     useEffect(() => {

@@ -4,20 +4,25 @@ import classNames from "classnames";
 import { useEffect, useRef } from "react";
 
 interface Props {
-    animateImmediatly?: boolean;
+    animateImmediately?: boolean;
 }
-export default function ThinLine({ animateImmediatly }: Props) {
+export default function ThinLine({ animateImmediately }: Props) {
     const elementRef = useRef<HTMLHRElement>(null);
     useEffect(() => {
-        if (animateImmediatly && elementRef.current) {
+        if (animateImmediately && elementRef.current) {
             triggerAnimationImmediately(elementRef.current, animationDefs.expandAnimation);
         }
     }, [elementRef.current]);
 
     const classes = classNames(
-        "expand-on-scroll border-0 bg-gradient-to-r from-transparent via-black to-transparent mx-auto my-5",
+        "border-0 bg-gradient-to-r from-transparent via-black to-transparent mx-auto my-5",
         {
-            "expand-on-scroll": animateImmediatly,
+            "expand-on-scroll": !animateImmediately,
+
+            // These are the initial css classes for expand-on-scroll. We need to manually set
+            // them since we don't want to give this element the expand-on-scroll class
+            // (so it doesn't get put into the animation queue)
+            "w-1 transition-width duration-2000 ease-in": animateImmediately,
         }
     );
 

@@ -46,7 +46,7 @@ export default function Home() {
                         })}
                     </div>
                     <div className="h-3"></div>
-                    <ThinLine animateImmediatly={true} />
+                    <ThinLine animateImmediately={true} />
                     <SocialLinks />
                 </div>
             </div>

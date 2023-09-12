@@ -29,10 +29,10 @@ export default function CubicDrop() {
             clearTimeout(timeoutId.current);
             return;
         }
-        const vx = Math.floor(Math.random() * 3) + 1;
-        const vy = Math.floor(Math.random() * 3) + 1;
+        const vx = Math.floor(Math.random()) + 1;
+        const vy = Math.floor(Math.random()) + 1;
 
-        particles.current.push(new Particle(100, 250, 50, vx, vy, 0, 0, 3, "red", 40));
+        particles.current.push(new Particle(100, 250, 50, vx, vy, 0, 0, 5, "red", 100));
 
         const spawnDelay = 100;
         timeoutId.current = setTimeout(spawnHotAtom, spawnDelay);
@@ -43,7 +43,7 @@ export default function CubicDrop() {
             clearTimeout(dripTimeoutId.current);
             return;
         }
-        particles.current.push(new Particle(100, 250, 100, 0, 0, 0, 0.5, 3, NITROGEN_COLOR, 30));
+        particles.current.push(new Particle(100, 250, 100, 0, 0, 0, 0.1, 3, NITROGEN_COLOR, 200));
         dripTimeoutId.current = setTimeout(spawnDrip, 1000);
     };
     useEffect(() => {
