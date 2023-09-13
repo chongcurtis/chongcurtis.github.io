@@ -453,8 +453,8 @@ export default function TheAlchemyOfAir() {
                             <span className="font-bold">And the world forgot it!</span>
                         </li>
                         <li className="fade-in-on-scroll mb-2 mt-5 pl-2">
-                            How humanity surmounted a calamity-scale problem. It wained my fear of
-                            Climate change.
+                            How humanity surmounted a calamity-scale problem, waning my climate
+                            anxiety.
                         </li>
                         <li className="fade-in-on-scroll mb-2 mt-5 pl-2 ">
                             And that the best solutions may not mimic nature.
