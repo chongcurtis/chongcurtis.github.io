@@ -28,7 +28,7 @@ export default function Bowling() {
     const [elementRef, animationState, hasStartEventFired] = useAnimationStateEventListener();
 
     const shootBowlingBall = () => {
-        const vx = 9;
+        const vx = 5;
         const vy = 0;
 
         particles.current.push(new Particle(100, 0, 103, vx, vy, 0, 0, 10, "#fcb1f9", 200));

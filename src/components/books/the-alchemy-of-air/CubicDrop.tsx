@@ -29,8 +29,8 @@ export default function CubicDrop() {
             clearTimeout(timeoutId.current);
             return;
         }
-        const vx = Math.floor(Math.random()) + 1;
-        const vy = Math.floor(Math.random()) + 1;
+        const vx = Math.random() * 2 - 2;
+        const vy = Math.random() * 2 - 2;
 
         particles.current.push(new Particle(100, 250, 50, vx, vy, 0, 0, 5, "red", 100));
 
@@ -43,8 +43,8 @@ export default function CubicDrop() {
             clearTimeout(dripTimeoutId.current);
             return;
         }
-        particles.current.push(new Particle(100, 250, 100, 0, 0, 0, 0.1, 3, NITROGEN_COLOR, 200));
-        dripTimeoutId.current = setTimeout(spawnDrip, 1000);
+        particles.current.push(new Particle(100, 250, 100, 0, 0, 0, 0.05, 3, NITROGEN_COLOR, 200));
+        dripTimeoutId.current = setTimeout(spawnDrip, 1500);
     };
     useEffect(() => {
         animationStateRef.current = animationState;

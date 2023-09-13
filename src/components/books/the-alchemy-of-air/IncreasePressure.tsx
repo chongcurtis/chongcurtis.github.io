@@ -29,8 +29,8 @@ export default function IncreasePressure() {
             clearTimeout(timeoutId.current);
             return;
         }
-        const vx = Math.floor(Math.random() * 5) + 1;
-        const vy = Math.floor(Math.random() * 5) + 1;
+        const vx = Math.random() * 4 - 2;
+        const vy = Math.random() * 4 - 2;
 
         particles.current.push(
             new Particle(
@@ -43,10 +43,10 @@ export default function IncreasePressure() {
                 0,
                 2 / pressureAlpha.current + 0.2,
                 "red",
-                30 * pressureAlpha.current
+                40 * pressureAlpha.current
             )
         );
-        if (pressureAlpha.current > 0.5) {
+        if (pressureAlpha.current > 0.6) {
             pressureAlpha.current -= 0.05;
         }
 

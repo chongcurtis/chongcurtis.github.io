@@ -16,10 +16,10 @@ export default function Explosion() {
             1,
             x,
             y,
-            (Math.random() - 0.5) * 20,
-            (Math.random() - 0.5) * 20,
+            (Math.random() - 0.5) * 10,
+            (Math.random() - 0.5) * 10,
             0,
-            0.25,
+            0.04,
             Math.random(),
             color,
             500

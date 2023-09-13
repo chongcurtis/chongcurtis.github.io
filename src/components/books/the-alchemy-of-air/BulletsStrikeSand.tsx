@@ -17,16 +17,16 @@ export default function BulletsStrikeSand() {
         for (let i = 0; i < numDustParticles; i++) {
             particles.current.push(
                 new Particle(
-                    1,
+                    10,
                     x,
                     y,
-                    Math.random() * 2,
-                    -Math.random() * 10 - 3,
+                    Math.random() * 1.3 - 0.2, // minus 0.2 so there is a chance it'll go left, but it'll typically go right
+                    -Math.random() * 5 - 5,
                     0,
-                    0.25,
+                    0.2,
                     Math.random(),
                     "#87552f",
-                    50
+                    100
                 )
             );
         }

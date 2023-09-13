@@ -13,13 +13,13 @@ export const HundredsOfCatalysts = () => {
 
     const catalysts = [
         new Body(10000, 300, 200, 0, 0, 2, "#fc6b4e", Group.IRON),
-        new Body(50, 280, 210, 0.04, 0.03, ELECTRON_RADIUS, ELECTRON_COLOR, Group.IRON),
-        new Body(50, 320, 230, -0.01, 0.04, ELECTRON_RADIUS, ELECTRON_COLOR, Group.IRON),
-        new Body(50, 310, 190, -0.03, 0.04, ELECTRON_RADIUS, ELECTRON_COLOR, Group.IRON),
+        new Body(50, 290, 205, 0.02, 0.015, ELECTRON_RADIUS, ELECTRON_COLOR, Group.IRON),
+        new Body(50, 310, 215, -0.005, 0.01, ELECTRON_RADIUS, ELECTRON_COLOR, Group.IRON),
+        new Body(50, 305, 195, -0.015, 0.01, ELECTRON_RADIUS, ELECTRON_COLOR, Group.IRON),
 
         new Body(10000, 200, 100, 0, 0, 5, "#f09cff", Group.LITHIUM),
         new Body(50, 180, 110, 0.02, 0.02, ELECTRON_RADIUS, ELECTRON_COLOR, Group.LITHIUM),
-        new Body(50, 220, 130, -0.02, 0.02, ELECTRON_RADIUS, ELECTRON_COLOR, Group.LITHIUM),
+        new Body(50, 210, 120, -0.02, 0.02, ELECTRON_RADIUS, ELECTRON_COLOR, Group.LITHIUM),
         new Body(50, 210, 90, -0.02, 0.01, ELECTRON_RADIUS, ELECTRON_COLOR, Group.LITHIUM),
         new Body(50, 205, 115, -0.02, 0.02, ELECTRON_RADIUS, ELECTRON_COLOR, Group.LITHIUM),
         new Body(50, 215, 105, -0.01, 0.03, ELECTRON_RADIUS, ELECTRON_COLOR, Group.LITHIUM),
