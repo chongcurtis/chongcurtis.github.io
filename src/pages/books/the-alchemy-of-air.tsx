@@ -492,10 +492,7 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mt-20">You'll have to read the book.</p>
             <p className="fade-in-on-scroll mt-20">But they did more alchemy of course.</p>
             <p className="fade-in-on-scroll mt-20">You can feel it in the air.</p>
-            <p className="fade-in-on-scroll mt-40 ">
-                P.S. Bosch didn't come up with his idea during bowling, But the morning after.
-            </p>
-            <p className="fade-in-on-scroll mt-20 text-2xl">Sources</p>
+            <p className="fade-in-on-scroll mt-32 text-2xl">Sources</p>
             <div className="flex flex-col items-center justify-center px-5">
                 {[
                     {
@@ -533,6 +530,9 @@ export default function TheAlchemyOfAir() {
             </div>
 
             <p className="fade-in-on-scroll mt-10 pl-10 text-left">Images from Wikipedia</p>
+            <p className="fade-in-on-scroll mt-10 ">
+                P.S. Bosch didn't come up with his idea during bowling, But the morning after.
+            </p>
             {/* This footer is needed so the bottom elements will fade into view*/}
             <div className="h-[30rem]" />
         </div>
