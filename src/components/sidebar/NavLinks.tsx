@@ -1,5 +1,5 @@
 import { NavLink } from "@/components/sidebar/Menu";
-import { BookOpenIcon, PencilIcon, BeakerIcon, MusicalNoteIcon } from "@heroicons/react/24/solid";
+import { BookOpenIcon, PencilIcon, MusicalNoteIcon, SparklesIcon } from "@heroicons/react/24/solid";
 
 export const NavLinks: NavLink[] = [
     {
@@ -22,11 +22,11 @@ export const NavLinks: NavLink[] = [
             },
         ],
     },
-    // {
-    //     label: "Dreams",
-    //     href: "/dreams",
-    //     icon: <BeakerIcon className="h-4 w-4 text-slate-400" />,
-    // },
+    {
+        label: "Dreams",
+        href: "/dreams",
+        icon: <SparklesIcon className="h-4 w-4 text-slate-400" />,
+    },
     // {
     //     label: "Songs",
     //     href: "/songs",

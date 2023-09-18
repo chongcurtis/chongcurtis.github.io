@@ -10,47 +10,60 @@ export default function Dreams() {
         // NOTE: <> must be used since styles are applied in a parent div
         <>
             <div className="pl-10 pr-5">
-                <p className="fade-in-on-scroll mt-10 text-4xl">Dreams That Came True</p>
+                <p className="fade-in-on-scroll mb-2 mt-10 text-4xl">Dreams That Came True</p>
                 <ul className="list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
                     <li className="fade-in-on-scroll">
-                        Making a Lego Death Star (with my own pieces cause the real set was too
+                        Making a Lego Death Star with my own pieces (cause the real set was too
                         pricy)
                     </li>
-                    <li className="fade-in-on-scroll">Building a calculator in Minecraft</li>
-                    <li className="fade-in-on-scroll">Getting into Soft Eng at Waterloo</li>
-                    <li className="fade-in-on-scroll">Winning Hack The North</li>
-                    <li className="fade-in-on-scroll">Interning for Flipp</li>
-                    <li className="fade-in-on-scroll">Interning for Grammarly</li>
+                    <li className="fade-in-on-scroll">
+                        Learning boolean logic from Minecraft YouTubers I looked up to
+                        (properinglish19 and bennyscube) and building a redstone calculator in their
+                        honour
+                    </li>
+                    <li className="fade-in-on-scroll">
+                        {/* Losing too many nights coding with my friends */}
+                        Finding a hackathon team that made losing sleep unforgettable
+                    </li>
+                    <li className="fade-in-on-scroll">Getting into my dream school</li>
+                    {/* <li className="fade-in-on-scroll">Winning Hack The North</li> */}
+                    {/* <li className="fade-in-on-scroll">Interning for Flipp</li>
+                    <li className="fade-in-on-scroll">Interning for Grammarly</li> */}
+                    <li className="fade-in-on-scroll">And landing my first job!</li>
+                    {/* <li className="fade-in-on-scroll">via a cold email</li> */}
                 </ul>
-                <p className="fade-in-on-scroll mt-10 text-4xl">Dreams in Progress</p>
-                <ul className="list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
-                    <li className="fade-in-on-scroll">Building a startup with ambitious friends</li>
-                </ul>
-                <p className="fade-in-on-scroll mt-10 text-4xl">Dreams that Died</p>
+                <p className="fade-in-on-scroll mb-2 mt-10 text-4xl">Dreams in Progress</p>
                 <ul className="list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
                     <li className="fade-in-on-scroll">
-                        Starting a startup with my hackathon team: Marcel O’Neil, Daniel Wu, and
-                        Kevin Shen
+                        To figure out blockchain-native behaviours that aren't about owning.
+                        {/* Figuring out the first application Building a startup with ambitious friends */}
                     </li>
-                    <li className="fade-in-on-scroll">Reaching Grandmaster rank on Kaggle</li>
+                </ul>
+                <p className="fade-in-on-scroll mb-2 mt-10 text-4xl">Dreams that Died</p>
+                <ul className="list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
+                    <li className="fade-in-on-scroll">Starting a startup with my hackathon team</li>
                     <li className="fade-in-on-scroll">Being an educational speaker on TED</li>
+                    <li className="fade-in-on-scroll">Reaching Grandmaster rank on Kaggle</li>
                 </ul>
 
-                <p className="fade-in-on-scroll mt-10 text-4xl">Dreams for the Future</p>
+                <p className="fade-in-on-scroll mb-2 mt-10 text-4xl">Dreams for the Future</p>
                 <ul className="list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
-                    <li className="fade-in-on-scroll">Go to a Taylor Swift dance party</li>
-                    <li className="fade-in-on-scroll">
+                    <li className="fade-in-on-scroll">Attend a Taylor Swift dance party</li>
+                    {/* <li className="fade-in-on-scroll">
                         Creating an automated system to write jokes with minimal human supervision
                     </li>
                     <ul className="ml-8 list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
                         <li className="fade-in-on-scroll">
                             Much like how quant firms automate research
                         </li>
-                    </ul>
+                    </ul> */}
                     <li className="fade-in-on-scroll">
-                        Live in a place with 2 dishwashers: One for clean dishes and one for dirty
+                        To own two dishwashers: One for clean dishes and one for dirty
                     </li>
-                    <li className="fade-in-on-scroll">Diverting a hurricane</li>
+                    <li className="fade-in-on-scroll">
+                        To experience the other side of the fence and mentor an intern 🙂
+                    </li>
+                    {/* <li className="fade-in-on-scroll">To diverting a hurricane</li> */}
                 </ul>
                 <div className="h-40" />
             </div>
