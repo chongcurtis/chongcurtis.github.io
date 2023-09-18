@@ -1,5 +1,6 @@
 import React from "react";
 import { initAnimations, NORMAL_ANIMATION_TRIGGER_DECIMAL } from "@/common/animations";
+import Link from "next/link";
 
 export default function Dreams() {
     React.useEffect(() => {
@@ -17,9 +18,23 @@ export default function Dreams() {
                         pricy)
                     </li>
                     <li className="fade-in-on-scroll">
-                        Learning boolean logic from Minecraft YouTubers I looked up to
-                        (properinglish19 and bennyscube) and building a redstone calculator in their
-                        honour
+                        Learning boolean logic from Minecraft YouTubers I looked up to (
+                        <Link
+                            href="https://www.youtube.com/@Properinglish19"
+                            target="_blank"
+                            className="text-left underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                        >
+                            Properinglish19
+                        </Link>{" "}
+                        and{" "}
+                        <Link
+                            href="https://www.youtube.com/@bennyscube"
+                            target="_blank"
+                            className="text-left underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                        >
+                            bennyscube
+                        </Link>
+                        ) and building a redstone calculator in their honour
                     </li>
                     <li className="fade-in-on-scroll">
                         {/* Losing too many nights coding with my friends */}
