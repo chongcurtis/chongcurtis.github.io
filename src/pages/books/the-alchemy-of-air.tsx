@@ -277,7 +277,7 @@ export default function TheAlchemyOfAir() {
             <div className="mt-10 flex items-center">
                 <div className="fade-in-on-scroll w-1/3 text-8xl text-[#750000]">1.</div>
                 <p className="fade-in-on-scroll w-2/3 pl-4">
-                    Immense amounts of Osmium, at a price larger than a
+                    Immense amounts of Osmium, at a price higher than a
                     <span className="font-bold text-[#750000]"> king's ransom</span>.
                 </p>
             </div>
