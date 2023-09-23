@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { NavLinks } from "@/components/sidebar/NavLinks";
-import headshot from "public/curtis-chong-headshot.png";
+import headshot from "public/curtis-chong-headshot-small.png";
 import { SocialLinks } from "@/components/sidebar/SocialLinks";
 import ThinLine from "@/components/ThinLine";
 
