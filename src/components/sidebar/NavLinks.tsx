@@ -1,5 +1,12 @@
 import { NavLink } from "@/components/sidebar/Menu";
-import { BookOpenIcon, PencilIcon, MusicalNoteIcon, SparklesIcon } from "@heroicons/react/24/solid";
+import {
+    BookOpenIcon,
+    PencilIcon,
+    MusicalNoteIcon,
+    SparklesIcon,
+    KeyIcon,
+    GlobeEuropeAfricaIcon,
+} from "@heroicons/react/24/solid";
 
 export const NavLinks: NavLink[] = [
     {
@@ -26,6 +33,17 @@ export const NavLinks: NavLink[] = [
     //     label: "Dreams",
     //     href: "/dreams",
     //     icon: <SparklesIcon className="h-4 w-4 text-slate-400" />,
+    // },
+    // {
+    //     label: "Crypto Blog",
+    //     href: "/crypto-blog/why-put-dark-forest-onchain",
+    //     icon: <GlobeEuropeAfricaIcon className="h-5 w-5 text-slate-400" />,
+    //     children: [
+    //         {
+    //             label: "Why Put Dark Forest Onchain?",
+    //             href: "/crypto-blog/why-put-dark-forest-onchain",
+    //         },
+    //     ],
     // },
     // {
     //     label: "Songs",
