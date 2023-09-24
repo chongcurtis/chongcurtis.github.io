@@ -20,12 +20,9 @@ export default function WhyPutDarkForestOnchain() {
             <br />
             <p className="fade-in-on-scroll">
                 Wait… If the game is highly moddable, why can’t the player hosting it add a backdoor
-                and give themselves an advantage? They can't cause the game runs on-chain, which:
+                and give themselves an advantage? Well... they can't, cause the game runs on-chain,
+                which:
             </p>
-            <ol className="mx-20 text-left">
-                <li></li>
-                <li></li>
-            </ol>
             <ol className="mb-6 ml-[20px] mt-4 list-decimal marker:text-center marker:font-extrabold marker:text-slate-800">
                 <li className="fade-in-on-scroll mb-2 pl-2">
                     Verifies the code running the game is untampered (doesn’t give unfair advantages
@@ -64,7 +61,7 @@ export default function WhyPutDarkForestOnchain() {
             <br />
 
             <p className="fade-in-on-scroll">
-                P.S. Dark forest could have been placed on a Trusted Execution Environment (TEE),
+                P.S. Dark Forest could have been placed on a Trusted Execution Environment (TEE),
                 which would give players the guarantee that the code is untampered (via a TEE
                 attestation). However, the server host could still block incoming requests from
                 individual players (effectively censoring their actions).
