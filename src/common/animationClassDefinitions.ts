@@ -61,7 +61,7 @@ export const animationDefs: AnimationDefs = {
 
             // Apply styles
             pathElement.style.strokeDasharray = pathLength.toString();
-            pathElement.style.animation = `3s ${animationName} cubic-bezier(0.9, 0, 0.5, 1) forwards`;
+            pathElement.style.animation = `2s ${animationName} cubic-bezier(0.9, 0, 0.5, 1) forwards`;
         },
     },
 };
