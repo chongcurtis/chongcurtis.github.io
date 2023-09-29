@@ -1,6 +1,7 @@
 import React from "react";
 import { initAnimations, NORMAL_ANIMATION_TRIGGER_DECIMAL } from "@/common/animations";
 import Link from "next/link";
+import { DreamsTitle } from "@/components/dreams/DreamsTitle";
 
 export default function Dreams() {
     React.useEffect(() => {
@@ -11,6 +12,7 @@ export default function Dreams() {
         // NOTE: <> must be used since styles are applied in a parent div
         <>
             <div className="pl-10 pr-5">
+                <DreamsTitle />
                 <p className="fade-in-on-scroll mb-2 mt-10 text-4xl">Dreams That Came True</p>
                 <ul className="list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
                     <li className="fade-in-on-scroll">
