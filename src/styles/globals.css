@@ -58,6 +58,13 @@
     transform-origin: bottom left;
 }
 
+.draw-stroke-on-scroll {
+    opacity: 0;
+}
+.drew-stroke {
+    opacity: 1;
+}
+
 /*:root {*/
 /*  --foreground-rgb: 0, 0, 0;*/
 /*  --background-start-rgb: 214, 219, 220;*/

@@ -37,14 +37,15 @@ export const animationDefs: AnimationDefs = {
                 throw "Path element doesn't exist";
             }
             const pathElement = pathElements[0] as SVGPathElement;
-            const pathLength = pathElement.getTotalLength();
+            const pathLength = Math.floor(pathElement.getTotalLength());
+            console.log("pathlength", pathLength);
 
             // Create a new stylesheet
             const styleSheet = document.createElement("style");
             document.head.appendChild(styleSheet);
 
             // Define your animation
-            const animationName = "fillsvg4";
+            const animationName = `draw-stroke${pathLength}`;
             const keyframes = `
         0% { stroke-dashoffset: ${pathLength}; }
         100% { stroke-dashoffset: 0; }

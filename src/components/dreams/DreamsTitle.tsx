@@ -33,7 +33,7 @@ export const DreamsTitle = () => {
                 viewBox="0 0 467 58"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="draw-stroke-on-scroll -ml-4"
+                className="draw-stroke-on-scroll animation-delay-1000 -ml-4"
             >
                 <g clipPath="url(#clip0_3_14)">
                     {/* <rect width="467" height="58" fill="white" /> */}
