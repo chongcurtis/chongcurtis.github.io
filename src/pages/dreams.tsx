@@ -13,7 +13,7 @@ export default function Dreams() {
         {
             description:
                 "Making a Lego Death Star with my own pieces (cause the real set was too pricy)",
-            imgUrls: [],
+            imgUrls: ["dreams/deathstar.gif"],
         },
     ] as Dream[];
 

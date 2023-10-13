@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ThinLine from "../ThinLine";
 import VerticalThinLine from "../VerticalThinLine";
 
 export type Dream = {
