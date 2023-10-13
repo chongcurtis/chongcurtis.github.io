@@ -5,26 +5,27 @@ import { useEffect, useRef } from "react";
 
 interface Props {
     animateImmediately?: boolean;
-    additionalClasses?: string;
 }
-export default function ThinLine({ animateImmediately, additionalClasses }: Props) {
+export default function VerticalThinLine({ animateImmediately }: Props) {
     const elementRef = useRef<HTMLHRElement>(null);
     useEffect(() => {
         if (animateImmediately && elementRef.current) {
-            triggerAnimationImmediately(elementRef.current, animationDefs.expandAnimation);
+            triggerAnimationImmediately(
+                elementRef.current,
+                animationDefs.expandVerticallyAnimation
+            );
         }
     }, [elementRef.current]);
 
     const classes = classNames(
-        "border-0 bg-gradient-to-r from-transparent via-black to-transparent mx-auto my-5",
-        additionalClasses,
+        "border-0 bg-gradient-to-t from-transparent via-black to-transparent my-auto mx-5",
         {
-            "expand-on-scroll": !animateImmediately,
+            "expand-vertically-on-scroll": !animateImmediately,
 
-            // These are the initial css classes for expand-on-scroll. We need to manually set
+            // These are the initial css classes for expand-vertically-on-scroll. We need to manually set
             // them since we don't want to give this element the expand-on-scroll class
             // (so it doesn't get put into the animation queue)
-            "w-1 transition-width duration-2000 ease-in": animateImmediately,
+            "h-1 transition-height duration-2000 ease-in": animateImmediately,
         }
     );
 
@@ -33,7 +34,7 @@ export default function ThinLine({ animateImmediately, additionalClasses }: Prop
             ref={elementRef}
             className={classes}
             style={{
-                height: 1,
+                width: 1,
             }}
         />
     );

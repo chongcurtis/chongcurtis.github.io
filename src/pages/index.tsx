@@ -25,8 +25,8 @@ export default function Home() {
                 <div className="place-items-center px-5">
                     <p>
                         Hello I&apos;m Curtis! I grew up in the GTA and moved to Waterloo for
-                        school. I&apos;m currently figuring out Ethereum's next verb with some
-                        friends{" "}
+                        school. I&apos;m currently building new types of consensus-based computers
+                        with my university friends{" "}
                         <Link
                             href={"https://github.com/tenetxyz"}
                             className="text-left font-semibold text-slate-700 underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"

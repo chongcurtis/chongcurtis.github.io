@@ -22,6 +22,10 @@ export const animationDefs: AnimationDefs = {
         initialClass: "expand-on-scroll",
         finalClass: "expanded",
     },
+    expandVerticallyAnimation: {
+        initialClass: "expand-vertically-on-scroll",
+        finalClass: "expanded-vertically",
+    },
     underlineAnimation: {
         initialClass: "underline-on-scroll",
         finalClass: "underlined",
