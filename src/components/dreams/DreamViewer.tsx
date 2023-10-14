@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import VerticalThinLine from "../VerticalThinLine";
+import Image from "next/image";
+
+interface ImgUrl {
+    url: string;
+    alt: string;
+}
 
 export type Dream = {
-    description: string;
-    imgUrls: string[];
+    description: JSX.Element;
+    imgUrls: ImgUrl[];
 };
 
 type DreamsViewerProps = {
@@ -45,9 +51,11 @@ export const DreamsViewer: React.FC<DreamsViewerProps> = ({ dreams }) => {
                 {selectedDream &&
                     selectedDream.imgUrls.map((imgUrl, idx) => (
                         <div key={idx}>
-                            <img
-                                src={imgUrl}
-                                alt={selectedDream.description}
+                            <Image
+                                width={500}
+                                height={500}
+                                src={imgUrl.url}
+                                alt={imgUrl.alt}
                                 className="w-full object-contain"
                             />
                         </div>

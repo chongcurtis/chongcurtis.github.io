@@ -9,11 +9,51 @@ export default function Dreams() {
         return initAnimations(NORMAL_ANIMATION_TRIGGER_DECIMAL);
     }, []);
 
+    // use https://new.express.adobe.com/tools/convert-to-mp4
+    // use https://online-video-cutter.com/ to crop
+    // use https://giphy.com/create to convert to gif
     const dreams = [
         {
-            description:
-                "Making a Lego Death Star with my own pieces (cause the real set was too pricy)",
-            imgUrls: ["dreams/deathstar.gif"],
+            description: (
+                <p>
+                    "Making a Lego Death Star with my own pieces (cause the real set was too pricy)"
+                </p>
+            ),
+            imgUrls: [
+                {
+                    url: "/dreams/deathstar.gif",
+                    alt: "My Death Star!",
+                },
+            ],
+        },
+        {
+            description: (
+                <p>
+                    Learning boolean logic from Minecraft YouTubers I looked up to (
+                    <Link
+                        href="https://www.youtube.com/@Properinglish19"
+                        target="_blank"
+                        className="text-left underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                    >
+                        Properinglish19
+                    </Link>{" "}
+                    and{" "}
+                    <Link
+                        href="https://www.youtube.com/@bennyscube"
+                        target="_blank"
+                        className="text-left underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                    >
+                        bennyscube
+                    </Link>
+                    ) and building a redstone calculator in their honour
+                </p>
+            ),
+            imgUrls: [
+                {
+                    url: "/dreams/calculation.gif",
+                    alt: "My Death Star!",
+                },
+            ],
         },
     ] as Dream[];
 
