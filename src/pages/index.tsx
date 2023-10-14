@@ -25,7 +25,7 @@ export default function Home() {
                 <div className="place-items-center px-5">
                     <p>
                         Hello I&apos;m Curtis! I grew up in the GTA and moved to Waterloo for
-                        school. I&apos;m currently building new types of consensus-based computers
+                        school. I&apos;m currently architecting new types of consensus-based computers
                         with my university friends{" "}
                         <Link
                             href={"https://github.com/tenetxyz"}
