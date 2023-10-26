@@ -30,7 +30,7 @@ export const DreamsViewer: React.FC<DreamsViewerProps> = ({ dreams }) => {
     };
 
     return (
-        <div className="flex">
+        <div className="flex flex-col md:flex-row">
             <div className="w-64 flex-none overflow-auto">
                 <ul className="divide-y divide-gray-200">
                     {dreams.map((dream, idx) => (
@@ -44,13 +44,14 @@ export const DreamsViewer: React.FC<DreamsViewerProps> = ({ dreams }) => {
                     ))}
                 </ul>
             </div>
-            <div className="align-center my-auto flex h-[200px]">
+            <div className="align-center my-auto flex hidden h-[200px] md:block">
                 <VerticalThinLine animateImmediately={true} />
             </div>
-            <div className="flex-grow bg-gray-50 p-4">
+            <div className="h-[500px] p-4">
+                {" "}
                 {selectedDream &&
                     selectedDream.imgUrls.map((imgUrl, idx) => (
-                        <div key={idx}>
+                        <div key={idx} className="h-[500px] w-[500px]">
                             <Image
                                 width={500}
                                 height={500}

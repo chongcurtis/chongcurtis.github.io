@@ -29,7 +29,7 @@ export default function Dreams() {
         {
             description: (
                 <p>
-                    Learning boolean logic from Minecraft YouTubers I looked up to (
+                    Learning redstone from Minecraft YouTubers I looked up to (
                     <Link
                         href="https://www.youtube.com/@Properinglish19"
                         target="_blank"
@@ -55,51 +55,43 @@ export default function Dreams() {
                 },
             ],
         },
+        {
+            description: <p>Exploring far-flung college campuses with my hackathon team</p>,
+            imgUrls: [
+                {
+                    url: "/dreams/lowkey.jpg",
+                    alt: "My hackathon team!",
+                },
+            ],
+        },
+        {
+            description: <p>landing my first job!</p>,
+            imgUrls: [
+                {
+                    url: "/dreams/last-day-at-flipp.jpg",
+                    alt: "My last day at Flipp",
+                },
+            ],
+        },
+        {
+            description: <p>And getting into my dream school</p>,
+            imgUrls: [
+                {
+                    url: "/dreams/waterloo-se-2023.jpg",
+                    alt: "My Death Star!",
+                },
+            ],
+        },
     ] as Dream[];
 
     return (
         // NOTE: <> must be used since styles are applied in a parent div
         <>
-            <div className="pl-10 pr-5">
+            <div className="">
                 <DreamsTitle />
 
-                <DreamsViewer dreams={dreams} />
                 <p className="fade-in-on-scroll mb-2 mt-10 text-4xl">Dreams That Came True</p>
-                <ul className="list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
-                    <li className="fade-in-on-scroll">
-                        Making a Lego Death Star with my own pieces (cause the real set was too
-                        pricy)
-                    </li>
-                    <li className="fade-in-on-scroll">
-                        Learning boolean logic from Minecraft YouTubers I looked up to (
-                        <Link
-                            href="https://www.youtube.com/@Properinglish19"
-                            target="_blank"
-                            className="text-left underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                        >
-                            Properinglish19
-                        </Link>{" "}
-                        and{" "}
-                        <Link
-                            href="https://www.youtube.com/@bennyscube"
-                            target="_blank"
-                            className="text-left underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                        >
-                            bennyscube
-                        </Link>
-                        ) and building a redstone calculator in their honour
-                    </li>
-                    <li className="fade-in-on-scroll">
-                        {/* Losing too many nights coding with my friends */}
-                        Finding a hackathon team that made losing sleep unforgettable
-                    </li>
-                    <li className="fade-in-on-scroll">Getting into my dream school</li>
-                    {/* <li className="fade-in-on-scroll">Winning Hack The North</li> */}
-                    {/* <li className="fade-in-on-scroll">Interning for Flipp</li>
-                    <li className="fade-in-on-scroll">Interning for Grammarly</li> */}
-                    <li className="fade-in-on-scroll">And landing my first job!</li>
-                    {/* <li className="fade-in-on-scroll">via a cold email</li> */}
-                </ul>
+                <DreamsViewer dreams={dreams} />
                 <p className="fade-in-on-scroll mb-2 mt-10 text-4xl">Dreams in Progress</p>
                 <ul className="list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
                     <li className="fade-in-on-scroll">
