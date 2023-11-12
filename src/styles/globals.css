@@ -32,6 +32,16 @@
     transition: width 2s ease-in;
 }
 
+.expand-vertically-on-scroll {
+    height: 1px;
+    transition: height 2s ease-in;
+}
+
+.expanded-vertically {
+    height: 100%;
+    transition: height 2s ease-in;
+}
+
 .underline-on-scroll,
 .underlined {
     display: inline-block;
@@ -56,6 +66,13 @@
 .underlined::after {
     transform: scaleX(1);
     transform-origin: bottom left;
+}
+
+.draw-stroke-on-scroll {
+    opacity: 0;
+}
+.drew-stroke {
+    opacity: 1;
 }
 
 /*:root {*/

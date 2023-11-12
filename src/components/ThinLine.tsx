@@ -5,8 +5,9 @@ import { useEffect, useRef } from "react";
 
 interface Props {
     animateImmediately?: boolean;
+    additionalClasses?: string;
 }
-export default function ThinLine({ animateImmediately }: Props) {
+export default function ThinLine({ animateImmediately, additionalClasses }: Props) {
     const elementRef = useRef<HTMLHRElement>(null);
     useEffect(() => {
         if (animateImmediately && elementRef.current) {
@@ -16,6 +17,7 @@ export default function ThinLine({ animateImmediately }: Props) {
 
     const classes = classNames(
         "border-0 bg-gradient-to-r from-transparent via-black to-transparent mx-auto my-5",
+        additionalClasses,
         {
             "expand-on-scroll": !animateImmediately,
 

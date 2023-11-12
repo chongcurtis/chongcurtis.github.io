@@ -221,6 +221,9 @@ export const triggerAnimationImmediately = (element: HTMLElement, animationDef: 
 
 const animateElement = (animationDescription: AnimationDescription) => {
     const element = animationDescription.element;
+    if (animationDescription.animationDef.customAnimation) {
+        animationDescription.animationDef.customAnimation(element);
+    }
     element.classList.add(animationDescription.animationDef.finalClass);
     element.dispatchEvent(newAnimationStateEvent(AnimationState.RUNNING));
 };
