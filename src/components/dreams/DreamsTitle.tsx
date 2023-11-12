@@ -3,12 +3,12 @@ export const DreamsTitle = () => {
         <div className="flex flex-row items-end">
             {/* D */}
             <svg
-                width="203"
-                height="208"
+                width="20vw" // Adjusted to use viewport width
+                height="auto" // Adjusts height automatically to maintain aspect ratio
                 viewBox="0 0 203 208"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="draw-stroke-on-scroll h-32 w-32"
+                className="draw-stroke-on-scroll md:0 top-[200px] h-32 w-[20vw] md:w-40"
             >
                 <g clipPath="url(#clip0_3_13)">
                     {/* <rect width="203" height="208" fill="white" /> */}
@@ -29,12 +29,12 @@ export const DreamsTitle = () => {
 
             {/* reams */}
             <svg
-                width="467"
-                height="58"
+                // width="70vw" // Adjusted to use viewport width
+                height="auto" // Adjusts height automatically to maintain aspect ratio
                 viewBox="0 0 467 58"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="draw-stroke-on-scroll animation-delay-700 -ml-4"
+                className="draw-stroke-on-scroll animation-delay-700 xs:translate-y-0 -ml-4 w-[70vw] -translate-y-[6vw] md:w-80 md:translate-y-0"
             >
                 <g clipPath="url(#clip0_3_14)">
                     {/* <rect width="467" height="58" fill="white" /> */}
