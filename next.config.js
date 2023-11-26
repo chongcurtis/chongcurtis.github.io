@@ -20,6 +20,9 @@ const nextConfig = {
     //     path: 'the "domain" of your Imigix source',
     // },
     reactStrictMode: true,
+    images: {
+        unoptimized: true,
+    },
 };
 
 module.exports = nextConfig;
