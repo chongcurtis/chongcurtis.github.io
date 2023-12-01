@@ -92,8 +92,7 @@ export default function Dreams() {
             <p className="fade-in-on-scroll mb-2 mt-5 text-4xl">Dreams in Progress</p>
             <ul className="mx-10 list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
                 <li className="fade-in-on-scroll">
-                    To figure out how to build digital worlds that have as much emergent behaviour
-                    as the internet.
+                    To finish sideprojects I've always wanted to finish.
                 </li>
             </ul>
             <p className="fade-in-on-scroll mx-10 mb-2 mt-10 text-4xl">Dreams that Died</p>

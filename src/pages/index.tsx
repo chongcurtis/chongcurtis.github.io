@@ -25,15 +25,7 @@ export default function Home() {
                 <div className="place-items-center px-5">
                     <p>
                         Hello I&apos;m Curtis! I grew up in the GTA and moved to Waterloo for
-                        school. I&apos;m currently architecting new types of consensus-based computers
-                        with my university friends{" "}
-                        <Link
-                            href={"https://github.com/tenetxyz"}
-                            className="text-left font-semibold text-slate-700 underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                        >
-                            @tenetxyz
-                        </Link>
-                        .
+                        school.
                     </p>
                     <p className="mb-5 mt-5">
                         Anyhow, I made this site to document my yellow brick road in progress. Wanna
