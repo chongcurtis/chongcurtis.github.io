@@ -42,7 +42,7 @@ export default function AlchemyOfAirTitle() {
                 <span className="fade-in-on-scroll animation-delay-200">Alchemy</span>{" "}
                 <span className="fade-in-on-scroll animation-delay-200">of</span>
             </p>
-            <div className="relative h-[300px] w-[350px] md:h-[400px] md:w-[500px]">
+            <div className="relative h-[300px] w-[275px] md:h-[400px] md:w-[500px]">
                 <p
                     ref={elementRef}
                     className="is-persistent-animation fade-in-on-scroll-slow absolute left-1/2 top-1/2 -translate-x-[90%] -translate-y-[20%] transform text-4xl font-thin italic md:text-6xl"
