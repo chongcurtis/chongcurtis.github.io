@@ -53,7 +53,7 @@ const Sidebar = (props: PropsWithChildren) => {
             <div>
                 <div
                     className={classNames({
-                        "align-center mx-auto flex max-w-3xl flex-col place-items-center justify-center bg-background-color":
+                        "align-center mx-auto flex max-w-3xl flex-col justify-center bg-background-color":
                             true,
                         // TODO: make the site unscrollable when the menu is open
                         // "overflow-auto": !isMenuVisible,
