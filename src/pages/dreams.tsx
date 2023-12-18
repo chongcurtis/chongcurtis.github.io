@@ -89,14 +89,14 @@ export default function Dreams() {
         <>
             <div className="mt-20"></div>
             <DreamsTitle />
-            <p className="fade-in-on-scroll mb-2 mt-5 text-4xl">Dreams in Progress</p>
-            <ul className="mx-10 list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
+            <p className="fade-in-on-scroll mx-10 mb-2 mt-5 text-4xl">Dreams in Progress</p>
+            <ul className="mx-14 list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
                 <li className="fade-in-on-scroll">
                     To finish sideprojects I've always wanted to finish.
                 </li>
             </ul>
             <p className="fade-in-on-scroll mx-10 mb-2 mt-10 text-4xl">Dreams that Died</p>
-            <ul className="mx-10 list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
+            <ul className="mx-14 list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
                 <li className="fade-in-on-scroll">Starting a startup with my hackathon team</li>
                 <li className="fade-in-on-scroll">Being an educational speaker on TED</li>
                 <li className="fade-in-on-scroll">Reaching Grandmaster rank on Kaggle</li>
@@ -108,7 +108,7 @@ export default function Dreams() {
             </div>
 
             <p className="fade-in-on-scroll m-10 mb-2 mt-10 text-4xl">Dreams for the Future</p>
-            <ul className="mx-10 list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
+            <ul className="mx-14 list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
                 <li className="fade-in-on-scroll">Attend a Taylor Swift dance party</li>
                 {/* <li className="fade-in-on-scroll">
                         Creating an automated system to write jokes with minimal human supervision
