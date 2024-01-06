@@ -40,7 +40,7 @@ export default function Sleepovers() {
 
             {/* Important! setting w-full makes it fill the full width of max-2-2xl */}
             {/* Also, the px-5 is so it doesn't touch the edge of the screen on mobile */}
-            <div className="fade-in-on-scroll mb-10 mt-10 w-full max-w-2xl px-5">
+            <div className="fade-in-on-scroll mx-auto mb-10 mt-10 w-full max-w-2xl px-5">
                 <MailchimpSignup />
             </div>
 
@@ -172,7 +172,7 @@ export default function Sleepovers() {
                 Thank you so much for reading that and I hope to land in your inbox!
             </p>
             {/*Important! setting w-full makes it fill the full width of max-2-2xl */}
-            <div className="fade-in-on-scroll mb-[250px] mt-6 w-full max-w-2xl px-5">
+            <div className="fade-in-on-scroll mx-auto mb-[350px] mt-6 w-full max-w-2xl px-5">
                 <MailchimpSignup />
             </div>
         </>
