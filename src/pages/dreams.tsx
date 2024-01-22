@@ -124,6 +124,10 @@ export default function Dreams() {
                 <li className="fade-in-on-scroll">
                     To experience the other side of the fence and mentor an intern 🙂
                 </li>
+                <li className="fade-in-on-scroll">
+                    Finish this Stanford YouTube series on graphs:
+                    https://www.youtube.com/watch?v=uxsDKhZHDcc
+                </li>
                 {/* <li className="fade-in-on-scroll">To diverting a hurricane</li> */}
             </ul>
             <div className="h-80" />
