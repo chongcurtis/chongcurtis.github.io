@@ -6,6 +6,7 @@ import {
     SparklesIcon,
     KeyIcon,
     GlobeEuropeAfricaIcon,
+    BeakerIcon,
 } from "@heroicons/react/24/solid";
 
 export const NavLinks: NavLink[] = [
@@ -33,6 +34,11 @@ export const NavLinks: NavLink[] = [
         label: "Dreams",
         href: "/dreams",
         icon: <SparklesIcon className="h-4 w-4 text-slate-400" />,
+    },
+    {
+        label: "Kaggle Solutions",
+        href: "https://kaggle.curtischong.me",
+        icon: <BeakerIcon className="h-4 w-4 text-slate-400" />,
     },
     // {
     //     label: "Crypto Blog",
