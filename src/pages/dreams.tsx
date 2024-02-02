@@ -92,14 +92,14 @@ export default function Dreams() {
             <p className="fade-in-on-scroll mx-10 mb-2 mt-5 text-4xl">Dreams in Progress</p>
             <ul className="mx-14 list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
                 <li className="fade-in-on-scroll">
-                    To finish sideprojects I've always wanted to finish.
+                    To finish side projects I've always wanted to finish.
                 </li>
             </ul>
             <p className="fade-in-on-scroll mx-10 mb-2 mt-10 text-4xl">Dreams that Died</p>
             <ul className="mx-14 list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
                 <li className="fade-in-on-scroll">Starting a startup with my hackathon team</li>
                 <li className="fade-in-on-scroll">Being an educational speaker on TED</li>
-                <li className="fade-in-on-scroll">Reaching Grandmaster rank on Kaggle</li>
+                {/* <li className="fade-in-on-scroll">Reaching Grandmaster rank on Kaggle</li> */}
             </ul>
 
             <p className="fade-in-on-scroll mx-10 mb-2 mt-10 text-4xl">Dreams That Came True</p>
@@ -124,10 +124,10 @@ export default function Dreams() {
                 <li className="fade-in-on-scroll">
                     To experience the other side of the fence and mentor an intern 🙂
                 </li>
-                <li className="fade-in-on-scroll">
+                {/* <li className="fade-in-on-scroll">
                     Finish this Stanford YouTube series on graphs:
                     https://www.youtube.com/watch?v=uxsDKhZHDcc
-                </li>
+                </li> */}
                 {/* <li className="fade-in-on-scroll">To diverting a hurricane</li> */}
             </ul>
             <div className="h-80" />
