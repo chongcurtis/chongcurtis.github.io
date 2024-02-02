@@ -97,7 +97,18 @@ export default function Dreams() {
             <p className="fade-in-on-scroll mx-10 mb-2 mt-5 text-4xl">Dreams in Progress</p>
             <ul className="mx-14 list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
                 <li className="fade-in-on-scroll">
-                    To finish side projects I've always wanted to finish.
+                    I want to discover a new novel algorithm. I really admire the RSA algorithm,
+                    PageRank, the Bitcoin Consensus Algorithm. They changed the world in so many
+                    ways.
+                    <br />
+                    <br />
+                    I used to think I was too late. That all the good ideas were taken. But I heard
+                    about semantic segmentation in 2019, and I didn't realize that you could make
+                    stable diffusion from it.
+                    <br />
+                    <br />
+                    So right now I'm on a hunt to find problems to be solved by new algorthims.
+                    Cause it's the closest I'll get to finding real magic.
                 </li>
             </ul>
             <p className="fade-in-on-scroll mx-10 mb-2 mt-10 text-4xl">Dreams that Died</p>
