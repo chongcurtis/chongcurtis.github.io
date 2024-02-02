@@ -14,7 +14,7 @@ export default function Sleepovers() {
     return (
         // NOTE: <> must be used since styles are applied in a parent div
         <>
-            <div className="fade-in-on-scroll relative mt-20 max-w-2xl text-center text-3xl">
+            <div className="fade-in-on-scroll relative mx-auto mt-20 max-w-2xl text-center text-3xl">
                 <img src={sleepoversBanner.src} alt="Sleepovers at the Office" />
 
                 {/* Nextjs optimizes the image. However, it decreases the saturation of the colors. So for this img.
