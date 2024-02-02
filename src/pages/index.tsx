@@ -31,16 +31,18 @@ export default function Home() {
                         Anyhow, I made this site to document my yellow brick road in progress. Wanna
                         look around?
                     </p>
-                    <div className="flex flex-col space-y-2">
+                    <div className="flex flex-col space-y-3">
                         {NavLinks.map((navLink, idx) => {
                             return (
-                                <Link
-                                    key={`home-navlink-${idx}`}
-                                    href={navLink.href}
-                                    className="text-left underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                                >
-                                    {navLink.label}
-                                </Link>
+                                <div key={`home-navlink-${idx}`} className="flex flex-row">
+                                    {navLink.icon}
+                                    <Link
+                                        href={navLink.href}
+                                        className="-mt-[6px] ml-3 text-left underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                                    >
+                                        {navLink.label}
+                                    </Link>
+                                </div>
                             );
                         })}
                     </div>

@@ -36,8 +36,8 @@ export const NavLinks: NavLink[] = [
         icon: <SparklesIcon className="h-4 w-4 text-slate-400" />,
     },
     {
-        label: "Kaggle Solutions",
-        href: "https://kaggle.curtischong.me",
+        label: "Passion Projects",
+        href: "/passion",
         icon: <BeakerIcon className="h-4 w-4 text-slate-400" />,
     },
     // {
