@@ -10,7 +10,8 @@ export default function Dreams() {
     }, []);
 
     // use https://new.express.adobe.com/tools/convert-to-mp4
-    // use https://online-video-cutter.com/ to crop
+    // use https://online-video-cutter.com/ to crop to a 3:2 ratio
+    // use https://www.freeconvert.com/video-compressor to compress videos to below 100mb (cause giphy has a 100mb upload limit)
     // use https://giphy.com/create to convert to gif
     const dreams = [
         {
@@ -52,6 +53,10 @@ export default function Dreams() {
                 {
                     url: "/dreams/calculation.gif",
                     alt: "My Death Star!",
+                },
+                {
+                    url: "/dreams/calculator-pan.png",
+                    alt: "The entire calculator in one shot!",
                 },
             ],
         },

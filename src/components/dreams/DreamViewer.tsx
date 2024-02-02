@@ -47,7 +47,7 @@ export const DreamsViewer: React.FC<DreamsViewerProps> = ({ dreams }) => {
             <div className="align-center my-auto hidden h-[400px] md:block">
                 <VerticalThinLine animateImmediately={true} />
             </div>
-            <div className="max-h-[500px] p-4">
+            <div className="max-h-[500px] space-y-4 p-4">
                 {" "}
                 {selectedDream &&
                     selectedDream.imgUrls.map((imgUrl, idx) => (
