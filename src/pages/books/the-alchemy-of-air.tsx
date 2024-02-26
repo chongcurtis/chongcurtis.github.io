@@ -222,8 +222,8 @@ export default function TheAlchemyOfAir() {
                 </div>
             </div>
             <p className="fade-in-on-scroll mb-10 mt-10">
-                Unlike Birkeland and Eyde's approach, he squeezes his Nitrogen with enough heat and
-                pressure to force Nitrogen to give up its triple molecular bond.
+                Unlike Birkeland and Eyde's approach, he squeezes his nitrogen with enough heat and
+                pressure to force nitrogen to give up its triple molecular bond.
             </p>
             <p className="fade-in-on-scroll underline-on-scroll mb-32 mt-10 font-bold after:bg-red-400">
                 N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub>
@@ -258,7 +258,7 @@ export default function TheAlchemyOfAir() {
             <p className="fade-in-on-scroll mt-20">So he turns up the heat.</p>
             <IncreaseHeat />
             <p className="fade-in-on-scroll ">
-                Crams Nitrogen into a density no lighter than a Neutron star
+                Crams nitrogen into a volume denser than a Neutron star
             </p>
             <IncreasePressure />
             <p className="fade-in-on-scroll ">And tries hundreds of catalysts</p>
@@ -433,7 +433,7 @@ export default function TheAlchemyOfAir() {
             <br />
             <BulletsStrikeSand />
             <p className="fade-in-on-scroll mt-20">
-                Because Nitrogen has the very special property of propelling projectiles.
+                Because nitrogen has the very special property of propelling projectiles.
             </p>
             <p className="fade-in-on-scroll mb-20 mt-10">
                 And it extended Germany's war by two years.
@@ -531,7 +531,7 @@ export default function TheAlchemyOfAir() {
 
             <p className="fade-in-on-scroll mt-10 pl-10 text-left">Images from Wikipedia</p>
             <p className="fade-in-on-scroll mt-10 ">
-                P.S. Bosch didn't come up with his idea during bowling, But the morning after.
+                P.S. Bosch didn't come up with his idea during bowling, but the morning after.
             </p>
             {/* This footer is needed so the bottom elements will fade into view*/}
             <div className="h-[30rem]" />
