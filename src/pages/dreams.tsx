@@ -102,13 +102,12 @@ export default function Dreams() {
                     ways.
                     <br />
                     <br />
-                    I used to think I was too late. That all the good ideas were taken. But I heard
-                    about semantic segmentation in 2019, and I didn't realize that you could make
-                    stable diffusion from it.
+                    I think material science is cool, because creating new materials (e.g. plastics)
+                    can alter our lives in so many different ways.
                     <br />
                     <br />
-                    So right now I'm on a hunt to find problems to be solved by new algorthims.
-                    Cause it's the closest I'll get to finding real magic.
+                    You can probably guess what I want to see in the world right now: an algorithm
+                    to find new materials.
                 </li>
             </ul>
             <p className="fade-in-on-scroll mx-10 mb-2 mt-10 text-4xl">Dreams that Died</p>
