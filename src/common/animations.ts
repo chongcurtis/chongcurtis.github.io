@@ -91,7 +91,7 @@ const MIN_TIME_BETWEEN_TRIGGER_ANIMATIONS_MS = 300;
 
 export const initAnimations = (
     animationTriggerDecimal: number,
-    prevAnimation: React.RefObject<AnimationDescription | null>
+    prevAnimation: React.MutableRefObject<AnimationDescription | null>
 ) => {
     // 1) build the animation descriptions array, which orders all elements by their y-position, then x-position on the page
     // This array contains the description ALL animations (since we don't want some types of animations to start later than others
@@ -160,7 +160,7 @@ const getWaitAnimationUpdateCount = (element: HTMLElement): number => {
 const tryStartAnimation = (
     animationDescriptions: AnimationDescription[],
     animationQueue: AnimationDescription[],
-    prevAnimation: React.RefObject<AnimationDescription | null>,
+    prevAnimation: React.MutableRefObject<AnimationDescription | null>,
     persistentAnimations: Set<AnimationDescription>,
     animationTriggerDecimal: number
 ) => {
