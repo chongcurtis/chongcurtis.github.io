@@ -52,7 +52,7 @@ export default function Bowling() {
                 canvasWidth={500}
                 canvasHeight={200}
                 isCollisionEnabled={true}
-                extraClassNames="animation-delay-10"
+                extraClassNames="animation-delay-1"
                 updateCountReactedTo={110}
             />
             <p className="fade-in-on-scroll-slow wait-animation-update-count-110 absolute left-1/2 top-1/2 z-20 -translate-x-[50%] -translate-y-[20%] transform md:text-2xl">
