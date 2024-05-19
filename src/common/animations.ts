@@ -98,7 +98,6 @@ export const initAnimations = (
     const animationDescriptions = getAnimationDescriptions();
 
     const animationQueue: AnimationDescription[] = [];
-    // const prevAnimation: AnimationDescription | null = null;
     const persistentAnimations = new Set<AnimationDescription>();
     const tryTriggerAnimations = () => {
         const currentTime = Date.now();
@@ -136,10 +135,6 @@ export const initAnimations = (
     };
 };
 
-// const onUpdateCountReached = (event: CustomEvent<React.RefObject<HTMLElement>>) => {
-//     const element = event.detail.current;
-// }
-
 // PERF: consolidate these two functions into one
 const DEFAULT_ANIMATION_DELAY_MS = 100;
 const animationDelayStr = "animation-delay-";
@@ -169,7 +164,6 @@ const tryStartAnimation = (
     persistentAnimations: Set<AnimationDescription>,
     animationTriggerDecimal: number
 ) => {
-    console.log(prevAnimation);
     let isQueueOriginallyEmpty = animationQueue.length === 0;
     while (
         animationDescriptions.length > 0 &&
