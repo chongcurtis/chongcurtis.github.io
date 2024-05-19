@@ -48,9 +48,6 @@ export default function Explosion() {
 
     return (
         <div ref={elementRef} className="dummy-animation is-persistent-animation relative">
-            <p className="fade-in-on-scroll-slow animation-delay-200 absolute left-1/2 top-1/2 z-20 -translate-x-[50%] -translate-y-[20%] transform font-bold md:text-2xl">
-                But they kept exploding
-            </p>
             <ParticleSimulationCanvas
                 animationState={animationState}
                 particles={particles}
@@ -58,8 +55,11 @@ export default function Explosion() {
                 canvasWidth={500}
                 canvasHeight={400}
                 isCollisionEnabled={false}
-                extraClassNames="animation-delay-800"
+                extraClassNames="animation-delay-600"
             />
+            <p className="fade-in-on-scroll-slow animation-delay-1200 absolute left-1/2 top-1/2 z-20 -translate-x-[50%] -translate-y-[20%] transform font-bold md:text-2xl">
+                But they kept exploding
+            </p>
         </div>
     );
 }

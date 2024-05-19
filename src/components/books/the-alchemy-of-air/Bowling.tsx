@@ -45,9 +45,6 @@ export default function Bowling() {
 
     return (
         <div ref={elementRef} className="dummy-animation is-persistent-animation relative">
-            <p className="fade-in-on-scroll-slow animation-delay-1300 absolute left-1/2 top-1/2 z-20 -translate-x-[50%] -translate-y-[20%] transform md:text-2xl">
-                Eureka
-            </p>
             <ParticleSimulationCanvas
                 animationState={animationState}
                 particles={particles}
@@ -55,8 +52,11 @@ export default function Bowling() {
                 canvasWidth={500}
                 canvasHeight={200}
                 isCollisionEnabled={true}
-                extraClassNames="animation-delay-800"
+                extraClassNames="animation-delay-500"
             />
+            <p className="fade-in-on-scroll-slow animation-delay-1650 absolute left-1/2 top-1/2 z-20 -translate-x-[50%] -translate-y-[20%] transform md:text-2xl">
+                Eureka
+            </p>
         </div>
     );
 }

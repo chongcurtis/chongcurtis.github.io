@@ -43,7 +43,7 @@ export default function CubicDrop() {
             clearTimeout(dripTimeoutId.current);
             return;
         }
-        particles.current.push(new Particle(100, 250, 100, 0, 0, 0, 0.05, 3, NITROGEN_COLOR, 200));
+        particles.current.push(new Particle(100, 250, 102, 0, 0, 0, 0.05, 3, NITROGEN_COLOR, 200));
         dripTimeoutId.current = setTimeout(spawnDrip, 1500);
     };
     useEffect(() => {
