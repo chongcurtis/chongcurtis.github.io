@@ -1,8 +1,8 @@
 import { AnimationDef, animationDefs } from "@/common/animationClassDefinitions";
 import _ from "lodash";
 
-// used to trigger the start animation event on the canvas when it's in view
-export const ANIMATION_STATE_EVENT_NAME = "animation-state-event";
+export const ANIMATION_STATE_EVENT_NAME = "animation-state-event"; // used to trigger the start animation event on the canvas when it's in view
+export const ANIMATION_UPDATE_COUNT_REACHED_EVENT_NAME = "animation-update-count-reached-event";
 export const NARRATIVE_ANIMATION_TRIGGER_DECIMAL = 0.85; // at around 0.7 of the screen height, the animation should start
 export const NORMAL_ANIMATION_TRIGGER_DECIMAL = 0.9;
 
@@ -27,6 +27,7 @@ interface AnimationDescription {
     animationDelay: number;
     text: string; // for debugging purposes
     isPersistentAnimation: boolean; // these are typically canvas elements that run forever. We should pause them when they scroll off-screen
+    waitAnimationUpdateCount: number; // the number of updates to wait for the PREVIOUS animation (canvas updates) to finish before starting this animation
 }
 
 const getAnimationDescriptions = (): AnimationDescription[] => {
@@ -71,6 +72,7 @@ const getAnimationDescription = (
         animationDef,
         animationDelay: getAnimationDelay(element),
         isPersistentAnimation: isPersistentAnimation(element),
+        waitAnimationUpdateCount: getWaitAnimationUpdateCount(element),
     };
 };
 
@@ -87,12 +89,16 @@ const isPersistentAnimation = (element: HTMLElement) => {
 let lastAnimationTime = 0;
 const MIN_TIME_BETWEEN_TRIGGER_ANIMATIONS_MS = 300;
 
-export const initAnimations = (animationTriggerDecimal: number) => {
+export const initAnimations = (
+    animationTriggerDecimal: number,
+    prevAnimation: React.RefObject<AnimationDescription | null>
+) => {
     // 1) build the animation descriptions array, which orders all elements by their y-position, then x-position on the page
     // This array contains the description ALL animations (since we don't want some types of animations to start later than others
     const animationDescriptions = getAnimationDescriptions();
 
     const animationQueue: AnimationDescription[] = [];
+    // const prevAnimation: AnimationDescription | null = null;
     const persistentAnimations = new Set<AnimationDescription>();
     const tryTriggerAnimations = () => {
         const currentTime = Date.now();
@@ -106,6 +112,7 @@ export const initAnimations = (animationTriggerDecimal: number) => {
         tryStartAnimation(
             animationDescriptions,
             animationQueue,
+            prevAnimation,
             persistentAnimations,
             animationTriggerDecimal
         );
@@ -121,12 +128,19 @@ export const initAnimations = (animationTriggerDecimal: number) => {
         tryTriggerAnimations();
     }, 100); // delay the initial animation by 100ms so the user first sees a blank page
     window.addEventListener("scroll", tryTriggerAnimations);
+    window.addEventListener(ANIMATION_UPDATE_COUNT_REACHED_EVENT_NAME, triggerAnimations);
 
     return () => {
         window.removeEventListener("scroll", tryTriggerAnimations);
+        window.removeEventListener(ANIMATION_UPDATE_COUNT_REACHED_EVENT_NAME, triggerAnimations);
     };
 };
 
+// const onUpdateCountReached = (event: CustomEvent<React.RefObject<HTMLElement>>) => {
+//     const element = event.detail.current;
+// }
+
+// PERF: consolidate these two functions into one
 const DEFAULT_ANIMATION_DELAY_MS = 100;
 const animationDelayStr = "animation-delay-";
 const getAnimationDelay = (element: HTMLElement): number => {
@@ -138,16 +152,32 @@ const getAnimationDelay = (element: HTMLElement): number => {
     return DEFAULT_ANIMATION_DELAY_MS;
 };
 
+const waitAnimationUpdateCountStr = "wait-animation-update-count-";
+const getWaitAnimationUpdateCount = (element: HTMLElement): number => {
+    for (const elementClass of element.classList) {
+        if (elementClass.startsWith(waitAnimationUpdateCountStr)) {
+            return parseInt(elementClass.substring(waitAnimationUpdateCountStr.length));
+        }
+    }
+    return 0;
+};
+
 const tryStartAnimation = (
     animationDescriptions: AnimationDescription[],
     animationQueue: AnimationDescription[],
+    prevAnimation: React.RefObject<AnimationDescription | null>,
     persistentAnimations: Set<AnimationDescription>,
     animationTriggerDecimal: number
 ) => {
+    console.log(prevAnimation);
     let isQueueOriginallyEmpty = animationQueue.length === 0;
     while (
         animationDescriptions.length > 0 &&
-        isFirstElementInAnimationRange(animationDescriptions, animationTriggerDecimal)
+        isFirstElementInAnimationRange(
+            animationDescriptions,
+            animationTriggerDecimal,
+            prevAnimation
+        )
     ) {
         const animationDescription = getNextAnimationDescription(
             animationDescriptions,
@@ -156,9 +186,11 @@ const tryStartAnimation = (
         if (animationDescription.elementTop() <= window.scrollY) {
             // animate immediately since the viewport is below this element's visibility
             animateElement(animationDescription);
+            prevAnimation.current = animationDescription;
         } else {
             // The user scrolled down enough for this element to "centered enough" on the user's screen.
             animationQueue.push(animationDescription);
+            prevAnimation.current = animationDescription;
         }
     }
     // the user's scrolling may have also made elements in the animationQueue to be above the viewport
@@ -188,17 +220,26 @@ const getNextAnimationDescription = (
 
 const isFirstElementInAnimationRange = (
     animationDescriptions: AnimationDescription[],
-    animationTriggerDecimal: number
+    animationTriggerDecimal: number,
+    prevAnimation: React.RefObject<AnimationDescription | null>
 ): boolean => {
+    const currentDescription = animationDescriptions[0];
     // this is used for debugging
     const moverElement = document.getElementById("mover");
     if (moverElement) {
-        moverElement.style.top = animationDescriptions[0].elementTop().toString() + "px";
+        moverElement.style.top = currentDescription.elementTop().toString() + "px";
     }
-    return (
-        animationDescriptions[0].elementTop() <=
-        window.scrollY + window.innerHeight * animationTriggerDecimal
-    );
+    const isWithinRange =
+        currentDescription.elementTop() <=
+        window.scrollY + window.innerHeight * animationTriggerDecimal;
+
+    const hasPreviousAnimationFinished =
+        currentDescription.waitAnimationUpdateCount === 0 ||
+        (prevAnimation.current !== null &&
+            ((prevAnimation.current.element as any).updateCount.current as number) ===
+                currentDescription.waitAnimationUpdateCount);
+
+    return isWithinRange && hasPreviousAnimationFinished;
 };
 
 // pop off elements from the queue and add the final class every x seconds

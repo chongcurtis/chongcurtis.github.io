@@ -24,8 +24,9 @@ import CubicDrop from "../../components/books/the-alchemy-of-air/CubicDrop";
 import Link from "next/link";
 
 export default function TheAlchemyOfAir() {
+    const prevAnimation = React.useRef(null);
     React.useEffect(() => {
-        return initAnimations(NARRATIVE_ANIMATION_TRIGGER_DECIMAL);
+        return initAnimations(NARRATIVE_ANIMATION_TRIGGER_DECIMAL, prevAnimation);
     }, []);
 
     return (
