@@ -7,8 +7,9 @@ import React from "react";
 import { initAnimations, NORMAL_ANIMATION_TRIGGER_DECIMAL } from "@/common/animations";
 
 export default function Sleepovers() {
+    const prevAnimation = React.useRef(null);
     React.useEffect(() => {
-        return initAnimations(NORMAL_ANIMATION_TRIGGER_DECIMAL);
+        return initAnimations(NORMAL_ANIMATION_TRIGGER_DECIMAL, prevAnimation);
     }, []);
 
     return (

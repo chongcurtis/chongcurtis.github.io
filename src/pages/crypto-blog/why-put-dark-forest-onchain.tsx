@@ -2,8 +2,9 @@ import { NARRATIVE_ANIMATION_TRIGGER_DECIMAL, initAnimations } from "@/common/an
 import React from "react";
 
 export default function WhyPutDarkForestOnchain() {
+    const prevAnimation = React.useRef(null);
     React.useEffect(() => {
-        return initAnimations(NARRATIVE_ANIMATION_TRIGGER_DECIMAL);
+        return initAnimations(NARRATIVE_ANIMATION_TRIGGER_DECIMAL, prevAnimation);
     }, []);
 
     return (
