@@ -4,8 +4,9 @@ import NBodySimulationCanvas from "@/components/books/the-dark-forest/NBodySimul
 import { BinaryStarSystem, ManyBodySystem } from "@/components/books/the-dark-forest/NBodySystems";
 
 export default function TheDarkForest() {
+    const prevAnimation = React.useRef(null);
     React.useEffect(() => {
-        return initAnimations(NARRATIVE_ANIMATION_TRIGGER_DECIMAL);
+        return initAnimations(NARRATIVE_ANIMATION_TRIGGER_DECIMAL, prevAnimation);
     }, []);
     // const [elementRef, startAnimationEventFired] = useAnimationEventListener();
 

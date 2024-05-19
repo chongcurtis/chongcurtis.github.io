@@ -3,8 +3,9 @@ import { initAnimations, NORMAL_ANIMATION_TRIGGER_DECIMAL } from "@/common/anima
 import ThinLine from "../components/ThinLine";
 
 export default function Passion() {
+    const prevAnimation = React.useRef(null);
     React.useEffect(() => {
-        return initAnimations(NORMAL_ANIMATION_TRIGGER_DECIMAL);
+        return initAnimations(NORMAL_ANIMATION_TRIGGER_DECIMAL, prevAnimation);
     }, []);
 
     return (

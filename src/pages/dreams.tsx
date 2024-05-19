@@ -5,8 +5,9 @@ import { DreamsTitle } from "@/components/dreams/DreamsTitle";
 import DreamsViewer, { Dream } from "@/components/dreams/DreamViewer";
 
 export default function Dreams() {
+    const prevAnimation = React.useRef(null);
     React.useEffect(() => {
-        return initAnimations(NORMAL_ANIMATION_TRIGGER_DECIMAL);
+        return initAnimations(NORMAL_ANIMATION_TRIGGER_DECIMAL, prevAnimation);
     }, []);
 
     // use https://new.express.adobe.com/tools/convert-to-mp4

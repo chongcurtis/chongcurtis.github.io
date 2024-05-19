@@ -55,9 +55,10 @@ export default function Explosion() {
                 canvasWidth={500}
                 canvasHeight={400}
                 isCollisionEnabled={false}
-                extraClassNames="animation-delay-600"
+                extraClassNames="animation-delay-300"
+                updateCountReactedTo={60}
             />
-            <p className="fade-in-on-scroll-slow animation-delay-1200 absolute left-1/2 top-1/2 z-20 -translate-x-[50%] -translate-y-[20%] transform font-bold md:text-2xl">
+            <p className="fade-in-on-scroll-slow wait-animation-update-count-60 absolute left-1/2 top-1/2 z-20 -translate-x-[50%] -translate-y-[20%] transform font-bold md:text-2xl">
                 But they kept exploding
             </p>
         </div>

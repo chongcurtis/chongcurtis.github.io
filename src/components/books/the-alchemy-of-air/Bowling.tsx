@@ -31,7 +31,7 @@ export default function Bowling() {
         const vx = 5;
         const vy = 0;
 
-        particles.current.push(new Particle(100, 0, 103, vx, vy, 0, 0, 10, "#fcb1f9", 200));
+        particles.current.push(new Particle(100, 20, 103, vx, vy, 0, 0, 10, "#fcb1f9", 200));
     };
     useEffect(() => {
         if (!hasStartEventFired) {
@@ -52,9 +52,10 @@ export default function Bowling() {
                 canvasWidth={500}
                 canvasHeight={200}
                 isCollisionEnabled={true}
-                extraClassNames="animation-delay-500"
+                extraClassNames="animation-delay-10"
+                updateCountReactedTo={110}
             />
-            <p className="fade-in-on-scroll-slow animation-delay-1650 absolute left-1/2 top-1/2 z-20 -translate-x-[50%] -translate-y-[20%] transform md:text-2xl">
+            <p className="fade-in-on-scroll-slow wait-animation-update-count-110 absolute left-1/2 top-1/2 z-20 -translate-x-[50%] -translate-y-[20%] transform md:text-2xl">
                 Eureka
             </p>
         </div>

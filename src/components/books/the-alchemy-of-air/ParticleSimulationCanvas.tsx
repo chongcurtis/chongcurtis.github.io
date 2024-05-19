@@ -2,7 +2,7 @@ import React from "react";
 import { Block } from "@/components/books/the-alchemy-of-air/Block";
 import { Particle } from "@/components/books/the-alchemy-of-air/Particle";
 import Vector2 from "@/components/books/the-alchemy-of-air/Vector2";
-import { AnimationState } from "@/common/animations";
+import { ANIMATION_UPDATE_COUNT_REACHED_EVENT_NAME, AnimationState } from "@/common/animations";
 
 type Props = {
     animationState: AnimationState;
@@ -12,6 +12,11 @@ type Props = {
     canvasHeight: number;
     isCollisionEnabled: boolean;
     extraClassNames?: string;
+    updateCountReactedTo?: number;
+};
+
+export type ParticleSimulationCanvas = HTMLCanvasElement & {
+    updateCount: React.MutableRefObject<number>;
 };
 export default function ParticleSimulationCanvas({
     animationState,
@@ -21,13 +26,15 @@ export default function ParticleSimulationCanvas({
     canvasHeight,
     isCollisionEnabled,
     extraClassNames,
+    updateCountReactedTo,
 }: Props) {
     const SIMULATION_SPEED = 20; // 40ms between each frame = 25fps
 
     const COEFFICIENT_OF_RESTITUTION = 1; // the ratio of the final to initial relative speed between two objects after they collide.
-    const canvasRef = React.useRef<HTMLCanvasElement>(null);
+    const canvasRef = React.useRef<ParticleSimulationCanvas>(null);
     const animationFrameId = React.useRef<number>(0);
     const canvasCtx = React.useRef<CanvasRenderingContext2D>();
+    const updateCount = React.useRef<number>(0);
 
     React.useEffect(() => {
         const canvas = canvasRef.current!;
@@ -37,6 +44,7 @@ export default function ParticleSimulationCanvas({
         const ctx = setupCanvas(canvas);
         ctx.font = "30px Arial";
         canvasCtx.current = ctx;
+        canvasRef.current!.updateCount = updateCount;
     }, [canvasWidth, canvasHeight]);
 
     React.useEffect(() => {
@@ -55,6 +63,18 @@ export default function ParticleSimulationCanvas({
         const ctx = canvasCtx.current!;
 
         const update = () => {
+            if (updateCountReactedTo !== undefined && updateCount.current < updateCountReactedTo) {
+                updateCount.current++;
+                if (updateCount.current === updateCountReactedTo) {
+                    window.dispatchEvent(
+                        new CustomEvent(ANIMATION_UPDATE_COUNT_REACHED_EVENT_NAME, {
+                            detail: {
+                                current: canvasRef.current!,
+                            },
+                        })
+                    );
+                }
+            }
             run(canvas, ctx);
             animationFrameId.current = requestAnimationFrame(update); // Schedule next frame
         };
