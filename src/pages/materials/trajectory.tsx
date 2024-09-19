@@ -36,6 +36,10 @@ export const TrajectoryPage = () => {
             <div>
                 <div className="flex flex-col items-center">
                     <h1 className="mt-10 text-2xl font-bold">Trajectory Viewer</h1>
+                    <p>
+                        this page doesn't work. we need a function to interpret the Python-generated
+                        ase file (a binary) in Typescript
+                    </p>
                     <Dropzone
                         className="mt-10 h-40 w-[80%] cursor-pointer rounded-xl border-[1px] border-dashed border-slate-400 px-8 pb-10 pt-8"
                         accept={{ "application/json": [".traj"] }}

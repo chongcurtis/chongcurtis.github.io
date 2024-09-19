@@ -11,6 +11,9 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
+// TODO: this currently loads fo the entire site, which amy slow it down. I might switch to non mantine components (ask gpt?)
+import "@mantine/core/styles.css";
+
 export interface Frame {
     atomicNumbers: number[];
     coords: number[][]; // PERF: maybe replace with a fixed size array if there's perf issues
