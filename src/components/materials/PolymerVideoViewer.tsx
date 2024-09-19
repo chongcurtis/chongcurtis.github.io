@@ -1,4 +1,3 @@
-"use client";
 import { useStatefulRef } from "@/common/useStatefulRef";
 import {
     findMiddleOfCoords,
@@ -10,13 +9,11 @@ import { Checkbox, Slider } from "@mantine/core";
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-
-// TODO: this currently loads fo the entire site, which amy slow it down. I might switch to non mantine components (ask gpt?)
 import "@mantine/core/styles.css";
 
 export interface Frame {
     atomicNumbers: number[];
-    coords: number[][]; // PERF: maybe replace with a fixed size array if there's perf issues
+    coords: number[][];
     forces?: number[][];
 }
 
@@ -24,18 +21,14 @@ export interface PolymerVideoViewerProps {
     frames: Frame[];
 }
 
-// this function preprocesses the frames (e.g. visualize it as a mxmxm supercell / center all atoms),
-// so when we pass them into the PolymerVideoViewerCanvas component, the coords / number of atoms will not change
 export const PolymerVideoViewer = ({ frames }: PolymerVideoViewerProps) => {
     const [processedFrames, setProcessedFrames] = useState<ProcessedFrame[]>([]);
-
     const [furthestDistFromOrigin, setFurthestDistFromOrigin] = useState(0);
 
     useEffect(() => {
         if (frames.length === 0) {
             return;
         }
-        // only calculate this once since we want a consistent distance from the origin
         let currentfurthestDistFromOrigin = 0;
 
         for (const frame of frames) {
@@ -51,12 +44,7 @@ export const PolymerVideoViewer = ({ frames }: PolymerVideoViewerProps) => {
         const middleOfAtoms = findMiddleOfCoords(frames[frames.length - 1].coords);
 
         const processedFrames = frames.map((frame): ProcessedFrame => {
-            const centeredCoords = [];
-            for (const coord of frame.coords) {
-                const centeredCoord = subtract(coord, middleOfAtoms);
-                centeredCoords.push(centeredCoord);
-            }
-
+            const centeredCoords = frame.coords.map((coord) => subtract(coord, middleOfAtoms));
             return {
                 centeredCoords,
                 atomicNumbers: frame.atomicNumbers,
@@ -82,6 +70,7 @@ export interface PolymerVideoViewerCanvasProps {
     processedFrames: ProcessedFrame[];
     furthestDistFromOrigin: number;
 }
+
 export interface ProcessedFrame {
     atomicNumbers: number[];
     centeredCoords: number[][];
@@ -107,10 +96,14 @@ const PolymerVideoViewerCanvas = ({
     // Animation loop
     const animate = useCallback(() => {
         const drawFrame = (processedFrame: ProcessedFrame) => {
+            // Remove existing spheres from the scene
             for (const sphere of currentSpheresRef.current) {
                 sceneRef.current.remove(sphere);
             }
-            // draw the atoms
+            // Clear the currentSpheresRef
+            currentSpheresRef.current = [];
+
+            // Add new spheres to the scene
             const numAtoms = processedFrame.atomicNumbers.length;
             for (let i = 0; i < numAtoms; i++) {
                 const sphere = spheresMap.get(processedFrame.atomicNumbers[i]);
@@ -142,8 +135,7 @@ const PolymerVideoViewerCanvas = ({
             if (stepRef.current === 10) {
                 stepRef.current = 0;
                 currentFrameRef.current = (currentFrame + 1) % processedFrames.length;
-                drawFrame(processedFrames[currentFrame]);
-                // console.log(currentFrame);
+                drawFrame(processedFrames[currentFrameRef.current]);
             }
         }
 
@@ -152,22 +144,8 @@ const PolymerVideoViewerCanvas = ({
         if (cameraRef.current) {
             rendererRef.current?.render(sceneRef.current, cameraRef.current);
         }
-        return () => {
-            if (animationFrameIdRef.current) {
-                cancelAnimationFrame(animationFrameIdRef.current);
-            }
-        };
-    }, [
-        processedFrames,
-        currentSpheresRef.current,
-        sceneRef.current,
-        cameraRef.current,
-        rendererRef.current,
-    ]);
+    }, [processedFrames]);
 
-    // I don't think we can cache processed frames and pre-add the atoms them to the scene
-    // because if we move the camera and flip between scenes, it'll change?
-    // we'll deal with this problem (if it is a caching problem) when we have multiple frames
     useEffect(() => {
         const mount = mountRef.current!;
         const scene = new THREE.Scene();
@@ -180,46 +158,52 @@ const PolymerVideoViewerCanvas = ({
         );
         const renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setSize(mount.clientWidth, mount.clientHeight);
-        // renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
         mount.appendChild(renderer.domElement);
 
-        // Add a light to the scene
+        // Add lights to the scene
         const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
         directionalLight.position.set(100, 100, 100).normalize();
         scene.add(directionalLight);
 
-        // Add a second light to the scene so the backside of the atoms is visible
         const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1);
         directionalLight2.position.set(-100, -100, -100).normalize();
         scene.add(directionalLight2);
 
-        // Optionally, add an AmbientLight for softer shadows
         const ambientLight = new THREE.AmbientLight(0xbbbbbb, 0.9); // Soft white light
         scene.add(ambientLight);
 
         // Camera position
-        // if you want move the camera to another spot, you have to change it like this. NOT set the camera rotation (since it'll always be facing the origin)
         camera.position.x = -300;
-        camera.position.y = 0; // position the camera exactly on the axis so it's easier to tell what's happening
+        camera.position.y = 0;
 
         // OrbitControls for interactivity
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.minDistance = 5; // Set the minimum zoom-in distance
         controls.maxDistance = furthestDistFromOrigin + 8; // Set the maximum zoom-out distance
 
-        animate();
-
+        // Save references
         controlsRef.current = controls;
         sceneRef.current = scene;
         cameraRef.current = camera;
         rendererRef.current = renderer;
 
-        // Clean up on unmount
+        // Start the animation loop
+        animate();
+
+        // Cleanup function to stop the animation loop and dispose Three.js resources
         return () => {
+            if (animationFrameIdRef.current) {
+                cancelAnimationFrame(animationFrameIdRef.current);
+            }
+            // Dispose renderer
+            renderer.dispose();
+            // Remove renderer from DOM
             mount.removeChild(renderer.domElement);
+            // Dispose controls
+            controls.dispose();
         };
-    }, [processedFrames]);
+    }, [processedFrames, animate, furthestDistFromOrigin]);
 
     return (
         <>
