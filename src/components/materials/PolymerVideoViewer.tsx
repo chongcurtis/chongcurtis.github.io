@@ -199,7 +199,9 @@ const PolymerVideoViewerCanvas = ({
         scene.add(ambientLight);
 
         // Camera position
-        camera.position.z = 300;
+        // if you want move the camera to another spot, you have to change it like this. NOT set the camera rotation (since it'll always be facing the origin)
+        camera.position.x = -300;
+        camera.position.y = 0; // position the camera exactly on the axis so it's easier to tell what's happening
 
         // OrbitControls for interactivity
         const controls = new OrbitControls(camera, renderer.domElement);
