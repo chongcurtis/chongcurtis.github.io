@@ -43,7 +43,7 @@ export const NavLinks: NavLink[] = [
     },
     {
         label: "Materials",
-        href: "/materials",
+        href: "/materials/polymers",
         icon: <CubeTransparentIcon className="h-4 w-4 text-slate-400" />,
         children: [
             {

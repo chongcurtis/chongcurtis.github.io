@@ -101,27 +101,32 @@ const PolymerVideoViewerCanvas = ({
     const rendererRef = useRef<THREE.WebGLRenderer>();
     const animationFrameIdRef = useRef<number>();
 
+    const clearSpheres = useCallback(() => {
+        // Remove existing spheres from the scene
+        // from https://stackoverflow.com/questions/18357529/threejs-remove-object-from-scene
+        for (const sphere of currentSpheresRef.current) {
+            // Dispose geometry
+            if (sphere.geometry) {
+                sphere.geometry.dispose();
+            }
+
+            // Dispose material
+            if (sphere.material) {
+                if (Array.isArray(sphere.material)) {
+                    sphere.material.forEach((material) => material.dispose());
+                } else {
+                    sphere.material.dispose();
+                }
+            }
+            sphere.removeFromParent();
+        }
+        currentSpheresRef.current = [];
+    }, []);
+
     // Animation loop
     const animate = useCallback(() => {
         const drawFrame = (processedFrame: ProcessedFrame) => {
-            // Remove existing spheres from the scene
-            // from https://stackoverflow.com/questions/18357529/threejs-remove-object-from-scene
-            for (const sphere of currentSpheresRef.current) {
-                // Dispose geometry
-                if (sphere.geometry) {
-                    sphere.geometry.dispose();
-                }
-
-                // Dispose material
-                if (sphere.material) {
-                    if (Array.isArray(sphere.material)) {
-                        sphere.material.forEach((material) => material.dispose());
-                    } else {
-                        sphere.material.dispose();
-                    }
-                }
-                sphere.removeFromParent();
-            }
+            clearSpheres();
 
             // Clear the currentSpheresRef
             currentSpheresRef.current = [];
@@ -165,13 +170,14 @@ const PolymerVideoViewerCanvas = ({
 
         animationFrameIdRef.current = requestAnimationFrame(animate);
         controlsRef.current?.update();
-        if (cameraRef.current) {
-            rendererRef.current?.render(sceneRef.current, cameraRef.current);
+        if (cameraRef.current && sceneRef.current && rendererRef.current) {
+            rendererRef.current.render(sceneRef.current, cameraRef.current);
         }
         return () => {
             if (animationFrameIdRef.current) {
                 cancelAnimationFrame(animationFrameIdRef.current);
             }
+            clearSpheres();
         };
     }, [
         processedFrames,

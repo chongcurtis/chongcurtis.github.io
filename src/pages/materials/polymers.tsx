@@ -40,7 +40,7 @@ export default function Polymers() {
     return (
         <MantineProvider>
             <div className="px-3 text-lg">
-                <p className="fade-in-on-scroll mt-20 text-2xl">
+                <p className="fade-in-on-scroll mt-20 text-center text-2xl">
                     Building Polymers with Neural Network Potentials
                 </p>
                 <p className="fade-in-on-scroll mt-10">
