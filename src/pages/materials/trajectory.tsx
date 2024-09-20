@@ -4,7 +4,6 @@ import React from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { MantineProvider } from "@mantine/core";
-import { parseASETrajectoryFromText } from "@/components/materials/parseAseTraj";
 
 export interface Frame {
     atomicNumbers: number[];
@@ -25,8 +24,9 @@ export const TrajectoryPage = () => {
         const reader = new FileReader();
         reader.onload = function (e) {
             const contents = e.target?.result;
-            const res = parseASETrajectoryFromText(contents as string);
-            console.log(res);
+            // TODO: write this function
+            // const res = parseASETrajectoryFromText(contents as string);
+            // console.log(res);
         };
         reader.readAsText(uploadedFile);
     }, []);
@@ -53,7 +53,8 @@ export const TrajectoryPage = () => {
                     </Dropzone>
                     <p>frames: {frames.length}</p>
                     <div className="h-[800px] w-[1000px]">
-                        <PolymerVideoViewer frames={frames} />
+                        {/*  TODO: fix this viewer. rn the frames are missing coords. obv when we parse the traj file, we'll get the coords */}
+                        {/* <PolymerVideoViewer frames={frames} /> */}
                     </div>
                     <ToastContainer />
                 </div>
