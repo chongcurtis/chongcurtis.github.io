@@ -63,7 +63,7 @@ export default function Polymers() {
                     polymers in a computer:
                 </p>
                 <p className="fade-in-on-scroll mt-10">(yes. this is interactive!)</p>
-                <div className="mt-10 h-80 w-full">
+                <div className="fade-in-on-scroll mt-10 h-80 w-full">
                     <PolymerVideoViewer frames={relaxationFrames} />
                 </div>
                 <p className="fade-in-on-scroll mt-20">
@@ -97,7 +97,7 @@ export default function Polymers() {
                     (using the same ml model!) to calculate tensile strength:
                 </p>
 
-                <div className="mt-10 h-80 w-full">
+                <div className="fade-in-on-scroll mt-10 h-80 w-full">
                     <PolymerVideoViewer frames={pullFrames} />
                 </div>
                 <p className="fade-in-on-scroll mt-20">
@@ -147,16 +147,18 @@ export default function Polymers() {
                     </li>
                 </ul>
                 <p className="fade-in-on-scroll mt-10">
-                    If you're interested in playing around, check out the code{" "}
+                    Anyway, that's about it! If you're interested in playing around, check out the
+                    code{" "}
                     <a
                         href="https://github.com/curtischong/polymer-builder"
                         target="_blank"
                         className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
                     >
-                        here
+                        here!
                     </a>
                 </p>
-                <div className="h-80"></div>
+                <p className="fade-in-on-scroll mt-10">- Curtis</p>
+                <div className="h-96"></div>
             </div>
         </MantineProvider>
     );

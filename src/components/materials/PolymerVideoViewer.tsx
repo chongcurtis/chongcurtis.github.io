@@ -221,7 +221,7 @@ const PolymerVideoViewerCanvas = ({
         scene.add(ambientLight);
 
         // Camera position
-        camera.position.x = -20;
+        camera.position.x = -25;
         camera.position.y = 0;
 
         // OrbitControls for interactivity
