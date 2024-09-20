@@ -221,13 +221,13 @@ const PolymerVideoViewerCanvas = ({
         scene.add(ambientLight);
 
         // Camera position
-        camera.position.x = -300;
+        camera.position.x = -20;
         camera.position.y = 0;
 
         // OrbitControls for interactivity
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.minDistance = 5; // Set the minimum zoom-in distance
-        controls.maxDistance = furthestDistFromOrigin + 8; // Set the maximum zoom-out distance
+        controls.maxDistance = furthestDistFromOrigin; // Set the maximum zoom-out distance
 
         animate();
 
