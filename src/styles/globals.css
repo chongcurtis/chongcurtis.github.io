@@ -99,3 +99,8 @@
 /*    )*/
 /*    rgb(var(--background-start-rgb));*/
 /*}*/
+
+/* needed or else importing mantine css styles will break the page */
+:root {
+    --mantine-color-body: unset !important;
+}

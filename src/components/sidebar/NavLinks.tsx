@@ -7,6 +7,7 @@ import {
     KeyIcon,
     GlobeEuropeAfricaIcon,
     BeakerIcon,
+    CubeTransparentIcon,
 } from "@heroicons/react/24/solid";
 
 export const NavLinks: NavLink[] = [
@@ -39,6 +40,17 @@ export const NavLinks: NavLink[] = [
         label: "Passion Projects",
         href: "/passion",
         icon: <BeakerIcon className="h-4 w-4 text-slate-400" />,
+    },
+    {
+        label: "Materials",
+        href: "/materials/polymers",
+        icon: <CubeTransparentIcon className="h-4 w-4 text-slate-400" />,
+        children: [
+            {
+                label: "Polymers",
+                href: "/materials/polymers",
+            },
+        ],
     },
     // {
     //     label: "Crypto Blog",
