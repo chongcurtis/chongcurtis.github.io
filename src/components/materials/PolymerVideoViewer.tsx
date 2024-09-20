@@ -215,7 +215,8 @@ const PolymerVideoViewerCanvas = ({
         scene.add(ambientLight);
 
         // Camera position
-        camera.position.z = 300;
+        camera.position.x = -300;
+        camera.position.y = 0;
 
         // OrbitControls for interactivity
         const controls = new OrbitControls(camera, renderer.domElement);
@@ -238,7 +239,7 @@ const PolymerVideoViewerCanvas = ({
     return (
         <>
             <div ref={mountRef} style={{ width: "100%", height: "100%" }} />
-            <div className="flex flex-row">
+            <div className="mt-2 flex flex-row">
                 <Checkbox
                     checked={isUseFrameSliderCheckedRef.current}
                     onChange={(event) =>
