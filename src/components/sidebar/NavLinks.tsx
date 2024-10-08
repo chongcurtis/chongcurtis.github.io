@@ -50,6 +50,10 @@ export const NavLinks: NavLink[] = [
                 label: "Polymers",
                 href: "/materials/polymers",
             },
+            {
+                label: "Equivariant GNN Checklist",
+                href: "/materials/equivariant-graph-neural-net-checklist",
+            },
         ],
     },
     // {
