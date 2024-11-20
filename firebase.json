@@ -1,0 +1,7 @@
+{
+    "hosting": {
+        "cleanUrls": true, // tells Firebase to look for matching HTML files without the .html extension
+        "public": "out/",
+        "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    }
+}
