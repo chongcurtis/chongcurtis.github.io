@@ -4,6 +4,7 @@ import React from "react";
 import pull from "public/materials/pull.json";
 import relaxation from "public/materials/relaxation.json";
 import { MantineProvider } from "@mantine/core";
+import Image from "next/image";
 
 export default function Polymers() {
     const prevAnimation = React.useRef(null);
@@ -104,6 +105,14 @@ export default function Polymers() {
                     Note: I know this isn't how a polymer behaves when stretched. this is just an
                     example of what we can do with our polymer.
                 </p>
+                <div className="fade-in-on-scroll mt-5">
+                    <Image
+                        src="/materials/polymer_forces.png"
+                        alt="Calculating the forces during the pulling process"
+                        width={2044}
+                        height={1138}
+                    />
+                </div>
                 <p className="fade-in-on-scroll mt-10">
                     This is amazing. We don't have to worry about conformer math or accidentally
                     placing the atoms too close. The model handles all the inter-atomic forces and
