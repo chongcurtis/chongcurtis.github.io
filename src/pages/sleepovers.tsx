@@ -79,7 +79,7 @@ export default function Sleepovers() {
                         Here&apos;s what an email might look like:
                     </p>
                     <div className="fade-in flex">
-                        <div className="fade-in-on-scroll mt-10 border-l-slate-300 pl-4 text-slate-800 sm:border-l-8 sm:pl-6">
+                        <div className="fade-in-on-scroll mt-10 pl-4 text-slate-800">
                             <div>
                                 <p className="fade-in-on-scroll text-3xl">
                                     Technology to Divert Hurricanes
