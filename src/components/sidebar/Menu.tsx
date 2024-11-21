@@ -80,7 +80,7 @@ const PageLinks = ({ navLinks }: PageLinksProps) => {
                                         <Link
                                             href={childLink.href}
                                             key={`navlink-${index}-${childIdx}`}
-                                            className={classNames({
+                                            className={classNames("ml-6", {
                                                 "decoration-sleepover-secondary underline-offset-2 hover:underline hover:decoration-wavy":
                                                     true, // underline
                                                 "flex items-center gap-4 ": true, //layout
