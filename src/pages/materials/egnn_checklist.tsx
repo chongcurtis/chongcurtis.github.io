@@ -287,7 +287,7 @@ export default function EgnnChecklist() {
                             {
                                 content: (
                                     <p>
-                                        If you have non-zero kelvin datasets, you need to first
+                                        If you have non-zero Kelvin datasets, you need to first
                                         denoise them (see{" "}
                                         <Link
                                             href="https://arxiv.org/abs/2403.09549"
