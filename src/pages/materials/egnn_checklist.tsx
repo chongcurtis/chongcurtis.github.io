@@ -3,7 +3,7 @@ import { EasyList } from "@/pages/materials/EasyList";
 import Link from "next/link";
 import React from "react";
 
-export default function Polymers() {
+export default function EgnnChecklist() {
     const prevAnimation = React.useRef(null);
     React.useEffect(() => {
         return initAnimations(NORMAL_ANIMATION_TRIGGER_DECIMAL, prevAnimation);
@@ -50,6 +50,14 @@ export default function Polymers() {
                         className="underline-on-scroll after:bg-sleepover-secondary"
                     >
                         Diffusion Model Checklist
+                    </a>
+                </li>
+                <li className="">
+                    <a
+                        href="#bonus-checklist"
+                        className="underline-on-scroll after:bg-sleepover-secondary"
+                    >
+                        Bonus Checklist
                     </a>
                 </li>
             </ul>
@@ -124,11 +132,86 @@ export default function Polymers() {
                     },
                     {
                         beforeContent: "2.3",
-                        content: "Construct equivariant test cases",
+                        content: "Test your models for equivariance",
                         children: [
                             {
                                 content:
-                                    "You don't even need to have your model trained to do this. Just run it on raw weights. Your goal is to test that F(R(x)) = R(F(x)). do this for a set of random rotations and a few x and you can be confident that your model is rotationally equivariant",
+                                    "You don't even need to have your model trained to do this. Just test it on untrained weights.",
+                                children: [
+                                    {
+                                        content: "Your goal is to test that F(R(x)) = R(F(x))",
+                                    },
+                                    {
+                                        content:
+                                            "Perform this check five times with different random rotations and you can be confident that your model is rotationally equivariant",
+                                    },
+                                    {
+                                        content: (
+                                            <p>
+                                                Here is an example equivariance test on the{" "}
+                                                <Link
+                                                    href="https://github.com/FAIR-Chem/fairchem/blob/main/tests/core/models/test_gemnet.py#L76"
+                                                    className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                                                    target="_blank"
+                                                >
+                                                    Fairchem Repo
+                                                </Link>
+                                            </p>
+                                        ),
+                                    },
+                                ],
+                            },
+                            {
+                                content:
+                                    "Here is another test you should do. This test is more end-to-end:",
+                                children: [
+                                    {
+                                        content: "Overfit your model on a single example",
+                                    },
+                                    {
+                                        content:
+                                            "Then rotate the example and pass it back into your model.",
+                                    },
+                                    {
+                                        content:
+                                            "If your model is equivariant, the predicted value should be correct, despite the rotation",
+                                    },
+                                    {
+                                        content:
+                                            "Do this test five times with different rotations to ensure it's equivariant",
+                                    },
+                                ],
+                            },
+                            {
+                                content:
+                                    "If your model is not equivariant, you need to debug it layer by layer. Comment out each layer and test them individually",
+
+                                children: [
+                                    {
+                                        content:
+                                            "It may not even be your model! Your features/loss may not be equivariant.",
+                                        children: [
+                                            {
+                                                content:
+                                                    "This is why using e3nn is not enough. Hence, why you need tests",
+                                            },
+                                        ],
+                                    },
+                                ],
+                            },
+                            {
+                                content:
+                                    "In general, try to have equivariance tests for every type of output of your model. Try not to just test the scalar output.",
+                                children: [
+                                    {
+                                        content:
+                                            "Catching equivariance issues is very important because it affects the performance of your model",
+                                    },
+                                    {
+                                        content:
+                                            "Writing tests helps you catch them as your model architecture evolves",
+                                    },
+                                ],
                             },
                         ],
                     },
@@ -221,6 +304,74 @@ export default function Polymers() {
                             },
                         ],
                     },
+                    {
+                        beforeContent: "3.4",
+                        content: "Visualize your dataset",
+                        children: [
+                            {
+                                content:
+                                    "Please please please do this! I've seen so many teams lose so many days to this. Especially visualize RIGHT BEFORE you pass in the data to the model.",
+                                children: [
+                                    {
+                                        content:
+                                            "Visualization isn't considered fun work. But you still have to do it eventually!",
+                                    },
+                                    {
+                                        content:
+                                            "Especially because it really helps you understand the samples your model struggles on. Also, building the visualization infra isn't that much work",
+                                    },
+                                ],
+                            },
+                            {
+                                content:
+                                    "Visualize the forces in your training data! (make sure they aren’t too large!)",
+                            },
+                            {
+                                content:
+                                    "Make sure that the atoms are centered in the middle of the cells. If they’re not centered, they can end up in the corners of the giant lattice (if you turn off periodic systems)",
+                            },
+                        ],
+                    },
+                    {
+                        beforeContent: "3.5",
+                        content: "Check for exact duplicates in the data",
+                        children: [
+                            {
+                                content:
+                                    "You'd be surprised by the amount of EXACT duplicates across the training AND validation datasets!",
+                            },
+                            {
+                                content: "In general, material science datasets are pretty messy",
+                            },
+                        ],
+                    },
+                    {
+                        beforeContent: "3.6",
+                        content: "Don't train on near-duplicates",
+                        children: [
+                            {
+                                content:
+                                    "For models dealing with molecules, training on 5 different conformer configurations for the same molecule won't yield you as much signal as training on different molecules",
+                                children: [
+                                    {
+                                        content: (
+                                            <p>
+                                                Shoutout to{" "}
+                                                <Link
+                                                    href="https://x.com/CorinWagen"
+                                                    target="_blank"
+                                                    className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                                                >
+                                                    Corin Wagen
+                                                </Link>{" "}
+                                                for this!
+                                            </p>
+                                        ),
+                                    },
+                                ],
+                            },
+                        ],
+                    },
                 ]}
             />
             <h3 id="diffusion-model-checklist" className="mt-10 text-2xl">
@@ -271,17 +422,35 @@ export default function Polymers() {
                     },
                 ]}
             />
-            <p className="mt-10">
-                Anyway, that's about it! If you're interested in playing around, check out the code{" "}
-                <a
-                    href="https://github.com/curtischong/polymer-builder"
-                    target="_blank"
-                    className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                >
-                    here!
-                </a>
-            </p>
-            <p className="mt-10">- Curtis</p>
+            <h3 id="bonus-checklist" className="mt-10 text-2xl">
+                Bonus Checklist
+            </h3>
+            <p>These are tips I've seen that aren't mentioned often enough</p>
+            <EasyList
+                items={[
+                    {
+                        beforeContent: "5.1",
+                        content: (
+                            <p>
+                                Try to follow the tips on Kaparthy's{" "}
+                                <Link
+                                    href="https://karpathy.github.io/2019/04/25/recipe"
+                                    className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                                >
+                                    A Recipe for Training Neural Networks
+                                </Link>
+                            </p>
+                        ),
+                    },
+                    {
+                        beforeContent: "5.2",
+                        content:
+                            "Come up with a list of hypothesis first, then test the ones that are most likely to improve your model first",
+                    },
+                ]}
+            />
+            <p className="mt-10">I hope you find this checklist useful!</p>
+            <p className="mt-4">- Curtis</p>
             <div className="h-96"></div>
         </div>
     );
