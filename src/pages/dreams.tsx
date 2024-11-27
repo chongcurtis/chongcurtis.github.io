@@ -3,6 +3,7 @@ import { initAnimations, NORMAL_ANIMATION_TRIGGER_DECIMAL } from "@/common/anima
 import Link from "next/link";
 import { DreamsTitle } from "@/components/dreams/DreamsTitle";
 import DreamsViewer, { Dream } from "@/components/dreams/DreamViewer";
+import { DecoratedLink } from "@/components/ui/DecoratedLink";
 
 export default function Dreams() {
     const prevAnimation = React.useRef(null);
@@ -32,21 +33,13 @@ export default function Dreams() {
             description: (
                 <p>
                     Building a redstone calculator to honour Minecraft YouTubers I looked up to (
-                    <Link
-                        href="https://www.youtube.com/@Properinglish19"
-                        target="_blank"
-                        className="text-left underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                    >
+                    <DecoratedLink href="https://www.youtube.com/@Properinglish19">
                         Properinglish19
-                    </Link>{" "}
+                    </DecoratedLink>{" "}
                     and{" "}
-                    <Link
-                        href="https://www.youtube.com/@bennyscube"
-                        target="_blank"
-                        className="text-left underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                    >
+                    <DecoratedLink href="https://www.youtube.com/@bennyscube">
                         bennyscube
-                    </Link>
+                    </DecoratedLink>
                     )
                 </p>
             ),
