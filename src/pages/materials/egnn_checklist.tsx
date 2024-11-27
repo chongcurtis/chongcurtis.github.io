@@ -84,8 +84,16 @@ export default function EgnnChecklist() {
                                     "Often, this is important if the edge distance in between the nodes is important to the final prediction",
                             },
                             {
-                                content:
-                                    "e.g. In diffusion models (like Mattergen), the edge distance loss teaches the model how close to place adjacent nodes",
+                                content: (
+                                    <p>
+                                        e.g. In diffusion models (like{" "}
+                                        <DecoratedLink href="https://arxiv.org/abs/2312.03687">
+                                            Mattergen
+                                        </DecoratedLink>
+                                        ), the edge distance loss teaches the model how close to
+                                        place adjacent nodes
+                                    </p>
+                                ),
                             },
                         ],
                     },
@@ -139,6 +147,12 @@ export default function EgnnChecklist() {
                                 children: [
                                     {
                                         content: "Your goal is to test that F(R(x)) = R(F(x))",
+                                        children: [
+                                            {
+                                                content:
+                                                    "Where F is your model, and R is a random rotation",
+                                            },
+                                        ],
                                     },
                                     {
                                         content:
@@ -187,8 +201,17 @@ export default function EgnnChecklist() {
                                             "It may not even be your model! Your features/loss may not be equivariant.",
                                         children: [
                                             {
-                                                content:
-                                                    "This is why using e3nn is not enough. Hence, why tests are important",
+                                                content: (
+                                                    <p>
+                                                        This is why using equivariant frameworks
+                                                        (like{" "}
+                                                        <DecoratedLink href="https://github.com/e3nn/e3nn">
+                                                            e3nn
+                                                        </DecoratedLink>
+                                                        ) is not enough. Hence, why tests are
+                                                        important.
+                                                    </p>
+                                                ),
                                             },
                                         ],
                                     },
@@ -196,7 +219,7 @@ export default function EgnnChecklist() {
                             },
                             {
                                 content:
-                                    "In general, try to have equivariance tests for every type of output of your model (testing for invariance of the scalar output (e.g. total energy) isn't enough)",
+                                    "In general, try to have equivariance tests for every type of output of your model (testing for invariance of the scalar output (e.g. total energy) isn't enough).",
                                 children: [
                                     {
                                         content:
@@ -216,7 +239,7 @@ export default function EgnnChecklist() {
                         children: [
                             {
                                 content:
-                                    "Most often, we only want to pass in 1D or 3D features. So invest in a simple interface where the model accepts concatenated tensors of 1D or 3D feature inputs",
+                                    "Most often, we only want to pass in 1D or 3D features. So invest in a simple interface where the model accepts concatenated tensors of 1D or 3D feature inputs.",
                             },
                             {
                                 content:
@@ -274,7 +297,7 @@ export default function EgnnChecklist() {
                         children: [
                             {
                                 content:
-                                    "Because materials can settle to different relaxed configurations if they are not at 0 Kelvin",
+                                    "Because materials can settle to different relaxed configurations if they are not at 0 Kelvin.",
                             },
                             {
                                 content: (
@@ -305,7 +328,7 @@ export default function EgnnChecklist() {
                                     },
                                     {
                                         content:
-                                            "Especially because it helps you understand the samples your model struggles with. Also, building the visualization infra isn't that much work",
+                                            "Especially because it helps you understand the samples your model struggles with. Also, building the visualization infra isn't that much work.",
                                     },
                                 ],
                             },
