@@ -16,16 +16,75 @@ export default function Polymers() {
                 This is a my checklist for training E(3) Equivariant GNNs. I wanted to put this
                 together to condense months of lessons I've learned.
             </p>
+            <h3 className="fade-in-on-scroll mt-10 text-2xl">Table of Contents</h3>
+            <ul className="ml-8 mt-2 list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
+                <li className="fade-in-on-scroll">
+                    <a
+                        href="#general-gnn-checklist"
+                        className="underline-on-scroll after:bg-sleepover-secondary"
+                    >
+                        General GNN Checklist
+                    </a>
+                </li>
+                <li className="fade-in-on-scroll">
+                    <a
+                        href="#equivariant-gnn-checklist"
+                        className="underline-on-scroll after:bg-sleepover-secondary"
+                    >
+                        Equivariant GNN Checklist
+                    </a>
+                </li>
+                <li className="fade-in-on-scroll">
+                    <a
+                        href="#material-science-gnn-checklist"
+                        className="underline-on-scroll after:bg-sleepover-secondary"
+                    >
+                        Material Science GNN Checklist
+                    </a>
+                </li>
+                <li className="fade-in-on-scroll">
+                    <a
+                        href="#diffusion-model-checklist"
+                        className="underline-on-scroll after:bg-sleepover-secondary"
+                    >
+                        Diffusion Model Checklist
+                    </a>
+                </li>
+            </ul>
+            <h3 id="general-gnn-checklist" className="fade-in-on-scroll mt-10 text-2xl">
+                General GNN Checklist
+            </h3>
             <p className="fade-in-on-scroll mt-10">
-                1) When performing message passing, try encoding the distance between the sender &
+                1.1) When performing message passing, try encoding the distance between the sender &
                 receiver nodes into the edge message.
             </p>
-            <p className="fade-in-on-scroll mt-10">
-                2) The number of max neighbors you have biases your model. * if a bulk material has
-                8 close neighbors, you're biasing the model to do WORSE in BCC crystals * cause in
-                BCC, the center cell can have 14 neighbors * note that you also have a self-loop, so
-                that's even more * it's a painful tradeoff between speed and quality
+            <h3 id="equivariant-gnn-checklist" className="fade-in-on-scroll mt-10 text-2xl">
+                Equivariant GNN Checklist
+            </h3>
+            <h3 id="material-science-gnn-checklist" className="fade-in-on-scroll mt-10 text-2xl">
+                Material Science GNN Checklist
+            </h3>
+            <p className="fade-in-on-scroll mt-4">
+                <span className="font-bold text-red-400">(3.1)</span> The number of max neighbors
+                you have biases your model.
             </p>
+            <ul className="ml-8 mt-2 list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
+                <li className="fade-in-on-scroll ml-8">
+                    Cause in BCC crystals, the center cell can have 14 neighbors. So don't be too
+                    tempted to decrease the number of neighbors too much
+                </li>
+                <li className="fade-in-on-scroll ml-16">
+                    If your max_neighbors cutoff is 8, you're biasing the model to do WORSE in FCC
+                    crystals (which can have 12 nearest neighbors)
+                </li>
+                <li className="fade-in-on-scroll ml-16">
+                    Note: Account for self-loops (edges that points to the same node). This could
+                    hog up one neighbor slot (and increases computation)
+                </li>
+            </ul>
+            <h3 id="diffusion-model-checklist" className="fade-in-on-scroll mt-10 text-2xl">
+                Diffusion Model Checklist
+            </h3>
             <p className="fade-in-on-scroll mt-10">
                 However, recent ml advancements significantly bring down the cost of these
                 calculations (since they run in O(n) rather than O(n^3), where n is the number of
