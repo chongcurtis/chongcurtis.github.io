@@ -1,8 +1,8 @@
 import React from "react";
 
 interface ListItem {
-    content: string;
     beforeContent?: string;
+    content: string;
     children?: ListItem[];
 }
 
@@ -18,7 +18,7 @@ export const EasyList: React.FC<ListProps> = ({ items, level = 1 }) => {
     return (
         <ul className={ulClassName}>
             {items.map((item, index) => {
-                const { content, beforeContent, children } = item;
+                const { beforeContent, content, children } = item;
 
                 // Base class for all <li> elements
                 let liClassName = "fade-in-on-scroll";

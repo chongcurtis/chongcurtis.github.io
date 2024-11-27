@@ -55,21 +55,45 @@ export default function Polymers() {
             <h3 id="general-gnn-checklist" className="fade-in-on-scroll mt-10 text-2xl">
                 General GNN Checklist
             </h3>
-            <p className="fade-in-on-scroll mt-10">
-                1.1) When performing message passing, try encoding the distance between the sender &
-                receiver nodes into the edge message.
-            </p>
+            <EasyList
+                items={[
+                    {
+                        beforeContent: "1.1",
+                        content:
+                            "When performing message passing, try encoding the distance between the sender & receiver nodes into the edge message.",
+                    },
+                ]}
+            />
             <h3 id="equivariant-gnn-checklist" className="fade-in-on-scroll mt-10 text-2xl">
                 Equivariant GNN Checklist
             </h3>
+            <EasyList
+                items={[
+                    {
+                        beforeContent: "2.1",
+                        content:
+                            "You have to think equivariantly. only construct losses that are equivariant",
+                    },
+                    {
+                        beforeContent: "2.2",
+                        content: "Construct equivariant test cases",
+                        children: [
+                            {
+                                content:
+                                    "You don't even need to have your model trained to do this. Just run it on raw weights. Your goal is to test that F(R(x)) = R(F(x)). do this for a set of random rotations and a few x and you can be confident that your model is rotationally equivariant",
+                            },
+                        ],
+                    },
+                ]}
+            />
             <h3 id="material-science-gnn-checklist" className="fade-in-on-scroll mt-10 text-2xl">
                 Material Science GNN Checklist
             </h3>
             <EasyList
                 items={[
                     {
-                        content: "The number of max neighbors you have biases your model.",
                         beforeContent: "3.1",
+                        content: "The number of max neighbors you have biases your model.",
                         children: [
                             {
                                 content:
@@ -95,9 +119,9 @@ export default function Polymers() {
             <EasyList
                 items={[
                     {
+                        beforeContent: "4.1",
                         content:
                             "For each training sample, after you noise the graph, you need to recompute the graph edges since nodes may enter/leave the cutoff radius (which determines neighbors)",
-                        beforeContent: "4.1",
                         children: [
                             {
                                 content:
