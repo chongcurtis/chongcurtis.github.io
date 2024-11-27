@@ -16,7 +16,7 @@ import OptimallyRotateCrops from "@/components/books/the-alchemy-of-air/Optimall
 import IncreaseFertilityOfLand from "@/components/books/the-alchemy-of-air/IncreaseFertilityOfLand";
 import ArcFurnace from "../../components/books/the-alchemy-of-air/ArcFurnace";
 import { HundredsOfCatalysts } from "../../components/books/the-alchemy-of-air/HundredsOfCatalysts";
-import ThinLine from "@/components/ThinLine";
+import ThinLine from "@/components/ui/ThinLine";
 import BulletsStrikeSand from "../../components/books/the-alchemy-of-air/BulletsStrikeSand";
 import Explosion from "../../components/books/the-alchemy-of-air/Explosion";
 import Bowling from "../../components/books/the-alchemy-of-air/Bowling";

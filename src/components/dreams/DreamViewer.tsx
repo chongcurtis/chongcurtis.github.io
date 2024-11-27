@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import VerticalThinLine from "../VerticalThinLine";
+import VerticalThinLine from "@/components/ui/VerticalThinLine";
 import Image from "next/image";
 
 interface ImgUrl {
