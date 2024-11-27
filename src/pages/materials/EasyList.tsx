@@ -21,7 +21,8 @@ export const EasyList: React.FC<ListProps> = ({ items, level = 1 }) => {
                 const { beforeContent, content, children } = item;
 
                 // Base class for all <li> elements
-                let liClassName = "fade-in-on-scroll";
+                // let liClassName = "fade-in-on-scroll";
+                let liClassName = "";
                 let style: React.CSSProperties = {};
 
                 if (level === 1) {

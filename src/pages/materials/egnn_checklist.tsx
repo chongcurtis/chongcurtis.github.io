@@ -11,16 +11,16 @@ export default function Polymers() {
 
     return (
         <div className="px-3 text-lg">
-            <p className="fade-in-on-scroll mt-20 text-center text-2xl">
+            <p className="mt-20 text-center text-2xl">
                 E(3) Equivariant Graph Neural Network Checklist
             </p>
-            <p className="fade-in-on-scroll mt-10">
+            <p className="mt-10">
                 This is a my checklist for training E(3) Equivariant GNNs. I wanted to put this
                 together to condense months of lessons I've learned.
             </p>
-            <h3 className="fade-in-on-scroll mt-10 text-2xl">Table of Contents</h3>
+            <h3 className="mt-10 text-2xl">Table of Contents</h3>
             <ul className="ml-8 mt-2 list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
-                <li className="fade-in-on-scroll">
+                <li className="">
                     <a
                         href="#general-gnn-checklist"
                         className="underline-on-scroll after:bg-sleepover-secondary"
@@ -28,7 +28,7 @@ export default function Polymers() {
                         General GNN Checklist
                     </a>
                 </li>
-                <li className="fade-in-on-scroll">
+                <li className="">
                     <a
                         href="#equivariant-gnn-checklist"
                         className="underline-on-scroll after:bg-sleepover-secondary"
@@ -36,7 +36,7 @@ export default function Polymers() {
                         Equivariant GNN Checklist
                     </a>
                 </li>
-                <li className="fade-in-on-scroll">
+                <li className="">
                     <a
                         href="#material-science-gnn-checklist"
                         className="underline-on-scroll after:bg-sleepover-secondary"
@@ -44,7 +44,7 @@ export default function Polymers() {
                         Material Science GNN Checklist
                     </a>
                 </li>
-                <li className="fade-in-on-scroll">
+                <li className="">
                     <a
                         href="#diffusion-model-checklist"
                         className="underline-on-scroll after:bg-sleepover-secondary"
@@ -53,7 +53,7 @@ export default function Polymers() {
                     </a>
                 </li>
             </ul>
-            <h3 id="general-gnn-checklist" className="fade-in-on-scroll mt-10 text-2xl">
+            <h3 id="general-gnn-checklist" className="mt-10 text-2xl">
                 General GNN Checklist
             </h3>
             <EasyList
@@ -93,7 +93,7 @@ export default function Polymers() {
                     },
                 ]}
             />
-            <h3 id="equivariant-gnn-checklist" className="fade-in-on-scroll mt-10 text-2xl">
+            <h3 id="equivariant-gnn-checklist" className="mt-10 text-2xl">
                 Equivariant GNN Checklist
             </h3>
             <EasyList
@@ -148,7 +148,7 @@ export default function Polymers() {
                     },
                 ]}
             />
-            <h3 id="material-science-gnn-checklist" className="fade-in-on-scroll mt-10 text-2xl">
+            <h3 id="material-science-gnn-checklist" className="mt-10 text-2xl">
                 Material Science GNN Checklist
             </h3>
             <EasyList
@@ -178,8 +178,19 @@ export default function Polymers() {
                         content: "Use float64 (doubles). Molecular dynamics require such precision",
                         children: [
                             {
-                                content:
-                                    "This is advice from Albert Musaelian! (An author of Allegro)",
+                                content: (
+                                    <p>
+                                        This is advice from Albert Musaelian! (An author of{" "}
+                                        <Link
+                                            href="https://arxiv.org/abs/2204.05249"
+                                            className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                                            target="_blank"
+                                        >
+                                            Allegro
+                                        </Link>
+                                        )
+                                    </p>
+                                ),
                             },
                         ],
                     },
@@ -199,6 +210,7 @@ export default function Polymers() {
                                         <Link
                                             href="https://arxiv.org/abs/2403.09549"
                                             className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                                            target="_blank"
                                         >
                                             Generalizing Denoising to Non-Equilibrium Structures
                                             Improves Equivariant Force Fields
@@ -211,7 +223,7 @@ export default function Polymers() {
                     },
                 ]}
             />
-            <h3 id="diffusion-model-checklist" className="fade-in-on-scroll mt-10 text-2xl">
+            <h3 id="diffusion-model-checklist" className="mt-10 text-2xl">
                 Diffusion Model Checklist
             </h3>
             <EasyList
@@ -259,7 +271,7 @@ export default function Polymers() {
                     },
                 ]}
             />
-            <p className="fade-in-on-scroll mt-10">
+            <p className="mt-10">
                 Anyway, that's about it! If you're interested in playing around, check out the code{" "}
                 <a
                     href="https://github.com/curtischong/polymer-builder"
@@ -269,7 +281,7 @@ export default function Polymers() {
                     here!
                 </a>
             </p>
-            <p className="fade-in-on-scroll mt-10">- Curtis</p>
+            <p className="mt-10">- Curtis</p>
             <div className="h-96"></div>
         </div>
     );
