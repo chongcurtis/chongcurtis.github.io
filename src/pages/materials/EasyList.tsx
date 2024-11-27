@@ -30,30 +30,41 @@ export const EasyList: React.FC<ListProps> = ({ items, level = 1 }) => {
                 } else {
                     let marginLeft = level * 15;
                     if (level === 2) {
-                        marginLeft += 30; // Add padding for better alignment
+                        marginLeft += 0; // Add padding for better alignment
                     }
                     style = { marginLeft };
                     liClassName +=
                         " mt-2 list-disc marker:text-center marker:font-extrabold marker:text-slate-800";
                 }
 
+                // Use a wrapper div inside li for the grid layout
+                const contentStyle: React.CSSProperties = {
+                    display: "grid",
+                    gridTemplateColumns: beforeContent ? "auto 1fr" : "1fr",
+                    columnGap: "0.8rem",
+                    alignItems: "start",
+                };
+
                 return (
                     <li key={index} className={liClassName} style={style}>
-                        {beforeContent && (
-                            <span
-                                style={{
-                                    marginRight: "0.8rem",
-                                    fontWeight: "bold",
-                                    color: "#4d8eff",
-                                }}
-                            >
-                                {beforeContent}
-                            </span>
-                        )}
-                        {content}
-                        {children && children.length > 0 && (
-                            <EasyList items={children} level={level + 1} />
-                        )}
+                        <div style={contentStyle}>
+                            {beforeContent && (
+                                <span
+                                    style={{
+                                        fontWeight: "bold",
+                                        color: "#4d8eff",
+                                    }}
+                                >
+                                    {beforeContent}
+                                </span>
+                            )}
+                            <div>
+                                {content}
+                                {children && children.length > 0 && (
+                                    <EasyList items={children} level={level + 1} />
+                                )}
+                            </div>
+                        </div>
                     </li>
                 );
             })}
