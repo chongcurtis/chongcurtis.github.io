@@ -216,11 +216,11 @@ export default function EgnnChecklist() {
                         children: [
                             {
                                 content:
-                                    "Most often, we only want to pass in 1D or 3D features. A simple interface where the model accepts concatenated tensors of 1D or 3D feature inputs enables you to test various features more quickly.",
+                                    "Most often, we only want to pass in 1D or 3D features. So invest in a simple interface where the model accepts concatenated tensors of 1D or 3D feature inputs",
                             },
                             {
                                 content:
-                                    "You want to pass in tensors to your model in the simplest way possible - not fiddle with irrep definitions (e.g. 0x1e + 5x1o)",
+                                    "This reduces bugs because you aren't fiddling with irrep definitions (e.g. 0x1e + 5x1o)",
                             },
                         ],
                     },
