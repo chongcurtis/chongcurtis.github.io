@@ -1,4 +1,5 @@
 import { initAnimations, NORMAL_ANIMATION_TRIGGER_DECIMAL } from "@/common/animations";
+import { EasyList } from "@/pages/materials/EasyList";
 import React from "react";
 
 export default function Polymers() {
@@ -64,32 +65,48 @@ export default function Polymers() {
             <h3 id="material-science-gnn-checklist" className="fade-in-on-scroll mt-10 text-2xl">
                 Material Science GNN Checklist
             </h3>
-            <p className="fade-in-on-scroll mt-4">
-                <span className="font-bold text-red-400">(3.1)</span> The number of max neighbors
-                you have biases your model.
-            </p>
-            <ul className="ml-8 mt-2 list-disc marker:text-center marker:font-extrabold marker:text-slate-800">
-                <li className="fade-in-on-scroll ml-8">
-                    Cause in BCC crystals, the center cell can have 14 neighbors. So don't be too
-                    tempted to decrease the number of neighbors too much
-                </li>
-                <li className="fade-in-on-scroll ml-16">
-                    If your max_neighbors cutoff is 8, you're biasing the model to do WORSE in FCC
-                    crystals (which can have 12 nearest neighbors)
-                </li>
-                <li className="fade-in-on-scroll ml-16">
-                    Note: Account for self-loops (edges that points to the same node). This could
-                    hog up one neighbor slot (and increases computation)
-                </li>
-            </ul>
+            <EasyList
+                items={[
+                    {
+                        content: "The number of max neighbors you have biases your model.",
+                        beforeContent: "3.1",
+                        children: [
+                            {
+                                content:
+                                    "Cause in BCC crystals, the center cell can have 14 neighbors. So don't be too tempted to decrease the number of neighbors too much",
+                                children: [
+                                    {
+                                        content:
+                                            "If your max_neighbors cutoff is 8, you're biasing the model to do WORSE in FCC crystals (which can have 12 nearest neighbors)",
+                                    },
+                                ],
+                            },
+                            {
+                                content:
+                                    "Note: Account for self-loops (edges that points to the same node). This could hog up one neighbor slot (and increases computation)",
+                            },
+                        ],
+                    },
+                ]}
+            />
             <h3 id="diffusion-model-checklist" className="fade-in-on-scroll mt-10 text-2xl">
                 Diffusion Model Checklist
             </h3>
-            <p className="fade-in-on-scroll mt-4">
-                <span className="mr-2 font-bold">(4.1)</span> For each training sample, after you
-                noise the graph, you need to recompute the graph edges since nodes may enter/leave
-                the cutoff radius (which determines neighbors)
-            </p>
+            <EasyList
+                items={[
+                    {
+                        content:
+                            "For each training sample, after you noise the graph, you need to recompute the graph edges since nodes may enter/leave the cutoff radius (which determines neighbors)",
+                        beforeContent: "4.1",
+                        children: [
+                            {
+                                content:
+                                    "Note: Account for self-loops (edges that points to the same node). This could hog up one neighbor slot (and increases computation)",
+                            },
+                        ],
+                    },
+                ]}
+            />
             <p className="fade-in-on-scroll mt-10">
                 Anyway, that's about it! If you're interested in playing around, check out the code{" "}
                 <a
