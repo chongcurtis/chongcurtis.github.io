@@ -1,6 +1,6 @@
 import React from "react";
 import { initAnimations, NORMAL_ANIMATION_TRIGGER_DECIMAL } from "@/common/animations";
-import ThinLine from "../components/ThinLine";
+import ThinLine from "../components/ui/ThinLine";
 
 export default function Passion() {
     const prevAnimation = React.useRef(null);

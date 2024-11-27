@@ -1,6 +1,6 @@
 // import './sleepovers.css'
 
-import ThinLine from "@/components/ThinLine";
+import ThinLine from "@/components/ui/ThinLine";
 import MailchimpSignup from "@/components/MailchimpSignup";
 import sleepoversBanner from "public/sleepovers/sleepovers-banner.png";
 import React from "react";

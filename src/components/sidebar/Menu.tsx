@@ -2,7 +2,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { SocialLinks } from "./SocialLinks";
-import ThinLine from "../ThinLine";
+import ThinLine from "../ui/ThinLine";
 
 export type NavLink = {
     label: string;
