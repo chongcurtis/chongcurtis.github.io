@@ -15,7 +15,7 @@ export default function EgnnChecklist() {
                 E(3) Equivariant Graph Neural Network Checklist
             </p>
             <p className="mt-10">
-                This is a my checklist for training E(3) Equivariant GNNs. I wanted to put this
+                Here is my checklist for training E(3) Equivariant GNNs. I wanted to put this
                 together to condense months of lessons I've learned.
             </p>
             <h3 className="mt-10 text-2xl">Table of Contents</h3>
@@ -81,7 +81,7 @@ export default function EgnnChecklist() {
                             },
                             {
                                 content:
-                                    "Often, this is important if the edge distance in between the nodes are important to the final prediction",
+                                    "Often, this is important if the edge distance in between the nodes is important to the final prediction",
                             },
                             {
                                 content:
@@ -116,11 +116,11 @@ export default function EgnnChecklist() {
                             },
                             {
                                 content:
-                                    "Another example: if you are passing the symmetric matrix of the lattice vectors as input features, is that equivariant?",
+                                    "Another example: if you pass the symmetric matrix of the lattice vectors as input features, is that equivariant?",
                                 children: [
                                     {
                                         content:
-                                            "A symmetric matrix could be represented by three 3D vectors, but there's only 6 degrees of freedom. So how should you pass in the symmetric matrix? If at all?",
+                                            "Three 3D vectors could represent a symmetric matrix, but there's only 6 degrees of freedom. So how should you pass in the symmetric matrix? If at all?",
                                     },
                                 ],
                             },
@@ -128,7 +128,7 @@ export default function EgnnChecklist() {
                     },
                     {
                         beforeContent: "2.2",
-                        content: "Only construct losses that are equivariant",
+                        content: "Only construct losses that are equivariant.",
                     },
                     {
                         beforeContent: "2.3",
@@ -143,7 +143,7 @@ export default function EgnnChecklist() {
                                     },
                                     {
                                         content:
-                                            "Perform this check five times with different random rotations and you can be confident that your model is rotationally equivariant",
+                                            "Perform this check five times with different random rotations, and you can be confident that your model is rotationally equivariant.",
                                     },
                                     {
                                         content: (
@@ -166,25 +166,25 @@ export default function EgnnChecklist() {
                                     "Here is another test you should do. This test is more end-to-end:",
                                 children: [
                                     {
-                                        content: "Overfit your model on a single example",
+                                        content: "Overfit your model on a single example.",
                                     },
                                     {
                                         content:
-                                            "Then rotate the example and pass it back into your model.",
+                                            "Then, rotate the example and pass it back into your model.",
                                     },
                                     {
                                         content:
-                                            "If your model is equivariant, the predicted value should be correct, despite the rotation",
+                                            "If your model is equivariant, the predicted value should be correct despite the rotation.",
                                     },
                                     {
                                         content:
-                                            "Do this test five times with different rotations to ensure it's equivariant",
+                                            "Do this test five times with different rotations to ensure it's equivariant.",
                                     },
                                 ],
                             },
                             {
                                 content:
-                                    "If your model is not equivariant, you need to debug it layer by layer. Comment out each layer and test them individually",
+                                    "If your model is not equivariant, you must debug it layer by layer. Comment out each layer and test them individually.",
 
                                 children: [
                                     {
@@ -193,7 +193,7 @@ export default function EgnnChecklist() {
                                         children: [
                                             {
                                                 content:
-                                                    "This is why using e3nn is not enough. Hence, why you need tests",
+                                                    "This is why using e3nn is not enough. Hence, why tests are important",
                                             },
                                         ],
                                     },
@@ -201,11 +201,11 @@ export default function EgnnChecklist() {
                             },
                             {
                                 content:
-                                    "In general, try to have equivariance tests for every type of output of your model. Try not to just test the scalar output.",
+                                    "In general, try to have equivariance tests for every type of output of your model (testing for invariance of the scalar output (e.g. total energy) isn't enough)",
                                 children: [
                                     {
                                         content:
-                                            "Catching equivariance issues is very important because it affects the performance of your model",
+                                            "Catching equivariance issues is very important because it affects the performance of your model.",
                                     },
                                     {
                                         content:
@@ -217,11 +217,11 @@ export default function EgnnChecklist() {
                     },
                     {
                         beforeContent: "2.4",
-                        content: "Make a nice API to feed in input features",
+                        content: "Make a nice API to feed in input features.",
                         children: [
                             {
                                 content:
-                                    "Most often, we just want to pass in 1D or 3D features. A simple interface where the model accepts concatenated tensors of 1D or 3D feature inputs enables you to test various features more quickly",
+                                    "Most often, we only want to pass in 1D or 3D features. A simple interface where the model accepts concatenated tensors of 1D or 3D feature inputs enables you to test various features more quickly.",
                             },
                             {
                                 content:
@@ -252,7 +252,7 @@ export default function EgnnChecklist() {
                             },
                             {
                                 content:
-                                    "Note: Account for self-loops (edges that points to the same node). This could hog up one neighbor slot (and increases computation)",
+                                    "Note: Account for self-loops (edges that point to the same node). This could hog up one neighbor slot (and increase computation)",
                             },
                         ],
                     },
@@ -279,7 +279,7 @@ export default function EgnnChecklist() {
                     },
                     {
                         beforeContent: "3.3",
-                        content: "Make sure your data data is at 0 Kelvin if you expect it",
+                        content: "Make sure your data is at 0 Kelvin if you expect it",
                         children: [
                             {
                                 content:
@@ -310,7 +310,7 @@ export default function EgnnChecklist() {
                         children: [
                             {
                                 content:
-                                    "Please please please do this! I've seen so many teams lose so many days to this. Especially visualize RIGHT BEFORE you pass in the data to the model.",
+                                    "Please, please, please do this! I've seen so many teams lose so many days to this. Especially visualize RIGHT BEFORE you pass in the data to the model.",
                                 children: [
                                     {
                                         content:
@@ -318,7 +318,7 @@ export default function EgnnChecklist() {
                                     },
                                     {
                                         content:
-                                            "Especially because it really helps you understand the samples your model struggles on. Also, building the visualization infra isn't that much work",
+                                            "Especially because it helps you understand the samples your model struggles with. Also, building the visualization infra isn't that much work",
                                     },
                                 ],
                             },
@@ -383,12 +383,6 @@ export default function EgnnChecklist() {
                         beforeContent: "4.1",
                         content:
                             "For each training sample, after you noise the graph, you need to recompute the graph edges since nodes may enter/leave the cutoff radius (which determines neighbors)",
-                        children: [
-                            {
-                                content:
-                                    "Note: Account for self-loops (edges that points to the same node). This could hog up one neighbor slot (and increases computation)",
-                            },
-                        ],
                     },
                     {
                         beforeContent: "4.2",
@@ -455,7 +449,7 @@ export default function EgnnChecklist() {
             <h3 id="bonus-checklist" className="mt-10 text-2xl">
                 Bonus Checklist
             </h3>
-            <p>These are tips I've seen that aren't mentioned often enough</p>
+            <p>These are tips I've seen that aren't often followed:</p>
             <EasyList
                 items={[
                     {
@@ -475,7 +469,7 @@ export default function EgnnChecklist() {
                     {
                         beforeContent: "5.2",
                         content:
-                            "Come up with a list of hypothesis first, then test the ones that are most likely to improve your model first",
+                            "Come up with a list of hypotheses first, then test the ones that are most likely to improve your model first",
                     },
                 ]}
             />
