@@ -2,7 +2,7 @@ import React from "react";
 
 interface ListItem {
     beforeContent?: string;
-    content: string;
+    content: string | React.ReactNode;
     children?: ListItem[];
 }
 
