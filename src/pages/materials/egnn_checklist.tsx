@@ -420,6 +420,36 @@ export default function EgnnChecklist() {
                             },
                         ],
                     },
+                    {
+                        beforeContent: "4.4",
+                        content: "Print out individual losses for each target",
+                        children: [
+                            {
+                                content:
+                                    "When training atomic diffusion models, we tend to have multiple losses: lattice loss, atomic position loss, atomic type loss",
+                            },
+                            {
+                                content:
+                                    "Seeing each loss individually helps you debug which loss is the worse. This gives you more ideas on how to improve your model",
+                                children: [
+                                    {
+                                        content:
+                                            "This is a general ML technique. A few years ago, I could have done better on a Kaggle competition if I paid more attention to specific target losses",
+                                    },
+                                ],
+                            },
+                            {
+                                content:
+                                    "It also helps you determine how to much to scale each loss",
+                                children: [
+                                    {
+                                        content:
+                                            '(e.g. multiply frac_x_loss by 10, so it\'s generally in the same "scale" as the atomic_loss)',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
                 ]}
             />
             <h3 id="bonus-checklist" className="mt-10 text-2xl">
