@@ -74,7 +74,7 @@ export default function EgnnChecklist() {
                     {
                         beforeContent: "1.2",
                         content:
-                            "Get creative with the loss. It doesn't have to be the output of node states.",
+                            "Get creative with the loss! It doesn't have to be the output of node states.",
                         children: [
                             {
                                 content: "You can use the edge messages as well.",
@@ -135,8 +135,7 @@ export default function EgnnChecklist() {
                         content: "Test your models for equivariance",
                         children: [
                             {
-                                content:
-                                    "You don't even need to have your model trained to do this. Just test it on untrained weights.",
+                                content: "You can perform this test with an untrained model.",
                                 children: [
                                     {
                                         content: "Your goal is to test that F(R(x)) = R(F(x))",
@@ -310,7 +309,7 @@ export default function EgnnChecklist() {
                         children: [
                             {
                                 content:
-                                    "Please, please, please do this! I've seen so many teams lose so many days to this. Especially visualize RIGHT BEFORE you pass in the data to the model.",
+                                    "Please, please, please do this! I've seen so many teams lose so many days to this.",
                                 children: [
                                     {
                                         content:
@@ -321,6 +320,10 @@ export default function EgnnChecklist() {
                                             "Especially because it helps you understand the samples your model struggles with. Also, building the visualization infra isn't that much work",
                                     },
                                 ],
+                            },
+                            {
+                                content:
+                                    "The best place to visualize the data is right before it enters the model.",
                             },
                             {
                                 content:
@@ -347,7 +350,7 @@ export default function EgnnChecklist() {
                     },
                     {
                         beforeContent: "3.6",
-                        content: "Don't train on near-duplicates",
+                        content: "Avoid training on near-duplicates",
                         children: [
                             {
                                 content:
@@ -428,7 +431,7 @@ export default function EgnnChecklist() {
                                 children: [
                                     {
                                         content:
-                                            "This is a general ML technique. A few years ago, I could have done better on a Kaggle competition if I paid more attention to specific target losses",
+                                            "This is a general ML technique. A few years ago, I could have done better on a Kaggle competition if I focused more on specific target losses.",
                                     },
                                 ],
                             },
@@ -460,6 +463,7 @@ export default function EgnnChecklist() {
                                 <Link
                                     href="https://karpathy.github.io/2019/04/25/recipe"
                                     className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                                    target="_blank"
                                 >
                                     A Recipe for Training Neural Networks
                                 </Link>
@@ -470,6 +474,25 @@ export default function EgnnChecklist() {
                         beforeContent: "5.2",
                         content:
                             "Come up with a list of hypotheses first, then test the ones that are most likely to improve your model first",
+                        children: [
+                            {
+                                content: "Trying the first ideas you have may not be efficient",
+                            },
+                            {
+                                content: (
+                                    <p>
+                                        This tip is from{" "}
+                                        <Link
+                                            href="https://www.youtube.com/watch?v=ORrStCArmP4"
+                                            className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                                            target="_blank"
+                                        >
+                                            Andrew Ng!
+                                        </Link>
+                                    </p>
+                                ),
+                            },
+                        ],
                     },
                 ]}
             />
