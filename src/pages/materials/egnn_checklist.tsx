@@ -1,6 +1,6 @@
 import { initAnimations, NORMAL_ANIMATION_TRIGGER_DECIMAL } from "@/common/animations";
+import { DecoratedLink } from "@/components/ui/DecoratedLink";
 import { EasyList } from "@/pages/materials/EasyList";
-import Link from "next/link";
 import React from "react";
 
 export default function EgnnChecklist() {
@@ -148,13 +148,9 @@ export default function EgnnChecklist() {
                                         content: (
                                             <p>
                                                 Here is an example equivariance test on the{" "}
-                                                <Link
-                                                    href="https://github.com/FAIR-Chem/fairchem/blob/main/tests/core/models/test_gemnet.py#L76"
-                                                    className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                                                    target="_blank"
-                                                >
+                                                <DecoratedLink href="https://github.com/FAIR-Chem/fairchem/blob/main/tests/core/models/test_gemnet.py#L76">
                                                     Fairchem Repo
-                                                </Link>
+                                                </DecoratedLink>
                                             </p>
                                         ),
                                     },
@@ -263,13 +259,9 @@ export default function EgnnChecklist() {
                                 content: (
                                     <p>
                                         This is advice from Albert Musaelian! (An author of{" "}
-                                        <Link
-                                            href="https://arxiv.org/abs/2204.05249"
-                                            className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                                            target="_blank"
-                                        >
+                                        <DecoratedLink href="https://arxiv.org/abs/2204.05249">
                                             Allegro
-                                        </Link>
+                                        </DecoratedLink>
                                         )
                                     </p>
                                 ),
@@ -289,14 +281,10 @@ export default function EgnnChecklist() {
                                     <p>
                                         If you have non-zero Kelvin datasets, you need to first
                                         denoise them (see{" "}
-                                        <Link
-                                            href="https://arxiv.org/abs/2403.09549"
-                                            className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                                            target="_blank"
-                                        >
+                                        <DecoratedLink href="https://arxiv.org/abs/2403.09549">
                                             Generalizing Denoising to Non-Equilibrium Structures
                                             Improves Equivariant Force Fields
-                                        </Link>
+                                        </DecoratedLink>
                                         )
                                     </p>
                                 ),
@@ -360,13 +348,9 @@ export default function EgnnChecklist() {
                                         content: (
                                             <p>
                                                 Shoutout to{" "}
-                                                <Link
-                                                    href="https://x.com/CorinWagen"
-                                                    target="_blank"
-                                                    className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                                                >
+                                                <DecoratedLink href="https://x.com/CorinWagen">
                                                     Corin Wagen
-                                                </Link>{" "}
+                                                </DecoratedLink>{" "}
                                                 for this!
                                             </p>
                                         ),
@@ -460,13 +444,9 @@ export default function EgnnChecklist() {
                         content: (
                             <p>
                                 Try to follow the tips on Kaparthy's{" "}
-                                <Link
-                                    href="https://karpathy.github.io/2019/04/25/recipe"
-                                    className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                                    target="_blank"
-                                >
+                                <DecoratedLink href="https://karpathy.github.io/2019/04/25/recipe">
                                     A Recipe for Training Neural Networks
-                                </Link>
+                                </DecoratedLink>
                             </p>
                         ),
                     },
@@ -482,13 +462,9 @@ export default function EgnnChecklist() {
                                 content: (
                                     <p>
                                         This tip is from{" "}
-                                        <Link
-                                            href="https://www.youtube.com/watch?v=ORrStCArmP4"
-                                            className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                                            target="_blank"
-                                        >
+                                        <DecoratedLink href="https://www.youtube.com/watch?v=ORrStCArmP4">
                                             Andrew Ng!
-                                        </Link>
+                                        </DecoratedLink>
                                     </p>
                                 ),
                             },
