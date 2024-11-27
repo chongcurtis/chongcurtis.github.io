@@ -50,6 +50,10 @@ export const NavLinks: NavLink[] = [
                 label: "Polymers",
                 href: "/materials/polymers",
             },
+            {
+                label: "EGNN Checklist",
+                href: "/materials/egnn_checklist",
+            },
         ],
     },
     // {
