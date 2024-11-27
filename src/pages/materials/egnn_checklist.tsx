@@ -1,6 +1,6 @@
 import { initAnimations, NORMAL_ANIMATION_TRIGGER_DECIMAL } from "@/common/animations";
 import { DecoratedLink } from "@/components/ui/DecoratedLink";
-import { EasyList } from "@/pages/materials/EasyList";
+import { EasyList } from "@/components/ui/EasyList";
 import React from "react";
 
 export default function EgnnChecklist() {
