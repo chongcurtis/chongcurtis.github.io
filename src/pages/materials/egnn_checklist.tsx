@@ -107,6 +107,26 @@ export default function EgnnChecklist() {
                             },
                         ],
                     },
+                    {
+                        beforeContent: "1.4",
+                        content: (
+                            <p>
+                                When creating the neighbor graph, don't naively create it by
+                                calculating the distance between all pairs of atoms O(N<sup>2</sup>)
+                                operations.
+                            </p>
+                        ),
+                        children: [
+                            {
+                                content: (
+                                    <p>
+                                        Instead, use a kd-tree to find the nearest neighbors for
+                                        each atom. This reduces the time complexity to O(N log N)
+                                    </p>
+                                ),
+                            },
+                        ],
+                    },
                 ]}
             />
             <h3 id="equivariant-gnn-checklist" className="mt-10 text-2xl">
