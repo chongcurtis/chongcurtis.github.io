@@ -128,7 +128,7 @@ export default function EgnnChecklist() {
                             {
                                 content: (
                                     <p>
-                                        Here is an example of using a k-d tree to generate the
+                                        Here is an example of using a k-d tree to construct the
                                         neighbor graph (
                                         <DecoratedLink href="https://github.com/orbital-materials/orb-models/blob/main/orb_models/forcefield/featurization_utilities.py#L334">
                                             Orbital Material's Orb model
