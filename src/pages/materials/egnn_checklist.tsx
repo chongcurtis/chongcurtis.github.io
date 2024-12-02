@@ -120,8 +120,20 @@ export default function EgnnChecklist() {
                             {
                                 content: (
                                     <p>
-                                        Instead, use a kd-tree to find the nearest neighbors for
+                                        Instead, use a k-d tree to find the nearest neighbors for
                                         each atom. This reduces the time complexity to O(N log N)
+                                    </p>
+                                ),
+                            },
+                            {
+                                content: (
+                                    <p>
+                                        Here is an example of using a k-d tree to generate the
+                                        neighbor graph (
+                                        <DecoratedLink href="https://github.com/orbital-materials/orb-models/blob/main/orb_models/forcefield/featurization_utilities.py#L334">
+                                            Orbital Material's Orb model
+                                        </DecoratedLink>
+                                        )
                                     </p>
                                 ),
                             },
@@ -417,11 +429,11 @@ export default function EgnnChecklist() {
                     {
                         beforeContent: "4.2",
                         content:
-                            "Periodic boundaries affect the loss. the norm of frac_x isn't just target frac_x - actual_frac_x",
+                            "Periodic boundaries affect the loss. the error of pred_frac_x isn't abs(target_frac_x - pred_frac_x)",
                         children: [
                             {
                                 content:
-                                    "Cause if your model predicted 0.1, but the target frac_coord is 0.9, your model's prediction is NOT 0.8 away. it's 0.2",
+                                    "Cause if your model predicted 0.1, but the target frac_coord is 0.9, your model's prediction is NOT off by 0.8. it's 0.2",
                             },
                         ],
                     },
