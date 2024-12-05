@@ -55,8 +55,8 @@ export default function Polymers() {
                 </p>
                 <p className="fade-in-on-scroll mt-10">
                     However, recent ml advancements significantly bring down the cost of these
-                    calculations (since they run in O(n) rather than O(n^3), where n is the number
-                    of atoms).
+                    calculations (since they run in O(nlogn) rather than O(n^3), where n is the
+                    number of atoms).
                 </p>
                 <p className="fade-in-on-scroll mt-10">
                     These models are often used to predict the properties of a material directly.
