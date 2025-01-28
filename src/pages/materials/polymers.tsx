@@ -126,14 +126,26 @@ export default function Polymers() {
                 </p>
                 <ol className="fade-in-on-scroll list-inside list-decimal space-y-2 pl-2">
                     <li className="fade-in-on-scroll">
-                        Create a "rag doll" simulation of polymers, so if we add inter-chain bonds
-                        (cross-links), we can see move atoms around and ensure that the chain ends
-                        up at a good rest position.
+                        We can compare how two different polymers have different properties by
+                        comparing their "Sum of absolute z forces" graphs. The precise value of each
+                        point on the graph doesn't matter. The main idea is to compare the graphs
+                        between two different polymers and see which one performs better.
                     </li>
                     <li className="fade-in-on-scroll">
-                        Display a real-time update of the predicted properties. so when ppl add
+                        If some properties are hard to get an exact measurement value for, we can
+                        train a disciminator model that compares two polymers and guesses which one
+                        will perform better. We can then use elo or a round-robin ranking scheme to
+                        find the best polyer with the best properties.
+                    </li>
+                    <li className="fade-in-on-scroll">
+                        We can create a "rag doll" simulation of polymers, so if we add inter-chain
+                        bonds (cross-links), we can see move atoms around and ensure that the chain
+                        ends up at a good rest position.
+                    </li>
+                    <li className="fade-in-on-scroll">
+                        We can display real-time predictions of desired properties. So when ppl add
                         atoms to the chain / move it around, they can see how their changes affect
-                        the predicted properties
+                        the predicted properties.
                     </li>
                     <li className="fade-in-on-scroll">
                         Once polymer predictions are super fast, we can teach a model to use
