@@ -37,9 +37,19 @@ export const NavLinks: NavLink[] = [
         icon: <SparklesIcon className="h-4 w-4 text-slate-400" />,
     },
     {
-        label: "Passion Projects",
+        label: "Passion",
         href: "/passion",
         icon: <BeakerIcon className="h-4 w-4 text-slate-400" />,
+        children: [
+            {
+                label: "Finding Passion",
+                href: "/passion"
+            },
+            {
+                label: "Projects",
+                href: "/passion/projects",
+            },
+        ],
     },
     {
         label: "Materials",
