@@ -1,0 +1,299 @@
+import React, { useRef, useEffect, useCallback } from "react";
+import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import {
+    findMiddleOfCoords,
+    norm,
+    spheresMap,
+    subtract,
+    fracCoordToCartesianCoord,
+    getParallelepipedCornerCoords,
+    getParallelepipedLatticeEdges,
+    drawEdge,
+} from "@/components/materials/crystalViewerHelpers";
+
+export interface CrystalViewerProps {
+    atomicNumbers: number[];
+    coords: number[][];
+    latticeParameters?: {
+        a: number;
+        b: number;
+        c: number;
+        alpha: number;
+        beta: number;
+        gamma: number;
+    };
+}
+
+interface ProcessedCrystal {
+    atomicNumbers: number[];
+    cartesianCoords: number[][];
+}
+
+// Convert lattice parameters to lattice vectors
+const latticeParametersToVectors = (params: {
+    a: number;
+    b: number;
+    c: number;
+    alpha: number;
+    beta: number;
+    gamma: number;
+}): number[][] => {
+    const { a, b, c, alpha, beta, gamma } = params;
+    
+    // Convert angles from degrees to radians
+    const alphaRad = (alpha * Math.PI) / 180;
+    const betaRad = (beta * Math.PI) / 180;
+    const gammaRad = (gamma * Math.PI) / 180;
+    
+    // Calculate lattice vectors
+    const cosAlpha = Math.cos(alphaRad);
+    const cosBeta = Math.cos(betaRad);
+    const cosGamma = Math.cos(gammaRad);
+    const sinGamma = Math.sin(gammaRad);
+    
+    // Volume calculation
+    const volume = a * b * c * Math.sqrt(1 + 2 * cosAlpha * cosBeta * cosGamma - cosAlpha * cosAlpha - cosBeta * cosBeta - cosGamma * cosGamma);
+    
+    // Lattice vectors
+    const v1 = [a, 0, 0];
+    const v2 = [b * cosGamma, b * sinGamma, 0];
+    const v3 = [
+        c * cosBeta,
+        c * (cosAlpha - cosBeta * cosGamma) / sinGamma,
+        volume / (a * b * sinGamma)
+    ];
+    
+    return [v1, v2, v3];
+};
+
+export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters }: CrystalViewerProps) => {
+    const mountRef = useRef<HTMLDivElement>(null);
+    const sceneRef = useRef<THREE.Scene>(new THREE.Scene());
+    const cameraRef = useRef<THREE.PerspectiveCamera>();
+    const rendererRef = useRef<THREE.WebGLRenderer>();
+    const controlsRef = useRef<OrbitControls>();
+    const currentSpheresRef = useRef<THREE.Mesh[]>([]);
+    const currentLinesRef = useRef<THREE.Line[]>([]);
+    const animationFrameIdRef = useRef<number>();
+
+    const clearObjects = useCallback(() => {
+        // Remove spheres
+        for (const sphere of currentSpheresRef.current) {
+            if (sphere.geometry) {
+                sphere.geometry.dispose();
+            }
+            if (sphere.material) {
+                if (Array.isArray(sphere.material)) {
+                    sphere.material.forEach((material) => material.dispose());
+                } else {
+                    sphere.material.dispose();
+                }
+            }
+            sphere.removeFromParent();
+        }
+        currentSpheresRef.current = [];
+
+        // Remove lines
+        for (const line of currentLinesRef.current) {
+            if (line.geometry) {
+                line.geometry.dispose();
+            }
+            if (line.material) {
+                if (Array.isArray(line.material)) {
+                    line.material.forEach((material) => material.dispose());
+                } else {
+                    line.material.dispose();
+                }
+            }
+            line.removeFromParent();
+        }
+        currentLinesRef.current = [];
+    }, []);
+
+    const drawCrystal = useCallback((processedCrystal: ProcessedCrystal, latticeVectors?: number[][], atomCentroid?: number[]) => {
+        clearObjects();
+
+        // Draw atoms
+        const numAtoms = processedCrystal.atomicNumbers.length;
+        for (let i = 0; i < numAtoms; i++) {
+            const sphere = spheresMap.get(processedCrystal.atomicNumbers[i]);
+            if (!sphere) {
+                console.error(
+                    `No sphere found for atomic number ${processedCrystal.atomicNumbers[i]}`
+                );
+                continue;
+            }
+            const cartPos = processedCrystal.cartesianCoords[i];
+
+            const newSphere = sphere.clone();
+            newSphere.position.set(cartPos[0], cartPos[1], cartPos[2]);
+            sceneRef.current.add(newSphere);
+            currentSpheresRef.current.push(newSphere);
+        }
+
+        // Draw lattice edges if lattice vectors are provided
+        if (latticeVectors && atomCentroid) {
+            // Position the unit cell so its origin is at the negative centroid
+            // This aligns the lattice with the centered atoms
+            const latticeOrigin = [-atomCentroid[0], -atomCentroid[1], -atomCentroid[2]];
+            
+            // Create corner coordinates starting from the shifted origin
+            const cornerCoords = getParallelepipedCornerCoords(latticeVectors);
+            const shiftedCornerCoords = cornerCoords.map(corner => [
+                corner[0] + latticeOrigin[0],
+                corner[1] + latticeOrigin[1],
+                corner[2] + latticeOrigin[2]
+            ]);
+            
+            const edges = getParallelepipedLatticeEdges(shiftedCornerCoords);
+            
+            for (const edge of edges) {
+                const [p1, p2] = edge;
+                const points = [
+                    new THREE.Vector3(p1[0], p1[1], p1[2]),
+                    new THREE.Vector3(p2[0], p2[1], p2[2])
+                ];
+                const geometry = new THREE.BufferGeometry().setFromPoints(points);
+                const material = new THREE.LineBasicMaterial({ color: 0x0000ff, opacity: 0.5, transparent: true });
+                const line = new THREE.Line(geometry, material);
+                sceneRef.current.add(line);
+                currentLinesRef.current.push(line);
+            }
+        }
+    }, [clearObjects]);
+
+    const render = useCallback(() => {
+        if (cameraRef.current && sceneRef.current && rendererRef.current) {
+            rendererRef.current.render(sceneRef.current, cameraRef.current);
+        }
+        controlsRef.current?.update();
+        animationFrameIdRef.current = requestAnimationFrame(render);
+    }, []);
+
+    useEffect(() => {
+        if (!coords || coords.length === 0 || !atomicNumbers || atomicNumbers.length === 0) {
+            return;
+        }
+
+        const mount = mountRef.current!;
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xffffff);
+        
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            mount.clientWidth / mount.clientHeight,
+            0.1,
+            1000
+        );
+        
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(mount.clientWidth, mount.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        mount.appendChild(renderer.domElement);
+
+        // Add lighting
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(100, 100, 100).normalize();
+        scene.add(directionalLight);
+
+        const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight2.position.set(-100, -100, -100).normalize();
+        scene.add(directionalLight2);
+
+        const ambientLight = new THREE.AmbientLight(0xbbbbbb, 0.9);
+        scene.add(ambientLight);
+
+        // Convert fractional coordinates to Cartesian coordinates
+        let cartesianCoords = coords;
+        let latticeVectors: number[][] | undefined = undefined;
+        
+        if (latticeParameters) {
+            // Convert lattice parameters to lattice vectors
+            latticeVectors = latticeParametersToVectors(latticeParameters);
+            
+            // Convert fractional coordinates to Cartesian coordinates
+            cartesianCoords = coords.map(fracCoord => 
+                fracCoordToCartesianCoord(fracCoord, latticeVectors!)
+            );
+        }
+
+        // Center the coordinates
+        const middleOfAtoms = findMiddleOfCoords(cartesianCoords);
+        const centeredCoords = cartesianCoords.map(coord => subtract(coord, middleOfAtoms));
+
+        const processedCrystal: ProcessedCrystal = {
+            atomicNumbers,
+            cartesianCoords: centeredCoords,
+        };
+
+        // Calculate furthest distance for camera positioning
+        let furthestDistFromOrigin = 0;
+        for (const coord of centeredCoords) {
+            furthestDistFromOrigin = Math.max(furthestDistFromOrigin, norm(coord));
+        }
+        
+        // Also consider lattice extent for camera positioning
+        if (latticeVectors) {
+            for (const vec of latticeVectors) {
+                furthestDistFromOrigin = Math.max(furthestDistFromOrigin, norm(vec));
+            }
+        }
+
+        // Set up camera position
+        camera.position.x = furthestDistFromOrigin * 1.5;
+        camera.position.y = furthestDistFromOrigin * 1.0;
+        camera.position.z = furthestDistFromOrigin * 1.5;
+
+        // Set up orbit controls
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.minDistance = Math.max(1, furthestDistFromOrigin * 0.5);
+        controls.maxDistance = furthestDistFromOrigin * 4;
+
+        // Store references
+        sceneRef.current = scene;
+        cameraRef.current = camera;
+        rendererRef.current = renderer;
+        controlsRef.current = controls;
+
+        // Draw the crystal structure - lattice positioned relative to centered atoms
+        if (latticeVectors) {
+            drawCrystal(processedCrystal, latticeVectors, middleOfAtoms);
+        } else {
+            drawCrystal(processedCrystal);
+        }
+
+        // Start render loop
+        render();
+
+        // Cleanup
+        return () => {
+            if (animationFrameIdRef.current) {
+                cancelAnimationFrame(animationFrameIdRef.current);
+            }
+            clearObjects();
+            mount.removeChild(renderer.domElement);
+            renderer.dispose();
+        };
+    }, [atomicNumbers, coords, latticeParameters, drawCrystal, render, clearObjects]);
+
+    // Handle window resize
+    useEffect(() => {
+        const handleResize = () => {
+            const mount = mountRef.current;
+            if (mount && cameraRef.current && rendererRef.current) {
+                const width = mount.clientWidth;
+                const height = mount.clientHeight;
+                
+                cameraRef.current.aspect = width / height;
+                cameraRef.current.updateProjectionMatrix();
+                rendererRef.current.setSize(width, height);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    return <div ref={mountRef} style={{ width: "100%", height: "100%" }} />;
+}; 

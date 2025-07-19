@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
-import { PolymerVideoViewer } from '@/components/materials/PolymerVideoViewer';
+import { CrystalViewer } from '@/components/materials/CrystalViewer';
 import { MantineProvider } from '@mantine/core';
 
 interface Material {
@@ -126,7 +126,6 @@ export default function MP20Guesser({ materials }: Props) {
   }
 
   return (
-    <MantineProvider>
     <div className="min-h-screen bg-gray-50 py-4 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
@@ -150,11 +149,10 @@ export default function MP20Guesser({ materials }: Props) {
             <div className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
               {hasStructuralData ? (
                 <div className="w-full h-full">
-                  <PolymerVideoViewer 
-                    frames={[{
-                      atomicNumbers: currentMaterial.atomic_numbers,
-                      coords: currentMaterial.atomic_positions
-                    }]}
+                  <CrystalViewer 
+                    atomicNumbers={currentMaterial.atomic_numbers}
+                    coords={currentMaterial.atomic_positions}
+                    latticeParameters={currentMaterial.lattice_parameters}
                   />
                 </div>
               ) : (
@@ -322,16 +320,9 @@ export default function MP20Guesser({ materials }: Props) {
             <li>• Use the URL hash (#) to share specific materials</li>
             <li>• Navigate with buttons or change the URL directly</li>
           </ul>
-          <div className="mt-3 p-3 bg-yellow-100 rounded border-l-4 border-yellow-400">
-            <p className="text-sm text-yellow-800">
-              <strong>Note:</strong> The MP20 dataset used here contains only formation energies and basic properties. 
-              Crystal structure visualization requires atomic positions which aren't included in this dataset.
-            </p>
-          </div>
         </div>
       </div>
     </div>
-    </MantineProvider>
   );
 }
 
