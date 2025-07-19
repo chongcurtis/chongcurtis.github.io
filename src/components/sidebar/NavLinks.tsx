@@ -54,6 +54,10 @@ export const NavLinks: NavLink[] = [
                 label: "EGNN Checklist",
                 href: "/materials/egnn_checklist",
             },
+            {
+                label: "MP20 Guesser",
+                href: "/materials/mp20-guesser",
+            },
         ],
     },
     // {
