@@ -258,7 +258,7 @@ export default function MP20Guesser({ materials }: Props) {
               
               {/* Scatter Chart - Error over Time */}
               <div className="mb-8">
-                <h4 className="text-md font-medium text-gray-700 mb-3">Error Over Time</h4>
+                <h4 className="text-md font-medium text-gray-700 mb-4 text-center">Error Over Time</h4>
                 <div className="h-64">
                   <ScatterChart
                     h={250}
@@ -282,7 +282,7 @@ export default function MP20Guesser({ materials }: Props) {
 
               {/* Histogram - Error Distribution */}
               <div className="mb-4">
-                <h4 className="text-md font-medium text-gray-700 mb-3">Error Histogram</h4>
+                <h4 className="text-md font-medium text-gray-700 mb-4 text-center">Error Histogram</h4>
                 <div className="h-64">
                   <BarChart
                     h={250}
@@ -310,7 +310,7 @@ export default function MP20Guesser({ materials }: Props) {
                     dataKey="range"
                     series={[{ name: 'count', color: 'blue.6' }]}
                     xAxisLabel="Error Range (eV/atom)"
-                    yAxisLabel="Number of Guesses"
+                    yAxisLabel="# Guesses"
                     withTooltip
                   />
                 </div>
