@@ -267,7 +267,7 @@ export default function MP20Guesser({ materials }: Props) {
           </div>
 
           {/* Guessing Interface */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <div className="bg-white rounded-lg shadow-md px-1 py-4  lg:p-6 mb-6">
             <div className="space-y-4">
               <div>
                 <div className="flex flex-col gap-4">
@@ -277,7 +277,7 @@ export default function MP20Guesser({ materials }: Props) {
                         Your guess: <span className="font-mono inline-block w-16 text-right">{guess.toFixed(3)}</span> eV/atom
                       </span>
                     </div>
-                    <div className="px-4 lg:px-8">
+                    <div className="px-0 lg:px-8">
                       <CustomSlider
                         value={guess}
                         onChange={setGuess}
@@ -308,26 +308,26 @@ export default function MP20Guesser({ materials }: Props) {
                       <button
                         onClick={previousMaterial}
                         disabled={currentIndex === 0}
-                        className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
+                        className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300 select-none"
                       >
                         <span className="sm:hidden">←</span>
                         <span className="hidden sm:inline">← Previous Material</span>
                       </button>
-                                              <button
-                          onClick={handleGuess}
-                          disabled={!!currentGuessResult}
-                          className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
-                        >
-                          <span className="sm:inline">Submit Guess</span>
-                        </button>
-                        <button
-                          onClick={nextMaterial}
-                          disabled={currentIndex === materials.length - 1}
-                          className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
-                        >
-                          <span className="sm:hidden">→</span>
-                          <span className="hidden sm:inline">Next Material →</span>
-                        </button>
+                      <button
+                        onClick={handleGuess}
+                        disabled={!!currentGuessResult}
+                        className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300 select-none"
+                      >
+                        <span className="sm:inline">Submit Guess</span>
+                      </button>
+                      <button
+                        onClick={nextMaterial}
+                        disabled={currentIndex === materials.length - 1}
+                        className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300 select-none"
+                      >
+                        <span className="sm:hidden">→</span>
+                        <span className="hidden sm:inline">Next Material →</span>
+                      </button>
                     </div>
                     {currentGuessResult && (
                       <div className="mt-4">

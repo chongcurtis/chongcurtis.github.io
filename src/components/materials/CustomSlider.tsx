@@ -29,7 +29,7 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
   const [isDragging, setIsDragging] = useState(false);
   const [canvasWidth, setCanvasWidth] = useState(300);
   
-  const padding = 40;
+  const padding = Math.max(20, Math.min(40, canvasWidth * 0.08));
   const trackHeight = 8;
   const thumbRadius = 12;
   const canvasHeight = 80;
@@ -114,29 +114,7 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
       ctx.fillText(mark.label, Math.round(markX), trackY + 25);
     });
 
-    // Draw actual value indicator (red line) if shown
-    if (showActual && actualValue !== undefined) {
-      const actualX = valueToX(actualValue);
-      ctx.strokeStyle = '#dc2626';
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.moveTo(actualX, trackY - 20);
-      ctx.lineTo(actualX, trackY + 20);
-      ctx.stroke();
-
-      // Add "Actual" label with value
-      ctx.fillStyle = '#dc2626';
-      ctx.font = 'bold 12px system-ui, -apple-system, sans-serif';
-      const actualText = `Actual: ${actualValue.toFixed(3)} eV/atom`;
-      
-      const textX = positionTextWithinBounds(ctx, actualText, actualX);
-      ctx.fillText(actualText, textX, trackY - 25);
-      
-      // Reset text alignment for other text
-      ctx.textAlign = 'center';
-    }
-
-    // Draw error bar if error value is provided
+    // Draw error bar if error value is provided (BEHIND the actual value indicator)
     if (showActual && errorValue !== undefined) {
       const guessX = valueToX(value);
       const actualX = valueToX(actualValue!);
@@ -160,6 +138,28 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
       ctx.fillText(errorText, errorTextX, trackY + 35);
       
       // Reset text alignment
+      ctx.textAlign = 'center';
+    }
+
+    // Draw actual value indicator (red line) if shown
+    if (showActual && actualValue !== undefined) {
+      const actualX = valueToX(actualValue);
+      ctx.strokeStyle = '#dc2626';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(actualX, trackY - 20);
+      ctx.lineTo(actualX, trackY + 20);
+      ctx.stroke();
+
+      // Add "Actual" label with value
+      ctx.fillStyle = '#dc2626';
+      ctx.font = 'bold 12px system-ui, -apple-system, sans-serif';
+      const actualText = `Actual: ${actualValue.toFixed(3)} eV/atom`;
+      
+      const textX = positionTextWithinBounds(ctx, actualText, actualX);
+      ctx.fillText(actualText, textX, trackY - 25);
+      
+      // Reset text alignment for other text
       ctx.textAlign = 'center';
     }
 
@@ -205,6 +205,15 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
     return clientX - rect.left;
   };
 
+  // Get position from global mouse event (for document-level listeners)
+  const getGlobalEventPosition = (e: MouseEvent) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return null;
+
+    const rect = canvas.getBoundingClientRect();
+    return e.clientX - rect.left;
+  };
+
   // Handle mouse events
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (disabled) return;
@@ -220,19 +229,38 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
     }
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  // Document-level mouse move handler
+  const handleDocumentMouseMove = useCallback((e: MouseEvent) => {
     if (disabled || !isDragging) return;
 
-    const x = getEventPosition(e);
+    const x = getGlobalEventPosition(e);
     if (x === null) return;
 
     const newValue = xToValue(x);
     onChange(Math.max(min, Math.min(max, newValue)));
-  };
+  }, [disabled, isDragging, xToValue, onChange, min, max]);
 
-  const handleMouseUp = () => {
+  // Document-level mouse up handler
+  const handleDocumentMouseUp = useCallback(() => {
     setIsDragging(false);
-  };
+  }, []);
+
+  // Add/remove document-level mouse event listeners when dragging state changes
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener('mousemove', handleDocumentMouseMove);
+      document.addEventListener('mouseup', handleDocumentMouseUp);
+    } else {
+      document.removeEventListener('mousemove', handleDocumentMouseMove);
+      document.removeEventListener('mouseup', handleDocumentMouseUp);
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.removeEventListener('mousemove', handleDocumentMouseMove);
+      document.removeEventListener('mouseup', handleDocumentMouseUp);
+    };
+  }, [isDragging, handleDocumentMouseMove, handleDocumentMouseUp]);
 
   // Handle touch events with native event listeners (non-passive)
   useEffect(() => {
@@ -294,7 +322,9 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
 
     const updateCanvasWidth = () => {
       const parentWidth = parent.clientWidth;
-      setCanvasWidth(Math.max(280, Math.min(parentWidth, 800)));
+      // Account for container padding (px-2 = 16px total)
+      const availableWidth = parentWidth - 16;
+      setCanvasWidth(Math.max(260, Math.min(availableWidth, 800)));
     };
 
     // Set initial width
@@ -342,17 +372,19 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
   }, [canvasWidth, canvasHeight, draw]);
 
   return (
-    <div className="w-full max-w-full overflow-hidden">
+    <div className="w-full max-w-full px-2">
       <canvas
         ref={canvasRef}
         width={canvasWidth}
         height={canvasHeight}
-        className={`w-full max-w-full ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+        className={`${disabled ? 'cursor-not-allowed' : 'cursor-pointer'} block`}
         onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-        style={{ touchAction: 'none' }}
+        style={{ 
+          touchAction: 'none',
+          width: `${canvasWidth}px`,
+          height: `${canvasHeight}px`,
+          maxWidth: '100%'
+        }}
       />
     </div>
   );
