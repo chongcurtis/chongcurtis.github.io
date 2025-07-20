@@ -242,41 +242,55 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
     setIsDragging(false);
   };
 
-  // Handle touch events
-  const handleTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
-    if (disabled) return;
-    
-    // Prevent default to avoid scrolling
-    e.preventDefault();
-    
-    const x = getEventPosition(e);
-    if (x === null) return;
+  // Handle touch events with native event listeners (non-passive)
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    const newValue = xToValue(x);
-    
-    if (newValue >= min && newValue <= max) {
+    const handleTouchStart = (e: TouchEvent) => {
+      if (disabled) return;
+      
+      // Prevent default to avoid scrolling
+      e.preventDefault();
+      
+      const rect = canvas.getBoundingClientRect();
+      const x = e.touches[0].clientX - rect.left;
+      const newValue = xToValue(x);
+      
+      if (newValue >= min && newValue <= max) {
+        onChange(Math.max(min, Math.min(max, newValue)));
+        setIsDragging(true);
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (disabled || !isDragging) return;
+
+      // Prevent default to avoid scrolling
+      e.preventDefault();
+
+      const rect = canvas.getBoundingClientRect();
+      const x = e.touches[0].clientX - rect.left;
+      const newValue = xToValue(x);
       onChange(Math.max(min, Math.min(max, newValue)));
-      setIsDragging(true);
-    }
-  };
+    };
 
-  const handleTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
-    if (disabled || !isDragging) return;
+    const handleTouchEnd = (e: TouchEvent) => {
+      e.preventDefault();
+      setIsDragging(false);
+    };
 
-    // Prevent default to avoid scrolling
-    e.preventDefault();
+    // Add non-passive event listeners
+    canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
+    canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
+    canvas.addEventListener('touchend', handleTouchEnd, { passive: false });
 
-    const x = getEventPosition(e);
-    if (x === null) return;
-
-    const newValue = xToValue(x);
-    onChange(Math.max(min, Math.min(max, newValue)));
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent<HTMLCanvasElement>) => {
-    e.preventDefault();
-    setIsDragging(false);
-  };
+    return () => {
+      canvas.removeEventListener('touchstart', handleTouchStart);
+      canvas.removeEventListener('touchmove', handleTouchMove);
+      canvas.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [disabled, isDragging, xToValue, onChange, min, max]);
 
   // Resize observer
   useEffect(() => {
@@ -338,9 +352,6 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
         style={{ touchAction: 'none' }}
       />
     </div>
