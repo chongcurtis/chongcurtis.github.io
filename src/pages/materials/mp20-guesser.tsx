@@ -4,6 +4,9 @@ import { useRouter } from 'next/router';
 import { CrystalViewer } from '@/components/materials/CrystalViewer';
 import { MantineProvider, Slider } from '@mantine/core';
 import { ScatterChart } from '@mantine/charts';
+import '@mantine/core/styles.css';
+import '@mantine/charts/styles.css';
+
 
 interface Material {
   material_id: string;
