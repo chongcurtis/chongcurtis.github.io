@@ -138,7 +138,7 @@ export default function MP20Guesser({ materials }: Props) {
       <div className="min-h-screen py-4 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-16 mt-16">
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
               MP20 Energy Guesser
             </h1>
@@ -282,7 +282,11 @@ export default function MP20Guesser({ materials }: Props) {
           {/* Error Distribution Charts */}
           {guessHistory.length > 0 && (
             <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">Your Error Distribution</h3>
+              <div className="mt-4 text-sm text-gray-600">
+                <p>Total guesses: {guessHistory.length}</p>
+                <p>Average error: {(guessHistory.reduce((sum, guess) => sum + guess.error, 0) / guessHistory.length).toFixed(4)} eV/atom</p>
+                <p>Best guess: {Math.min(...guessHistory.map(g => g.error)).toFixed(4)} eV/atom</p>
+              </div>
               
               {/* Scatter Chart - Error over Time */}
               <div className="mb-8">
@@ -342,12 +346,6 @@ export default function MP20Guesser({ materials }: Props) {
                     withTooltip
                   />
                 </div>
-              </div>
-
-              <div className="mt-4 text-sm text-gray-600">
-                <p>Total guesses: {guessHistory.length}</p>
-                <p>Average error: {(guessHistory.reduce((sum, guess) => sum + guess.error, 0) / guessHistory.length).toFixed(4)} eV/atom</p>
-                <p>Best guess: {Math.min(...guessHistory.map(g => g.error)).toFixed(4)} eV/atom</p>
               </div>
             </div>
           )}
