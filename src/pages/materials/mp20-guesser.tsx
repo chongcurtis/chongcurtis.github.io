@@ -157,19 +157,23 @@ export default function MP20Guesser({ materials }: Props) {
           </div>
 
                     {/* Crystal Structure Viewer - Full Width */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-6 w-full">
-            <h3 className="text-lg font-semibold text-gray-800 mb-1">{currentMaterial.pretty_formula}</h3>
-            <p className="text-gray-600 text-sm mb-4">Material ID: {currentMaterial.material_id}</p>
-            <p className="text-gray-500 text-xs sm:text-sm">
-              {currentIndex + 1} of {materials.length.toLocaleString()}
-            </p>
-            <div className="rounded-lg flex justify-center">
+          <div className="bg-white rounded-lg shadow-md p-1 mb-6 w-full">
+            <div className="rounded-lg flex justify-center relative">
               <div className="w-full h-80">
                 <CrystalViewer 
                   atomicNumbers={currentMaterial.atomic_numbers}
                   coords={currentMaterial.atomic_positions}
                   latticeParameters={currentMaterial.lattice_parameters}
                 />
+              </div>
+              
+              {/* Overlay Information */}
+              <div className="absolute top-1 left-1 z-10 bg-black/50 backdrop-blur-sm text-white rounded-lg px-3 py-2">
+                <h3 className="text-lg font-semibold mb-1">{currentMaterial.pretty_formula}</h3>
+                <p className="text-gray-200 text-sm mb-1">{currentMaterial.material_id}</p>
+                <p className="text-gray-300 text-xs">
+                  {currentIndex + 1} of {materials.length.toLocaleString()}
+                </p>
               </div>
             </div>
           </div>
