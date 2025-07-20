@@ -204,36 +204,7 @@ export default function MP20Guesser({ materials }: Props) {
                   Material ID: {currentMaterial.material_id}
                 </p>
                 
-                {/* Material Properties */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm mb-6">
-                  <div>
-                    <h3 className="font-medium text-gray-700 mb-2">Lattice Parameters</h3>
-                    <div className="space-y-1 text-gray-600">
-                      <div>a = {currentMaterial.lattice_parameters.a.toFixed(3)} Å</div>
-                      <div>b = {currentMaterial.lattice_parameters.b.toFixed(3)} Å</div>
-                      <div>c = {currentMaterial.lattice_parameters.c.toFixed(3)} Å</div>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-700 mb-2">Angles</h3>
-                    <div className="space-y-1 text-gray-600">
-                      <div>α = {currentMaterial.lattice_parameters.alpha.toFixed(1)}°</div>
-                      <div>β = {currentMaterial.lattice_parameters.beta.toFixed(1)}°</div>
-                      <div>γ = {currentMaterial.lattice_parameters.gamma.toFixed(1)}°</div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm mb-6">
-                  <div>
-                    <span className="font-medium text-gray-700">Band Gap:</span>
-                    <span className="ml-2 text-gray-600">{currentMaterial.band_gap.toFixed(4)} eV</span>
-                  </div>
-                  <div>
-                    <span className="font-medium text-gray-700">E above hull:</span>
-                    <span className="ml-2 text-gray-600">{currentMaterial.e_above_hull.toFixed(6)} eV/atom</span>
-                  </div>
-                </div>
+
               </div>
 
               {/* Guessing Interface */}
@@ -342,18 +313,6 @@ export default function MP20Guesser({ materials }: Props) {
             </button>
           </div>
 
-          {/* Instructions */}
-          <div className="bg-blue-50 rounded-lg p-4">
-            <h3 className="font-semibold text-blue-800 mb-2">How to play:</h3>
-            <ul className="text-sm text-blue-700 space-y-1">
-              <li>• Look at the material formula and properties</li>
-              <li>• Use the slider to guess the formation energy per atom in eV/atom</li>
-              <li>• More negative values (left side) indicate more stable compounds</li>
-              <li>• Track your progress with the error distribution chart</li>
-              <li>• Use the URL hash (#) to share specific materials</li>
-              <li>• Navigate with buttons or change the URL directly</li>
-            </ul>
-          </div>
         </div>
       </div>
     </MantineProvider>
