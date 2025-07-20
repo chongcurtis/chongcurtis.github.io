@@ -177,7 +177,7 @@ export default function MP20Guesser({ materials }: Props) {
                   <div className="space-y-4">
                     <div className="text-center">
                       <span className="font-medium text-lg text-gray-800">
-                        Your guess: <span className="font-mono inline-block w-20 text-right">{guess.toFixed(3)}</span> eV/atom
+                        Your guess: <span className="font-mono inline-block w-16 text-right">{guess.toFixed(3)}</span> eV/atom
                       </span>
                     </div>
                     <div className="px-4 lg:px-8">
