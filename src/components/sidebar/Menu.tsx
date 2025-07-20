@@ -27,6 +27,7 @@ const Menu = ({ navLinks, isOpen }: Props) => {
                 "h-full w-3/4 md:h-[100vh] 2xl:w-[25rem]": true, // for height and width
                 ".3s transition-transform ease-in-out xl:translate-x-0": true, //animations
                 "-translate-x-full": !isOpen, // hide sidebar to the left when closed
+                "overflow-y-auto": true,
             })}
         >
             <nav className="flex h-screen flex-col pt-[8rem] md:sticky">

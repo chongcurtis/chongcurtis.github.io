@@ -227,7 +227,7 @@ export default function MP20Guesser({ materials }: Props) {
               </div>
               
               {/* Overlay Information */}
-              <div className="absolute top-1 left-1 z-10 bg-black/50 backdrop-blur-sm text-white rounded-lg px-3 py-2">
+              <div className="absolute top-1 left-1 z-1 bg-black/50 backdrop-blur-sm text-white rounded-lg px-3 py-2">
                 <h3 className="text-lg font-semibold mb-1">{currentMaterial.pretty_formula}</h3>
                 <p className="text-gray-200 text-sm mb-1">{currentMaterial.material_id}</p>
                 <p className="text-gray-300 text-xs">
@@ -322,7 +322,7 @@ export default function MP20Guesser({ materials }: Props) {
                                 </div>
                                 
                                 {/* Overlay Information */}
-                                <div className="absolute top-1 left-1 z-10 bg-black/50 backdrop-blur-sm text-white rounded-lg px-2 py-1">
+                                <div className="absolute top-1 left-1 z-1 bg-black/50 backdrop-blur-sm text-white rounded-lg px-2 py-1">
                                   <h5 className="text-xs font-semibold">{lastGuessError.formula}</h5>
                                 </div>
                               </div>
