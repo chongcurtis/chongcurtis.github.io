@@ -205,6 +205,15 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
     return clientX - rect.left;
   };
 
+  // Get position from global mouse event (for document-level listeners)
+  const getGlobalEventPosition = (e: MouseEvent) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return null;
+
+    const rect = canvas.getBoundingClientRect();
+    return e.clientX - rect.left;
+  };
+
   // Handle mouse events
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (disabled) return;
@@ -220,19 +229,38 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
     }
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  // Document-level mouse move handler
+  const handleDocumentMouseMove = useCallback((e: MouseEvent) => {
     if (disabled || !isDragging) return;
 
-    const x = getEventPosition(e);
+    const x = getGlobalEventPosition(e);
     if (x === null) return;
 
     const newValue = xToValue(x);
     onChange(Math.max(min, Math.min(max, newValue)));
-  };
+  }, [disabled, isDragging, xToValue, onChange, min, max]);
 
-  const handleMouseUp = () => {
+  // Document-level mouse up handler
+  const handleDocumentMouseUp = useCallback(() => {
     setIsDragging(false);
-  };
+  }, []);
+
+  // Add/remove document-level mouse event listeners when dragging state changes
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener('mousemove', handleDocumentMouseMove);
+      document.addEventListener('mouseup', handleDocumentMouseUp);
+    } else {
+      document.removeEventListener('mousemove', handleDocumentMouseMove);
+      document.removeEventListener('mouseup', handleDocumentMouseUp);
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.removeEventListener('mousemove', handleDocumentMouseMove);
+      document.removeEventListener('mouseup', handleDocumentMouseUp);
+    };
+  }, [isDragging, handleDocumentMouseMove, handleDocumentMouseUp]);
 
   // Handle touch events with native event listeners (non-passive)
   useEffect(() => {
@@ -351,9 +379,6 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
         height={canvasHeight}
         className={`${disabled ? 'cursor-not-allowed' : 'cursor-pointer'} block`}
         onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
         style={{ 
           touchAction: 'none',
           width: `${canvasWidth}px`,
