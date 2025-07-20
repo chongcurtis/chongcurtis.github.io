@@ -37,10 +37,10 @@ const Sidebar = (props: PropsWithChildren) => {
             <div className="fixed z-10" hidden={isOnMainPage}>
                 <div className="w-full" hidden={isMenuVisible}>
                     <button
-                        className="m-2 rounded-2xl bg-red-50 p-2 shadow-md xl:hidden"
+                        className="m-2 rounded-xl bg-red-50 p-1 shadow-md xl:hidden"
                         onClick={() => setIsMenuVisible((prev) => !prev)}
                     >
-                        <Bars3Icon className="h-10 w-10 text-slate-500" />
+                        <Bars3Icon className="h-8 w-8 text-slate-500" />
                     </button>
                 </div>
                 <div className={classNames("md:grid-cols-sidebar grid ")} ref={menuRef}>
