@@ -267,7 +267,7 @@ export default function MP20Guesser({ materials }: Props) {
           </div>
 
           {/* Guessing Interface */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <div className="bg-white rounded-lg shadow-md px-1 py-4  lg:p-6 mb-6">
             <div className="space-y-4">
               <div>
                 <div className="flex flex-col gap-4">
@@ -277,7 +277,7 @@ export default function MP20Guesser({ materials }: Props) {
                         Your guess: <span className="font-mono inline-block w-16 text-right">{guess.toFixed(3)}</span> eV/atom
                       </span>
                     </div>
-                    <div className="px-4 lg:px-8">
+                    <div className="px-0 lg:px-8">
                       <CustomSlider
                         value={guess}
                         onChange={setGuess}

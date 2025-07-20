@@ -29,7 +29,7 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
   const [isDragging, setIsDragging] = useState(false);
   const [canvasWidth, setCanvasWidth] = useState(300);
   
-  const padding = 40;
+  const padding = Math.max(20, Math.min(40, canvasWidth * 0.08));
   const trackHeight = 8;
   const thumbRadius = 12;
   const canvasHeight = 80;
@@ -294,7 +294,9 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
 
     const updateCanvasWidth = () => {
       const parentWidth = parent.clientWidth;
-      setCanvasWidth(Math.max(280, Math.min(parentWidth, 800)));
+      // Account for container padding (px-2 = 16px total)
+      const availableWidth = parentWidth - 16;
+      setCanvasWidth(Math.max(260, Math.min(availableWidth, 800)));
     };
 
     // Set initial width
@@ -342,17 +344,22 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
   }, [canvasWidth, canvasHeight, draw]);
 
   return (
-    <div className="w-full max-w-full overflow-hidden">
+    <div className="w-full max-w-full px-2">
       <canvas
         ref={canvasRef}
         width={canvasWidth}
         height={canvasHeight}
-        className={`w-full max-w-full ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+        className={`${disabled ? 'cursor-not-allowed' : 'cursor-pointer'} block`}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
-        style={{ touchAction: 'none' }}
+        style={{ 
+          touchAction: 'none',
+          width: `${canvasWidth}px`,
+          height: `${canvasHeight}px`,
+          maxWidth: '100%'
+        }}
       />
     </div>
   );
