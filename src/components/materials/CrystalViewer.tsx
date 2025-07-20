@@ -312,7 +312,7 @@ export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters }: Crys
         // Set up orbit controls
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.minDistance = Math.max(1, furthestDistFromOrigin * 0.5);
-        controls.maxDistance = furthestDistFromOrigin * 2;
+        controls.maxDistance = furthestDistFromOrigin * 8;
 
         // Store references
         sceneRef.current = scene;

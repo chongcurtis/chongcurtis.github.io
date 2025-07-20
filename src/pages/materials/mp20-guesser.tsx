@@ -55,7 +55,8 @@ export default function MP20Guesser({ materials }: Props) {
     const updateIndexFromHash = () => {
       const hash = window.location.hash.slice(1); // Remove the #
       if (hash && !isNaN(Number(hash))) {
-        const index = Math.max(0, Math.min(Number(hash), materials.length - 1));
+        const urlIndex = Number(hash);
+        const index = Math.max(0, Math.min(urlIndex - 1, materials.length - 1));
         setCurrentIndex(index);
         setGuess(-2.0);
       }
@@ -69,7 +70,7 @@ export default function MP20Guesser({ materials }: Props) {
   // Update URL when index changes
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      window.location.hash = currentIndex.toString();
+      window.location.hash = (currentIndex + 1).toString();
     }
   }, [currentIndex]);
 
@@ -213,28 +214,26 @@ export default function MP20Guesser({ materials }: Props) {
                   </div>
                   <div className="text-center">
                     <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-                      {currentIndex > 0 && (
-                        <button
-                          onClick={previousMaterial}
-                          className="px-6 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
-                        >
-                          ← Previous Material
-                        </button>
-                      )}
+                      <button
+                        onClick={previousMaterial}
+                        disabled={currentIndex === 0}
+                        className="px-6 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
+                      >
+                        ← Previous Material
+                      </button>
                       <button
                         onClick={handleGuess}
                         className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
                       >
                         Submit Guess
                       </button>
-                      {currentIndex < materials.length - 1 && (
-                        <button
-                          onClick={nextMaterial}
-                          className="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
-                        >
-                          Next Material →
-                        </button>
-                      )}
+                      <button
+                        onClick={nextMaterial}
+                        disabled={currentIndex === materials.length - 1}
+                        className="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
+                      >
+                        Next Material →
+                      </button>
                     </div>
                     {lastGuessError && (
                       <div className="mt-4">
