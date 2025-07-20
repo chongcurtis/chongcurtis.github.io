@@ -339,6 +339,13 @@ export default function MP20Guesser({ materials }: Props) {
                               </span>
                             </div>
                           )}
+                          {!isNewBestGuess && currentGuessResult && currentGuessResult.error <= 0.4 && (
+                            <div className="mt-2 px-3 py-2 bg-blue-100 border border-blue-300 rounded-md">
+                              <span className="text-blue-800 font-semibold text-sm">
+                                👏 Great guess!
+                              </span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     )}
