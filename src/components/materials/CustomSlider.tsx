@@ -114,29 +114,7 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
       ctx.fillText(mark.label, Math.round(markX), trackY + 25);
     });
 
-    // Draw actual value indicator (red line) if shown
-    if (showActual && actualValue !== undefined) {
-      const actualX = valueToX(actualValue);
-      ctx.strokeStyle = '#dc2626';
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.moveTo(actualX, trackY - 20);
-      ctx.lineTo(actualX, trackY + 20);
-      ctx.stroke();
-
-      // Add "Actual" label with value
-      ctx.fillStyle = '#dc2626';
-      ctx.font = 'bold 12px system-ui, -apple-system, sans-serif';
-      const actualText = `Actual: ${actualValue.toFixed(3)} eV/atom`;
-      
-      const textX = positionTextWithinBounds(ctx, actualText, actualX);
-      ctx.fillText(actualText, textX, trackY - 25);
-      
-      // Reset text alignment for other text
-      ctx.textAlign = 'center';
-    }
-
-    // Draw error bar if error value is provided
+    // Draw error bar if error value is provided (BEHIND the actual value indicator)
     if (showActual && errorValue !== undefined) {
       const guessX = valueToX(value);
       const actualX = valueToX(actualValue!);
@@ -160,6 +138,28 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
       ctx.fillText(errorText, errorTextX, trackY + 35);
       
       // Reset text alignment
+      ctx.textAlign = 'center';
+    }
+
+    // Draw actual value indicator (red line) if shown
+    if (showActual && actualValue !== undefined) {
+      const actualX = valueToX(actualValue);
+      ctx.strokeStyle = '#dc2626';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(actualX, trackY - 20);
+      ctx.lineTo(actualX, trackY + 20);
+      ctx.stroke();
+
+      // Add "Actual" label with value
+      ctx.fillStyle = '#dc2626';
+      ctx.font = 'bold 12px system-ui, -apple-system, sans-serif';
+      const actualText = `Actual: ${actualValue.toFixed(3)} eV/atom`;
+      
+      const textX = positionTextWithinBounds(ctx, actualText, actualX);
+      ctx.fillText(actualText, textX, trackY - 25);
+      
+      // Reset text alignment for other text
       ctx.textAlign = 'center';
     }
 
