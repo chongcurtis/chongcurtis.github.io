@@ -435,6 +435,11 @@ export default function MP20Guesser({ materials }: Props) {
   );
 }
 
+// Pre-load materials data at build time for static site generation (SSG)
+// This loads a large JSON file (>2MB) containing thousands of materials from the Materials Project database
+// with properties like formation energy, band gap, chemical formulas, and crystallographic data.
+// By loading at build time instead of client-side, we get faster page loads, better SEO,
+// and immediate data availability for the materials guessing game without loading states.
 export const getStaticProps: GetStaticProps = async () => {
   const fs = require('fs');
   const path = require('path');
