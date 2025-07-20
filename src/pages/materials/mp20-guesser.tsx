@@ -272,7 +272,7 @@ export default function MP20Guesser({ materials }: Props) {
               <div>
                 <div className="flex flex-col gap-4">
                   <div className="space-y-0">
-                    <div className="text-center">
+                    <div className="text-center mb-2">
                       <span className="font-medium text-lg text-gray-800">
                         Your guess: <span className="font-mono inline-block w-16 text-right">{guess.toFixed(3)}</span> eV/atom
                       </span>
@@ -303,7 +303,7 @@ export default function MP20Guesser({ materials }: Props) {
                       <span>Less stable</span>
                     </div>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center mt-2">
                     <div className="flex flex-row gap-3 justify-center items-center">
                       <button
                         onClick={previousMaterial}

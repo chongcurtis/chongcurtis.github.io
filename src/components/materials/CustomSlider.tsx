@@ -342,7 +342,7 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
   }, [canvasWidth, canvasHeight, draw]);
 
   return (
-    <div className="w-full py-4">
+    <div className="w-full">
       <canvas
         ref={canvasRef}
         width={canvasWidth}
