@@ -313,21 +313,21 @@ export default function MP20Guesser({ materials }: Props) {
                         <span className="sm:hidden">←</span>
                         <span className="hidden sm:inline">← Previous Material</span>
                       </button>
-                                              <button
-                          onClick={handleGuess}
-                          disabled={!!currentGuessResult}
-                          className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300 select-none"
-                        >
-                          <span className="sm:inline">Submit Guess</span>
-                        </button>
-                        <button
-                          onClick={nextMaterial}
-                          disabled={currentIndex === materials.length - 1}
-                          className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300 select-none"
-                        >
-                          <span className="sm:hidden">→</span>
-                          <span className="hidden sm:inline">Next Material →</span>
-                        </button>
+                      <button
+                        onClick={handleGuess}
+                        disabled={!!currentGuessResult}
+                        className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300 select-none"
+                      >
+                        <span className="sm:inline">Submit Guess</span>
+                      </button>
+                      <button
+                        onClick={nextMaterial}
+                        disabled={currentIndex === materials.length - 1}
+                        className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300 select-none"
+                      >
+                        <span className="sm:hidden">→</span>
+                        <span className="hidden sm:inline">Next Material →</span>
+                      </button>
                     </div>
                     {currentGuessResult && (
                       <div className="mt-4">
