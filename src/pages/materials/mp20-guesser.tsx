@@ -44,10 +44,8 @@ export default function MP20Guesser({ materials }: Props) {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [guess, setGuess] = useState(-2.0); // Default slider value
-  const [hasGuessed, setHasGuessed] = useState(false);
-  const [error, setError] = useState<number | null>(null);
-  const [showAnswer, setShowAnswer] = useState(false);
   const [guessHistory, setGuessHistory] = useState<GuessHistory[]>([]);
+  const [lastGuessError, setLastGuessError] = useState<{ formula: string; error: number } | null>(null);
   
   // Get current material
   const currentMaterial = materials[currentIndex];
@@ -59,10 +57,7 @@ export default function MP20Guesser({ materials }: Props) {
       if (hash && !isNaN(Number(hash))) {
         const index = Math.max(0, Math.min(Number(hash), materials.length - 1));
         setCurrentIndex(index);
-        setHasGuessed(false);
         setGuess(-2.0);
-        setError(null);
-        setShowAnswer(false);
       }
     };
 
@@ -100,27 +95,24 @@ export default function MP20Guesser({ materials }: Props) {
     };
     
     setGuessHistory(prev => [...prev, newGuess]);
-    setError(calculatedError);
-    setHasGuessed(true);
-    setShowAnswer(true);
+    setLastGuessError({ formula: currentMaterial.pretty_formula, error: calculatedError });
+    
+    // Auto-advance to next material
+    setTimeout(() => {
+      nextMaterial();
+    }, 100); // Small delay to show the error briefly
   };
 
   const nextMaterial = () => {
     const nextIndex = (currentIndex + 1) % materials.length;
     setCurrentIndex(nextIndex);
-    setHasGuessed(false);
     setGuess(-2.0);
-    setError(null);
-    setShowAnswer(false);
   };
 
   const previousMaterial = () => {
     const prevIndex = currentIndex === 0 ? materials.length - 1 : currentIndex - 1;
     setCurrentIndex(prevIndex);
-    setHasGuessed(false);
     setGuess(-2.0);
-    setError(null);
-    setShowAnswer(false);
   };
 
   const getErrorColor = (error: number) => {
@@ -128,15 +120,6 @@ export default function MP20Guesser({ materials }: Props) {
     if (error < 0.5) return 'text-yellow-600';
     if (error < 1.0) return 'text-orange-600';
     return 'text-red-600';
-  };
-
-  const getErrorMessage = (error: number) => {
-    if (error < 0.05) return 'Excellent! Very close!';
-    if (error < 0.1) return 'Great guess!';
-    if (error < 0.5) return 'Pretty good!';
-    if (error < 1.0) return 'Not bad!';
-    if (error < 2.0) return 'Keep trying!';
-    return 'Way off, but that\'s how we learn!';
   };
 
   // Check if current material has structural data
@@ -167,6 +150,16 @@ export default function MP20Guesser({ materials }: Props) {
             <p className="text-gray-500 text-xs sm:text-sm mt-1">
               Material {currentIndex + 1} of {materials.length.toLocaleString()}
             </p>
+            {lastGuessError && (
+              <div className="mt-3 inline-block bg-gray-100 rounded-lg px-4 py-2">
+                <span className="text-sm text-gray-600">
+                  Previous: <span className="font-mono">{lastGuessError.formula}</span> - Error: 
+                  <span className={`ml-1 font-semibold ${getErrorColor(lastGuessError.error)}`}>
+                    {lastGuessError.error.toFixed(4)} eV/atom
+                  </span>
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Main Content Grid */}
@@ -244,92 +237,60 @@ export default function MP20Guesser({ materials }: Props) {
               </div>
 
               {/* Guessing Interface */}
-              {!hasGuessed ? (
-                <div className="space-y-4">
-                  <div>
-                    <label htmlFor="guess" className="block text-sm font-medium text-gray-700 mb-2">
-                      Your guess for formation energy per atom (eV/atom):
-                    </label>
-                    <div className="flex flex-col gap-4">
-                      <div className="space-y-4">
-                        <div className="text-center">
-                          <span className="font-medium text-lg text-gray-800">{guess.toFixed(3)} eV/atom</span>
-                        </div>
-                        <div className="px-4">
-                          <Slider
-                            value={guess}
-                            onChange={setGuess}
-                            min={-5.0}
-                            max={0.1}
-                            step={0.001}
-                            size="lg"
-                            color="blue"
-                            label={(value) => `${value.toFixed(3)} eV/atom`}
-                            marks={[
-                              { value: -5.0, label: '-5.0' },
-                              { value: -4.0, label: '-4.0' },
-                              { value: -3.0, label: '-3.0' },
-                              { value: -2.0, label: '-2.0' },
-                              { value: -1.0, label: '-1.0' },
-                              { value: 0.0, label: '0.0' },
-                            ]}
-                            thumbSize={20}
-                            classNames={{
-                              root: 'py-4',
-                              thumb: 'border-2 border-white shadow-md',
-                              track: 'h-2',
-                              bar: 'h-2',
-                            }}
-                          />
-                        </div>
-                        <div className="flex justify-between text-xs text-gray-500 px-4">
-                          <span>More stable</span>
-                          <span>Less stable</span>
-                        </div>
+              <div className="space-y-4">
+                <div>
+                  <label htmlFor="guess" className="block text-sm font-medium text-gray-700 mb-2">
+                    Your guess for formation energy per atom (eV/atom):
+                  </label>
+                  <div className="flex flex-col gap-4">
+                    <div className="space-y-4">
+                      <div className="text-center">
+                        <span className="font-medium text-lg text-gray-800">{guess.toFixed(3)} eV/atom</span>
                       </div>
-                      <button
-                        onClick={handleGuess}
-                        className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
-                      >
-                        Make Guess
-                      </button>
-                    </div>
-                  </div>
-                  <p className="text-xs text-gray-500">
-                    Hint: More negative values indicate more stable compounds. Most materials have formation energies between -5 and 0 eV/atom.
-                  </p>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  {/* Results */}
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h3 className="font-semibold text-gray-800 mb-3">Results</h3>
-                    <div className="space-y-2 text-sm">
-                      <div>
-                        <span className="font-medium">Your guess:</span>
-                        <span className="ml-2">{guess.toFixed(4)} eV/atom</span>
+                      <div className="px-4">
+                        <Slider
+                          value={guess}
+                          onChange={setGuess}
+                          min={-5.0}
+                          max={0.1}
+                          step={0.001}
+                          size="lg"
+                          color="blue"
+                          label={(value) => `${value.toFixed(3)} eV/atom`}
+                          marks={[
+                            { value: -5.0, label: '-5.0' },
+                            { value: -4.0, label: '-4.0' },
+                            { value: -3.0, label: '-3.0' },
+                            { value: -2.0, label: '-2.0' },
+                            { value: -1.0, label: '-1.0' },
+                            { value: 0.0, label: '0.0' },
+                          ]}
+                          thumbSize={20}
+                          classNames={{
+                            root: 'py-4',
+                            thumb: 'border-2 border-white shadow-md',
+                            track: 'h-2',
+                            bar: 'h-2',
+                          }}
+                        />
                       </div>
-                      {showAnswer && (
-                        <>
-                          <div>
-                            <span className="font-medium">Actual value:</span>
-                            <span className="ml-2">{currentMaterial.formation_energy_per_atom.toFixed(4)} eV/atom</span>
-                          </div>
-                          <div>
-                            <span className="font-medium">Your error:</span>
-                            <span className={`ml-2 font-semibold ${getErrorColor(error!)}`}>
-                              {error!.toFixed(4)} eV/atom
-                            </span>
-                          </div>
-                          <div className={`font-medium ${getErrorColor(error!)}`}>
-                            {getErrorMessage(error!)}
-                          </div>
-                        </>
-                      )}
+                      <div className="flex justify-between text-xs text-gray-500 px-4">
+                        <span>More stable</span>
+                        <span>Less stable</span>
+                      </div>
                     </div>
+                    <button
+                      onClick={handleGuess}
+                      className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+                    >
+                      Submit Guess
+                    </button>
                   </div>
                 </div>
-              )}
+                <p className="text-xs text-gray-500">
+                  Hint: More negative values indicate more stable compounds. Most materials have formation energies between -5 and 0 eV/atom.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -372,15 +333,6 @@ export default function MP20Guesser({ materials }: Props) {
             >
               ← Previous Material
             </button>
-            
-            {hasGuessed && (
-              <button
-                onClick={nextMaterial}
-                className="w-full sm:w-auto px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
-              >
-                Next Material →
-              </button>
-            )}
             
             <button
               onClick={nextMaterial}
