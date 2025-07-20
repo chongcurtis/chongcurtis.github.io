@@ -162,48 +162,30 @@ export default function MP20Guesser({ materials }: Props) {
             )}
           </div>
 
-                    {/* Main Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-            {/* Crystal Structure Viewer */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">Crystal Structure</h3>
-              <div className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
-                {hasStructuralData ? (
-                  <div className="w-full h-full">
-                    <CrystalViewer 
-                      atomicNumbers={currentMaterial.atomic_numbers}
-                      coords={currentMaterial.atomic_positions}
-                      latticeParameters={currentMaterial.lattice_parameters}
-                    />
+                    {/* Crystal Structure Viewer - Full Width */}
+          <div className="bg-white rounded-lg shadow-md p-6 mb-6 w-full">
+            <h3 className="text-lg font-semibold text-gray-800 mb-1">{currentMaterial.pretty_formula}</h3>
+            <p className="text-gray-600 text-sm mb-4">Material ID: {currentMaterial.material_id}</p>
+            <div className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
+              {hasStructuralData ? (
+                <div className="w-full h-full">
+                  <CrystalViewer 
+                    atomicNumbers={currentMaterial.atomic_numbers}
+                    coords={currentMaterial.atomic_positions}
+                    latticeParameters={currentMaterial.lattice_parameters}
+                  />
+                </div>
+              ) : (
+                <div className="text-center p-8">
+                  <div className="text-6xl mb-4">🔬</div>
+                  <h4 className="text-lg font-medium text-gray-700 mb-2">
+                    Structure Not Available
+                  </h4>
+                  <div className="mt-4 text-xs text-gray-400">
+                    Formula: <span className="font-mono">{currentMaterial.pretty_formula}</span>
                   </div>
-                ) : (
-                  <div className="text-center p-8">
-                    <div className="text-6xl mb-4">🔬</div>
-                    <h4 className="text-lg font-medium text-gray-700 mb-2">
-                      Structure Not Available
-                    </h4>
-                    <p className="text-sm text-gray-500 max-w-sm mx-auto">
-                      The MP20 dataset doesn't include atomic positions for visualization. 
-                      Only formation energies and basic material properties are provided.
-                    </p>
-                    <div className="mt-4 text-xs text-gray-400">
-                      Formula: <span className="font-mono">{currentMaterial.pretty_formula}</span>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Material Properties */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="mb-6">
-                <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">
-                  {currentMaterial.pretty_formula}
-                </h2>
-                <p className="text-gray-600 text-sm mb-4">
-                  Material ID: {currentMaterial.material_id}
-                </p>
-              </div>
+                </div>
+              )}
             </div>
           </div>
 
