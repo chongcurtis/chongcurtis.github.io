@@ -8,6 +8,8 @@ interface CustomSliderProps {
   step: number;
   actualValue?: number;
   showActual?: boolean;
+  errorValue?: number;
+  disabled?: boolean;
   marks?: { value: number; label: string }[];
 }
 
@@ -19,6 +21,8 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
   step,
   actualValue,
   showActual = false,
+  errorValue,
+  disabled = false,
   marks = []
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -127,6 +131,46 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
       ctx.textAlign = 'center';
     }
 
+    // Draw error bar if error value is provided
+    if (showActual && errorValue !== undefined) {
+      const guessX = valueToX(value);
+      const actualX = valueToX(actualValue!);
+      
+      // Draw error bar (horizontal line between guess and actual)
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(Math.min(guessX, actualX), trackY + 15);
+      ctx.lineTo(Math.max(guessX, actualX), trackY + 15);
+      ctx.stroke();
+
+      // Draw error text
+      ctx.fillStyle = '#f59e0b';
+      ctx.font = 'bold 11px system-ui, -apple-system, sans-serif';
+      const errorText = `Error: ${errorValue.toFixed(3)} eV/atom`;
+      
+      // Position error text in the middle of the error bar
+      const errorBarCenterX = (guessX + actualX) / 2;
+      const errorTextWidth = ctx.measureText(errorText).width;
+      let errorTextX = Math.round(errorBarCenterX);
+      
+      // Adjust text alignment to prevent cutoff
+      if (errorBarCenterX + errorTextWidth / 2 > canvasWidth - padding) {
+        ctx.textAlign = 'right';
+        errorTextX = Math.min(errorBarCenterX, canvasWidth - padding);
+      } else if (errorBarCenterX - errorTextWidth / 2 < padding) {
+        ctx.textAlign = 'left';
+        errorTextX = Math.max(errorBarCenterX, padding);
+      } else {
+        ctx.textAlign = 'center';
+      }
+      
+      ctx.fillText(errorText, errorTextX, trackY + 35);
+      
+      // Reset text alignment
+      ctx.textAlign = 'center';
+    }
+
     // Draw thumb
     ctx.fillStyle = '#ffffff';
     ctx.strokeStyle = '#3b82f6';
@@ -147,10 +191,12 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
     ctx.shadowBlur = 0;
     ctx.shadowOffsetY = 0;
 
-  }, [value, min, max, canvasWidth, canvasHeight, marks, showActual, actualValue, valueToX, trackHeight, thumbRadius, padding]);
+  }, [value, min, max, canvasWidth, canvasHeight, marks, showActual, actualValue, errorValue, valueToX, trackHeight, thumbRadius, padding]);
 
   // Handle mouse events
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (disabled) return;
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -165,7 +211,7 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (!isDragging) return;
+    if (disabled || !isDragging) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -205,13 +251,28 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
     draw();
   }, [draw]);
 
-  // Set canvas size
+  // Set canvas size with high-DPI support
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Get device pixel ratio for crisp rendering on high-DPI displays
+    const devicePixelRatio = window.devicePixelRatio || 1;
+    
+    // Set actual canvas size in memory (scaled up)
+    canvas.width = canvasWidth * devicePixelRatio;
+    canvas.height = canvasHeight * devicePixelRatio;
+    
+    // Scale the canvas back down using CSS
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasHeight + 'px';
+    
+    // Scale the drawing context so everything draws at the higher resolution
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+    
     draw();
   }, [canvasWidth, canvasHeight, draw]);
 
@@ -221,7 +282,7 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
         ref={canvasRef}
         width={canvasWidth}
         height={canvasHeight}
-        className="w-full cursor-pointer"
+        className={`w-full ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}

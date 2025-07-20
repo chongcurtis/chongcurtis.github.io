@@ -286,6 +286,8 @@ export default function MP20Guesser({ materials }: Props) {
                         step={0.001}
                         actualValue={currentMaterial.formation_energy_per_atom}
                         showActual={!!currentGuessResult}
+                        errorValue={currentGuessResult?.error}
+                        disabled={!!currentGuessResult}
                         marks={[
                           { value: -5.0, label: '-5.0' },
                           { value: -4.0, label: '-4.0' },
@@ -330,11 +332,6 @@ export default function MP20Guesser({ materials }: Props) {
                     {currentGuessResult && (
                       <div className="mt-4">
                         <div className="text-sm text-gray-600 space-y-1 text-center">
-                          <div>Your guess: <span className="font-mono">{currentGuessResult.guessValue.toFixed(4)} eV/atom</span></div>
-                          <div>Actual: <span className="font-mono">{currentGuessResult.actualValue.toFixed(4)} eV/atom</span></div>
-                          <div>Error: <span className={`ml-1 font-semibold ${getErrorColor(currentGuessResult.error)}`}>
-                            {currentGuessResult.error.toFixed(4)} eV/atom
-                          </span></div>
                           {isNewBestGuess && (
                             <div className="mt-2 px-3 py-2 bg-green-100 border border-green-300 rounded-md">
                               <span className="text-green-800 font-semibold text-sm">
