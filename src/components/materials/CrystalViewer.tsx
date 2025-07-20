@@ -228,6 +228,11 @@ export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters, initia
         }
     }, []);
 
+    const handleControlsChange = useCallback(() => {
+        // Hide tooltip when user rotates/pans/zooms the viewer
+        setHoverInfo(null);
+    }, []);
+
     const render = useCallback(() => {
         if (cameraRef.current && sceneRef.current && rendererRef.current) {
             rendererRef.current.render(sceneRef.current, cameraRef.current);
@@ -324,6 +329,9 @@ export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters, initia
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.minDistance = Math.max(1, furthestDistFromOrigin * 0.5);
         controls.maxDistance = furthestDistFromOrigin * 3;
+        
+        // Add event listener to hide tooltip when controls change (rotation, pan, zoom)
+        controls.addEventListener('change', handleControlsChange);
 
         // Store references
         sceneRef.current = scene;
@@ -351,12 +359,13 @@ export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters, initia
                 cancelAnimationFrame(animationFrameIdRef.current);
             }
             clearObjects();
+            controls.removeEventListener('change', handleControlsChange);
             mount.removeEventListener('mousemove', handleMouseMove);
             mount.removeEventListener('mouseleave', () => setHoverInfo(null));
             mount.removeChild(renderer.domElement);
             renderer.dispose();
         };
-    }, [atomicNumbers, coords, latticeParameters, drawCrystal, render, clearObjects, handleMouseMove]);
+    }, [atomicNumbers, coords, latticeParameters, drawCrystal, render, clearObjects, handleMouseMove, handleControlsChange]);
 
     // Handle window resize
     useEffect(() => {
