@@ -229,7 +229,27 @@ export default function MP20Guesser({ materials }: Props) {
               {/* Overlay Information */}
               <div className="absolute top-1 left-1 z-1 bg-black/50 backdrop-blur-sm text-white rounded-lg px-3 py-2">
                 <h3 className="text-lg font-semibold mb-1">{currentMaterial.pretty_formula}</h3>
-                <p className="text-gray-200 text-sm mb-1">{currentMaterial.material_id}</p>
+                <a 
+                  href={`https://next-gen.materialsproject.org/materials/${currentMaterial.material_id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 text-sm mb-1 underline hover:text-blue-300 transition-colors block flex items-center gap-1"
+                >
+                  {currentMaterial.material_id}
+                  <svg 
+                    className="w-3 h-3 inline-block" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" 
+                    />
+                  </svg>
+                </a>
                 <p className="text-gray-300 text-xs">
                   {currentIndex + 1} of {materials.length.toLocaleString()}
                 </p>
