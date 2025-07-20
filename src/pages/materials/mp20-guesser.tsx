@@ -48,7 +48,7 @@ export default function MP20Guesser({ materials }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [guess, setGuess] = useState(-2.0); // Default slider value
   const [guessHistory, setGuessHistory] = useState<GuessHistory[]>([]);
-  const [lastGuessError, setLastGuessError] = useState<{ formula: string; error: number; guessValue: number; actualValue: number } | null>(null);
+  const [currentGuessResult, setCurrentGuessResult] = useState<{ guessValue: number; actualValue: number; error: number } | null>(null);
   const [isInitialized, setIsInitialized] = useState(false);
   
   // Get current material
@@ -157,15 +157,13 @@ export default function MP20Guesser({ materials }: Props) {
     };
     
     setGuessHistory(prev => [...prev, newGuess]);
-    setLastGuessError({ formula: currentMaterial.pretty_formula, error: calculatedError, guessValue, actualValue });
-    
-    nextMaterial();
+    setCurrentGuessResult({ guessValue, actualValue, error: calculatedError });
   };
 
   const clearHistory = () => {
     if (window.confirm('Are you sure you want to clear all your guess history? This action cannot be undone.')) {
       setGuessHistory([]);
-      setLastGuessError(null);
+      setCurrentGuessResult(null);
       if (typeof window !== 'undefined') {
         localStorage.removeItem(STORAGE_KEY);
       }
@@ -176,12 +174,14 @@ export default function MP20Guesser({ materials }: Props) {
     const nextIndex = (currentIndex + 1) % materials.length;
     setCurrentIndex(nextIndex);
     setGuess(-2.0);
+    setCurrentGuessResult(null);
   };
 
   const previousMaterial = () => {
     const prevIndex = currentIndex === 0 ? materials.length - 1 : currentIndex - 1;
     setCurrentIndex(prevIndex);
     setGuess(-2.0);
+    setCurrentGuessResult(null);
   };
 
   const getErrorColor = (error: number) => {
@@ -304,62 +304,39 @@ export default function MP20Guesser({ materials }: Props) {
                       <button
                         onClick={previousMaterial}
                         disabled={currentIndex === 0}
-                        className="px-6 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
+                        className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
                       >
                         <span className="sm:hidden">←</span>
                         <span className="hidden sm:inline">← Previous Material</span>
                       </button>
-                      <button
-                        onClick={handleGuess}
-                        className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
-                      >
-                        {/* <span className="sm:hidden">Submit</span> */}
-                        <span className="sm:inline">Submit Guess</span>
-                      </button>
-                      <button
-                        onClick={nextMaterial}
-                        disabled={currentIndex === materials.length - 1}
-                        className="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
-                      >
-                        <span className="sm:hidden">→</span>
-                        <span className="hidden sm:inline">Next Material →</span>
-                      </button>
+                                              <button
+                          onClick={handleGuess}
+                          disabled={!!currentGuessResult}
+                          className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
+                        >
+                            <span className="sm:inline">
+                             {currentGuessResult ? (
+                               <>Submitted: <span className="text-sm">{currentGuessResult.guessValue.toFixed(3)}</span></>
+                             ) : 'Submit Guess'}
+                            </span>
+                        </button>
+                        <button
+                          onClick={nextMaterial}
+                          disabled={currentIndex === materials.length - 1}
+                          className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
+                        >
+                          <span className="sm:hidden">→</span>
+                          <span className="hidden sm:inline">Next Material →</span>
+                        </button>
                     </div>
-                    {lastGuessError && (
+                    {currentGuessResult && (
                       <div className="mt-4">
-                        <div className="text-md text-center mb-3">Your previous guess:</div>
-                        <div className="flex flex-col lg:flex-row gap-6 items-start">
-                          {/* Miniature Crystal Viewer */}
-                          <div className="w-full max-w-64 lg:w-64 flex-shrink-0 mx-auto lg:mx-0">
-                            <div className="bg-gray-50 rounded-lg p-2">
-                              <div className="relative">
-                                <div className="w-full h-32 min-w-[200px]">
-                                  <CrystalViewer 
-                                    atomicNumbers={materials.find(m => m.pretty_formula === lastGuessError.formula)?.atomic_numbers || []}
-                                    coords={materials.find(m => m.pretty_formula === lastGuessError.formula)?.atomic_positions || []}
-                                    latticeParameters={materials.find(m => m.pretty_formula === lastGuessError.formula)?.lattice_parameters || {
-                                      a: 1, b: 1, c: 1, alpha: 90, beta: 90, gamma: 90
-                                    }}
-                                    initial_zoom_factor={0.7}
-                                  />
-                                </div>
-                                
-                                {/* Overlay Information */}
-                                <div className="absolute top-1 left-1 z-1 bg-black/50 backdrop-blur-sm text-white rounded-lg px-2 py-1">
-                                  <h5 className="text-xs font-semibold">{lastGuessError.formula}</h5>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Previous Guess Stats */}
-                          <div className="flex-1 text-sm text-gray-600 space-y-1 text-left">
-                            <div>Your guess: <span className="font-mono">{lastGuessError.guessValue.toFixed(4)} eV/atom</span></div>
-                            <div>Actual: <span className="font-mono">{lastGuessError.actualValue.toFixed(4)} eV/atom</span></div>
-                            <div>Error: <span className={`ml-1 font-semibold ${getErrorColor(lastGuessError.error)}`}>
-                              {lastGuessError.error.toFixed(4)} eV/atom
-                            </span></div>
-                          </div>
+                        <div className="text-sm text-gray-600 space-y-1 text-center">
+                          {/* <div>Your guess: <span className="font-mono">{currentGuessResult.guessValue.toFixed(4)} eV/atom</span></div> */}
+                          <div>Actual: <span className="font-mono">{currentGuessResult.actualValue.toFixed(4)} eV/atom</span></div>
+                          <div>Error: <span className={`ml-1 font-semibold ${getErrorColor(currentGuessResult.error)}`}>
+                            {currentGuessResult.error.toFixed(4)} eV/atom
+                          </span></div>
                         </div>
                       </div>
                     )}
