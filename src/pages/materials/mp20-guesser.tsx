@@ -257,7 +257,6 @@ export default function MP20Guesser({ materials }: Props) {
                         step={0.001}
                         size="lg"
                         color="blue"
-                        // label={(value) => `${value.toFixed(3)} eV/atom`}
                         marks={[
                           { value: -5.0, label: '-5.0' },
                           { value: -4.0, label: '-4.0' },
