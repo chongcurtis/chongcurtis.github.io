@@ -159,10 +159,7 @@ export default function MP20Guesser({ materials }: Props) {
     setGuessHistory(prev => [...prev, newGuess]);
     setLastGuessError({ formula: currentMaterial.pretty_formula, error: calculatedError, guessValue, actualValue });
     
-    // Auto-advance to next material
-    setTimeout(() => {
-      nextMaterial();
-    }, 100); // Small delay to show the error briefly
+    nextMaterial();
   };
 
   const clearHistory = () => {
