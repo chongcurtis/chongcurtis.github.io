@@ -27,7 +27,7 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [canvasWidth, setCanvasWidth] = useState(600);
+  const [canvasWidth, setCanvasWidth] = useState(300);
   
   const padding = 40;
   const trackHeight = 8;
@@ -289,14 +289,22 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const resizeObserver = new ResizeObserver(entries => {
-      for (const entry of entries) {
-        const { width } = entry.contentRect;
-        setCanvasWidth(Math.max(300, width));
-      }
+    const parent = canvas.parentElement;
+    if (!parent) return;
+
+    const updateCanvasWidth = () => {
+      const parentWidth = parent.clientWidth;
+      setCanvasWidth(Math.max(280, Math.min(parentWidth, 800)));
+    };
+
+    // Set initial width
+    updateCanvasWidth();
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateCanvasWidth();
     });
 
-    resizeObserver.observe(canvas.parentElement!);
+    resizeObserver.observe(parent);
     
     return () => {
       resizeObserver.disconnect();
@@ -334,12 +342,12 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
   }, [canvasWidth, canvasHeight, draw]);
 
   return (
-    <div className="w-full">
+    <div className="w-full max-w-full overflow-hidden">
       <canvas
         ref={canvasRef}
         width={canvasWidth}
         height={canvasHeight}
-        className={`w-full ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+        className={`w-full max-w-full ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
