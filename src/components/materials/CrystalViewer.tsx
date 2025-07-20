@@ -299,8 +299,18 @@ export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters }: Crys
         
         // Also consider lattice extent for camera positioning
         if (latticeVectors) {
-            for (const vec of latticeVectors) {
-                furthestDistFromOrigin = Math.max(furthestDistFromOrigin, norm(vec));
+            // Position the lattice relative to centered atoms (same logic as in drawCrystal)
+            const latticeOrigin = [-middleOfAtoms[0], -middleOfAtoms[1], -middleOfAtoms[2]];
+            const cornerCoords = getParallelepipedCornerCoords(latticeVectors);
+            const shiftedCornerCoords = cornerCoords.map(corner => [
+                corner[0] + latticeOrigin[0],
+                corner[1] + latticeOrigin[1],
+                corner[2] + latticeOrigin[2]
+            ]);
+            
+            // Find furthest lattice corner from origin
+            for (const corner of shiftedCornerCoords) {
+                furthestDistFromOrigin = Math.max(furthestDistFromOrigin, norm(corner));
             }
         }
 
@@ -312,7 +322,7 @@ export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters }: Crys
         // Set up orbit controls
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.minDistance = Math.max(1, furthestDistFromOrigin * 0.5);
-        controls.maxDistance = furthestDistFromOrigin * 8;
+        controls.maxDistance = furthestDistFromOrigin * 3;
 
         // Store references
         sceneRef.current = scene;
