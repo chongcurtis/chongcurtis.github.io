@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { CrystalViewer } from '@/components/materials/CrystalViewer';
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider, Slider } from '@mantine/core';
 import { ScatterChart } from '@mantine/charts';
 
 interface Material {
@@ -40,7 +40,7 @@ interface Props {
 export default function MP20Guesser({ materials }: Props) {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [guess, setGuess] = useState('');
+  const [guess, setGuess] = useState(-2.0); // Default slider value
   const [hasGuessed, setHasGuessed] = useState(false);
   const [error, setError] = useState<number | null>(null);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -57,7 +57,7 @@ export default function MP20Guesser({ materials }: Props) {
         const index = Math.max(0, Math.min(Number(hash), materials.length - 1));
         setCurrentIndex(index);
         setHasGuessed(false);
-        setGuess('');
+        setGuess(-2.0);
         setError(null);
         setShowAnswer(false);
       }
@@ -76,7 +76,7 @@ export default function MP20Guesser({ materials }: Props) {
   }, [currentIndex]);
 
   const handleGuess = () => {
-    const guessValue = parseFloat(guess);
+    const guessValue = guess;
     if (isNaN(guessValue)) {
       alert('Please enter a valid number');
       return;
@@ -106,7 +106,7 @@ export default function MP20Guesser({ materials }: Props) {
     const nextIndex = (currentIndex + 1) % materials.length;
     setCurrentIndex(nextIndex);
     setHasGuessed(false);
-    setGuess('');
+    setGuess(-2.0);
     setError(null);
     setShowAnswer(false);
   };
@@ -115,7 +115,7 @@ export default function MP20Guesser({ materials }: Props) {
     const prevIndex = currentIndex === 0 ? materials.length - 1 : currentIndex - 1;
     setCurrentIndex(prevIndex);
     setHasGuessed(false);
-    setGuess('');
+    setGuess(-2.0);
     setError(null);
     setShowAnswer(false);
   };
@@ -247,32 +247,53 @@ export default function MP20Guesser({ materials }: Props) {
                     <label htmlFor="guess" className="block text-sm font-medium text-gray-700 mb-2">
                       Your guess for formation energy per atom (eV/atom):
                     </label>
-                    <div className="flex flex-col gap-3">
-                      <input
-                        type="number"
-                        id="guess"
-                        value={guess}
-                        onChange={(e) => setGuess(e.target.value)}
-                        placeholder="e.g., -2.5"
-                        step="0.01"
-                        className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        onKeyPress={(e) => {
-                          if (e.key === 'Enter') {
-                            handleGuess();
-                          }
-                        }}
-                      />
+                    <div className="flex flex-col gap-4">
+                      <div className="space-y-4">
+                        <div className="text-center">
+                          <span className="font-medium text-lg text-gray-800">{guess.toFixed(3)} eV/atom</span>
+                        </div>
+                        <div className="px-4">
+                          <Slider
+                            value={guess}
+                            onChange={setGuess}
+                            min={-5.0}
+                            max={0.1}
+                            step={0.001}
+                            size="lg"
+                            color="blue"
+                            label={(value) => `${value.toFixed(3)} eV/atom`}
+                            marks={[
+                              { value: -5.0, label: '-5.0' },
+                              { value: -4.0, label: '-4.0' },
+                              { value: -3.0, label: '-3.0' },
+                              { value: -2.0, label: '-2.0' },
+                              { value: -1.0, label: '-1.0' },
+                              { value: 0.0, label: '0.0' },
+                            ]}
+                            thumbSize={20}
+                            classNames={{
+                              root: 'py-4',
+                              thumb: 'border-2 border-white shadow-md',
+                              track: 'h-2',
+                              bar: 'h-2',
+                            }}
+                          />
+                        </div>
+                        <div className="flex justify-between text-xs text-gray-500 px-4">
+                          <span>More stable</span>
+                          <span>Less stable</span>
+                        </div>
+                      </div>
                       <button
                         onClick={handleGuess}
-                        disabled={!guess.trim()}
-                        className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                        className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
                       >
                         Make Guess
                       </button>
                     </div>
                   </div>
                   <p className="text-xs text-gray-500">
-                    Hint: Formation energies are usually negative for stable compounds
+                    Hint: More negative values indicate more stable compounds. Most materials have formation energies between -5 and 0 eV/atom.
                   </p>
                 </div>
               ) : (
@@ -283,7 +304,7 @@ export default function MP20Guesser({ materials }: Props) {
                     <div className="space-y-2 text-sm">
                       <div>
                         <span className="font-medium">Your guess:</span>
-                        <span className="ml-2">{parseFloat(guess).toFixed(4)} eV/atom</span>
+                        <span className="ml-2">{guess.toFixed(4)} eV/atom</span>
                       </div>
                       {showAnswer && (
                         <>
@@ -371,8 +392,8 @@ export default function MP20Guesser({ materials }: Props) {
             <h3 className="font-semibold text-blue-800 mb-2">How to play:</h3>
             <ul className="text-sm text-blue-700 space-y-1">
               <li>• Look at the material formula and properties</li>
-              <li>• Guess the formation energy per atom in eV/atom</li>
-              <li>• More negative values indicate more stable compounds</li>
+              <li>• Use the slider to guess the formation energy per atom in eV/atom</li>
+              <li>• More negative values (left side) indicate more stable compounds</li>
               <li>• Track your progress with the error distribution chart</li>
               <li>• Use the URL hash (#) to share specific materials</li>
               <li>• Navigate with buttons or change the URL directly</li>
