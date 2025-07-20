@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { CrystalViewer } from '@/components/materials/CrystalViewer';
 import { MantineProvider, Slider } from '@mantine/core';
-import { ScatterChart } from '@mantine/charts';
+import { ScatterChart, BarChart } from '@mantine/charts';
 import '@mantine/core/styles.css';
 import '@mantine/charts/styles.css';
 
@@ -251,29 +251,71 @@ export default function MP20Guesser({ materials }: Props) {
             </div>
           </div>
 
-          {/* Error Distribution Chart */}
+          {/* Error Distribution Charts */}
           {guessHistory.length > 0 && (
             <div className="bg-white rounded-lg shadow-md p-6 mb-6">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">Your Error Distribution</h3>
-              <div className="h-64">
-                              <ScatterChart
-                  h={250}
-                  data={[
-                    {
-                      color: 'blue.6',
-                      name: 'Your Guesses',
-                      data: guessHistory.map((guess, index) => ({
-                        x: index + 1,
-                        y: guess.error
-                      }))
-                    }
-                  ]}
-                  dataKey={{ x: 'x', y: 'y' }}
-                  xAxisLabel="Attempt #"
-                  yAxisLabel="Error (eV/atom)"
-                  withTooltip
-                />
+              
+              {/* Scatter Chart - Error over Time */}
+              <div className="mb-8">
+                <h4 className="text-md font-medium text-gray-700 mb-3">Error Over Time</h4>
+                <div className="h-64">
+                  <ScatterChart
+                    h={250}
+                    data={[
+                      {
+                        color: 'blue.6',
+                        name: 'Your Guesses',
+                        data: guessHistory.map((guess, index) => ({
+                          x: index + 1,
+                          y: guess.error
+                        }))
+                      }
+                    ]}
+                    dataKey={{ x: 'x', y: 'y' }}
+                    xAxisLabel="Attempt #"
+                    yAxisLabel="Error (eV/atom)"
+                    withTooltip
+                  />
+                </div>
               </div>
+
+              {/* Histogram - Error Distribution */}
+              <div className="mb-4">
+                <h4 className="text-md font-medium text-gray-700 mb-3">Error Histogram</h4>
+                <div className="h-64">
+                  <BarChart
+                    h={250}
+                    data={(() => {
+                      // Create histogram bins
+                      const binSize = 0.1;
+                      const maxError = Math.max(...guessHistory.map(g => g.error));
+                      const numBins = Math.ceil(maxError / binSize) + 1;
+                      const bins = Array.from({ length: numBins }, (_, i) => ({
+                        range: `${(i * binSize).toFixed(1)}-${((i + 1) * binSize).toFixed(1)}`,
+                        count: 0,
+                        binStart: i * binSize
+                      }));
+
+                      // Fill bins with data
+                      guessHistory.forEach(guess => {
+                        const binIndex = Math.floor(guess.error / binSize);
+                        if (binIndex < bins.length) {
+                          bins[binIndex].count++;
+                        }
+                      });
+
+                      return bins.filter(bin => bin.count > 0);
+                    })()}
+                    dataKey="range"
+                    series={[{ name: 'count', color: 'blue.6' }]}
+                    xAxisLabel="Error Range (eV/atom)"
+                    yAxisLabel="Number of Guesses"
+                    withTooltip
+                  />
+                </div>
+              </div>
+
               <div className="mt-4 text-sm text-gray-600">
                 <p>Total guesses: {guessHistory.length}</p>
                 <p>Average error: {(guessHistory.reduce((sum, guess) => sum + guess.error, 0) / guessHistory.length).toFixed(4)} eV/atom</p>
