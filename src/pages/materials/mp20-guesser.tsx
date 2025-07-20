@@ -134,7 +134,7 @@ export default function MP20Guesser({ materials }: Props) {
 
   return (
     <MantineProvider>
-      <div className="min-h-screen bg-gray-50 py-4 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen py-4 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
@@ -188,7 +188,7 @@ export default function MP20Guesser({ materials }: Props) {
                         step={0.001}
                         size="lg"
                         color="blue"
-                        label={(value) => `${value.toFixed(3)} eV/atom`}
+                        // label={(value) => `${value.toFixed(3)} eV/atom`}
                         marks={[
                           { value: -5.0, label: '-5.0' },
                           { value: -4.0, label: '-4.0' },

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect, useCallback, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import {
@@ -9,8 +9,23 @@ import {
     fracCoordToCartesianCoord,
     getParallelepipedCornerCoords,
     getParallelepipedLatticeEdges,
-    drawEdge,
 } from "@/components/materials/crystalViewerHelpers";
+
+// Mapping from atomic number to element name
+const atomicNumberToElementName: { [key: number]: string } = {
+    1: "H", 2: "He", 3: "Li", 4: "Be", 5: "B", 6: "C", 7: "N", 8: "O", 9: "F", 10: "Ne",
+    11: "Na", 12: "Mg", 13: "Al", 14: "Si", 15: "P", 16: "S", 17: "Cl", 18: "Ar", 19: "K", 20: "Ca",
+    21: "Sc", 22: "Ti", 23: "V", 24: "Cr", 25: "Mn", 26: "Fe", 27: "Co", 28: "Ni", 29: "Cu", 30: "Zn",
+    31: "Ga", 32: "Ge", 33: "As", 34: "Se", 35: "Br", 36: "Kr", 37: "Rb", 38: "Sr", 39: "Y", 40: "Zr",
+    41: "Nb", 42: "Mo", 43: "Tc", 44: "Ru", 45: "Rh", 46: "Pd", 47: "Ag", 48: "Cd", 49: "In", 50: "Sn",
+    51: "Sb", 52: "Te", 53: "I", 54: "Xe", 55: "Cs", 56: "Ba", 57: "La", 58: "Ce", 59: "Pr", 60: "Nd",
+    61: "Pm", 62: "Sm", 63: "Eu", 64: "Gd", 65: "Tb", 66: "Dy", 67: "Ho", 68: "Er", 69: "Tm", 70: "Yb",
+    71: "Lu", 72: "Hf", 73: "Ta", 74: "W", 75: "Re", 76: "Os", 77: "Ir", 78: "Pt", 79: "Au", 80: "Hg",
+    81: "Tl", 82: "Pb", 83: "Bi", 84: "Po", 85: "At", 86: "Rn", 87: "Fr", 88: "Ra", 89: "Ac", 90: "Th",
+    91: "Pa", 92: "U", 93: "Np", 94: "Pu", 95: "Am", 96: "Cm", 97: "Bk", 98: "Cf", 99: "Es", 100: "Fm",
+    101: "Md", 102: "No", 103: "Lr", 104: "Rf", 105: "Db", 106: "Sg", 107: "Bh", 108: "Hs", 109: "Mt", 110: "Ds",
+    111: "Rg", 112: "Cn", 113: "Nh", 114: "Fl", 115: "Mc", 116: "Lv", 117: "Ts", 118: "Og"
+};
 
 export interface CrystalViewerProps {
     atomicNumbers: number[];
@@ -28,6 +43,12 @@ export interface CrystalViewerProps {
 interface ProcessedCrystal {
     atomicNumbers: number[];
     cartesianCoords: number[][];
+}
+
+interface HoverInfo {
+    elementName: string;
+    mouseX: number;
+    mouseY: number;
 }
 
 // Convert lattice parameters to lattice vectors
@@ -76,6 +97,11 @@ export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters }: Crys
     const currentSpheresRef = useRef<THREE.Mesh[]>([]);
     const currentLinesRef = useRef<THREE.Line[]>([]);
     const animationFrameIdRef = useRef<number>();
+    const raycasterRef = useRef<THREE.Raycaster>(new THREE.Raycaster());
+    const mouseRef = useRef<THREE.Vector2>(new THREE.Vector2());
+    const atomicNumbersRef = useRef<number[]>([]);
+    
+    const [hoverInfo, setHoverInfo] = useState<HoverInfo | null>(null);
 
     const clearObjects = useCallback(() => {
         // Remove spheres
@@ -113,6 +139,9 @@ export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters }: Crys
 
     const drawCrystal = useCallback((processedCrystal: ProcessedCrystal, latticeVectors?: number[][], atomCentroid?: number[]) => {
         clearObjects();
+
+        // Store atomic numbers for hover functionality
+        atomicNumbersRef.current = [...processedCrystal.atomicNumbers];
 
         // Draw atoms
         const numAtoms = processedCrystal.atomicNumbers.length;
@@ -162,6 +191,41 @@ export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters }: Crys
             }
         }
     }, [clearObjects]);
+
+    const handleMouseMove = useCallback((event: MouseEvent) => {
+        if (!mountRef.current || !cameraRef.current || !rendererRef.current) return;
+
+        const rect = mountRef.current.getBoundingClientRect();
+        const mouse = mouseRef.current;
+        
+        // Calculate mouse position in normalized device coordinates (-1 to +1)
+        mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+        // Update the raycaster
+        raycasterRef.current.setFromCamera(mouse, cameraRef.current);
+
+        // Check for intersections with spheres
+        const intersects = raycasterRef.current.intersectObjects(currentSpheresRef.current);
+
+        if (intersects.length > 0) {
+            const intersectedSphere = intersects[0].object;
+            const sphereIndex = currentSpheresRef.current.indexOf(intersectedSphere as THREE.Mesh);
+            
+            if (sphereIndex !== -1 && atomicNumbersRef.current[sphereIndex]) {
+                const atomicNumber = atomicNumbersRef.current[sphereIndex];
+                const elementName = atomicNumberToElementName[atomicNumber] || `Element ${atomicNumber}`;
+                
+                setHoverInfo({
+                    elementName,
+                    mouseX: event.clientX,
+                    mouseY: event.clientY
+                });
+            }
+        } else {
+            setHoverInfo(null);
+        }
+    }, []);
 
     const render = useCallback(() => {
         if (cameraRef.current && sceneRef.current && rendererRef.current) {
@@ -241,14 +305,14 @@ export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters }: Crys
         }
 
         // Set up camera position
-        camera.position.x = furthestDistFromOrigin * 1.5;
+        camera.position.x = furthestDistFromOrigin * 1.0;
         camera.position.y = furthestDistFromOrigin * 1.0;
-        camera.position.z = furthestDistFromOrigin * 1.5;
+        camera.position.z = furthestDistFromOrigin * 1.0;
 
         // Set up orbit controls
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.minDistance = Math.max(1, furthestDistFromOrigin * 0.5);
-        controls.maxDistance = furthestDistFromOrigin * 4;
+        controls.maxDistance = furthestDistFromOrigin * 2;
 
         // Store references
         sceneRef.current = scene;
@@ -263,6 +327,10 @@ export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters }: Crys
             drawCrystal(processedCrystal);
         }
 
+        // Add mouse event listener for hover detection
+        mount.addEventListener('mousemove', handleMouseMove);
+        mount.addEventListener('mouseleave', () => setHoverInfo(null));
+
         // Start render loop
         render();
 
@@ -272,10 +340,12 @@ export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters }: Crys
                 cancelAnimationFrame(animationFrameIdRef.current);
             }
             clearObjects();
+            mount.removeEventListener('mousemove', handleMouseMove);
+            mount.removeEventListener('mouseleave', () => setHoverInfo(null));
             mount.removeChild(renderer.domElement);
             renderer.dispose();
         };
-    }, [atomicNumbers, coords, latticeParameters, drawCrystal, render, clearObjects]);
+    }, [atomicNumbers, coords, latticeParameters, drawCrystal, render, clearObjects, handleMouseMove]);
 
     // Handle window resize
     useEffect(() => {
@@ -295,5 +365,28 @@ export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters }: Crys
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    return <div ref={mountRef} style={{ width: "100%", height: "100%" }} />;
+    return (
+        <div ref={mountRef} style={{ width: "100%", height: "100%", position: "relative" }}>
+            {hoverInfo && (
+                <div
+                    style={{
+                        position: "fixed",
+                        left: hoverInfo.mouseX + 10,
+                        top: hoverInfo.mouseY - 10,
+                        backgroundColor: "rgba(0, 0, 0, 0.8)",
+                        color: "white",
+                        padding: "6px 12px",
+                        borderRadius: "4px",
+                        fontSize: "14px",
+                        fontWeight: "bold",
+                        pointerEvents: "none",
+                        zIndex: 1000,
+                        whiteSpace: "nowrap"
+                    }}
+                >
+                    {hoverInfo.elementName}
+                </div>
+            )}
+        </div>
+    );
 }; 
