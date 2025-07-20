@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { CrystalViewer } from '@/components/materials/CrystalViewer';
-import { MantineProvider, Slider } from '@mantine/core';
+import { CustomSlider } from '@/components/materials/CustomSlider';
+import { MantineProvider } from '@mantine/core';
 import { ScatterChart, BarChart } from '@mantine/charts';
 import '@mantine/core/styles.css';
 import '@mantine/charts/styles.css';
@@ -277,29 +278,22 @@ export default function MP20Guesser({ materials }: Props) {
                       </span>
                     </div>
                     <div className="px-4 lg:px-8">
-                      <Slider
+                      <CustomSlider
                         value={guess}
                         onChange={setGuess}
                         min={-5.0}
                         max={0.1}
                         step={0.001}
-                        size="lg"
-                        color="blue"
+                        actualValue={currentMaterial.formation_energy_per_atom}
+                        showActual={!!currentGuessResult}
                         marks={[
                           { value: -5.0, label: '-5.0' },
                           { value: -4.0, label: '-4.0' },
                           { value: -3.0, label: '-3.0' },
                           { value: -2.0, label: '-2.0' },
                           { value: -1.0, label: '-1.0' },
-                          { value: 0.0, label: '0.0' },
+                          { value: 0.0, label: '0.0' }
                         ]}
-                        thumbSize={20}
-                        classNames={{
-                          root: 'py-4',
-                          thumb: 'border-2 border-white shadow-md',
-                          track: 'h-2',
-                          bar: 'h-2',
-                        }}
                       />
                     </div>
                     <div className="flex justify-between text-xs text-gray-500 px-4 lg:px-8">
