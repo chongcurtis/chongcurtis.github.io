@@ -38,6 +38,7 @@ export interface CrystalViewerProps {
         beta: number;
         gamma: number;
     };
+    initial_zoom_factor?: number;
 }
 
 interface ProcessedCrystal {
@@ -88,7 +89,7 @@ const latticeParametersToVectors = (params: {
     return [v1, v2, v3];
 };
 
-export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters }: CrystalViewerProps) => {
+export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters, initial_zoom_factor = 0.75 }: CrystalViewerProps) => {
     const mountRef = useRef<HTMLDivElement>(null);
     const sceneRef = useRef<THREE.Scene>(new THREE.Scene());
     const cameraRef = useRef<THREE.PerspectiveCamera>();
@@ -315,9 +316,9 @@ export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters }: Crys
         }
 
         // Set up camera position
-        camera.position.x = furthestDistFromOrigin * 1.0;
-        camera.position.y = furthestDistFromOrigin * 1.0;
-        camera.position.z = furthestDistFromOrigin * 1.0;
+        camera.position.x = furthestDistFromOrigin * initial_zoom_factor;
+        camera.position.y = furthestDistFromOrigin * initial_zoom_factor;
+        camera.position.z = furthestDistFromOrigin * initial_zoom_factor;
 
         // Set up orbit controls
         const controls = new OrbitControls(camera, renderer.domElement);

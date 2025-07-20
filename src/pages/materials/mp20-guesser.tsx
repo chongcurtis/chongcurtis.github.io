@@ -236,36 +236,40 @@ export default function MP20Guesser({ materials }: Props) {
                       </button>
                     </div>
                     {lastGuessError && (
-                      <div className="mt-4 flex flex-col lg:flex-row gap-6 items-start">
-                        {/* Miniature Crystal Viewer */}
-                        <div className="lg:w-64 flex-shrink-0">
-                          <div className="bg-gray-50 rounded-lg p-2">
-                            <div className="relative">
-                              <div className="w-full h-32">
-                                <CrystalViewer 
-                                  atomicNumbers={materials.find(m => m.pretty_formula === lastGuessError.formula)?.atomic_numbers || []}
-                                  coords={materials.find(m => m.pretty_formula === lastGuessError.formula)?.atomic_positions || []}
-                                  latticeParameters={materials.find(m => m.pretty_formula === lastGuessError.formula)?.lattice_parameters || {
-                                    a: 1, b: 1, c: 1, alpha: 90, beta: 90, gamma: 90
-                                  }}
-                                />
-                              </div>
-                              
-                              {/* Overlay Information */}
-                              <div className="absolute top-1 left-1 z-10 bg-black/50 backdrop-blur-sm text-white rounded-lg px-2 py-1">
-                                <h5 className="text-xs font-semibold">{lastGuessError.formula}</h5>
+                      <div className="mt-4">
+                        <div className="text-md text-center mb-3">Your previous guess:</div>
+                        <div className="flex flex-col lg:flex-row gap-6 items-start">
+                          {/* Miniature Crystal Viewer */}
+                          <div className="lg:w-64 flex-shrink-0">
+                            <div className="bg-gray-50 rounded-lg p-2">
+                              <div className="relative">
+                                <div className="w-full h-32">
+                                  <CrystalViewer 
+                                    atomicNumbers={materials.find(m => m.pretty_formula === lastGuessError.formula)?.atomic_numbers || []}
+                                    coords={materials.find(m => m.pretty_formula === lastGuessError.formula)?.atomic_positions || []}
+                                    latticeParameters={materials.find(m => m.pretty_formula === lastGuessError.formula)?.lattice_parameters || {
+                                      a: 1, b: 1, c: 1, alpha: 90, beta: 90, gamma: 90
+                                    }}
+                                    initial_zoom_factor={0.7}
+                                  />
+                                </div>
+                                
+                                {/* Overlay Information */}
+                                <div className="absolute top-1 left-1 z-10 bg-black/50 backdrop-blur-sm text-white rounded-lg px-2 py-1">
+                                  <h5 className="text-xs font-semibold">{lastGuessError.formula}</h5>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        
-                        {/* Previous Guess Stats */}
-                        <div className="flex-1 text-sm text-gray-600 space-y-1 text-left">
-                          <div>Your guess: <span className="font-mono">{lastGuessError.guessValue.toFixed(4)} eV/atom</span></div>
-                          <div>Actual: <span className="font-mono">{lastGuessError.actualValue.toFixed(4)} eV/atom</span></div>
-                          <div>Error: <span className={`ml-1 font-semibold ${getErrorColor(lastGuessError.error)}`}>
-                            {lastGuessError.error.toFixed(4)} eV/atom
-                          </span></div>
+
+                          {/* Previous Guess Stats */}
+                          <div className="flex-1 text-sm text-gray-600 space-y-1 text-left">
+                            <div>Your guess: <span className="font-mono">{lastGuessError.guessValue.toFixed(4)} eV/atom</span></div>
+                            <div>Actual: <span className="font-mono">{lastGuessError.actualValue.toFixed(4)} eV/atom</span></div>
+                            <div>Error: <span className={`ml-1 font-semibold ${getErrorColor(lastGuessError.error)}`}>
+                              {lastGuessError.error.toFixed(4)} eV/atom
+                            </span></div>
+                          </div>
                         </div>
                       </div>
                     )}
