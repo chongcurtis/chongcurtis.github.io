@@ -46,6 +46,27 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
     return Math.round(rawValue / step) * step;
   }, [min, max, step, canvasWidth, padding]);
 
+  // Helper function to position text and prevent cutoff
+  const positionTextWithinBounds = (ctx: CanvasRenderingContext2D, text: string, centerX: number) => {
+    const textWidth = ctx.measureText(text).width;
+    let textX = Math.round(centerX);
+    
+    if (centerX + textWidth / 2 > canvasWidth - padding) {
+      // Too far right - align right
+      ctx.textAlign = 'right';
+      textX = Math.min(centerX, canvasWidth - padding);
+    } else if (centerX - textWidth / 2 < padding) {
+      // Too far left - align left  
+      ctx.textAlign = 'left';
+      textX = Math.max(centerX, padding);
+    } else {
+      // Center align (default)
+      ctx.textAlign = 'center';
+    }
+    
+    return textX;
+  };
+
   // Draw the slider
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
@@ -108,23 +129,7 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
       ctx.font = 'bold 12px system-ui, -apple-system, sans-serif';
       const actualText = `Actual: ${actualValue.toFixed(3)} eV/atom`;
       
-      // Adjust text alignment based on position to prevent cutoff
-      const textWidth = ctx.measureText(actualText).width;
-      let textX = Math.round(actualX);
-      
-      if (actualX + textWidth / 2 > canvasWidth - padding) {
-        // Too far right - align right
-        ctx.textAlign = 'right';
-        textX = Math.min(actualX, canvasWidth - padding);
-      } else if (actualX - textWidth / 2 < padding) {
-        // Too far left - align left  
-        ctx.textAlign = 'left';
-        textX = Math.max(actualX, padding);
-      } else {
-        // Center align (default)
-        ctx.textAlign = 'center';
-      }
-      
+      const textX = positionTextWithinBounds(ctx, actualText, actualX);
       ctx.fillText(actualText, textX, trackY - 25);
       
       // Reset text alignment for other text
@@ -151,20 +156,7 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
       
       // Position error text in the middle of the error bar
       const errorBarCenterX = (guessX + actualX) / 2;
-      const errorTextWidth = ctx.measureText(errorText).width;
-      let errorTextX = Math.round(errorBarCenterX);
-      
-      // Adjust text alignment to prevent cutoff
-      if (errorBarCenterX + errorTextWidth / 2 > canvasWidth - padding) {
-        ctx.textAlign = 'right';
-        errorTextX = Math.min(errorBarCenterX, canvasWidth - padding);
-      } else if (errorBarCenterX - errorTextWidth / 2 < padding) {
-        ctx.textAlign = 'left';
-        errorTextX = Math.max(errorBarCenterX, padding);
-      } else {
-        ctx.textAlign = 'center';
-      }
-      
+      const errorTextX = positionTextWithinBounds(ctx, errorText, errorBarCenterX);
       ctx.fillText(errorText, errorTextX, trackY + 35);
       
       // Reset text alignment
