@@ -39,7 +39,7 @@ const Menu = ({ navLinks, isOpen }: Props) => {
                 </Link>
                 <PageLinks navLinks={navLinks} />
             </nav>
-            <div className="mb-8 ml-6 mr-10">
+            <div className="mb-8 mt-4 ml-6 mr-10">
                 <ThinLine animateImmediately={true} />
                 <SocialLinks />
             </div>
