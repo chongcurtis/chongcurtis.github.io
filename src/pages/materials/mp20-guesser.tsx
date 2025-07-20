@@ -300,26 +300,29 @@ export default function MP20Guesser({ materials }: Props) {
                     </div>
                   </div>
                   <div className="text-center">
-                    <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                    <div className="flex flex-row gap-3 justify-center items-center">
                       <button
                         onClick={previousMaterial}
                         disabled={currentIndex === 0}
                         className="px-6 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
                       >
-                        ← Previous Material
+                        <span className="sm:hidden">←</span>
+                        <span className="hidden sm:inline">← Previous Material</span>
                       </button>
                       <button
                         onClick={handleGuess}
                         className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
                       >
-                        Submit Guess
+                        {/* <span className="sm:hidden">Submit</span> */}
+                        <span className="sm:inline">Submit Guess</span>
                       </button>
                       <button
                         onClick={nextMaterial}
                         disabled={currentIndex === materials.length - 1}
                         className="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
                       >
-                        Next Material →
+                        <span className="sm:hidden">→</span>
+                        <span className="hidden sm:inline">Next Material →</span>
                       </button>
                     </div>
                     {lastGuessError && (
@@ -327,10 +330,10 @@ export default function MP20Guesser({ materials }: Props) {
                         <div className="text-md text-center mb-3">Your previous guess:</div>
                         <div className="flex flex-col lg:flex-row gap-6 items-start">
                           {/* Miniature Crystal Viewer */}
-                          <div className="lg:w-64 flex-shrink-0">
+                          <div className="w-full max-w-64 lg:w-64 flex-shrink-0 mx-auto lg:mx-0">
                             <div className="bg-gray-50 rounded-lg p-2">
                               <div className="relative">
-                                <div className="w-full h-32">
+                                <div className="w-full h-32 min-w-[200px]">
                                   <CrystalViewer 
                                     atomicNumbers={materials.find(m => m.pretty_formula === lastGuessError.formula)?.atomic_numbers || []}
                                     coords={materials.find(m => m.pretty_formula === lastGuessError.formula)?.atomic_positions || []}
