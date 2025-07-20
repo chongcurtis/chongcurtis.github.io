@@ -40,18 +40,79 @@ interface Props {
   materials: Material[];
 }
 
+const STORAGE_KEY = 'mp20-guesser-history';
+const CURRENT_INDEX_KEY = 'mp20-guesser-current-index';
+
 export default function MP20Guesser({ materials }: Props) {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [guess, setGuess] = useState(-2.0); // Default slider value
   const [guessHistory, setGuessHistory] = useState<GuessHistory[]>([]);
   const [lastGuessError, setLastGuessError] = useState<{ formula: string; error: number; guessValue: number; actualValue: number } | null>(null);
+  const [isInitialized, setIsInitialized] = useState(false);
   
   // Get current material
   const currentMaterial = materials[currentIndex];
 
+  // Load saved state from localStorage on component mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Load guess history
+      const savedHistory = localStorage.getItem(STORAGE_KEY);
+      if (savedHistory) {
+        try {
+          const parsedHistory = JSON.parse(savedHistory);
+          // Convert timestamp strings back to Date objects
+          const historyWithDates = parsedHistory.map((guess: any) => ({
+            ...guess,
+            timestamp: new Date(guess.timestamp)
+          }));
+          setGuessHistory(historyWithDates);
+        } catch (error) {
+          console.error('Error parsing saved history:', error);
+        }
+      }
+
+      // Load current index (only if no hash in URL)
+      const hash = window.location.hash.slice(1);
+      if (!hash) {
+        const savedIndex = localStorage.getItem(CURRENT_INDEX_KEY);
+        if (savedIndex) {
+          try {
+            const index = parseInt(savedIndex, 10);
+            if (!isNaN(index) && index >= 0 && index < materials.length) {
+              setCurrentIndex(index);
+              // Update URL to reflect the saved position
+              window.location.hash = (index + 1).toString();
+            }
+          } catch (error) {
+            console.error('Error parsing saved index:', error);
+          }
+        }
+      }
+      
+      setIsInitialized(true);
+    }
+  }, [materials.length]);
+
+  // Save current index to localStorage whenever it changes
+  useEffect(() => {
+    if (typeof window !== 'undefined' && isInitialized) {
+      localStorage.setItem(CURRENT_INDEX_KEY, currentIndex.toString());
+    }
+  }, [currentIndex, isInitialized]);
+
+  // Save guess history to localStorage whenever it changes
+  useEffect(() => {
+    if (typeof window !== 'undefined' && guessHistory.length > 0) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(guessHistory));
+    }
+  }, [guessHistory]);
+
   // Handle URL hash changes
   useEffect(() => {
+    if (!isInitialized) return; // Don't process hash changes until initialized
+    
     const updateIndexFromHash = () => {
       const hash = window.location.hash.slice(1); // Remove the #
       if (hash && !isNaN(Number(hash))) {
@@ -65,14 +126,14 @@ export default function MP20Guesser({ materials }: Props) {
     updateIndexFromHash();
     window.addEventListener('hashchange', updateIndexFromHash);
     return () => window.removeEventListener('hashchange', updateIndexFromHash);
-  }, [materials.length]);
+  }, [materials.length, isInitialized]);
 
   // Update URL when index changes
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && isInitialized) {
       window.location.hash = (currentIndex + 1).toString();
     }
-  }, [currentIndex]);
+  }, [currentIndex, isInitialized]);
 
   const handleGuess = () => {
     const guessValue = guess;
@@ -102,6 +163,16 @@ export default function MP20Guesser({ materials }: Props) {
     setTimeout(() => {
       nextMaterial();
     }, 100); // Small delay to show the error briefly
+  };
+
+  const clearHistory = () => {
+    if (window.confirm('Are you sure you want to clear all your guess history? This action cannot be undone.')) {
+      setGuessHistory([]);
+      setLastGuessError(null);
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    }
   };
 
   const nextMaterial = () => {
@@ -282,6 +353,16 @@ export default function MP20Guesser({ materials }: Props) {
           {/* Error Distribution Charts */}
           {guessHistory.length > 0 && (
             <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-lg font-medium text-gray-700">Your Performance</h3>
+                <button
+                  onClick={clearHistory}
+                  className="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors"
+                >
+                  Clear History
+                </button>
+              </div>
+              
               <div className="mt-4 text-sm text-gray-600">
                 <p>Total guesses: {guessHistory.length}</p>
                 <p>Average error: {(guessHistory.reduce((sum, guess) => sum + guess.error, 0) / guessHistory.length).toFixed(4)} eV/atom</p>
