@@ -193,15 +193,33 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
 
   }, [value, min, max, canvasWidth, canvasHeight, marks, showActual, actualValue, errorValue, valueToX, trackHeight, thumbRadius, padding]);
 
+  // Get position from mouse or touch event
+  const getEventPosition = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return null;
+
+    const rect = canvas.getBoundingClientRect();
+    let clientX: number;
+
+    if ('touches' in e) {
+      // Touch event
+      if (e.touches.length === 0) return null;
+      clientX = e.touches[0].clientX;
+    } else {
+      // Mouse event
+      clientX = e.clientX;
+    }
+
+    return clientX - rect.left;
+  };
+
   // Handle mouse events
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (disabled) return;
     
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    const x = getEventPosition(e);
+    if (x === null) return;
 
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
     const newValue = xToValue(x);
     
     if (newValue >= min && newValue <= max) {
@@ -213,17 +231,50 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
   const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (disabled || !isDragging) return;
 
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    const x = getEventPosition(e);
+    if (x === null) return;
 
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
     const newValue = xToValue(x);
-    
     onChange(Math.max(min, Math.min(max, newValue)));
   };
 
   const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  // Handle touch events
+  const handleTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    if (disabled) return;
+    
+    // Prevent default to avoid scrolling
+    e.preventDefault();
+    
+    const x = getEventPosition(e);
+    if (x === null) return;
+
+    const newValue = xToValue(x);
+    
+    if (newValue >= min && newValue <= max) {
+      onChange(Math.max(min, Math.min(max, newValue)));
+      setIsDragging(true);
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    if (disabled || !isDragging) return;
+
+    // Prevent default to avoid scrolling
+    e.preventDefault();
+
+    const x = getEventPosition(e);
+    if (x === null) return;
+
+    const newValue = xToValue(x);
+    onChange(Math.max(min, Math.min(max, newValue)));
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    e.preventDefault();
     setIsDragging(false);
   };
 
@@ -287,6 +338,10 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        style={{ touchAction: 'none' }}
       />
     </div>
   );
