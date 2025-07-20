@@ -314,11 +314,7 @@ export default function MP20Guesser({ materials }: Props) {
                           disabled={!!currentGuessResult}
                           className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
                         >
-                            <span className="sm:inline">
-                             {currentGuessResult ? (
-                               <>Submitted: <span className="text-sm">{currentGuessResult.guessValue.toFixed(3)}</span></>
-                             ) : 'Submit Guess'}
-                            </span>
+                          <span className="sm:inline">Submit Guess</span>
                         </button>
                         <button
                           onClick={nextMaterial}
@@ -332,7 +328,7 @@ export default function MP20Guesser({ materials }: Props) {
                     {currentGuessResult && (
                       <div className="mt-4">
                         <div className="text-sm text-gray-600 space-y-1 text-center">
-                          {/* <div>Your guess: <span className="font-mono">{currentGuessResult.guessValue.toFixed(4)} eV/atom</span></div> */}
+                          <div>Your guess: <span className="font-mono">{currentGuessResult.guessValue.toFixed(4)} eV/atom</span></div>
                           <div>Actual: <span className="font-mono">{currentGuessResult.actualValue.toFixed(4)} eV/atom</span></div>
                           <div>Error: <span className={`ml-1 font-semibold ${getErrorColor(currentGuessResult.error)}`}>
                             {currentGuessResult.error.toFixed(4)} eV/atom
