@@ -377,7 +377,20 @@ export const CrystalViewer = ({ atomicNumbers, coords, latticeParameters, initia
     }, []);
 
     return (
-        <div ref={mountRef} style={{ width: "100%", height: "100%", position: "relative" }}>
+        <div 
+            ref={mountRef} 
+            style={{ 
+                width: "100%", 
+                height: "100%", 
+                position: "relative",
+                userSelect: "none",
+                WebkitUserSelect: "none",
+                MozUserSelect: "none",
+                msUserSelect: "none",
+                WebkitTouchCallout: "none",
+                WebkitTapHighlightColor: "transparent"
+            }}
+        >
             {hoverInfo && (
                 <div
                     style={{

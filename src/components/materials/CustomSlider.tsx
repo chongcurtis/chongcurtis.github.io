@@ -13,6 +13,21 @@ interface CustomSliderProps {
   marks?: { value: number; label: string }[];
 }
 
+// Utility function for haptic feedback
+const triggerHapticFeedback = (intensity: 'light' | 'medium' | 'heavy' = 'light') => {
+  // Check if the device supports vibration
+  if ('vibrate' in navigator) {
+    // Different vibration patterns for different intensities
+    const patterns = {
+      light: 10,
+      medium: 20,
+      heavy: 50
+    };
+    
+    navigator.vibrate(patterns[intensity]);
+  }
+};
+
 export const CustomSlider: React.FC<CustomSliderProps> = ({
   value,
   onChange,
@@ -28,11 +43,30 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [canvasWidth, setCanvasWidth] = useState(300);
+  const lastValueRef = useRef<number>(value);
   
   const padding = Math.max(20, Math.min(40, canvasWidth * 0.08));
   const trackHeight = 8;
   const thumbRadius = 12;
   const canvasHeight = 80;
+
+  // Enhanced onChange handler with haptic feedback
+  const handleValueChange = useCallback((newValue: number) => {
+    const clampedValue = Math.max(min, Math.min(max, newValue));
+    
+    // Only trigger haptic feedback if the value actually changed
+    if (clampedValue !== lastValueRef.current) {
+      triggerHapticFeedback('light');
+      lastValueRef.current = clampedValue;
+    }
+    
+    onChange(clampedValue);
+  }, [onChange, min, max]);
+
+  // Update lastValueRef when value prop changes externally
+  useEffect(() => {
+    lastValueRef.current = value;
+  }, [value]);
 
   // Convert value to x position
   const valueToX = useCallback((val: number) => {
@@ -224,7 +258,7 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
     const newValue = xToValue(x);
     
     if (newValue >= min && newValue <= max) {
-      onChange(Math.max(min, Math.min(max, newValue)));
+      handleValueChange(Math.max(min, Math.min(max, newValue)));
       setIsDragging(true);
     }
   };
@@ -237,8 +271,8 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
     if (x === null) return;
 
     const newValue = xToValue(x);
-    onChange(Math.max(min, Math.min(max, newValue)));
-  }, [disabled, isDragging, xToValue, onChange, min, max]);
+    handleValueChange(Math.max(min, Math.min(max, newValue)));
+  }, [disabled, isDragging, xToValue, handleValueChange, min, max]);
 
   // Document-level mouse up handler
   const handleDocumentMouseUp = useCallback(() => {
@@ -278,7 +312,7 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
       const newValue = xToValue(x);
       
       if (newValue >= min && newValue <= max) {
-        onChange(Math.max(min, Math.min(max, newValue)));
+        handleValueChange(Math.max(min, Math.min(max, newValue)));
         setIsDragging(true);
       }
     };
@@ -292,7 +326,7 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
       const rect = canvas.getBoundingClientRect();
       const x = e.touches[0].clientX - rect.left;
       const newValue = xToValue(x);
-      onChange(Math.max(min, Math.min(max, newValue)));
+      handleValueChange(Math.max(min, Math.min(max, newValue)));
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
@@ -310,7 +344,7 @@ export const CustomSlider: React.FC<CustomSliderProps> = ({
       canvas.removeEventListener('touchmove', handleTouchMove);
       canvas.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [disabled, isDragging, xToValue, onChange, min, max]);
+  }, [disabled, isDragging, xToValue, handleValueChange, min, max]);
 
   // Resize observer
   useEffect(() => {
