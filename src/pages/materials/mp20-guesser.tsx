@@ -50,6 +50,7 @@ export default function MP20Guesser({ materials }: Props) {
   const [guessHistory, setGuessHistory] = useState<GuessHistory[]>([]);
   const [currentGuessResult, setCurrentGuessResult] = useState<{ guessValue: number; actualValue: number; error: number } | null>(null);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [isNewBestGuess, setIsNewBestGuess] = useState(false);
   
   // Get current material
   const currentMaterial = materials[currentIndex];
@@ -145,6 +146,10 @@ export default function MP20Guesser({ materials }: Props) {
     const actualValue = currentMaterial.formation_energy_per_atom;
     const calculatedError = Math.abs(guessValue - actualValue);
     
+    // Check if this is a new best guess
+    const currentBestError = guessHistory.length > 0 ? Math.min(...guessHistory.map(g => g.error)) : Infinity;
+    const isNewBest = calculatedError < currentBestError;
+    
     // Add to guess history
     const newGuess: GuessHistory = {
       materialIndex: currentIndex,
@@ -158,6 +163,7 @@ export default function MP20Guesser({ materials }: Props) {
     
     setGuessHistory(prev => [...prev, newGuess]);
     setCurrentGuessResult({ guessValue, actualValue, error: calculatedError });
+    setIsNewBestGuess(isNewBest);
   };
 
   const clearHistory = () => {
@@ -175,6 +181,7 @@ export default function MP20Guesser({ materials }: Props) {
     setCurrentIndex(nextIndex);
     setGuess(-2.0);
     setCurrentGuessResult(null);
+    setIsNewBestGuess(false);
   };
 
   const previousMaterial = () => {
@@ -182,6 +189,7 @@ export default function MP20Guesser({ materials }: Props) {
     setCurrentIndex(prevIndex);
     setGuess(-2.0);
     setCurrentGuessResult(null);
+    setIsNewBestGuess(false);
   };
 
   const getErrorColor = (error: number) => {
@@ -333,6 +341,13 @@ export default function MP20Guesser({ materials }: Props) {
                           <div>Error: <span className={`ml-1 font-semibold ${getErrorColor(currentGuessResult.error)}`}>
                             {currentGuessResult.error.toFixed(4)} eV/atom
                           </span></div>
+                          {isNewBestGuess && (
+                            <div className="mt-2 px-3 py-2 bg-green-100 border border-green-300 rounded-md">
+                              <span className="text-green-800 font-semibold text-sm">
+                                🎉 New best guess!
+                              </span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     )}
