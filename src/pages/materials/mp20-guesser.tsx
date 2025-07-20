@@ -122,9 +122,6 @@ export default function MP20Guesser({ materials }: Props) {
     return 'text-red-600';
   };
 
-  // Check if current material has structural data
-  const hasStructuralData = currentMaterial?.atomic_numbers?.length > 0 && currentMaterial?.atomic_positions?.length > 0;
-
   if (!currentMaterial) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -147,9 +144,6 @@ export default function MP20Guesser({ materials }: Props) {
             <p className="text-gray-600 text-sm sm:text-base">
               Guess the formation energy per atom (eV/atom) for materials from the MP20 dataset
             </p>
-            <p className="text-gray-500 text-xs sm:text-sm mt-1">
-              Material {currentIndex + 1} of {materials.length.toLocaleString()}
-            </p>
             {lastGuessError && (
               <div className="mt-3 inline-block bg-gray-100 rounded-lg px-4 py-2">
                 <span className="text-sm text-gray-600">
@@ -166,26 +160,17 @@ export default function MP20Guesser({ materials }: Props) {
           <div className="bg-white rounded-lg shadow-md p-6 mb-6 w-full">
             <h3 className="text-lg font-semibold text-gray-800 mb-1">{currentMaterial.pretty_formula}</h3>
             <p className="text-gray-600 text-sm mb-4">Material ID: {currentMaterial.material_id}</p>
-            <div className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
-              {hasStructuralData ? (
-                <div className="w-full h-full">
-                  <CrystalViewer 
-                    atomicNumbers={currentMaterial.atomic_numbers}
-                    coords={currentMaterial.atomic_positions}
-                    latticeParameters={currentMaterial.lattice_parameters}
-                  />
-                </div>
-              ) : (
-                <div className="text-center p-8">
-                  <div className="text-6xl mb-4">🔬</div>
-                  <h4 className="text-lg font-medium text-gray-700 mb-2">
-                    Structure Not Available
-                  </h4>
-                  <div className="mt-4 text-xs text-gray-400">
-                    Formula: <span className="font-mono">{currentMaterial.pretty_formula}</span>
-                  </div>
-                </div>
-              )}
+            <p className="text-gray-500 text-xs sm:text-sm">
+              {currentIndex + 1} of {materials.length.toLocaleString()}
+            </p>
+            <div className="rounded-lg flex justify-center">
+              <div className="w-full h-80">
+                <CrystalViewer 
+                  atomicNumbers={currentMaterial.atomic_numbers}
+                  coords={currentMaterial.atomic_positions}
+                  latticeParameters={currentMaterial.lattice_parameters}
+                />
+              </div>
             </div>
           </div>
 
@@ -243,9 +228,6 @@ export default function MP20Guesser({ materials }: Props) {
                   </div>
                 </div>
               </div>
-              <p className="text-xs text-gray-500 text-center">
-                Hint: More negative values indicate more stable compounds. Most materials have formation energies between -5 and 0 eV/atom.
-              </p>
             </div>
           </div>
 
