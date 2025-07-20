@@ -144,16 +144,6 @@ export default function MP20Guesser({ materials }: Props) {
             <p className="text-gray-600 text-sm sm:text-base">
               Guess the formation energy per atom (eV/atom) for materials from the MP20 dataset
             </p>
-            {lastGuessError && (
-              <div className="mt-3 inline-block bg-gray-100 rounded-lg px-4 py-2">
-                <span className="text-sm text-gray-600">
-                  Previous: <span className="font-mono">{lastGuessError.formula}</span> - Error: 
-                  <span className={`ml-1 font-semibold ${getErrorColor(lastGuessError.error)}`}>
-                    {lastGuessError.error.toFixed(4)} eV/atom
-                  </span>
-                </span>
-              </div>
-            )}
           </div>
 
                     {/* Crystal Structure Viewer - Full Width */}
@@ -182,13 +172,12 @@ export default function MP20Guesser({ materials }: Props) {
           <div className="bg-white rounded-lg shadow-md p-6 mb-6">
             <div className="space-y-4">
               <div>
-                <label htmlFor="guess" className="block text-sm font-medium text-gray-700 mb-2">
-                  Your guess for formation energy per atom (eV/atom):
-                </label>
                 <div className="flex flex-col gap-4">
                   <div className="space-y-4">
                     <div className="text-center">
-                      <span className="font-medium text-lg text-gray-800">{guess.toFixed(3)} eV/atom</span>
+                      <span className="font-medium text-lg text-gray-800">
+                        Your guess: <span className="font-mono inline-block w-20 text-right">{guess.toFixed(3)}</span> eV/atom
+                      </span>
                     </div>
                     <div className="px-4 lg:px-8">
                       <Slider
@@ -229,6 +218,16 @@ export default function MP20Guesser({ materials }: Props) {
                     >
                       Submit Guess
                     </button>
+                    {lastGuessError && (
+                      <div className="mt-4">
+                        <span className="text-sm text-gray-600">
+                          Previous: <span className="font-mono">{lastGuessError.formula}</span> - Error: 
+                          <span className={`ml-1 font-semibold ${getErrorColor(lastGuessError.error)}`}>
+                            {lastGuessError.error.toFixed(4)} eV/atom
+                          </span>
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -267,19 +266,12 @@ export default function MP20Guesser({ materials }: Props) {
           )}
 
           {/* Navigation */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-between items-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-8">
             <button
               onClick={previousMaterial}
               className="w-full sm:w-auto px-6 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
             >
               ← Previous Material
-            </button>
-            
-            <button
-              onClick={nextMaterial}
-              className="w-full sm:w-auto px-4 py-2 bg-gray-400 text-white rounded-md hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 transition-colors text-sm"
-            >
-              Skip
             </button>
           </div>
 
