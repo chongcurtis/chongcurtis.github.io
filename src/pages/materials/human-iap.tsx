@@ -217,10 +217,10 @@ export default function MP20Guesser({ materials }: Props) {
           {/* Header */}
           <div className="text-center mb-16 mt-16">
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
-              MP20 Energy Guesser
+              Human Interatomic Potential
             </h1>
             <p className="text-gray-600 text-sm sm:text-base">
-              Guess the formation energy per atom (eV/atom) for materials from the MP20 dataset
+              Guess the formation energy per atom (eV/atom) for materials from the MP20 dataset.
             </p>
           </div>
 
