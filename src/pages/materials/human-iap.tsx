@@ -298,10 +298,6 @@ export default function MP20Guesser({ materials }: Props) {
                         ]}
                       />
                     </div>
-                    <div className="flex justify-between text-xs text-gray-500 px-4 lg:px-8">
-                      <span>More stable</span>
-                      <span>Less stable</span>
-                    </div>
                   </div>
                   <div className="text-center mt-2">
                     <div className="flex flex-row gap-3 justify-center items-center">
