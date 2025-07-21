@@ -55,8 +55,8 @@ export const NavLinks: NavLink[] = [
                 href: "/materials/egnn_checklist",
             },
             {
-                label: "MP20 Guesser",
-                href: "/materials/mp20-guesser",
+                label: "Human Interatomic Potential",
+                href: "/materials/human-iap",
             },
         ],
     },

@@ -41,8 +41,8 @@ interface Props {
   materials: Material[];
 }
 
-const STORAGE_KEY = 'mp20-guesser-history';
-const CURRENT_INDEX_KEY = 'mp20-guesser-current-index';
+const STORAGE_KEY = 'human-iap-history';
+const CURRENT_INDEX_KEY = 'human-iap-current-index';
 
 export default function MP20Guesser({ materials }: Props) {
   const router = useRouter();
