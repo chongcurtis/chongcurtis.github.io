@@ -8,7 +8,7 @@ import Head from "next/head";
 import Script from "next/script";
 
 // how to serve fonts: https://nextjs.org/docs/basic-features/font-optimization
-const poppins = Outfit({
+const outfit = Outfit({
     weight: ["100", "300", "700"],
     style: "normal",
     subsets: ["latin"],
@@ -33,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   gtag('config', 'G-TCKVPGLF3X');`}
             </Script>
-            <main className={classNames(poppins.className)}>
+            <main className={classNames(outfit.className)}>
                 <Sidebar>
                     <Component {...pageProps} />
                 </Sidebar>
