@@ -10,7 +10,7 @@ export default function EgnnChecklist() {
     }, []);
 
     return (
-        <div className="px-3 text-lg">
+        <div className="px-3 text-md">
             <p className="mt-20 text-center text-2xl">
                 E(3) Equivariant Graph Neural Network Checklist
             </p>
