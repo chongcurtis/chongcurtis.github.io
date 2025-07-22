@@ -52,14 +52,14 @@ export default function EgnnChecklist() {
                         Diffusion Model Checklist
                     </a>
                 </li>
-                <li className="">
+                {/* <li className="">
                     <a
                         href="#bonus-checklist"
                         className="underline-on-scroll after:bg-sleepover-secondary"
                     >
                         Bonus Checklist
                     </a>
-                </li>
+                </li> */}
             </ul>
             <h3 id="general-gnn-checklist" className="mt-10 text-2xl">
                 General GNN Checklist
@@ -153,6 +153,12 @@ export default function EgnnChecklist() {
                             {
                                 content:
                                     "E.g. In diffusion models for material science, use the lattice vectors as 3D features, not 9 scalar values to learn on",
+                                children: [
+                                    {
+                                        content:
+                                            "Note: Since writing this, I've seen models trained on raw scalar features that still works. It's weird :/",
+                                    },
+                                ],
                             },
                             {
                                 content:
@@ -435,6 +441,9 @@ export default function EgnnChecklist() {
                                 content:
                                     "Cause if your model predicted 0.1, but the target frac_coord is 0.9, your model's prediction is NOT off by 0.8. it's 0.2",
                             },
+                            {
+                                content: "Note: Since writing this, I've seen models trained on raw mae that still works. It's weird :/",
+                            },
                         ],
                     },
                     {
@@ -488,7 +497,7 @@ export default function EgnnChecklist() {
                     },
                 ]}
             />
-            <h3 id="bonus-checklist" className="mt-10 text-2xl">
+            {/* <h3 id="bonus-checklist" className="mt-10 text-2xl">
                 Bonus Checklist
             </h3>
             <p>These are tips I've seen that aren't often followed:</p>
@@ -526,7 +535,7 @@ export default function EgnnChecklist() {
                         ],
                     },
                 ]}
-            />
+            /> */}
             <p className="mt-10">I hope you find this checklist useful!</p>
             <p className="mt-4">- Curtis</p>
             <div className="h-96"></div>

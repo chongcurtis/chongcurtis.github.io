@@ -220,7 +220,16 @@ export default function MP20Guesser({ materials }: Props) {
               Human Interatomic Potential
             </h1>
             <p className="text-gray-600 text-sm sm:text-base">
-              Guess the formation energy per atom (eV/atom) for materials from the MP20 dataset.
+              Guess the formation energy per atom (eV/atom) for materials from the{' '}
+              <a 
+                href="https://github.com/txie-93/cdvae/blob/main/data/mp_20/val.csv"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+              >
+                MP20 dataset
+              </a>
+              .
             </p>
           </div>
 
