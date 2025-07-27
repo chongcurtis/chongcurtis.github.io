@@ -341,8 +341,8 @@ export default function MP20Guesser({ materials }: Props) {
                         <span className="hidden sm:inline">Next Material →</span>
                       </button>
                     </div>
-                    {currentGuessResult && (
-                      <div className="mt-4">
+                    <div className="mt-4 min-h-16">
+                      {currentGuessResult && (
                         <div className="text-sm text-gray-600 space-y-1 text-center">
                           {isNewBestGuess && (
                             <div className="mt-2 px-3 py-2 bg-green-100 border border-green-300 rounded-md">
@@ -359,8 +359,8 @@ export default function MP20Guesser({ materials }: Props) {
                             </div>
                           )}
                         </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
