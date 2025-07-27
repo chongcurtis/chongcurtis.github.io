@@ -171,12 +171,6 @@ const PolymerVideoViewerCanvas = ({
         if (cameraRef.current && sceneRef.current && rendererRef.current) {
             rendererRef.current.render(sceneRef.current, cameraRef.current);
         }
-        return () => {
-            if (animationFrameIdRef.current) {
-                cancelAnimationFrame(animationFrameIdRef.current);
-            }
-            clearSpheres();
-        };
     }, [processedFrames, clearSpheres]);
 
     // I don't think we can cache processed frames and pre-add the atoms them to the scene
@@ -230,7 +224,12 @@ const PolymerVideoViewerCanvas = ({
 
         // Clean up on unmount
         return () => {
+            if (animationFrameIdRef.current) {
+                cancelAnimationFrame(animationFrameIdRef.current);
+            }
+            clearSpheres();
             mount.removeChild(renderer.domElement);
+            renderer.dispose();
         };
     }, [processedFrames, animate, furthestDistFromOrigin]);
 
