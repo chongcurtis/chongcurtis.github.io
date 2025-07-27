@@ -161,7 +161,7 @@ const PolymerVideoViewerCanvas = ({
             if (stepRef.current === 10) {
                 stepRef.current = 0;
                 currentFrameRef.current = (currentFrame + 1) % processedFrames.length;
-                drawFrame(processedFrames[currentFrame]);
+                drawFrame(processedFrames[currentFrameRef.current]);
                 // console.log(currentFrame);
             }
         }
@@ -177,13 +177,7 @@ const PolymerVideoViewerCanvas = ({
             }
             clearSpheres();
         };
-    }, [
-        processedFrames,
-        currentSpheresRef.current,
-        sceneRef.current,
-        cameraRef.current,
-        rendererRef.current,
-    ]);
+    }, [processedFrames, clearSpheres]);
 
     // I don't think we can cache processed frames and pre-add the atoms them to the scene
     // because if we move the camera and flip between scenes, it'll change?
@@ -227,18 +221,18 @@ const PolymerVideoViewerCanvas = ({
         controls.minDistance = 5; // Set the minimum zoom-in distance
         controls.maxDistance = furthestDistFromOrigin; // Set the maximum zoom-out distance
 
-        animate();
-
         controlsRef.current = controls;
         sceneRef.current = scene;
         cameraRef.current = camera;
         rendererRef.current = renderer;
 
+        animate();
+
         // Clean up on unmount
         return () => {
             mount.removeChild(renderer.domElement);
         };
-    }, [processedFrames]);
+    }, [processedFrames, animate, furthestDistFromOrigin]);
 
     return (
         <>
