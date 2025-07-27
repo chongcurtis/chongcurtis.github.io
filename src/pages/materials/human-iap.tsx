@@ -3,10 +3,18 @@ import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { CrystalViewer } from '@/components/materials/CrystalViewer';
 import { CustomSlider } from '@/components/materials/CustomSlider';
-import { MantineProvider } from '@mantine/core';
-import { ScatterChart, BarChart } from '@mantine/charts';
-import '@mantine/core/styles.css';
-import '@mantine/charts/styles.css';
+import {
+  ScatterChart as RechartsScatterChart,
+  Scatter,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip as RechartsTooltip,
+  BarChart as RechartsBarChart,
+  Bar,
+  ResponsiveContainer,
+  Label,
+} from 'recharts';
 
 
 interface Material {
@@ -211,7 +219,6 @@ export default function MP20Guesser({ materials }: Props) {
   }
 
   return (
-    <MantineProvider>
       <div className="min-h-screen py-4 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -383,24 +390,22 @@ export default function MP20Guesser({ materials }: Props) {
               <div className="mb-8">
                 <h4 className="text-md font-medium text-gray-700 my-4 text-center">Error Over Time</h4>
                 <div className="h-64 -ml-4 sm:ml-0">
-                  <ScatterChart
-                    h={250}
-                    data={[
-                      {
-                        color: 'blue.6',
-                        name: 'Your Guesses',
-                        data: guessHistory.map((guess, index) => ({
-                          x: index + 1,
-                          y: guess.error
-                        }))
-                      }
-                    ]}
-                    dataKey={{ x: 'x', y: 'y' }}
-                    xAxisLabel="Attempt #"
-                    yAxisLabel="Error (eV/atom)"
-                    withTooltip
-                    yAxisProps={{ width: 37 }}
-                  />
+                  <ResponsiveContainer width="100%" height={250}>
+                    <RechartsScatterChart>
+                      <CartesianGrid />
+                      <XAxis type="number" dataKey="x">
+                        <Label value="Attempt #" position="insideBottom" offset={-5} />
+                      </XAxis>
+                      <YAxis type="number" dataKey="y" width={37}>
+                        <Label value="Error (eV/atom)" angle={-90} position="insideLeft" />
+                      </YAxis>
+                      <RechartsTooltip />
+                      <Scatter
+                        data={guessHistory.map((guess, index) => ({ x: index + 1, y: guess.error }))}
+                        fill="#2563EB"
+                      />
+                    </RechartsScatterChart>
+                  </ResponsiveContainer>
                 </div>
               </div>
 
@@ -408,9 +413,9 @@ export default function MP20Guesser({ materials }: Props) {
               <div className="mb-4">
                 <h4 className="text-md font-medium text-gray-700 mb-4 text-center">Error Histogram</h4>
                 <div className="h-64 -ml-4 sm:ml-0">
-                  <BarChart
-                    h={250}
-                    data={(() => {
+                  <ResponsiveContainer width="100%" height={250}>
+                    <RechartsBarChart
+                      data={(() => {
                       // Create histogram bins
                       const binSize = 0.1;
                       const maxError = Math.max(...guessHistory.map(g => g.error));
@@ -431,13 +436,18 @@ export default function MP20Guesser({ materials }: Props) {
 
                       return bins.filter(bin => bin.count > 0);
                     })()}
-                    dataKey="range"
-                    series={[{ name: 'count', color: 'blue.6' }]}
-                    xAxisLabel="Error Range (eV/atom)"
-                    yAxisLabel="# Guesses"
-                    withTooltip
-                    yAxisProps={{ width: 37 }}
-                  />
+                    >
+                      <CartesianGrid />
+                      <XAxis dataKey="range">
+                        <Label value="Error Range (eV/atom)" position="insideBottom" offset={-5} />
+                      </XAxis>
+                      <YAxis width={37}>
+                        <Label value="# Guesses" angle={-90} position="insideLeft" />
+                      </YAxis>
+                      <RechartsTooltip />
+                      <Bar dataKey="count" fill="#2563EB" />
+                    </RechartsBarChart>
+                  </ResponsiveContainer>
                 </div>
               </div>
             </div>
@@ -447,7 +457,6 @@ export default function MP20Guesser({ materials }: Props) {
 
         </div>
       </div>
-    </MantineProvider>
   );
 }
 

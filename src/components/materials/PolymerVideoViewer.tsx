@@ -5,11 +5,9 @@ import {
     spheresMap,
     subtract,
 } from "@/components/materials/crystalViewerHelpers";
-import { Checkbox, Slider } from "@mantine/core";
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import "@mantine/core/styles.css";
 
 export interface Frame {
     atomicNumbers: number[];
@@ -245,25 +243,25 @@ const PolymerVideoViewerCanvas = ({
     return (
         <>
             <div ref={mountRef} style={{ width: "100%", height: "100%" }} />
-            <div className="mt-2 flex flex-row">
-                <Checkbox
-                    checked={isUseFrameSliderCheckedRef.current}
-                    onChange={(event) =>
-                        (isUseFrameSliderCheckedRef.current = event.currentTarget.checked)
-                    }
-                    label="Use Frame Slider"
-                />
-                <Slider
+            <div className="mt-2 flex flex-row items-center gap-2">
+                <label className="flex items-center gap-1 text-sm">
+                    <input
+                        type="checkbox"
+                        checked={isUseFrameSliderCheckedRef.current}
+                        onChange={(event) =>
+                            (isUseFrameSliderCheckedRef.current = event.currentTarget.checked)
+                        }
+                    />
+                    Use Frame Slider
+                </label>
+                <input
+                    type="range"
                     disabled={!isUseFrameSliderCheckedRef.current}
-                    className="w-[100%]"
+                    className="w-full"
                     value={sliderValueRef.current}
-                    onChange={(v) => (sliderValueRef.current = v)}
-                    color="blue"
-                    marks={[
-                        { value: 20, label: "20%" },
-                        { value: 50, label: "50%" },
-                        { value: 80, label: "80%" },
-                    ]}
+                    onChange={(e) => (sliderValueRef.current = Number(e.target.value))}
+                    min={0}
+                    max={100}
                 />
             </div>
         </>
