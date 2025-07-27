@@ -14,10 +14,7 @@
     },
     "dependencies": {
         "@heroicons/react": "^2.0.17",
-        "@mantine/charts": "^7.17.8",
-        "@mantine/core": "^7.17.8",
-        "@mantine/dropzone": "^7.17.8",
-        "@mantine/hooks": "^7.17.8",
+        "react-dropzone": "^14.2.3",
         "@types/lodash.clonedeep": "^4.5.7",
         "@types/node": "18.15.11",
         "@types/react": "18.0.35",

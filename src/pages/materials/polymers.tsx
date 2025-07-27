@@ -3,7 +3,6 @@ import { Frame, PolymerVideoViewer } from "@/components/materials/PolymerVideoVi
 import React from "react";
 import pull from "public/materials/pull.json";
 import relaxation from "public/materials/relaxation.json";
-import { MantineProvider } from "@mantine/core";
 import Image from "next/image";
 
 export default function Polymers() {
@@ -39,8 +38,7 @@ export default function Polymers() {
     }, []);
 
     return (
-        <MantineProvider>
-            <div className="px-3 text-md">
+        <div className="px-3 text-md">
                 <p className="fade-in-on-scroll mt-20 text-center text-2xl">
                     Building Polymers with Neural Network Potentials
                 </p>
@@ -181,6 +179,5 @@ export default function Polymers() {
                 <p className="fade-in-on-scroll mt-10">- Curtis</p>
                 <div className="h-96"></div>
             </div>
-        </MantineProvider>
     );
 }
