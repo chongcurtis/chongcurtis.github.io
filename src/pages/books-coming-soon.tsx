@@ -16,7 +16,7 @@ export default function BooksComingSoon() {
                 </Link>
                 <p>Coming soon: How to Write Funny</p>
                 {/*<Link href="/books/the-dark-forest">The Dark Forest</Link>*/}
-                <p>Common soon: Feeling Great</p>
+                <p>Coming soon: Feeling Great</p>
                 <p>Coming soon: The Dark Forest</p>
                 <div></div>
             </div>
