@@ -138,8 +138,8 @@ export default function LitXBench() {
                 <Image
                     src="/materials/litxbench/material_obj_white.png"
                     alt="Schema for extracted material"
-                    width={700}
-                    height={250}
+                    width={730}
+                    height={350}
                 />
             </div>
             <p className="fade-in-on-scroll mt-10">
@@ -147,31 +147,37 @@ export default function LitXBench() {
                 are inaccurate are because it's hard to verify and fix errors. But code is designed to be editable and readable - unlike CSV or JSON.
             </p>
             <p className="fade-in-on-scroll mt-10">
-                Another advantage is that we can use code to help us compute and normalize variables. Consider
+                Another advantage is that we can use code to help us compute and normalize variables. Consider{` `}
                 <a
                     href="https://www.mdpi.com/2079-6412/9/1/16"
                     target="_blank"
                     className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                >this paper.</a> These authors added equiatomic Tungsten Carbide particles to a base alloy.
-                The amount of these additions are equal to 10% by weight of the base alloy.
+                >this paper,</a> where the authors added equiatomic Tungsten Carbide particles to a base alloy.
+                The amount of these additions are equal to 10% by weight of the base alloy. The nominal composition
+                they made is CoCrFeNiW<sub>0.12</sub>C<sub>0.12</sub>. It's hard for humans to look at this and know if
+                these numbers are correct! What we really need is a function to do this for us.
             </p>
             <div className="fade-in-on-scroll mt-8 flex justify-center">
                 <Image
                     src="/materials/litxbench/comp_helper_fn.png"
                     alt="Schema for extracted material"
-                    width={700}
+                    width={450}
                     height={250}
                 />
             </div>
-            <ol className="fade-in-on-scroll list-inside list-decimal space-y-2 pl-2">
+            <p className="fade-in-on-scroll mt-10">
+                Code shifts verification away from calculating the correct composition, to verifying the correctness
+                of the function that performs the calculation. By making the benchmark more auditable, it becomes more trustworthy.
+            </p>
+            {/* <ol className="fade-in-on-scroll list-inside list-decimal space-y-2 pl-2">
                 <li className="fade-in-on-scroll">
                     You miss certain values within each pass, and
                 </li>
                 <li className="fade-in-on-scroll">
                     You gain new insight the more you re-read the paper and adjacent papers.
                 </li>
-            </ol>
-            <p className="fade-in-on-scroll mt-10">
+            </ol> */}
+            {/* <p className="fade-in-on-scroll mt-10">
                 Since 18 of the papers within LitXAlloy were from the Citrine MPEA dataset, I
                 cross-referenced my values with theirs and found that their dataset also contained
                 mistakes. Many mistakes in LitXAlloy were also caught with LLM-assisted validation,
@@ -179,44 +185,68 @@ export default function LitXBench() {
                 errors for human scrutiny. Correcting these mistakes took many hours, and it taught
                 me that human-annotated datasets shouldn't be placed in such high regard, as errors
                 are quite common.
-            </p>
-            <p className="fade-in-on-scroll mt-10">
+            </p> */}
+            {/* <p className="fade-in-on-scroll mt-10">
                 Since errors are unavoidable, we need strong guardrails to fix errors and teach
                 future readers the reasoning behind extracted values.
-            </p>
+            </p> */}
 
-            <h3 className="fade-in-on-scroll mt-10 text-2xl">
+            {/* <h3 className="fade-in-on-scroll mt-10 text-2xl">
                 Information Extraction Benchmarks Should be Recorded in Code
             </h3>
             <p className="fade-in-on-scroll mt-10">
                 We go into more detail in the paper, but as shown in the image, materials are much
                 easier to understand when laid out in code than when expressed in JSON or CSV.
+            </p> */}
+
+            <p className="fade-in-on-scroll mt-10 text-2xl">
+                Code Enables Validation
             </p>
             <p className="fade-in-on-scroll mt-10">
-                Code is much easier for people to edit because we inherit the type safety and syntax
+                When experiments are extracted as code, it is validated at compile and runtime for errors -
+                prompting the LLM to retry if it made a mistake. More importantly, we can perform semantic checks
+                such as ensuring that: 'all alloys cannot depend on itself as a precursor' (no cycles in the graph).
+                We can also perform checks specifically for our material class. For example, all "cut" events
+                must be performed after an alloy has "cooled down". These semantic checks ensures that
+                data is extracted in a consistent manner.
+                {/* Code is much easier for people to edit because we inherit the type safety and syntax
                 guarantees that IDEs provide. In addition, we can also perform runtime validation
                 checks to ensure that the extraction makes sense. For example, when describing the
                 processing conditions, all melting steps must be followed by a casting step;
                 otherwise, an error will be thrown. Since LLMs are used for extraction, errors raised
                 from these validation checks can help them retry until they're fixed. This is really
                 useful because the errors come from the objects the LLM wrote, so the model can
-                directly understand how its output caused the error.
+                directly understand how its output caused the error. */}
             </p>
-            <p className="fade-in-on-scroll mt-10">
+            {/* <p className="fade-in-on-scroll mt-10">
                 Often, papers leave out details, which require nontrivial amounts of inference from
                 the reader to understand - especially if there are mistakes in the paper. For
                 benchmarks like LitXAlloy, where the truth is ambiguous or contested between multiple
                 annotators, code comments can serve as evidence/documentation for why specific values
                 were extracted.
-            </p>
+            </p> */}
 
             <h3 className="fade-in-on-scroll mt-10 text-2xl">
                 Results
             </h3>
             <p className="fade-in-on-scroll mt-10">
-                Specific results are in the paper, but further details of these experiments (and many
-                more!) are in the paper and in our released repo.
+                Further results and experiments are in{` `}
+                <a
+                    href="https://arxiv.org/pdf/2604.07649"
+                    target="_blank"
+                    className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                >the paper,</a> but here are the results of frontier
+                LLMs on LitXAlloy:
             </p>
+            <div className="fade-in-on-scroll mt-8 flex justify-center">
+                <Image
+                    src="/materials/litxbench/comp_helper_fn.png"
+                    alt="Schema for extracted material"
+                    width={450}
+                    height={250}
+                />
+            </div>
+
             <p className="fade-in-on-scroll mt-10">
                 Overall, LLMs are proficient at experiment extraction, but more work is needed before
                 experimental data is truly reliable. I'm just glad that we now have a quantifiable
