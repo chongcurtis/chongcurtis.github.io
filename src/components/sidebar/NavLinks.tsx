@@ -58,6 +58,10 @@ export const NavLinks: NavLink[] = [
                 label: "Human Interatomic Potential",
                 href: "/materials/human-iap",
             },
+            {
+                label: "LitXBench",
+                href: "/materials/litxbench",
+            },
         ],
     },
     // {
