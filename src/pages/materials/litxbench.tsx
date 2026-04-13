@@ -38,35 +38,43 @@ export default function LitXBench() {
             <p className="fade-in-on-scroll mt-10">
                 The obvious approach is to use LLMs to extract experimental information into a structured
                 (and indexable) data format. But I couldn't find a reliable benchmark to test my approach.
-                I used a few human-annotated datasets for validation, but I found that the LLM was more
+                I used a few human-annotated datasets for validation, but found that LLMs were more
                 correct than my validation set. I realized that we needed a new kind of benchmark to
                 that properly captures the complexity of experimental data.    
             </p>
             <p className="fade-in-on-scroll mt-10 text-2xl">
                 What is LitXBench?
             </p>
-            <p className="fade-in-on-scroll mt-10">
-                It's a framework to benchmark how well we can extract experiments from papers.
+            <p className="fade-in-on-scroll mt-6">
+                It's a framework to benchmark how well we can extract experiments from papers. It also
+                contains LitXAlloy, a LitXBench-based benchmark that contains manually-extracted experiments from from 19 alloy papers.
+                It's quite dense, with 1426 datapoints and an average of 74.8 extracted measurements per paper.
+            </p>
+
+
+            <p className="fade-in-on-scroll mt-6">
                 We define an experiment as a set of experimentally synthesized materials,
                 which we define as its processing steps and all of its measured properties.
             </p>
-            <div className="fade-in-on-scroll mt-10">
+            <div className="fade-in-on-scroll mt-8 flex justify-center">
                 <Image
-                    src="/materials/material_definition.svg"
+                    // src="/materials/litxbench/material_definition.svg"
+                    src="/materials/litxbench/material_definition_no_bg.svg"
                     alt="Material definition diagram"
-                    width={800}
-                    height={400}
+                    width={500}
+                    height={250}
                 />
             </div>
             <p className="fade-in-on-scroll mt-10">
-                To properly discint materials from each other, LitXBench solely uses the processing conditions.
-                It does not identify materials by their composition. This is because a material
-                can have multiple characterized compositions from different machines
-                (e.g. by scale, by EDS, by XRF).
+                To properly differentiate materials from each other, LitXBench solely identifies
+                materials by its processing conditions, rather than by its composition.
+                This is because a material can have multiple characterized compositions
+                from different machines (e.g. by scale, by EDS, by XRF). It's important
+                to include them all.
             </p>
             <p className="fade-in-on-scroll mt-10">
             </p>
-            <p className="fade-in-on-scroll mt-10">The benchmark makes three key points:</p>
+            {/* <p className="fade-in-on-scroll mt-10">The benchmark makes three key points:</p>
             <ol className="fade-in-on-scroll list-inside list-decimal space-y-2 pl-2">
                 <li className="fade-in-on-scroll">
                     When extracting properties, we should associate them not only with the
@@ -80,8 +88,8 @@ export default function LitXBench() {
                     Reliable information extraction benchmarks should be highly editable and
                     auditable.
                 </li>
-            </ol>
-
+            </ol> */}
+{/* 
             <p className="fade-in-on-scroll mt-10 text-xl font-bold">
                 1. Material-Centric Property Association
             </p>
@@ -98,9 +106,9 @@ export default function LitXBench() {
                 sample. Do you report the nominal composition (weighed by a balance) or the more
                 accurate XRF measurements? Anchoring the measurements onto materials removes this
                 ambiguity because you can record various composition measurements as separate values.
-            </p>
+            </p> */}
 
-            <p className="fade-in-on-scroll mt-10 text-xl font-bold">
+            {/* <p className="fade-in-on-scroll mt-10 text-xl font-bold">
                 2. Canonical Values Resolve Ambiguity
             </p>
             <p className="fade-in-on-scroll mt-10">
@@ -113,15 +121,48 @@ export default function LitXBench() {
                 Thus, at the time of extraction, the model needs to know what the "buckets" are to
                 classify each measurement/phase/process condition, so we can normalize categorical
                 values to canonical values.
-            </p>
+            </p> */}
 
-            <p className="fade-in-on-scroll mt-10 text-xl font-bold">
-                3. Editable Benchmarks Amend Human Error
+            <p className="fade-in-on-scroll mt-10 text-2xl">
+                LitXBench Represents Extracted Materials as Code
+            </p>
+            {/* <div className="fade-in-on-scroll mt-8 flex justify-center">
+                <Image
+                    src="/materials/litxbench/code_repr.svg"
+                    alt="Represent Extracted materials as Code"
+                    width={500}
+                    height={250}
+                />
+            </div> */}
+            <div className="fade-in-on-scroll mt-8 flex justify-center">
+                <Image
+                    src="/materials/litxbench/material_obj_white.png"
+                    alt="Schema for extracted material"
+                    width={700}
+                    height={250}
+                />
+            </div>
+            <p className="fade-in-on-scroll mt-10">
+                Why code? Because it's much more human-readable than JSON. A big reason why most annotated datasets/benchmarks
+                are inaccurate are because it's hard to verify and fix errors. But code is designed to be editable and readable - unlike CSV or JSON.
             </p>
             <p className="fade-in-on-scroll mt-10">
-                While annotating the benchmark, I made many mistakes and kept finding new ones each
-                time I re-read the paper. This is because:
+                Another advantage is that we can use code to help us compute and normalize variables. Consider
+                <a
+                    href="https://www.mdpi.com/2079-6412/9/1/16"
+                    target="_blank"
+                    className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                >this paper.</a> These authors added equiatomic Tungsten Carbide particles to a base alloy.
+                The amount of these additions are equal to 10% by weight of the base alloy.
             </p>
+            <div className="fade-in-on-scroll mt-8 flex justify-center">
+                <Image
+                    src="/materials/litxbench/comp_helper_fn.png"
+                    alt="Schema for extracted material"
+                    width={700}
+                    height={250}
+                />
+            </div>
             <ol className="fade-in-on-scroll list-inside list-decimal space-y-2 pl-2">
                 <li className="fade-in-on-scroll">
                     You miss certain values within each pass, and
