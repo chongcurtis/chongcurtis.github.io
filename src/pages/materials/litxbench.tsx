@@ -160,7 +160,7 @@ export default function LitXBench() {
             <div className="fade-in-on-scroll mt-8 flex justify-center">
                 <Image
                     src="/materials/litxbench/comp_helper_fn.png"
-                    alt="Schema for extracted material"
+                    alt="Helper function to parse composition"
                     width={450}
                     height={250}
                 />
@@ -243,14 +243,22 @@ export default function LitXBench() {
                     href="https://arxiv.org/pdf/2604.07649"
                     target="_blank"
                     className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                >the paper,</a> but here are the results of frontier
+                >the paper,</a> and on the{` `}
+                <a
+                    href="https://radical-ai.github.io/litxbench"
+                    target="_blank"
+                    className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                >
+                public leaderboard
+                </a>
+                . If you're interested, here are the results of frontier
                 LLMs on LitXAlloy:
             </p>
             <div className="fade-in-on-scroll mt-8 flex justify-center">
                 <Image
-                    src="/materials/litxbench/comp_helper_fn.png"
-                    alt="Schema for extracted material"
-                    width={450}
+                    src="/materials/litxbench/results.png"
+                    alt="LitXBench results"
+                    width={650}
                     height={250}
                 />
             </div>
