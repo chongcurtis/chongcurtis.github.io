@@ -28,7 +28,7 @@ export default function LitXBench() {
                 </li>
             </ul>
             <p className="fade-in-on-scroll mt-10">
-                We need modestly large data sets, but scaling self-driving labs will take time.
+                We need modestly large datasets, but scaling self-driving labs will take time.
                 So in the interim, we need a method to validate computational approaches.
                 One pragmatic approach to accomplishing these goals is to extract and index experiments
                 from the scientific literature. This is because thousands of experiments are recorded
@@ -54,7 +54,7 @@ export default function LitXBench() {
 
             <p className="fade-in-on-scroll mt-6">
                 We define an experiment as a set of experimentally synthesized materials,
-                which we define by all its processing steps and measured properties.
+                which we define by all their processing steps and measured properties.
             </p>
             <div className="fade-in-on-scroll mt-8 flex justify-center">
                 <Image
@@ -144,7 +144,7 @@ export default function LitXBench() {
             </div>
             <p className="fade-in-on-scroll mt-10">
                 Why code? Because it's much more human-readable than JSON. A big reason why most annotated datasets/benchmarks
-                are inaccurate is because it's hard to verify and fix errors. But code is designed to be editable and readable (unlike CSV or JSON).
+                are inaccurate is that it's hard to verify and fix errors. But code is designed to be editable and readable (unlike CSV or JSON).
             </p>
             <p className="fade-in-on-scroll mt-10">
                 Another advantage is that we can use code to help us compute and normalize variables. Consider{` `}
@@ -166,7 +166,7 @@ export default function LitXBench() {
                 />
             </div>
             <p className="fade-in-on-scroll mt-10">
-                Code shifts verification away from calculating the correct composition, to verifying the correctness
+                Code shifts verification away from calculating the correct composition to verifying the correctness
                 of the function that performs the calculation. By making the benchmark more auditable, it becomes more trustworthy.
             </p>
             {/* <ol className="fade-in-on-scroll list-inside list-decimal space-y-2 pl-2">
@@ -178,7 +178,7 @@ export default function LitXBench() {
                 </li>
             </ol> */}
             <p className="fade-in-on-scroll mt-10">
-                Code also enables validation, as compile and runtime errors teaches LLMs to retry when it makes mistakes. More importantly, we can perform semantic checks
+                Code also enables validation, as compile and runtime errors teach LLMs to retry when they make mistakes. More importantly, we can perform semantic checks
                 such as ensuring that: 'no alloy can depend on itself as a precursor' (no cycles in the graph).
                 We can also perform checks specifically for our material class. For example, all "cut" events
                 must be performed after an alloy has "cooled down". These semantic checks ensure that
@@ -193,11 +193,11 @@ export default function LitXBench() {
                 directly understand how its output caused the error. */}
             </p>
             <p className="fade-in-on-scroll mt-10">
-                After many hours of manual review, I used LLMs to validate the benchmark's correctness 
+                Code enabled LitXBench to be thoroughly reviewed for accuracy. After many hours of manual review, I also used LLMs to validate the benchmark's correctness 
                 (all LLM suggestions were heavily scrutinized by humans before the benchmark was updated).
                 I spent an estimated 1.1 billion Opus 4.5/4.6 tokens within Claude Code and used many more Gemini 3.1 and GPT-5.2-codex tokens to help
                 catch errors. Correcting these mistakes took many hours, and it taught
-                me that human-annotated datasets shouldn't be placed in such high regard, as errors
+                me that human-annotated datasets shouldn't be held in such high regard, as errors
                 are quite common.
             </p>
 
