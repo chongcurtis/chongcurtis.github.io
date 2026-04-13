@@ -39,15 +39,15 @@ export default function LitXBench() {
                 The obvious approach is to use LLMs to extract experimental information into a structured
                 (and indexable) data format. But I couldn't find a reliable benchmark to test my approach.
                 I used a few human-annotated datasets for validation, but found that LLMs were more
-                correct than my validation set. I realized that we needed a new kind of benchmark to
-                that properly captures the complexity of experimental data.    
+                correct than my validation set. I realized that we needed a new kind of benchmark
+                that properly captures the complexity of experimental data.
             </p>
             <p className="fade-in-on-scroll mt-10 text-2xl">
                 What is LitXBench?
             </p>
             <p className="fade-in-on-scroll mt-6">
                 It's a framework to benchmark how well we can extract experiments from papers. It also
-                contains LitXAlloy, a LitXBench-based benchmark that contains manually-extracted experiments from from 19 alloy papers.
+                contains LitXAlloy, a LitXBench-based benchmark that contains manually-extracted experiments from 19 alloy papers.
                 It's quite dense, with 1426 datapoints and an average of 74.8 extracted measurements per paper.
             </p>
 
@@ -67,7 +67,7 @@ export default function LitXBench() {
             </div>
             <p className="fade-in-on-scroll mt-10">
                 To properly differentiate materials from each other, LitXBench solely identifies
-                materials by its processing conditions, rather than by its composition.
+                materials by their processing conditions, rather than by their composition.
                 This is because a material can have multiple characterized compositions
                 from different machines (e.g. by scale, by EDS, by XRF). It's important
                 to include them all.
@@ -144,7 +144,7 @@ export default function LitXBench() {
             </div>
             <p className="fade-in-on-scroll mt-10">
                 Why code? Because it's much more human-readable than JSON. A big reason why most annotated datasets/benchmarks
-                are inaccurate are because it's hard to verify and fix errors. But code is designed to be editable and readable - unlike CSV or JSON.
+                are inaccurate is because it's hard to verify and fix errors. But code is designed to be editable and readable - unlike CSV or JSON.
             </p>
             <p className="fade-in-on-scroll mt-10">
                 Another advantage is that we can use code to help us compute and normalize variables. Consider{` `}
@@ -179,7 +179,7 @@ export default function LitXBench() {
             </ol> */}
             <p className="fade-in-on-scroll mt-10">
                 After many hours of manual review, I used LLMs to validate the benchmark's correctness 
-                (all LLM suggestions were heavilty scrutinized by humans before the benchmark was updated).
+                (all LLM suggestions were heavily scrutinized by humans before the benchmark was updated).
                 I spent an estimated 1.1 billion Opus 4.5/4.6 tokens within Claude Code and used many more Gemini 3.1 and GPT-5.2-codex tokens to help to
                 catch errors. Correcting these mistakes took many hours, and it taught
                 me that human-annotated datasets shouldn't be placed in such high regard, as errors
@@ -216,7 +216,7 @@ export default function LitXBench() {
                 prompting the LLM to retry if it made a mistake. More importantly, we can perform semantic checks
                 such as ensuring that: 'all alloys cannot depend on itself as a precursor' (no cycles in the graph).
                 We can also perform checks specifically for our material class. For example, all "cut" events
-                must be performed after an alloy has "cooled down". These semantic checks ensures that
+                must be performed after an alloy has "cooled down". These semantic checks ensure that
                 data is extracted in a consistent manner.
                 {/* Code is much easier for people to edit because we inherit the type safety and syntax
                 guarantees that IDEs provide. In addition, we can also perform runtime validation
