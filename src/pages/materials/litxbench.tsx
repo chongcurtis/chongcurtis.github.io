@@ -28,7 +28,7 @@ export default function LitXBench() {
                 </li>
             </ul>
             <p className="fade-in-on-scroll mt-10">
-                We need a consistent source of data, but scaling self-driving labs will take time.
+                We need modestly large data sets, but scaling self-driving labs will take time.
                 So in the interim, we need a method to validate computational approaches.
                 One pragmatic approach to accomplishing these goals is to extract and index experiments
                 from the scientific literature. This is because thousands of experiments are recorded
@@ -152,9 +152,9 @@ export default function LitXBench() {
                     href="https://www.mdpi.com/2079-6412/9/1/16"
                     target="_blank"
                     className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
-                >this paper,</a> where the authors added equiatomic Tungsten Carbide particles to a base alloy.
+                >this paper,</a> where the authors added equiatomic Tungsten Carbide particles to a base CoCrFeNi alloy.
                 The amount of these additions is equal to 10% by weight of the base alloy. The nominal composition
-                they made is CoCrFeNiW<sub>0.12</sub>C<sub>0.12</sub>. It's hard for humans to look at this and know if
+                they made is CoCrFeNiW<sub>0.12</sub>C<sub>0.12</sub>. But it's hard for humans to look at this and know if
                 these numbers are correct! What we really need is a function to do this for us.
             </p>
             <div className="fade-in-on-scroll mt-8 flex justify-center">
@@ -177,6 +177,21 @@ export default function LitXBench() {
                     You gain new insight the more you re-read the paper and adjacent papers.
                 </li>
             </ol> */}
+            <p className="fade-in-on-scroll mt-10">
+                Code also enables validation, as compile and runtime errors teaches LLMs to retry when it makes mistakes. More importantly, we can perform semantic checks
+                such as ensuring that: 'no alloy can depend on itself as a precursor' (no cycles in the graph).
+                We can also perform checks specifically for our material class. For example, all "cut" events
+                must be performed after an alloy has "cooled down". These semantic checks ensure that
+                data is extracted in a consistent manner.
+                {/* Code is much easier for people to edit because we inherit the type safety and syntax
+                guarantees that IDEs provide. In addition, we can also perform runtime validation
+                checks to ensure that the extraction makes sense. For example, when describing the
+                processing conditions, all melting steps must be followed by a casting step;
+                otherwise, an error will be thrown. Since LLMs are used for extraction, errors raised
+                from these validation checks can help them retry until they're fixed. This is really
+                useful because the errors come from the objects the LLM wrote, so the model can
+                directly understand how its output caused the error. */}
+            </p>
             <p className="fade-in-on-scroll mt-10">
                 After many hours of manual review, I used LLMs to validate the benchmark's correctness 
                 (all LLM suggestions were heavily scrutinized by humans before the benchmark was updated).
@@ -208,25 +223,9 @@ export default function LitXBench() {
                 easier to understand when laid out in code than when expressed in JSON or CSV.
             </p> */}
 
-            <p className="fade-in-on-scroll mt-10 text-2xl">
+            {/* <p className="fade-in-on-scroll mt-10 text-2xl">
                 Code Enables Validation
-            </p>
-            <p className="fade-in-on-scroll mt-10">
-                When experiments are extracted as code, they are validated at compile and runtime for errors -
-                prompting the LLM to retry if it made a mistake. More importantly, we can perform semantic checks
-                such as ensuring that: 'no alloy can depend on itself as a precursor' (no cycles in the graph).
-                We can also perform checks specifically for our material class. For example, all "cut" events
-                must be performed after an alloy has "cooled down". These semantic checks ensure that
-                data is extracted in a consistent manner.
-                {/* Code is much easier for people to edit because we inherit the type safety and syntax
-                guarantees that IDEs provide. In addition, we can also perform runtime validation
-                checks to ensure that the extraction makes sense. For example, when describing the
-                processing conditions, all melting steps must be followed by a casting step;
-                otherwise, an error will be thrown. Since LLMs are used for extraction, errors raised
-                from these validation checks can help them retry until they're fixed. This is really
-                useful because the errors come from the objects the LLM wrote, so the model can
-                directly understand how its output caused the error. */}
-            </p>
+            </p> */}
             {/* <p className="fade-in-on-scroll mt-10">
                 Often, papers leave out details, which require nontrivial amounts of inference from
                 the reader to understand - especially if there are mistakes in the paper. For
