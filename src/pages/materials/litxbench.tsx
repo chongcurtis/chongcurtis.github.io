@@ -177,6 +177,15 @@ export default function LitXBench() {
                     You gain new insight the more you re-read the paper and adjacent papers.
                 </li>
             </ol> */}
+            <p className="fade-in-on-scroll mt-10">
+                After many hours of manual review, I used LLMs to validate the benchmark's correctness 
+                (all LLM suggestions were heavilty scrutinized by humans before the benchmark was updated).
+                I spent an estimated 1.1 billion Opus 4.5/4.6 tokens within Claude Code and used many more Gemini 3.1 and GPT-5.2-codex tokens to help to
+                catch errors. Correcting these mistakes took many hours, and it taught
+                me that human-annotated datasets shouldn't be placed in such high regard, as errors
+                are quite common.
+            </p>
+
             {/* <p className="fade-in-on-scroll mt-10">
                 Since 18 of the papers within LitXAlloy were from the Citrine MPEA dataset, I
                 cross-referenced my values with theirs and found that their dataset also contained
