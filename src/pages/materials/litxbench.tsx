@@ -14,7 +14,7 @@ export default function LitXBench() {
                 LitXBench
             </p>
             <p className="fade-in-on-scroll mt-10">
-                I think that the lack of experimental material science datasets/evals is holding the
+                I think that the lack of experimental materials science datasets/evals is holding the
                 field back:
             </p>
             <ul className="fade-in-on-scroll list-disc space-y-2 pl-8 mt-2">
@@ -28,7 +28,7 @@ export default function LitXBench() {
                 </li>
             </ul>
             <p className="fade-in-on-scroll mt-10">
-                We need a consistent source of data; but scaling self-driving labs will take time.
+                We need a consistent source of data, but scaling self-driving labs will take time.
                 So in the interim, we need a method to validate computational approaches.
                 One pragmatic approach to accomplishing these goals is to extract and index experiments
                 from the scientific literature. This is because thousands of experiments are recorded
@@ -54,7 +54,7 @@ export default function LitXBench() {
 
             <p className="fade-in-on-scroll mt-6">
                 We define an experiment as a set of experimentally synthesized materials,
-                which we define as its processing steps and all of its measured properties.
+                which we define by all its processing steps and measured properties.
             </p>
             <div className="fade-in-on-scroll mt-8 flex justify-center">
                 <Image
@@ -144,7 +144,7 @@ export default function LitXBench() {
             </div>
             <p className="fade-in-on-scroll mt-10">
                 Why code? Because it's much more human-readable than JSON. A big reason why most annotated datasets/benchmarks
-                are inaccurate is because it's hard to verify and fix errors. But code is designed to be editable and readable - unlike CSV or JSON.
+                are inaccurate is because it's hard to verify and fix errors. But code is designed to be editable and readable (unlike CSV or JSON).
             </p>
             <p className="fade-in-on-scroll mt-10">
                 Another advantage is that we can use code to help us compute and normalize variables. Consider{` `}
@@ -153,7 +153,7 @@ export default function LitXBench() {
                     target="_blank"
                     className="underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
                 >this paper,</a> where the authors added equiatomic Tungsten Carbide particles to a base alloy.
-                The amount of these additions are equal to 10% by weight of the base alloy. The nominal composition
+                The amount of these additions is equal to 10% by weight of the base alloy. The nominal composition
                 they made is CoCrFeNiW<sub>0.12</sub>C<sub>0.12</sub>. It's hard for humans to look at this and know if
                 these numbers are correct! What we really need is a function to do this for us.
             </p>
@@ -180,7 +180,7 @@ export default function LitXBench() {
             <p className="fade-in-on-scroll mt-10">
                 After many hours of manual review, I used LLMs to validate the benchmark's correctness 
                 (all LLM suggestions were heavily scrutinized by humans before the benchmark was updated).
-                I spent an estimated 1.1 billion Opus 4.5/4.6 tokens within Claude Code and used many more Gemini 3.1 and GPT-5.2-codex tokens to help to
+                I spent an estimated 1.1 billion Opus 4.5/4.6 tokens within Claude Code and used many more Gemini 3.1 and GPT-5.2-codex tokens to help
                 catch errors. Correcting these mistakes took many hours, and it taught
                 me that human-annotated datasets shouldn't be placed in such high regard, as errors
                 are quite common.
@@ -212,9 +212,9 @@ export default function LitXBench() {
                 Code Enables Validation
             </p>
             <p className="fade-in-on-scroll mt-10">
-                When experiments are extracted as code, it is validated at compile and runtime for errors -
+                When experiments are extracted as code, they are validated at compile and runtime for errors -
                 prompting the LLM to retry if it made a mistake. More importantly, we can perform semantic checks
-                such as ensuring that: 'all alloys cannot depend on itself as a precursor' (no cycles in the graph).
+                such as ensuring that: 'no alloy can depend on itself as a precursor' (no cycles in the graph).
                 We can also perform checks specifically for our material class. For example, all "cut" events
                 must be performed after an alloy has "cooled down". These semantic checks ensure that
                 data is extracted in a consistent manner.
