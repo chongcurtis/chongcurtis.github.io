@@ -69,6 +69,27 @@ const links: Link[] = [
         leftMargin: 0.5,
     },
     {
+        label: "Google Scholar",
+        href: "https://scholar.google.com/citations?user=uDL3BfEAAAAJ&hl=en",
+        icon: (
+            <svg
+                className={classNames(
+                    fillTransitionClassnames,
+                    "mx-auto block h-6 w-6 hover:fill-[#4285F4] ml-5"
+                )}
+                aria-hidden="true"
+                data-prefix="fab"
+                data-icon="google-scholar"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+            >
+                <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z" />
+            </svg>
+        ),
+        leftMargin: -0.7,
+    },
+    {
         // from https://www.veryicon.com/icons/miscellaneous/general-icon-library/resume-7.html
         label: "Résumé",
         href: "/resume.pdf",
@@ -91,9 +112,14 @@ const links: Link[] = [
     },
 ];
 
-export const SocialLinks = () => {
+export const SocialLinks = ({ centered = false }: { centered?: boolean }) => {
     return (
-        <div className="fixed relative z-10 mt-0 flex w-full cursor-default items-center justify-start no-underline">
+        <div
+            className={classNames(
+                "fixed relative z-10 mt-0 flex w-full flex-wrap cursor-default items-center no-underline",
+                centered ? "justify-center" : "justify-start"
+            )}
+        >
             {links.map((link, idx) => {
                 return (
                     <div key={idx}>

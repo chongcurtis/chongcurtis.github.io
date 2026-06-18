@@ -68,7 +68,7 @@ export default function Sleepovers() {
                     </p>
                     <br />
                     <p className="fade-in-on-scroll">
-                        When the Coronavirus came, the CEO at Lumina graciously allowed me to stay
+                        During covid, the CEO at Lumina graciously allowed me to stay
                         at the office to shelter from the disease. I was without words when they
                         offered me a place to stay, so I decided to name my newsletter after what
                         happened.
