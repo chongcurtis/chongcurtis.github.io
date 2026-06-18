@@ -112,9 +112,14 @@ const links: Link[] = [
     },
 ];
 
-export const SocialLinks = () => {
+export const SocialLinks = ({ centered = false }: { centered?: boolean }) => {
     return (
-        <div className="fixed relative z-10 mt-0 flex w-full cursor-default items-center justify-start no-underline">
+        <div
+            className={classNames(
+                "fixed relative z-10 mt-0 flex w-full flex-wrap cursor-default items-center no-underline",
+                centered ? "justify-center" : "justify-start"
+            )}
+        >
             {links.map((link, idx) => {
                 return (
                     <div key={idx}>
