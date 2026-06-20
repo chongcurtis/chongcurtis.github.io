@@ -420,6 +420,10 @@ export default function EgnnChecklist() {
                             },
                         ],
                     },
+                    {
+                        beforeContent: "3.7",
+                        content: "Before training, make sure your wandb metrics clearly differentiate energy_mae vs energy_mae_per_atom",
+                    },
                 ]}
             />
             <h3 id="diffusion-model-checklist" className="mt-10 text-2xl">
