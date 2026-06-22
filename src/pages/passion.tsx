@@ -13,17 +13,16 @@ export default function Passion() {
         <>
             <div className="mt-20"></div>
             <h1 className="fade-in-on-scroll text-center text-xl">Passion Projects</h1>
-            <p className="fade-in-on-scroll mb-4 mt-4 px-4">
+            <p className="fade-in-on-scroll mb-4 mt-4 px-4 text-center">
                 The ones I've always wanted to make... and finally found the time to make them come
                 true
             </p>
-            <ThinLine animateImmediately={true} />
             <div className="mt-4 px-4">
                 <div>
                     <p className="fade-in-on-scroll">
                         <span className="">Grammarly for anything:</span>{" "}
                         <a
-                            href="https://checklet.page"
+                            href="https://github.com/curtischong/checklet"
                             target="_blank"
                             className="ml-2 underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
                         >
@@ -43,6 +42,49 @@ export default function Passion() {
                             className="ml-2 underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
                         >
                             kaggle.curtischong.me
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div className="mt-20"></div>
+            <h1 className="fade-in-on-scroll text-center text-xl">Underrated Tools</h1>
+            {/* <p className="fade-in-on-scroll mb-4 mt-4 px-4 text-center">
+            </p> */}
+            <div className="mt-4 px-4">
+                <div>
+                    <p className="fade-in-on-scroll">
+                        <span className="">The best notes app: </span>{" "}
+                        <a
+                            href="https://roamresearch.com"
+                            target="_blank"
+                            className="ml-2 underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                        >
+                            Roam Research
+                        </a>
+                    </p>
+                </div>
+                <div>
+                    <p className="fade-in-on-scroll">
+                        <span className="">Efficient storage format for atomistics:</span>{" "}
+                        <a
+                            href="https://github.com/LeMaterial/atompack"
+                            target="_blank"
+                            className="ml-2 underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                        >
+                            atompack
+                        </a>
+                    </p>
+                </div>
+                <div>
+                    <p className="fade-in-on-scroll">
+                        <span className="">Simple tensor operations API, helping me focus on the math, not tensor manipulation:</span>{" "}
+                        <a
+                            href="https://github.com/fferflo/einx"
+                            target="_blank"
+                            className="ml-2 underline decoration-sleepover-secondary underline-offset-2 hover:decoration-wavy"
+                        >
+                            einx
                         </a>
                     </p>
                 </div>
