@@ -62,6 +62,10 @@ export const NavLinks: NavLink[] = [
                 label: "LitXBench",
                 href: "/materials/litxbench",
             },
+            {
+                label: "Periodic RoPE MLIP",
+                href: "/periodic-rope-mlip",
+            },
         ],
     },
     // {
